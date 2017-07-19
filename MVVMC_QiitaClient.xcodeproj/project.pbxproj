@@ -14,6 +14,14 @@
 		AD5C98681F1F962300DF5039 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98661F1F962300DF5039 /* LaunchScreen.storyboard */; };
 		AD5C98731F1F962300DF5039 /* MVVMC_QiitaClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98721F1F962300DF5039 /* MVVMC_QiitaClientTests.swift */; };
 		AD5C987E1F1F962300DF5039 /* MVVMC_QiitaClientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C987D1F1F962300DF5039 /* MVVMC_QiitaClientUITests.swift */; };
+		AD5C988F1F1F994200DF5039 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C988E1F1F994200DF5039 /* CoordinatorFactory.swift */; };
+		AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98901F1F996500DF5039 /* Presentable.swift */; };
+		AD5C98941F1F996500DF5039 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98911F1F996500DF5039 /* Router.swift */; };
+		AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98921F1F996500DF5039 /* RouterImpl.swift */; };
+		AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98961F1F998200DF5039 /* Coordinator.swift */; };
+		AD5C989B1F1F998200DF5039 /* DependencyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98971F1F998200DF5039 /* DependencyCoordinator.swift */; };
+		AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */; };
+		AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */; };
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +58,14 @@
 		AD5C98791F1F962300DF5039 /* MVVMC_QiitaClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMC_QiitaClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD5C987D1F1F962300DF5039 /* MVVMC_QiitaClientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMC_QiitaClientUITests.swift; sourceTree = "<group>"; };
 		AD5C987F1F1F962300DF5039 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD5C988E1F1F994200DF5039 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
+		AD5C98901F1F996500DF5039 /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		AD5C98911F1F996500DF5039 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		AD5C98921F1F996500DF5039 /* RouterImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterImpl.swift; sourceTree = "<group>"; };
+		AD5C98961F1F998200DF5039 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		AD5C98971F1F998200DF5039 /* DependencyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyCoordinator.swift; sourceTree = "<group>"; };
+		AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		E6CE478C2039F61480735ED8 /* Pods-MVVMC_QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +137,7 @@
 		AD5C985C1F1F962300DF5039 /* MVVMC_QiitaClient */ = {
 			isa = PBXGroup;
 			children = (
+				AD5C988B1F1F98A800DF5039 /* Coordinator */,
 				AD5C985D1F1F962300DF5039 /* AppDelegate.swift */,
 				AD5C985F1F1F962300DF5039 /* ViewController.swift */,
 				AD5C98611F1F962300DF5039 /* Main.storyboard */,
@@ -147,6 +164,37 @@
 				AD5C987F1F1F962300DF5039 /* Info.plist */,
 			);
 			path = MVVMC_QiitaClientUITests;
+			sourceTree = "<group>";
+		};
+		AD5C988B1F1F98A800DF5039 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C98961F1F998200DF5039 /* Coordinator.swift */,
+				AD5C98971F1F998200DF5039 /* DependencyCoordinator.swift */,
+				AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */,
+				AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */,
+				AD5C988D1F1F992200DF5039 /* Router */,
+				AD5C988C1F1F98E900DF5039 /* Factory */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		AD5C988C1F1F98E900DF5039 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C988E1F1F994200DF5039 /* CoordinatorFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		AD5C988D1F1F992200DF5039 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C98901F1F996500DF5039 /* Presentable.swift */,
+				AD5C98911F1F996500DF5039 /* Router.swift */,
+				AD5C98921F1F996500DF5039 /* RouterImpl.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,8 +385,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD5C988F1F1F994200DF5039 /* CoordinatorFactory.swift in Sources */,
+				AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */,
+				AD5C989B1F1F998200DF5039 /* DependencyCoordinator.swift in Sources */,
+				AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */,
+				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
+				AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */,
+				AD5C98941F1F996500DF5039 /* Router.swift in Sources */,
 				AD5C98601F1F962300DF5039 /* ViewController.swift in Sources */,
 				AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */,
+				AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +649,7 @@
 				AD5C98841F1F962300DF5039 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD5C98851F1F962300DF5039 /* Build configuration list for PBXNativeTarget "MVVMC_QiitaClientTests" */ = {
 			isa = XCConfigurationList;
@@ -601,6 +658,7 @@
 				AD5C98871F1F962300DF5039 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD5C98881F1F962300DF5039 /* Build configuration list for PBXNativeTarget "MVVMC_QiitaClientUITests" */ = {
 			isa = XCConfigurationList;
@@ -609,6 +667,7 @@
 				AD5C988A1F1F962300DF5039 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
