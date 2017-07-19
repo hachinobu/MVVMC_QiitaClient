@@ -1,0 +1,30 @@
+PODS:
+  - Action (3.1.1):
+    - RxCocoa (~> 3.4)
+    - RxSwift (~> 3.4)
+  - APIKit (3.1.1):
+    - Result (~> 3.0)
+  - Kingfisher (3.10.3)
+  - Result (3.2.3)
+  - RxCocoa (3.6.0):
+    - RxSwift (~> 3.6)
+  - RxSwift (3.6.0)
+
+DEPENDENCIES:
+  - Action
+  - APIKit (~> 3.1)
+  - Kingfisher (~> 3.0)
+  - RxCocoa (~> 3.0)
+  - RxSwift (~> 3.0)
+
+SPEC CHECKSUMS:
+  Action: e224bd151fe2e057f4189b4a9df0dc5d21264a9e
+  APIKit: 7460983f490d3bde6aaaaa4164d18c9865a6f91d
+  Kingfisher: a0ac82dc5bcf0388dd74b294cf2cc13730c63436
+  Result: 128640a6347e8d2ae48b142556739a2d13f90ce6
+  RxCocoa: cb865569239ebf1b1434056e5c8859d99dff103a
+  RxSwift: a0925c7fb11fbe60055285f6f2062241aa37a175
+
+PODFILE CHECKSUM: 047f08535e355dd4dccabf996a04733e863671d2
+
+COCOAPODS: 1.2.0
