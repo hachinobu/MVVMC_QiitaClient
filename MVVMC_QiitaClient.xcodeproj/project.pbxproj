@@ -22,6 +22,9 @@
 		AD5C989B1F1F998200DF5039 /* DependencyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98971F1F998200DF5039 /* DependencyCoordinator.swift */; };
 		AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */; };
 		AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */; };
+		AD5C98A51F1F9C3400DF5039 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */; };
+		AD5C98A91F1F9D4100DF5039 /* TabSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A81F1F9D4100DF5039 /* TabSelectable.swift */; };
+		AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */; };
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +69,9 @@
 		AD5C98971F1F998200DF5039 /* DependencyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyCoordinator.swift; sourceTree = "<group>"; };
 		AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
+		AD5C98A81F1F9D4100DF5039 /* TabSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSelectable.swift; sourceTree = "<group>"; };
+		AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabbarController.storyboard; sourceTree = "<group>"; };
 		E6CE478C2039F61480735ED8 /* Pods-MVVMC_QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +143,7 @@
 		AD5C985C1F1F962300DF5039 /* MVVMC_QiitaClient */ = {
 			isa = PBXGroup;
 			children = (
+				AD5C98A21F1F9C0000DF5039 /* View */,
 				AD5C988B1F1F98A800DF5039 /* Coordinator */,
 				AD5C985D1F1F962300DF5039 /* AppDelegate.swift */,
 				AD5C985F1F1F962300DF5039 /* ViewController.swift */,
@@ -169,6 +176,7 @@
 		AD5C988B1F1F98A800DF5039 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				AD5C98A61F1F9CA300DF5039 /* Flow */,
 				AD5C98961F1F998200DF5039 /* Coordinator.swift */,
 				AD5C98971F1F998200DF5039 /* DependencyCoordinator.swift */,
 				AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */,
@@ -195,6 +203,47 @@
 				AD5C98921F1F996500DF5039 /* RouterImpl.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		AD5C98A21F1F9C0000DF5039 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C98AA1F1FA2FC00DF5039 /* Storyboard */,
+				AD5C98A31F1F9C1C00DF5039 /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AD5C98A31F1F9C1C00DF5039 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AD5C98A61F1F9CA300DF5039 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C98A71F1F9CC400DF5039 /* TabbarFlow */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		AD5C98A71F1F9CC400DF5039 /* TabbarFlow */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C98A81F1F9D4100DF5039 /* TabSelectable.swift */,
+			);
+			path = TabbarFlow;
+			sourceTree = "<group>";
+		};
+		AD5C98AA1F1FA2FC00DF5039 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +361,7 @@
 			files = (
 				AD5C98681F1F962300DF5039 /* LaunchScreen.storyboard in Resources */,
 				AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */,
+				AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */,
 				AD5C98631F1F962300DF5039 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,12 +436,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD5C988F1F1F994200DF5039 /* CoordinatorFactory.swift in Sources */,
+				AD5C98A91F1F9D4100DF5039 /* TabSelectable.swift in Sources */,
 				AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */,
 				AD5C989B1F1F998200DF5039 /* DependencyCoordinator.swift in Sources */,
 				AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
 				AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */,
 				AD5C98941F1F996500DF5039 /* Router.swift in Sources */,
+				AD5C98A51F1F9C3400DF5039 /* TabbarController.swift in Sources */,
 				AD5C98601F1F962300DF5039 /* ViewController.swift in Sources */,
 				AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */,
 				AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */,
