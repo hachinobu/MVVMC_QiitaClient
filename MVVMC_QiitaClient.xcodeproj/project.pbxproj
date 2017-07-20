@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C985D1F1F962300DF5039 /* AppDelegate.swift */; };
-		AD5C98601F1F962300DF5039 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C985F1F1F962300DF5039 /* ViewController.swift */; };
-		AD5C98631F1F962300DF5039 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98611F1F962300DF5039 /* Main.storyboard */; };
 		AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98641F1F962300DF5039 /* Assets.xcassets */; };
 		AD5C98681F1F962300DF5039 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98661F1F962300DF5039 /* LaunchScreen.storyboard */; };
 		AD5C98731F1F962300DF5039 /* MVVMC_QiitaClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98721F1F962300DF5039 /* MVVMC_QiitaClientTests.swift */; };
@@ -25,6 +23,10 @@
 		AD5C98A51F1F9C3400DF5039 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */; };
 		AD5C98A91F1F9D4100DF5039 /* TabSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A81F1F9D4100DF5039 /* TabSelectable.swift */; };
 		AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */; };
+		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
+		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
+		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
+		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,8 +52,6 @@
 		A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVVMC_QiitaClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD5C985A1F1F962300DF5039 /* MVVMC_QiitaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMC_QiitaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD5C985D1F1F962300DF5039 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AD5C985F1F1F962300DF5039 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		AD5C98621F1F962300DF5039 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD5C98641F1F962300DF5039 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD5C98671F1F962300DF5039 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD5C98691F1F962300DF5039 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +72,10 @@
 		AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		AD5C98A81F1F9D4100DF5039 /* TabSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSelectable.swift; sourceTree = "<group>"; };
 		AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabbarController.storyboard; sourceTree = "<group>"; };
+		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
+		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
+		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
+		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
 		E6CE478C2039F61480735ED8 /* Pods-MVVMC_QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,11 +147,10 @@
 		AD5C985C1F1F962300DF5039 /* MVVMC_QiitaClient */ = {
 			isa = PBXGroup;
 			children = (
+				AD74B4C61F20ED4200B2EC04 /* Extension */,
 				AD5C98A21F1F9C0000DF5039 /* View */,
 				AD5C988B1F1F98A800DF5039 /* Coordinator */,
 				AD5C985D1F1F962300DF5039 /* AppDelegate.swift */,
-				AD5C985F1F1F962300DF5039 /* ViewController.swift */,
-				AD5C98611F1F962300DF5039 /* Main.storyboard */,
 				AD5C98641F1F962300DF5039 /* Assets.xcassets */,
 				AD5C98661F1F962300DF5039 /* LaunchScreen.storyboard */,
 				AD5C98691F1F962300DF5039 /* Info.plist */,
@@ -191,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				AD5C988E1F1F994200DF5039 /* CoordinatorFactory.swift */,
+				AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -234,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				AD5C98A81F1F9D4100DF5039 /* TabSelectable.swift */,
+				AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */,
 			);
 			path = TabbarFlow;
 			sourceTree = "<group>";
@@ -244,6 +249,15 @@
 				AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		AD74B4C61F20ED4200B2EC04 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */,
+				AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,7 +376,6 @@
 				AD5C98681F1F962300DF5039 /* LaunchScreen.storyboard in Resources */,
 				AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */,
 				AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */,
-				AD5C98631F1F962300DF5039 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,14 +450,17 @@
 			files = (
 				AD5C988F1F1F994200DF5039 /* CoordinatorFactory.swift in Sources */,
 				AD5C98A91F1F9D4100DF5039 /* TabSelectable.swift in Sources */,
+				AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */,
 				AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */,
 				AD5C989B1F1F998200DF5039 /* DependencyCoordinator.swift in Sources */,
 				AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */,
+				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
+				AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */,
 				AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */,
 				AD5C98941F1F996500DF5039 /* Router.swift in Sources */,
 				AD5C98A51F1F9C3400DF5039 /* TabbarController.swift in Sources */,
-				AD5C98601F1F962300DF5039 /* ViewController.swift in Sources */,
+				AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */,
 				AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */,
 				AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */,
 			);
@@ -482,14 +498,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AD5C98611F1F962300DF5039 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AD5C98621F1F962300DF5039 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		AD5C98661F1F962300DF5039 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

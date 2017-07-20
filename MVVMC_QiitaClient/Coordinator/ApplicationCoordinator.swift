@@ -19,7 +19,14 @@ class ApplicationCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        
+        runMainTabbarFlow()
+    }
+    
+    private func runMainTabbarFlow() {
+        let (presentable, coordinator) = coordinatorFactory.generateTabbarCoordinator()
+        addDependency(coordinator: coordinator)
+        router.setRoot(presentable: presentable, hideBar: true)
+        coordinator.start()
     }
     
 }

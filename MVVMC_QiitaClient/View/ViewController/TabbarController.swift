@@ -22,6 +22,7 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelec
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
+        selectedIndex = SelectedTab.timeLine.rawValue
         if let viewController = customizableViewControllers?.first {
             tabBarController(self, didSelect: viewController)
         }
