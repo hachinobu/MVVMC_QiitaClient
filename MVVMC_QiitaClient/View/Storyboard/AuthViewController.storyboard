@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AU5-ZZ-UeX">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Auth View Controller-->
+        <scene sceneID="Wob-3J-D8A">
+            <objects>
+                <viewController id="AU5-ZZ-UeX" customClass="AuthViewController" customModule="MVVMC_QiitaClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9gW-k8-iPr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ozw-jp-MqW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pVP-Hz-5jM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0Y-vr-PIl">
+                                <rect key="frame" x="97.5" y="318" width="180" height="30"/>
+                                <color key="backgroundColor" red="0.37647058820000001" green="0.75294117650000003" blue="0.12549019610000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="tbg-iJ-I8I"/>
+                                    <constraint firstAttribute="height" constant="30" id="uo4-je-GGZ"/>
+                                </constraints>
+                                <state key="normal" title="Qiitaで認証する">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VvI-k4-qEN">
+                                <rect key="frame" x="108" y="363" width="160" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="XL2-ft-mix"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="認証せずに使う場合はこちら"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VvI-k4-qEN" firstAttribute="centerX" secondItem="pVP-Hz-5jM" secondAttribute="centerX" id="Qoc-9V-Vnj"/>
+                            <constraint firstItem="VvI-k4-qEN" firstAttribute="top" secondItem="o0Y-vr-PIl" secondAttribute="bottom" constant="15" id="U4h-ee-duw"/>
+                            <constraint firstItem="o0Y-vr-PIl" firstAttribute="centerX" secondItem="pVP-Hz-5jM" secondAttribute="centerX" id="Yc0-6O-QDp"/>
+                            <constraint firstItem="o0Y-vr-PIl" firstAttribute="centerY" secondItem="pVP-Hz-5jM" secondAttribute="centerY" id="sDC-6m-Sp0"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RM1-Sr-Q7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="108" y="168.6656671664168"/>
+        </scene>
+    </scenes>
+</document>

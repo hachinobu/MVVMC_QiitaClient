@@ -26,6 +26,11 @@
 		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
 		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
 		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
+		AD639DBD1F23223100AA56ED /* AuthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD639DBC1F23223100AA56ED /* AuthViewController.storyboard */; };
+		AD639DBF1F23241600AA56ED /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DBE1F23241600AA56ED /* AuthViewController.swift */; };
+		AD639DC11F246D5800AA56ED /* AuthViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DC01F246D5800AA56ED /* AuthViewProtocol.swift */; };
+		AD639DC41F24752500AA56ED /* AuthenticateQiita.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DC31F24752500AA56ED /* AuthenticateQiita.swift */; };
+		AD639DC71F247F9000AA56ED /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DC61F247F9000AA56ED /* AuthInfo.swift */; };
 		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
 /* End PBXBuildFile section */
@@ -75,6 +80,11 @@
 		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
 		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
+		AD639DBC1F23223100AA56ED /* AuthViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AuthViewController.storyboard; sourceTree = "<group>"; };
+		AD639DBE1F23241600AA56ED /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		AD639DC01F246D5800AA56ED /* AuthViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewProtocol.swift; sourceTree = "<group>"; };
+		AD639DC31F24752500AA56ED /* AuthenticateQiita.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticateQiita.swift; path = MVVMC_QiitaClient/Model/Auth/AuthenticateQiita.swift; sourceTree = SOURCE_ROOT; };
+		AD639DC61F247F9000AA56ED /* AuthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
 		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
 		E6CE478C2039F61480735ED8 /* Pods-MVVMC_QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +157,7 @@
 		AD5C985C1F1F962300DF5039 /* MVVMC_QiitaClient */ = {
 			isa = PBXGroup;
 			children = (
+				AD639DC21F24750500AA56ED /* Model */,
 				AD74B4C61F20ED4200B2EC04 /* Extension */,
 				AD5C98A21F1F9C0000DF5039 /* View */,
 				AD5C988B1F1F98A800DF5039 /* Coordinator */,
@@ -222,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */,
+				AD639DBE1F23241600AA56ED /* AuthViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -229,6 +241,7 @@
 		AD5C98A61F1F9CA300DF5039 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				AD639DBB1F231EE500AA56ED /* AuthFlow */,
 				AD5C98A71F1F9CC400DF5039 /* TabbarFlow */,
 			);
 			path = Flow;
@@ -247,8 +260,34 @@
 			isa = PBXGroup;
 			children = (
 				AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */,
+				AD639DBC1F23223100AA56ED /* AuthViewController.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		AD639DBB1F231EE500AA56ED /* AuthFlow */ = {
+			isa = PBXGroup;
+			children = (
+				AD639DC01F246D5800AA56ED /* AuthViewProtocol.swift */,
+			);
+			path = AuthFlow;
+			sourceTree = "<group>";
+		};
+		AD639DC21F24750500AA56ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD639DC51F247ECE00AA56ED /* Auth */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AD639DC51F247ECE00AA56ED /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				AD639DC31F24752500AA56ED /* AuthenticateQiita.swift */,
+				AD639DC61F247F9000AA56ED /* AuthInfo.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		AD74B4C61F20ED4200B2EC04 /* Extension */ = {
@@ -374,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD5C98681F1F962300DF5039 /* LaunchScreen.storyboard in Resources */,
+				AD639DBD1F23223100AA56ED /* AuthViewController.storyboard in Resources */,
 				AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */,
 				AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */,
 			);
@@ -452,6 +492,8 @@
 				AD5C98A91F1F9D4100DF5039 /* TabSelectable.swift in Sources */,
 				AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */,
 				AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */,
+				AD639DBF1F23241600AA56ED /* AuthViewController.swift in Sources */,
+				AD639DC71F247F9000AA56ED /* AuthInfo.swift in Sources */,
 				AD5C989B1F1F998200DF5039 /* DependencyCoordinator.swift in Sources */,
 				AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */,
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
@@ -463,6 +505,8 @@
 				AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */,
 				AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */,
 				AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */,
+				AD639DC11F246D5800AA56ED /* AuthViewProtocol.swift in Sources */,
+				AD639DC41F24752500AA56ED /* AuthenticateQiita.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

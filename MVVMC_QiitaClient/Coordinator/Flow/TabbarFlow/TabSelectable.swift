@@ -12,5 +12,4 @@ import RxSwift
 protocol TabSelectable: class {
     var selectedTimeLineTabObservable: Observable<UINavigationController> { get }
     var selectedMyAccountTabObservable: Observable<UINavigationController> { get }
-    
 }
