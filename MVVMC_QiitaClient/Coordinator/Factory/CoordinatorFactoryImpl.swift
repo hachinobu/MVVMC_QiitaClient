@@ -16,4 +16,8 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
         return (tabbarController, tabbarCoordinator)
     }
     
+    func generateAuthCoordinator(router: Router) -> Coordinator {
+        return AuthCoordinator(viewFactory: ViewFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+    }
+    
 }

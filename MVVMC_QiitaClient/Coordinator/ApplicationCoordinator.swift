@@ -22,6 +22,12 @@ class ApplicationCoordinator: BaseCoordinator {
         runMainTabbarFlow()
     }
     
+    private func runAuthFlow() {
+        let coordinator = coordinatorFactory.generateAuthCoordinator(router: router)
+        addDependency(coordinator: coordinator)
+        coordinator.start()
+    }
+    
     private func runMainTabbarFlow() {
         let (presentable, coordinator) = coordinatorFactory.generateTabbarCoordinator()
         addDependency(coordinator: coordinator)

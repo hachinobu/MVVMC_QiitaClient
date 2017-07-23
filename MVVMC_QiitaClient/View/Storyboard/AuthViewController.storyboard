@@ -49,6 +49,10 @@
                             <constraint firstItem="o0Y-vr-PIl" firstAttribute="centerY" secondItem="pVP-Hz-5jM" secondAttribute="centerY" id="sDC-6m-Sp0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="authButton" destination="o0Y-vr-PIl" id="dr3-lV-uWk"/>
+                        <outlet property="notAuthButton" destination="VvI-k4-qEN" id="Rhp-Cs-uhR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RM1-Sr-Q7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
