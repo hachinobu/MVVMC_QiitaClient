@@ -10,7 +10,7 @@ import Foundation
 
 struct AccessTokenStorage {
     
-    private let tokenKey = "AccessTokenKey"
+    private static let tokenKey = "AccessTokenKey"
     
     static func fetchAccessToken() -> String? {
         return UserDefaults.standard.string(forKey: tokenKey)
