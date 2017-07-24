@@ -19,7 +19,6 @@ struct QiitaError: Error {
 }
 
 protocol QiitaRequest: Request {
-    
 }
 
 extension QiitaRequest {

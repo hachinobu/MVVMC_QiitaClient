@@ -9,5 +9,14 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Action
+import APIKit
 
-
+protocol AuthViewModel: class {
+    
+    var accessToken: Driver<String> { get }
+    var error: Driver<Error> { get }
+    
+    var fetchTokenTrigger: PublishSubject<Void> { get }
+    
+}

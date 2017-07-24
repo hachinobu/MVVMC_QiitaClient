@@ -10,29 +10,29 @@ import Foundation
 import APIKit
 import RxSwift
 
-extension Session {
+extension Session: ReactiveCompatible {
     
-    static func rx_sendRequest<T: Request>(request: T) -> Observable<T.Response> {
-        return shared.rx_sendRequest(request: request)
-    }
+}
+
+extension Reactive where Base: Session {
     
-    private func rx_sendRequest<T: Request>(request: T) -> Observable<T.Response> {
-        
-        return Observable.create { observer -> Disposable in
-            let task = self.send(request) { result in
+    func response<T: Request>(request: T) -> Observable<T.Response> {
+        return Observable.create { [weak base] observer in
+            let task = base?.send(request) { result in
                 switch result {
-                case .success(let value):
-                    observer.onNext(value)
-                    observer.onCompleted()
+                case .success(let response):
+                    observer.on(.next(response))
+                    observer.on(.completed)
+                    
                 case .failure(let error):
                     observer.onError(error)
                 }
             }
+            
             return Disposables.create {
                 task?.cancel()
             }
         }
-        
     }
     
 }
