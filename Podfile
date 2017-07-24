@@ -7,4 +7,5 @@ target 'MVVMC_QiitaClient' do
     pod 'APIKit',     '~> 3.1'
     pod 'Kingfisher', '~> 3.0'
     pod 'Action'
+    pod 'ObjectMapper', '~> 2.2'
 end
