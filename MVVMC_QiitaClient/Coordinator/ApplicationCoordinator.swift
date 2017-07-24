@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import RxSwift
 
 class ApplicationCoordinator: BaseCoordinator {
     
+    private let bag = DisposeBag()
     private let router: Router
     private let coordinatorFactory: CoordinatorFactory
     
@@ -19,19 +21,24 @@ class ApplicationCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        runMainTabbarFlow()
+        runAuthFlow()
     }
     
     private func runAuthFlow() {
         let coordinator = coordinatorFactory.generateAuthCoordinator(router: router)
+        
+        coordinator.finishFlow.subscribe(onNext: { [unowned self] _ in
+            self.runMainTabbarFlow()
+        }).addDisposableTo(bag)
+        
         addDependency(coordinator: coordinator)
         coordinator.start()
     }
     
     private func runMainTabbarFlow() {
-        let (presentable, coordinator) = coordinatorFactory.generateTabbarCoordinator()
+        let (view, coordinator) = coordinatorFactory.generateTabbarCoordinator()
         addDependency(coordinator: coordinator)
-        router.setRoot(presentable: presentable, hideBar: true)
+        router.setRoot(presentable: view, hideBar: true)
         coordinator.start()
     }
     

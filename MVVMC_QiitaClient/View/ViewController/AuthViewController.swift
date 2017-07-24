@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AuthViewController: UIViewController, AuthViewProtocol {
+final class AuthViewController: UIViewController, AuthViewProtocol {
 
     private let tappedAuthButtonObserver = PublishSubject<Void>()
     lazy var tappedAuthButton: Observable<Void> = self.tappedAuthButtonObserver.asObservable()
@@ -41,6 +41,12 @@ class AuthViewController: UIViewController, AuthViewProtocol {
         notAuthButton.rx.tap
             .bind(to: tappedNotAuthButtonObserver)
             .addDisposableTo(bag)
+    }
+    
+    private func bindAuth() {
+        let authStatus = AuthenticateQiita.sharedInstance.status.asObservable().shareReplayLatestWhileConnected()
+        authStatus.map { $0.fetchCode() }.filter { $0 != nil }
+        authStatus.map { $0.fetchAccessToken() }.filter { $0 != nil }
     }
 
 }

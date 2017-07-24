@@ -19,22 +19,33 @@ final class AuthenticateQiita {
 extension AuthenticateQiita {
     
     enum AuthStatus {
+        
         case none
         case notAuth
+        case code(String)
         case authenticated(String)
         
-        func fetchAuthCode() -> String? {
+        func fetchAccessToken() -> String? {
             switch self {
-            case .authenticated(let code):
+            case .authenticated(let token):
+                return token
+            case .none, .code(_), .notAuth:
+                return nil
+            }
+        }
+        
+        func fetchCode() -> String? {
+            switch self {
+            case .code(let code):
                 return code
-            case .none, .notAuth:
+            case .none, .notAuth, .authenticated(_):
                 return nil
             }
         }
         
         func isAuthorized() -> Bool {
             switch self {
-            case .none:
+            case .none, .code(_):
                 return false
             case .authenticated(_), .notAuth:
                 return true
