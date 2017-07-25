@@ -32,9 +32,13 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
     private func showAuthView() {
         
         let authView = viewFactory.generateAuthView()
+        let authRequest = QiitaAPI.PostAccessTokenRequest(clientId: AuthInfo.clientId, clientSecret: AuthInfo.clientSecret)
+        let viewModel = AuthVM(request: authRequest)
+        authView.injectViewModel(viewModel: viewModel)
         authView.tappedAuthButton.subscribe(onNext: { [unowned self] _ in
             self.authenticateQiita()
         }).addDisposableTo(bag)
+        
         authView.tappedNotAuthButton.subscribe(onNext: { _ in
             
         }).addDisposableTo(bag)

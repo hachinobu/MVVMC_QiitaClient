@@ -50,8 +50,15 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
     
     private func bindAuth() {
         let authStatus = AuthenticateQiita.sharedInstance.status.asObservable().shareReplayLatestWhileConnected()
-        authStatus.map { $0.fetchCode() }.filter { $0 != nil }.map { $0! }
+        authStatus.map { $0.fetchCode() }
+            .filter { $0 != nil }
+            .map { $0! }
+            .bind(to: viewModel.fetchTokenTrigger)
+            .addDisposableTo(bag)
+        
         authStatus.map { $0.fetchAccessToken() }.filter { $0 != nil }
+        
+        
     }
 
 }

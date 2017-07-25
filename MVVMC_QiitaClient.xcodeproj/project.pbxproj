@@ -34,7 +34,6 @@
 		AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DC81F24E17D00AA56ED /* AuthCoordinator.swift */; };
 		AD639DCC1F24E30600AA56ED /* AuthViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DCB1F24E30600AA56ED /* AuthViewFactory.swift */; };
 		AD639DCE1F24E38300AA56ED /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DCD1F24E38300AA56ED /* ViewFactory.swift */; };
-		AD639DD11F2632FD00AA56ED /* PostAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DD01F2632FD00AA56ED /* PostAccessToken.swift */; };
 		AD639DD31F263E8300AA56ED /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DD21F263E8300AA56ED /* AuthVM.swift */; };
 		AD639DD51F26414900AA56ED /* AccessTokenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DD41F26414900AA56ED /* AccessTokenProtocol.swift */; };
 		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
@@ -45,6 +44,8 @@
 		C2483F8F1F26145A00685622 /* AuthEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F8E1F26145A00685622 /* AuthEntity.swift */; };
 		C2483F921F26158000685622 /* QiitaRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F911F26158000685622 /* QiitaRequestType.swift */; };
 		C2483F941F26187C00685622 /* Session+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F931F26187C00685622 /* Session+Rx.swift */; };
+		C2483F961F26DC0300685622 /* QiitaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F951F26DC0300685622 /* QiitaAPI.swift */; };
+		C2483F981F26DC5E00685622 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F971F26DC5E00685622 /* AuthRequest.swift */; };
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,7 +102,6 @@
 		AD639DC81F24E17D00AA56ED /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		AD639DCB1F24E30600AA56ED /* AuthViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewFactory.swift; sourceTree = "<group>"; };
 		AD639DCD1F24E38300AA56ED /* ViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
-		AD639DD01F2632FD00AA56ED /* PostAccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAccessToken.swift; sourceTree = "<group>"; };
 		AD639DD21F263E8300AA56ED /* AuthVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
 		AD639DD41F26414900AA56ED /* AccessTokenProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenProtocol.swift; sourceTree = "<group>"; };
 		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +112,8 @@
 		C2483F8E1F26145A00685622 /* AuthEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthEntity.swift; sourceTree = "<group>"; };
 		C2483F911F26158000685622 /* QiitaRequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QiitaRequestType.swift; sourceTree = "<group>"; };
 		C2483F931F26187C00685622 /* Session+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Rx.swift"; sourceTree = "<group>"; };
+		C2483F951F26DC0300685622 /* QiitaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QiitaAPI.swift; sourceTree = "<group>"; };
+		C2483F971F26DC5E00685622 /* AuthRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 		E6CE478C2039F61480735ED8 /* Pods-MVVMC_QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -337,7 +339,8 @@
 		AD639DCF1F26329400AA56ED /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				AD639DD01F2632FD00AA56ED /* PostAccessToken.swift */,
+				C2483F951F26DC0300685622 /* QiitaAPI.swift */,
+				C2483F971F26DC5E00685622 /* AuthRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
 				AD639DCC1F24E30600AA56ED /* AuthViewFactory.swift in Sources */,
 				C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */,
+				C2483F961F26DC0300685622 /* QiitaAPI.swift in Sources */,
 				AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */,
 				AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */,
 				AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */,
@@ -595,6 +599,7 @@
 				AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */,
 				AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */,
 				AD639DD31F263E8300AA56ED /* AuthVM.swift in Sources */,
+				C2483F981F26DC5E00685622 /* AuthRequest.swift in Sources */,
 				AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */,
 				C2483F921F26158000685622 /* QiitaRequestType.swift in Sources */,
 				C2483F8F1F26145A00685622 /* AuthEntity.swift in Sources */,
@@ -604,7 +609,6 @@
 				AD639DC11F246D5800AA56ED /* AuthViewProtocol.swift in Sources */,
 				C2483F881F2609D200685622 /* AppDelegate+Auth.swift in Sources */,
 				C2483F841F2602F200685622 /* AuthCoordinatorOutput.swift in Sources */,
-				AD639DD11F2632FD00AA56ED /* PostAccessToken.swift in Sources */,
 				C2483F8C1F2611F400685622 /* AuthViewModel.swift in Sources */,
 				AD639DC41F24752500AA56ED /* AuthenticateQiita.swift in Sources */,
 			);

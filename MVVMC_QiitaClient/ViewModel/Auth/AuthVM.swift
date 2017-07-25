@@ -12,7 +12,7 @@ import RxCocoa
 import Action
 import APIKit
 
-final class AuthVM<Response: AccessTokenProtocol>: AuthViewModel {
+final class AuthVM<Object: AccessTokenProtocol>: AuthViewModel {
         
     lazy var accessToken: Driver<String> = {
         return self.fetchTokenAction.elements.asDriver(onErrorDriveWith: .empty())
@@ -30,20 +30,22 @@ final class AuthVM<Response: AccessTokenProtocol>: AuthViewModel {
             }
     }()
     
-    var fetchTokenTrigger: PublishSubject<Void> = PublishSubject<Void>()
-    private let fetchTokenAction: Action<Void, String>
+    var fetchTokenTrigger: PublishSubject<String> = PublishSubject<String>()
+    private let fetchTokenAction: Action<String, String>
     private let bag = DisposeBag()
     
-    init<Request: QiitaRequest>(
+    init<Request: AuthRequest>(
         request: Request,
-        session: Session = Session.shared) where Request.Response == Response {
+        session: Session = Session.shared) where Request.Response == Object {
         
-        fetchTokenAction = Action { _ in
-            return session.rx.response(request: request).map { $0.fetchAccessToken() }
+        fetchTokenAction = Action { code in
+            var authRequest = request
+            authRequest.code = code
+            return session.rx.response(request: authRequest).map { $0.fetchAccessToken() }
         }
         
-        fetchTokenTrigger.subscribe(onNext: { [weak self] _ in
-            self?.fetchTokenAction.execute(())
+        fetchTokenTrigger.subscribe(onNext: { [weak self] code in
+            self?.fetchTokenAction.execute(code)
         }).addDisposableTo(bag)
         
     }
