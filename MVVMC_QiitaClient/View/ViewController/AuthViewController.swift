@@ -18,6 +18,9 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
     private let tappedNotAuthButtonObserver = PublishSubject<Void>()
     lazy var tappedNotAuthButton: Observable<Void> = self.tappedNotAuthButtonObserver.asObservable()
     
+    private let onCompleteAuthObserver = PublishSubject<String>()
+    lazy var onCompleteAuth: Observable<String> = self.onCompleteAuthObserver.asObservable()
+    
     private let bag = DisposeBag()
     private var viewModel: AuthViewModel!
     
@@ -28,6 +31,7 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
         super.viewDidLoad()
         setupUI()
         bindUI()
+        bindAuth()
     }
     
     func injectViewModel(viewModel: AuthViewModel) {
@@ -49,6 +53,7 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
     }
     
     private func bindAuth() {
+        
         let authStatus = AuthenticateQiita.sharedInstance.status.asObservable().shareReplayLatestWhileConnected()
         authStatus.map { $0.fetchCode() }
             .filter { $0 != nil }
@@ -56,8 +61,9 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
             .bind(to: viewModel.fetchTokenTrigger)
             .addDisposableTo(bag)
         
-        authStatus.map { $0.fetchAccessToken() }.filter { $0 != nil }
-        
+        viewModel.accessToken
+            .bind(to: onCompleteAuthObserver)
+            .addDisposableTo(bag)
         
     }
 

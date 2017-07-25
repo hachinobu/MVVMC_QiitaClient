@@ -30,7 +30,7 @@ extension AppDelegate {
         guard let code = query["code"], let state = query["state"],
             state == AuthInfo.accessTokenState else { return }
         
-        AuthenticateQiita.sharedInstance.status.value = AuthenticateQiita.AuthStatus.authenticated(code)
+        AuthenticateQiita.sharedInstance.status.value = .code(code)
         
     }
     

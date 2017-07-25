@@ -14,7 +14,7 @@ import APIKit
 
 protocol AuthViewModel: class {
     
-    var accessToken: Driver<String> { get }
+    var accessToken: Observable<String> { get }
     var error: Driver<Error> { get }
     
     var fetchTokenTrigger: PublishSubject<String> { get }

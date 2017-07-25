@@ -14,8 +14,8 @@ import APIKit
 
 final class AuthVM<Object: AccessTokenProtocol>: AuthViewModel {
         
-    lazy var accessToken: Driver<String> = {
-        return self.fetchTokenAction.elements.asDriver(onErrorDriveWith: .empty())
+    lazy var accessToken: Observable<String> = {
+        return self.fetchTokenAction.elements
     }()
     
     lazy var error: Driver<Error> = {

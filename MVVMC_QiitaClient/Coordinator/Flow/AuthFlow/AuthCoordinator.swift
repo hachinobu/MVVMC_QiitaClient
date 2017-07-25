@@ -43,6 +43,15 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
             
         }).addDisposableTo(bag)
         
+        authView.onCompleteAuth
+            .map { token -> Bool in
+                AuthenticateQiita.sharedInstance.status.value = .authenticated(token)
+                return AccessTokenStorage.saveAccessToken(token: token)
+            }.filter { $0 }
+            .map { _ in }
+            .bind(to: finishFlowObserver)
+            .addDisposableTo(bag)
+        
         router.setRoot(presentable: authView, hideBar: true)
     }
     
@@ -50,5 +59,6 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
         let url: String = "http://qiita.com/api/v2/oauth/authorize?client_id=\(AuthInfo.clientId)&scope=read_qiita+write_qiita&state=\(AuthInfo.accessTokenState)"
         UIApplication.shared.open(URL(string: url)!)
     }
+    
     
 }

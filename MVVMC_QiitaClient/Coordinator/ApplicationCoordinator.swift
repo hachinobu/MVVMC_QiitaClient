@@ -26,9 +26,9 @@ class ApplicationCoordinator: BaseCoordinator {
     
     private func runAuthFlow() {
         let coordinator = coordinatorFactory.generateAuthCoordinator(router: router)
-        
-        coordinator.finishFlow.subscribe(onNext: { [unowned self] _ in
-            self.runMainTabbarFlow()
+        coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
+            self?.runMainTabbarFlow()
+            self?.removeDependency(coordinator: coordinator)
         }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)

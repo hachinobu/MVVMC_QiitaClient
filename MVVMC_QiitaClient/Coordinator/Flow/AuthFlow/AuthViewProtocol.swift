@@ -14,6 +14,7 @@ protocol AuthViewProtocol: class {
     
     var tappedAuthButton: Observable<Void> { get }
     var tappedNotAuthButton: Observable<Void> { get }
+    var onCompleteAuth: Observable<String> { get }
     
     func injectViewModel(viewModel: AuthViewModel)
     
