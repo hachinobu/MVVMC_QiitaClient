@@ -13,10 +13,10 @@ class TabbarCoordinator: BaseCoordinator {
     
     private let bag = DisposeBag()
     
-    private let tabSelected: TabSelectable
+    private let tabSelected: TabSelectableView
     private let coordinatorFactory: CoordinatorFactory
     
-    init(tabSelected: TabSelectable, coordinatorFactory: CoordinatorFactory) {
+    init(tabSelected: TabSelectableView, coordinatorFactory: CoordinatorFactory) {
         self.tabSelected = tabSelected
         self.coordinatorFactory = coordinatorFactory
     }

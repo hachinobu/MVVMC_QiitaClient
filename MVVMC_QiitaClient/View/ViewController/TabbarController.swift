@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelectable {
+class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelectableView {
     
     private var selectedTimeLineTabObserver = PublishSubject<UINavigationController>()
     lazy var selectedTimeLineTabObservable: Observable<UINavigationController> =

@@ -21,7 +21,7 @@
 		AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */; };
 		AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */; };
 		AD5C98A51F1F9C3400DF5039 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */; };
-		AD5C98A91F1F9D4100DF5039 /* TabSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A81F1F9D4100DF5039 /* TabSelectable.swift */; };
+		AD5C98A91F1F9D4100DF5039 /* TabSelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A81F1F9D4100DF5039 /* TabSelectableView.swift */; };
 		AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */; };
 		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
 		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
@@ -89,7 +89,7 @@
 		AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
-		AD5C98A81F1F9D4100DF5039 /* TabSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSelectable.swift; sourceTree = "<group>"; };
+		AD5C98A81F1F9D4100DF5039 /* TabSelectableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSelectableView.swift; sourceTree = "<group>"; };
 		AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabbarController.storyboard; sourceTree = "<group>"; };
 		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
@@ -282,7 +282,7 @@
 		AD5C98A71F1F9CC400DF5039 /* TabbarFlow */ = {
 			isa = PBXGroup;
 			children = (
-				AD5C98A81F1F9D4100DF5039 /* TabSelectable.swift */,
+				AD5C98A81F1F9D4100DF5039 /* TabSelectableView.swift */,
 				AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */,
 			);
 			path = TabbarFlow;
@@ -579,7 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD5C988F1F1F994200DF5039 /* CoordinatorFactory.swift in Sources */,
-				AD5C98A91F1F9D4100DF5039 /* TabSelectable.swift in Sources */,
+				AD5C98A91F1F9D4100DF5039 /* TabSelectableView.swift in Sources */,
 				AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */,
 				AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */,
 				AD639DBF1F23241600AA56ED /* AuthViewController.swift in Sources */,
