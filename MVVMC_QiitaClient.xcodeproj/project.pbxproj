@@ -40,6 +40,14 @@
 		AD639DDA1F277A2600AA56ED /* TagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DD91F277A2600AA56ED /* TagEntity.swift */; };
 		AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DDB1F277AB500AA56ED /* GroupEntity.swift */; };
 		AD639DDE1F277B3400AA56ED /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DDD1F277B3400AA56ED /* ItemEntity.swift */; };
+		AD639DE41F277DD200AA56ED /* ItemListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD639DE31F277DD200AA56ED /* ItemListViewController.storyboard */; };
+		AD639DE61F277E3A00AA56ED /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DE51F277E3A00AA56ED /* ItemListViewController.swift */; };
+		AD639DE91F277F2F00AA56ED /* ItemListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD639DE81F277F2F00AA56ED /* ItemListTableCell.xib */; };
+		AD639DEB1F2780A700AA56ED /* ItemListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DEA1F2780A700AA56ED /* ItemListTableCell.swift */; };
+		AD639DED1F27826900AA56ED /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DEC1F27826900AA56ED /* NibLoadableView.swift */; };
+		AD639DF01F27835E00AA56ED /* LoadingIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD639DEF1F27835E00AA56ED /* LoadingIndicatorView.xib */; };
+		AD639DF21F2783DC00AA56ED /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DF11F2783DC00AA56ED /* LoadingIndicatorView.swift */; };
+		AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */; };
 		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
 		C2483F841F2602F200685622 /* AuthCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F831F2602F200685622 /* AuthCoordinatorOutput.swift */; };
 		C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F851F2608DC00685622 /* AccessTokenStorage.swift */; };
@@ -112,6 +120,14 @@
 		AD639DD91F277A2600AA56ED /* TagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEntity.swift; sourceTree = "<group>"; };
 		AD639DDB1F277AB500AA56ED /* GroupEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupEntity.swift; sourceTree = "<group>"; };
 		AD639DDD1F277B3400AA56ED /* ItemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
+		AD639DE31F277DD200AA56ED /* ItemListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ItemListViewController.storyboard; sourceTree = "<group>"; };
+		AD639DE51F277E3A00AA56ED /* ItemListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
+		AD639DE81F277F2F00AA56ED /* ItemListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemListTableCell.xib; sourceTree = "<group>"; };
+		AD639DEA1F2780A700AA56ED /* ItemListTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListTableCell.swift; sourceTree = "<group>"; };
+		AD639DEC1F27826900AA56ED /* NibLoadableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
+		AD639DEF1F27835E00AA56ED /* LoadingIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingIndicatorView.xib; sourceTree = "<group>"; };
+		AD639DF11F2783DC00AA56ED /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
+		AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListViewModel.swift; sourceTree = "<group>"; };
 		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
 		C2483F831F2602F200685622 /* AuthCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorOutput.swift; sourceTree = "<group>"; };
 		C2483F851F2608DC00685622 /* AccessTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenStorage.swift; sourceTree = "<group>"; };
@@ -263,6 +279,8 @@
 		AD5C98A21F1F9C0000DF5039 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AD639DEE1F27832500AA56ED /* CustomView */,
+				AD639DE71F277EB400AA56ED /* TableViewCell */,
 				AD5C98AA1F1FA2FC00DF5039 /* Storyboard */,
 				AD5C98A31F1F9C1C00DF5039 /* ViewController */,
 			);
@@ -274,6 +292,7 @@
 			children = (
 				AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */,
 				AD639DBE1F23241600AA56ED /* AuthViewController.swift */,
+				AD639DE51F277E3A00AA56ED /* ItemListViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -301,6 +320,7 @@
 			children = (
 				AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */,
 				AD639DBC1F23223100AA56ED /* AuthViewController.storyboard */,
+				AD639DE31F277DD200AA56ED /* ItemListViewController.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -353,11 +373,30 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		AD639DE71F277EB400AA56ED /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				AD639DE81F277F2F00AA56ED /* ItemListTableCell.xib */,
+				AD639DEA1F2780A700AA56ED /* ItemListTableCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		AD639DEE1F27832500AA56ED /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				AD639DEF1F27835E00AA56ED /* LoadingIndicatorView.xib */,
+				AD639DF11F2783DC00AA56ED /* LoadingIndicatorView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		AD74B4C61F20ED4200B2EC04 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */,
 				AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */,
+				AD639DEC1F27826900AA56ED /* NibLoadableView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -366,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				C2483F8A1F2611C900685622 /* Auth */,
+				AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -516,8 +556,11 @@
 			files = (
 				AD5C98681F1F962300DF5039 /* LaunchScreen.storyboard in Resources */,
 				AD639DBD1F23223100AA56ED /* AuthViewController.storyboard in Resources */,
+				AD639DF01F27835E00AA56ED /* LoadingIndicatorView.xib in Resources */,
+				AD639DE41F277DD200AA56ED /* ItemListViewController.storyboard in Resources */,
 				AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */,
 				AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */,
+				AD639DE91F277F2F00AA56ED /* ItemListTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,11 +644,15 @@
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
 				AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */,
+				AD639DE61F277E3A00AA56ED /* ItemListViewController.swift in Sources */,
 				AD639DCC1F24E30600AA56ED /* AuthViewFactory.swift in Sources */,
 				AD639DDE1F277B3400AA56ED /* ItemEntity.swift in Sources */,
 				C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */,
 				C2483F961F26DC0300685622 /* QiitaAPI.swift in Sources */,
+				AD639DED1F27826900AA56ED /* NibLoadableView.swift in Sources */,
+				AD639DF21F2783DC00AA56ED /* LoadingIndicatorView.swift in Sources */,
 				AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */,
+				AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */,
 				AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */,
 				AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */,
 				AD5C98941F1F996500DF5039 /* Router.swift in Sources */,
@@ -616,6 +663,7 @@
 				C2483F981F26DC5E00685622 /* AuthRequest.swift in Sources */,
 				AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */,
 				AD639DD81F27792600AA56ED /* UserEntity.swift in Sources */,
+				AD639DEB1F2780A700AA56ED /* ItemListTableCell.swift in Sources */,
 				C2483F921F26158000685622 /* QiitaRequestType.swift in Sources */,
 				C2483F8F1F26145A00685622 /* AuthEntity.swift in Sources */,
 				AD639DCE1F24E38300AA56ED /* ViewFactory.swift in Sources */,
