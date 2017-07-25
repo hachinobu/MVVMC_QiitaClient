@@ -36,6 +36,10 @@
 		AD639DCE1F24E38300AA56ED /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DCD1F24E38300AA56ED /* ViewFactory.swift */; };
 		AD639DD31F263E8300AA56ED /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DD21F263E8300AA56ED /* AuthVM.swift */; };
 		AD639DD51F26414900AA56ED /* AccessTokenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DD41F26414900AA56ED /* AccessTokenProtocol.swift */; };
+		AD639DD81F27792600AA56ED /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DD71F27792600AA56ED /* UserEntity.swift */; };
+		AD639DDA1F277A2600AA56ED /* TagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DD91F277A2600AA56ED /* TagEntity.swift */; };
+		AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DDB1F277AB500AA56ED /* GroupEntity.swift */; };
+		AD639DDE1F277B3400AA56ED /* ItemEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DDD1F277B3400AA56ED /* ItemEntity.swift */; };
 		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
 		C2483F841F2602F200685622 /* AuthCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F831F2602F200685622 /* AuthCoordinatorOutput.swift */; };
 		C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F851F2608DC00685622 /* AccessTokenStorage.swift */; };
@@ -104,6 +108,10 @@
 		AD639DCD1F24E38300AA56ED /* ViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		AD639DD21F263E8300AA56ED /* AuthVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
 		AD639DD41F26414900AA56ED /* AccessTokenProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenProtocol.swift; sourceTree = "<group>"; };
+		AD639DD71F27792600AA56ED /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
+		AD639DD91F277A2600AA56ED /* TagEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEntity.swift; sourceTree = "<group>"; };
+		AD639DDB1F277AB500AA56ED /* GroupEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupEntity.swift; sourceTree = "<group>"; };
+		AD639DDD1F277B3400AA56ED /* ItemEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEntity.swift; sourceTree = "<group>"; };
 		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
 		C2483F831F2602F200685622 /* AuthCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorOutput.swift; sourceTree = "<group>"; };
 		C2483F851F2608DC00685622 /* AccessTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenStorage.swift; sourceTree = "<group>"; };
@@ -375,6 +383,10 @@
 			isa = PBXGroup;
 			children = (
 				C2483F8E1F26145A00685622 /* AuthEntity.swift */,
+				AD639DD71F27792600AA56ED /* UserEntity.swift */,
+				AD639DD91F277A2600AA56ED /* TagEntity.swift */,
+				AD639DDB1F277AB500AA56ED /* GroupEntity.swift */,
+				AD639DDD1F277B3400AA56ED /* ItemEntity.swift */,
 			);
 			path = ValueObject;
 			sourceTree = "<group>";
@@ -588,7 +600,9 @@
 				AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */,
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
+				AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */,
 				AD639DCC1F24E30600AA56ED /* AuthViewFactory.swift in Sources */,
+				AD639DDE1F277B3400AA56ED /* ItemEntity.swift in Sources */,
 				C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */,
 				C2483F961F26DC0300685622 /* QiitaAPI.swift in Sources */,
 				AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */,
@@ -601,6 +615,7 @@
 				AD639DD31F263E8300AA56ED /* AuthVM.swift in Sources */,
 				C2483F981F26DC5E00685622 /* AuthRequest.swift in Sources */,
 				AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */,
+				AD639DD81F27792600AA56ED /* UserEntity.swift in Sources */,
 				C2483F921F26158000685622 /* QiitaRequestType.swift in Sources */,
 				C2483F8F1F26145A00685622 /* AuthEntity.swift in Sources */,
 				AD639DCE1F24E38300AA56ED /* ViewFactory.swift in Sources */,
@@ -609,6 +624,7 @@
 				AD639DC11F246D5800AA56ED /* AuthViewProtocol.swift in Sources */,
 				C2483F881F2609D200685622 /* AppDelegate+Auth.swift in Sources */,
 				C2483F841F2602F200685622 /* AuthCoordinatorOutput.swift in Sources */,
+				AD639DDA1F277A2600AA56ED /* TagEntity.swift in Sources */,
 				C2483F8C1F2611F400685622 /* AuthViewModel.swift in Sources */,
 				AD639DC41F24752500AA56ED /* AuthenticateQiita.swift in Sources */,
 			);
