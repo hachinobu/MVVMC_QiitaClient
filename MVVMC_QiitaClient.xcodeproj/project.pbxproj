@@ -48,6 +48,8 @@
 		AD639DF01F27835E00AA56ED /* LoadingIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD639DEF1F27835E00AA56ED /* LoadingIndicatorView.xib */; };
 		AD639DF21F2783DC00AA56ED /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DF11F2783DC00AA56ED /* LoadingIndicatorView.swift */; };
 		AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */; };
+		AD639DF61F28C2B700AA56ED /* HomeItemListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DF51F28C2B700AA56ED /* HomeItemListVM.swift */; };
+		AD639DF81F28C49800AA56ED /* PaginationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DF71F28C49800AA56ED /* PaginationRequest.swift */; };
 		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
 		C2483F841F2602F200685622 /* AuthCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F831F2602F200685622 /* AuthCoordinatorOutput.swift */; };
 		C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F851F2608DC00685622 /* AccessTokenStorage.swift */; };
@@ -58,7 +60,7 @@
 		C2483F941F26187C00685622 /* Session+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F931F26187C00685622 /* Session+Rx.swift */; };
 		C2483F961F26DC0300685622 /* QiitaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F951F26DC0300685622 /* QiitaAPI.swift */; };
 		C2483F981F26DC5E00685622 /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F971F26DC5E00685622 /* AuthRequest.swift */; };
-		C2483F9B1F28A1D200685622 /* Transformatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F9A1F28A1D200685622 /* Transformatable.swift */; };
+		C2483F9B1F28A1D200685622 /* Transformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F9A1F28A1D200685622 /* Transformable.swift */; };
 		C2483F9D1F28A30D00685622 /* ItemEntityToCellViewModelTransfom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F9C1F28A30D00685622 /* ItemEntityToCellViewModelTransfom.swift */; };
 		C2483F9F1F28A40C00685622 /* ItemListTableCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */; };
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
@@ -131,6 +133,8 @@
 		AD639DEF1F27835E00AA56ED /* LoadingIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingIndicatorView.xib; sourceTree = "<group>"; };
 		AD639DF11F2783DC00AA56ED /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListViewModel.swift; sourceTree = "<group>"; };
+		AD639DF51F28C2B700AA56ED /* HomeItemListVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeItemListVM.swift; sourceTree = "<group>"; };
+		AD639DF71F28C49800AA56ED /* PaginationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationRequest.swift; sourceTree = "<group>"; };
 		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
 		C2483F831F2602F200685622 /* AuthCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorOutput.swift; sourceTree = "<group>"; };
 		C2483F851F2608DC00685622 /* AccessTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenStorage.swift; sourceTree = "<group>"; };
@@ -141,7 +145,7 @@
 		C2483F931F26187C00685622 /* Session+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Session+Rx.swift"; sourceTree = "<group>"; };
 		C2483F951F26DC0300685622 /* QiitaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QiitaAPI.swift; sourceTree = "<group>"; };
 		C2483F971F26DC5E00685622 /* AuthRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
-		C2483F9A1F28A1D200685622 /* Transformatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformatable.swift; sourceTree = "<group>"; };
+		C2483F9A1F28A1D200685622 /* Transformable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformable.swift; sourceTree = "<group>"; };
 		C2483F9C1F28A30D00685622 /* ItemEntityToCellViewModelTransfom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEntityToCellViewModelTransfom.swift; sourceTree = "<group>"; };
 		C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListTableCellVM.swift; sourceTree = "<group>"; };
 		E6CE478C2039F61480735ED8 /* Pods-MVVMC_QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
@@ -376,6 +380,7 @@
 			children = (
 				C2483F951F26DC0300685622 /* QiitaAPI.swift */,
 				C2483F971F26DC5E00685622 /* AuthRequest.swift */,
+				AD639DF71F28C49800AA56ED /* PaginationRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 			children = (
 				C2483F8A1F2611C900685622 /* Auth */,
 				AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */,
+				AD639DF51F28C2B700AA56ED /* HomeItemListVM.swift */,
 				C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */,
 			);
 			path = ViewModel;
@@ -452,7 +458,7 @@
 		C2483F991F28A16800685622 /* Transform */ = {
 			isa = PBXGroup;
 			children = (
-				C2483F9A1F28A1D200685622 /* Transformatable.swift */,
+				C2483F9A1F28A1D200685622 /* Transformable.swift */,
 				C2483F9C1F28A30D00685622 /* ItemEntityToCellViewModelTransfom.swift */,
 			);
 			path = Transform;
@@ -658,6 +664,7 @@
 				AD639DC71F247F9000AA56ED /* AuthInfo.swift in Sources */,
 				AD5C989B1F1F998200DF5039 /* DependencyCoordinator.swift in Sources */,
 				AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */,
+				AD639DF81F28C49800AA56ED /* PaginationRequest.swift in Sources */,
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
 				AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */,
@@ -666,9 +673,10 @@
 				AD639DDE1F277B3400AA56ED /* ItemEntity.swift in Sources */,
 				C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */,
 				C2483F961F26DC0300685622 /* QiitaAPI.swift in Sources */,
+				AD639DF61F28C2B700AA56ED /* HomeItemListVM.swift in Sources */,
 				AD639DED1F27826900AA56ED /* NibLoadableView.swift in Sources */,
 				AD639DF21F2783DC00AA56ED /* LoadingIndicatorView.swift in Sources */,
-				C2483F9B1F28A1D200685622 /* Transformatable.swift in Sources */,
+				C2483F9B1F28A1D200685622 /* Transformable.swift in Sources */,
 				AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */,
 				C2483F9F1F28A40C00685622 /* ItemListTableCellVM.swift in Sources */,
 				AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */,

@@ -8,14 +8,25 @@
 
 import Foundation
 
-struct ItemEntityToCellViewModelTransfom: Transformatable {
+struct ItemEntityToCellViewModelTransfom: Transformable {
     
     typealias Input = ItemEntity
     typealias Output = ItemListTableCellViewModel
     
-    func transform(input: ItemEntity) throws -> ItemListTableCellViewModel {
+    func transform(input: ItemEntity) -> ItemListTableCellViewModel {
         
-        fatalError()
+        let itemId = input.id
+        let profileURL = URL(string: input.user.profileImageUrlString)
+        let userName = input.user.name
+        let title = input.title
+        let tag = input.tagList.map { $0.name }.joined(separator: ",")
+        let viewModel = ItemListTableCellVM(itemId: itemId,
+                                            profileURL: profileURL,
+                                            userName: userName,
+                                            title: title,
+                                            tag: tag)
+        
+        return viewModel
         
     }
     

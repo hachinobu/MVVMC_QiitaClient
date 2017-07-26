@@ -23,11 +23,11 @@ protocol QiitaRequest: Request {
 
 extension QiitaRequest {
     
-    var headerField: [String : String] {
+    var headerField: [String: String] {
         guard let accessToken = AccessTokenStorage.fetchAccessToken() else {
             return [:]
         }
-        return ["Authorization" : "Bearer \(accessToken)"]
+        return ["Authorization": "Bearer \(accessToken)"]
     }
     
     var baseURL: URL {
@@ -49,11 +49,22 @@ extension QiitaRequest {
 
 extension QiitaRequest where Response: ImmutableMappable {
     
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Self.Response {
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
         guard let json = object as? [String : Any] else {
             throw ResponseError.unexpectedObject(object)
         }
         return try Response(JSON: json)
+    }
+    
+}
+
+extension QiitaRequest where Response: Sequence, Response.Iterator.Element: ImmutableMappable {
+    
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+        guard let jsonArray = object as? [[String: Any]] else {
+            throw ResponseError.unexpectedObject(object)
+        }
+        return try Mapper<Response.Iterator.Element>().mapArray(JSONArray: jsonArray) as! Response
     }
     
 }

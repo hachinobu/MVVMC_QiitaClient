@@ -42,7 +42,27 @@ final class QiitaAPI {
         }
         
         var parameters: Any? {
-            return ["client_id": clientId, "client_secret": clientSecret, "code": code]
+            return ["client_id" : clientId, "client_secret" : clientSecret, "code" : code]
+        }
+        
+    }
+    
+    struct GetItems: QiitaRequest, PaginationRequest {
+        
+        typealias Response = [ItemEntity]
+        
+        var page: Int = 0
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/items"
+        }
+        
+        var parameters: Any? {
+            return ["page": page.description]
         }
         
     }
