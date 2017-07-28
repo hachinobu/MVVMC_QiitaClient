@@ -14,36 +14,95 @@ import APIKit
 
 final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
 
-    var items: Driver<[ItemListTableCellViewModel]> {
+    lazy var items: Driver<[ItemListTableCellViewModel]> = {
         
-        self.fetchItemListAction.elements.withLatestFrom(self.fetchItemListAction.inputs) { $0.1 }.scan([ItemListTableCellVM]()) { (elements, page) -> [ItemListTableCellVM] in
+        self.fetchItemListAction.elements
+            .withLatestFrom(self.fetchItemListAction.inputs) { $0 }
+            .scan([ItemListTableCellViewModel]()) { elements, results -> [ItemListTableCellViewModel] in
             
+            let page = results.1
+            if page == 0 {
+                self.currentPage = 0
+                return elements
+            }
+            
+            if page > self.currentPage {
+                self.currentPage = page
+                return elements + results.0
+            }
+            
+            return elements
+            
+        }.asDriver(onErrorJustReturn: [])
+        
+    }()
+    
+    lazy var error: Driver<Error> = {
+        
+        self.fetchItemListAction.errors.asDriver(onErrorDriveWith: .empty()).flatMap { error -> Driver<Error> in
+            switch error {
+            case .underlyingError(let error):
+                return Driver.just(error)
+            default:
+                return Driver.empty()
+            }
         }
         
-    }
+    }()
     
+    lazy var isLoadingIndicatorAnimation: Driver<Bool> = {
+        self.fetchItemListAction.executing.shareReplayLatestWhileConnected().asDriver(onErrorJustReturn: false)
+    }()
+    
+    private let bag = DisposeBag()
     private let fetchItemListAction: Action<Int, [ItemListTableCellViewModel]>
-    private var page = 0
+    private var currentPage = 0
+    
+    let viewDidLoadFetchTrigger = PublishSubject<Void>()
     
     init<Request: PaginationRequest, Transform: Transformable>(
         request: Request,
         transformer: Transform,
         session: Session = Session.shared
         ) where Transform.Input == Results.Iterator.Element,
-        Transform.Output == ItemListTableCellViewModel,
-        Request.Response == Results {
-        
-        fetchItemListAction = Action { page in
+        Transform.Output == ItemListTableCellViewModel, Request.Response == Results {
             
-            var paginationRequest = request
-            paginationRequest.page = page
+            fetchItemListAction = Action { page in
+                
+                var paginationRequest = request
+                paginationRequest.page = page
+                
+                return session.rx.response(request: paginationRequest)
+                    .map { $0.transform(transformable: transformer) }
+                    .shareReplayLatestWhileConnected()
+                
+            }
             
-            return session.rx.response(request: paginationRequest)
-                .map { $0.transform(transformable: transformer) }
-                .shareReplayLatestWhileConnected()
-            
-        }
+            viewDidLoadFetchTrigger.asObservable()
+                .take(1)
+                .map { 0 }
+                .bind(to: fetchItemListAction.inputs)
+                .addDisposableTo(bag)
         
     }
+    
+    func bindRefresh(refresh: Driver<Void>) {
+        refresh.asObservable()
+            .withLatestFrom(isLoadingIndicatorAnimation.asObservable())
+            .filter { !$0 }
+            .map { _ in 0 }
+            .bind(to: fetchItemListAction.inputs)
+            .addDisposableTo(bag)
+    }
+    
+    func bindReachedBottom(reachedBottom: Driver<Void>) {
+        reachedBottom.asObservable()
+            .withLatestFrom(isLoadingIndicatorAnimation.asObservable())
+            .filter { !$0 }
+            .map { _ in self.currentPage + 1 }
+            .bind(to: fetchItemListAction.inputs)
+            .addDisposableTo(bag)
+    }
+    
     
 }

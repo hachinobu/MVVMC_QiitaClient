@@ -50,6 +50,9 @@
 		AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */; };
 		AD639DF61F28C2B700AA56ED /* HomeItemListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DF51F28C2B700AA56ED /* HomeItemListVM.swift */; };
 		AD639DF81F28C49800AA56ED /* PaginationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DF71F28C49800AA56ED /* PaginationRequest.swift */; };
+		AD639DFC1F2B371300AA56ED /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DFB1F2B371300AA56ED /* UIViewController+Rx.swift */; };
+		AD639DFE1F2B377800AA56ED /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DFD1F2B377800AA56ED /* UITableView+Rx.swift */; };
+		AD639E001F2B3C8800AA56ED /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DFF1F2B3C8800AA56ED /* ReusableView.swift */; };
 		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
 		C2483F841F2602F200685622 /* AuthCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F831F2602F200685622 /* AuthCoordinatorOutput.swift */; };
 		C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F851F2608DC00685622 /* AccessTokenStorage.swift */; };
@@ -135,6 +138,9 @@
 		AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListViewModel.swift; sourceTree = "<group>"; };
 		AD639DF51F28C2B700AA56ED /* HomeItemListVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeItemListVM.swift; sourceTree = "<group>"; };
 		AD639DF71F28C49800AA56ED /* PaginationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationRequest.swift; sourceTree = "<group>"; };
+		AD639DFB1F2B371300AA56ED /* UIViewController+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		AD639DFD1F2B377800AA56ED /* UITableView+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
+		AD639DFF1F2B3C8800AA56ED /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
 		C2483F831F2602F200685622 /* AuthCoordinatorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorOutput.swift; sourceTree = "<group>"; };
 		C2483F851F2608DC00685622 /* AccessTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenStorage.swift; sourceTree = "<group>"; };
@@ -407,8 +413,11 @@
 			isa = PBXGroup;
 			children = (
 				AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */,
+				AD639DFF1F2B3C8800AA56ED /* ReusableView.swift */,
 				AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */,
 				AD639DEC1F27826900AA56ED /* NibLoadableView.swift */,
+				AD639DFB1F2B371300AA56ED /* UIViewController+Rx.swift */,
+				AD639DFD1F2B377800AA56ED /* UITableView+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -657,6 +666,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD5C988F1F1F994200DF5039 /* CoordinatorFactory.swift in Sources */,
+				AD639DFE1F2B377800AA56ED /* UITableView+Rx.swift in Sources */,
 				AD5C98A91F1F9D4100DF5039 /* TabSelectableView.swift in Sources */,
 				AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */,
 				AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */,
@@ -666,6 +676,7 @@
 				AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */,
 				AD639DF81F28C49800AA56ED /* PaginationRequest.swift in Sources */,
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
+				AD639E001F2B3C8800AA56ED /* ReusableView.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
 				AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */,
 				AD639DE61F277E3A00AA56ED /* ItemListViewController.swift in Sources */,
@@ -678,6 +689,7 @@
 				AD639DF21F2783DC00AA56ED /* LoadingIndicatorView.swift in Sources */,
 				C2483F9B1F28A1D200685622 /* Transformable.swift in Sources */,
 				AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */,
+				AD639DFC1F2B371300AA56ED /* UIViewController+Rx.swift in Sources */,
 				C2483F9F1F28A40C00685622 /* ItemListTableCellVM.swift in Sources */,
 				AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */,
 				AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */,
