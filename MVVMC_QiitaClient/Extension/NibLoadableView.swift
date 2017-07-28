@@ -24,3 +24,5 @@ extension NibLoadableView where Self: UIView {
     }
     
 }
+
+extension UITableViewCell: NibLoadableView {}
