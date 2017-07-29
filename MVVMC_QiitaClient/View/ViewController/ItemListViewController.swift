@@ -37,6 +37,7 @@ final class ItemListViewController: UIViewController, ItemListViewType {
         super.viewDidLoad()
         setupUI()
         setupViewModel()
+        bindTableView()
         viewModel.viewDidLoadTrigger.onNext(())
     }
     
