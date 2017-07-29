@@ -60,6 +60,9 @@
                             </mask>
                         </variation>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKJ-VP-AwV">
+                        <rect key="frame" x="8" y="8" width="50" height="50"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="eox-Nx-sXL" firstAttribute="top" secondItem="ioZ-dQ-0EL" secondAttribute="top" constant="8" id="08U-Xc-E4J"/>
@@ -69,14 +72,19 @@
                     <constraint firstItem="r3N-ft-rhK" firstAttribute="leading" secondItem="eox-Nx-sXL" secondAttribute="trailing" constant="8" id="4Rb-LI-v2s"/>
                     <constraint firstItem="r3N-ft-rhK" firstAttribute="top" secondItem="exi-Ne-hPQ" secondAttribute="bottom" id="7Vp-4g-0Gq"/>
                     <constraint firstAttribute="bottom" secondItem="rx0-GD-wfB" secondAttribute="bottom" constant="6" id="A5F-Fb-JhL"/>
+                    <constraint firstItem="iKJ-VP-AwV" firstAttribute="centerY" secondItem="eox-Nx-sXL" secondAttribute="centerY" id="Dwc-HR-eht"/>
                     <constraint firstItem="rx0-GD-wfB" firstAttribute="trailing" secondItem="r3N-ft-rhK" secondAttribute="trailing" id="ECY-SI-HXe"/>
+                    <constraint firstItem="iKJ-VP-AwV" firstAttribute="width" secondItem="eox-Nx-sXL" secondAttribute="width" id="Huu-AX-1AC"/>
                     <constraint firstAttribute="trailing" secondItem="exi-Ne-hPQ" secondAttribute="trailing" constant="8" id="N4H-H0-9Fb"/>
                     <constraint firstItem="rx0-GD-wfB" firstAttribute="leading" secondItem="r3N-ft-rhK" secondAttribute="leading" id="NdF-eT-WYY"/>
                     <constraint firstItem="exi-Ne-hPQ" firstAttribute="top" secondItem="ioZ-dQ-0EL" secondAttribute="top" constant="8" id="e24-LN-fzt"/>
+                    <constraint firstItem="iKJ-VP-AwV" firstAttribute="height" secondItem="eox-Nx-sXL" secondAttribute="height" id="jtZ-Eg-7nq"/>
+                    <constraint firstItem="iKJ-VP-AwV" firstAttribute="centerX" secondItem="eox-Nx-sXL" secondAttribute="centerX" id="k6T-GU-O0r"/>
                     <constraint firstAttribute="trailing" secondItem="r3N-ft-rhK" secondAttribute="trailing" constant="8" id="x6H-Wj-0Jp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="profileImageButton" destination="iKJ-VP-AwV" id="rqb-JG-a2E"/>
                 <outlet property="profileImageView" destination="eox-Nx-sXL" id="bBP-wf-dkJ"/>
                 <outlet property="tagLabel" destination="rx0-GD-wfB" id="GH9-Ud-SrP"/>
                 <outlet property="titleLabel" destination="r3N-ft-rhK" id="JPO-3G-rxk"/>

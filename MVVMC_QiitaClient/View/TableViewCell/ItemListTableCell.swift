@@ -11,6 +11,7 @@ import RxSwift
 
 protocol ItemListTableCellViewModel: class {
     var itemId: String { get }
+    var userId: String { get }
     var profileURL: Observable<URL?> { get }
     var userName: Observable<String?> { get }
     var title: Observable<String?> { get }
@@ -20,12 +21,22 @@ protocol ItemListTableCellViewModel: class {
 class ItemListTableCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
     
+    var bag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        profileImageView.layer.cornerRadius = 8.0
+        profileImageView.layer.masksToBounds = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bag = DisposeBag()
     }
 
 }

@@ -15,6 +15,7 @@ protocol ItemListViewModel: class {
     var items: Driver<[ItemListTableCellViewModel]> { get }
     var error: Driver<Error> { get }
     var isLoadingIndicatorAnimation: Driver<Bool> { get }
+    var viewDidLoadTrigger: PublishSubject<Void> { get }
     
     func bindRefresh(refresh: Driver<Void>)
     func bindReachedBottom(reachedBottom: Driver<Void>)

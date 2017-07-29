@@ -16,11 +16,13 @@ struct ItemEntityToCellViewModelTransfom: Transformable {
     func transform(input: ItemEntity) -> ItemListTableCellViewModel {
         
         let itemId = input.id
+        let userId = input.user.id
         let profileURL = URL(string: input.user.profileImageUrlString)
         let userName = input.user.name
         let title = input.title
         let tag = input.tagList.map { $0.name }.joined(separator: ",")
         let viewModel = ItemListTableCellVM(itemId: itemId,
+                                            userId: userId,
                                             profileURL: profileURL,
                                             userName: userName,
                                             title: title,
