@@ -18,34 +18,35 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
         
         self.fetchItemListAction.elements
             .withLatestFrom(self.fetchItemListAction.inputs) { $0 }
-            .scan([ItemListTableCellViewModel]()) { elements, results -> [ItemListTableCellViewModel] in
-            
-            let page = results.1
-            if page == 0 {
-                self.currentPage = 0
+            .scan([ItemListTableCellViewModel]()) { elements, results in
+                
+                let page = results.1
+                if page == 0 {
+                    self.currentPage = 0
+                    return elements
+                }
+                
+                if page > self.currentPage {
+                    self.currentPage = page
+                    return elements + results.0
+                }
+                
                 return elements
-            }
             
-            if page > self.currentPage {
-                self.currentPage = page
-                return elements + results.0
-            }
-            
-            return elements
-            
-        }.asDriver(onErrorJustReturn: [])
+            }.asDriver(onErrorJustReturn: [])
         
     }()
     
     lazy var error: Driver<Error> = {
         
-        self.fetchItemListAction.errors.asDriver(onErrorDriveWith: .empty()).flatMap { error -> Driver<Error> in
-            switch error {
-            case .underlyingError(let error):
-                return Driver.just(error)
-            default:
-                return Driver.empty()
-            }
+        self.fetchItemListAction.errors.asDriver(onErrorDriveWith: .empty())
+            .flatMap { error in
+                switch error {
+                case .underlyingError(let error):
+                    return Driver.just(error)
+                default:
+                    return Driver.empty()
+                }
         }
         
     }()
@@ -58,7 +59,7 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
     private let fetchItemListAction: Action<Int, [ItemListTableCellViewModel]>
     private var currentPage = 0
     
-    let viewDidLoadFetchTrigger = PublishSubject<Void>()
+    lazy var viewDidLoadTrigger: PublishSubject<Void> = PublishSubject<Void>()
     
     init<Request: PaginationRequest, Transform: Transformable>(
         request: Request,
@@ -78,7 +79,7 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
                 
             }
             
-            viewDidLoadFetchTrigger.asObservable()
+            viewDidLoadTrigger.asObservable()
                 .take(1)
                 .map { 0 }
                 .bind(to: fetchItemListAction.inputs)
