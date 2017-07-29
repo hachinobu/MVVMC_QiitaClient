@@ -10,14 +10,19 @@ import UIKit
 
 final class CoordinatorFactoryImpl: CoordinatorFactory {
     
-    func generateTabbarCoordinator() -> (presentable: Presentable?, coordinator: Coordinator) {
+    func generateTabbarCoordinator() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
         let tabbarController = UIStoryboard.instantiateInitialViewController(withType: TabbarController.self)
         let tabbarCoordinator = TabbarCoordinator(tabSelected: tabbarController, coordinatorFactory: CoordinatorFactoryImpl())
         return (tabbarController, tabbarCoordinator)
     }
     
-    func generateAuthCoordinator(router: Router) -> Coordinator & AuthCoordinatorOutput {
+    func generateAuthCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType {
         return AuthCoordinator(viewFactory: ViewFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+    }
+    
+    func generateHomeTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
+        let rootController = navigationController ?? UINavigationController()
+        return HomeTabCoordinator(viewFactory: ViewFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
 }

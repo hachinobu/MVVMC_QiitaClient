@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
+final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
 
     private let bag = DisposeBag()
     private let viewFactory: AuthViewFactory

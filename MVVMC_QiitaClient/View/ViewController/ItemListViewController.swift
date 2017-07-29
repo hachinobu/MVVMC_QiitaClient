@@ -19,7 +19,7 @@ final class ItemListViewController: UIViewController, ItemListViewType {
     
     let bag = DisposeBag()
     
-    var viewModel: ItemListViewModel!
+    fileprivate var viewModel: ItemListViewModel!
     
     fileprivate var selectedItemObserver = PublishSubject<String>()
     lazy var selectedItem: Observable<String> = self.selectedItemObserver.asObservable()
@@ -28,6 +28,10 @@ final class ItemListViewController: UIViewController, ItemListViewType {
     lazy var selectedUser: Observable<String> = self.selectedUserObserver.asObservable()
     
     lazy var reachedBottom: ControlEvent<Void> = self.tableView.rx.reachedBottom
+    
+    func injectViewModel(viewModel: ItemListViewModel) {
+        self.viewModel = viewModel
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

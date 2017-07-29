@@ -12,5 +12,6 @@ import RxSwift
 protocol ItemListViewType {
     var selectedItem: Observable<String> { get }
     var selectedUser: Observable<String> { get }
-    var viewModel: ItemListViewModel! { get }
+    
+    func injectViewModel(viewModel: ItemListViewModel)
 }

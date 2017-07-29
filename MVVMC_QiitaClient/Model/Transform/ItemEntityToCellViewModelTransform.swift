@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ItemEntityToCellViewModelTransfom: Transformable {
+struct ItemEntityToCellViewModelTransform: Transformable {
     
     typealias Input = ItemEntity
     typealias Output = ItemListTableCellViewModel

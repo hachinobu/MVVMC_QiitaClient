@@ -1,14 +1,14 @@
 //
-//  AuthCoordinatorOutput.swift
+//  CoordinatorFinishFlowType.swift
 //  MVVMC_QiitaClient
 //
-//  Created by Nishinobu.Takahiro on 2017/07/24.
+//  Created by Takahiro Nishinobu on 2017/07/29.
 //  Copyright © 2017年 hachinobu. All rights reserved.
 //
 
 import Foundation
 import RxSwift
 
-protocol AuthCoordinatorOutput: class {
+protocol CoordinatorFinishFlowType {
     var finishFlow: Observable<Void> { get }
 }

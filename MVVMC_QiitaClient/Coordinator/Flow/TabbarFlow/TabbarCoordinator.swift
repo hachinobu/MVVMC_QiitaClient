@@ -9,12 +9,15 @@
 import UIKit
 import RxSwift
 
-class TabbarCoordinator: BaseCoordinator {
+class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     
     private let bag = DisposeBag()
     
     private let tabSelected: TabSelectableView
     private let coordinatorFactory: CoordinatorFactory
+    
+    private let finishFlowObserver = PublishSubject<Void>()
+    lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
     
     init(tabSelected: TabSelectableView, coordinatorFactory: CoordinatorFactory) {
         self.tabSelected = tabSelected
@@ -24,14 +27,16 @@ class TabbarCoordinator: BaseCoordinator {
     override func start() {
         
         tabSelected.selectedTimeLineTabObservable.subscribe(onNext: { [unowned self] navigationController in
-            self.runTimeLineFlow(navigationController: navigationController)
+            self.runHomeTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
     }
     
-    private func runTimeLineFlow(navigationController: UINavigationController) {
+    private func runHomeTabFlow(navigationController: UINavigationController) {
         guard navigationController.viewControllers.isEmpty else { return }
-        
+        let coordinator = coordinatorFactory.generateHomeTabCoordinator(navigationController: navigationController)
+        coordinator.start()
+        addDependency(coordinator: coordinator)
     }
     
 }
