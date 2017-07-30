@@ -11,6 +11,10 @@ import RxSwift
 
 class ApplicationCoordinator: BaseCoordinator {
     
+    private var hasAccessToken: Bool {
+        return AccessTokenStorage.hasAccessToken()
+    }
+    
     private let bag = DisposeBag()
     private let router: Router
     private let coordinatorFactory: CoordinatorFactory
@@ -21,13 +25,22 @@ class ApplicationCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        runAuthFlow()
+        if hasAccessToken {
+            runMainTabbarFlow()
+        } else {
+            runAuthFlow()
+        }
     }
     
     private func runAuthFlow() {
         let coordinator = coordinatorFactory.generateAuthCoordinator(router: router)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
-            self?.runMainTabbarFlow()
+            guard let strongSelf = self else { return }
+            if strongSelf.hasAccessToken {
+                self?.runMainTabbarFlow()
+            } else {
+                self?.runMainTabbarFlow()
+            }
             self?.removeDependency(coordinator: coordinator)
         }).addDisposableTo(bag)
         

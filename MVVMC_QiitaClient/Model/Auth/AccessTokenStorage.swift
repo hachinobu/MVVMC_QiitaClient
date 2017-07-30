@@ -21,4 +21,8 @@ struct AccessTokenStorage {
         return UserDefaults.standard.synchronize()
     }
     
+    static func hasAccessToken() -> Bool {
+        return UserDefaults.standard.string(forKey: tokenKey) != nil
+    }
+    
 }

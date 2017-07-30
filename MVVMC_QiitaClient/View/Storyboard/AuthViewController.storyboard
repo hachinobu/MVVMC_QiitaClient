@@ -51,7 +51,7 @@
                     </view>
                     <connections>
                         <outlet property="authButton" destination="o0Y-vr-PIl" id="dr3-lV-uWk"/>
-                        <outlet property="notAuthButton" destination="VvI-k4-qEN" id="Rhp-Cs-uhR"/>
+                        <outlet property="skipAuthButton" destination="VvI-k4-qEN" id="DKu-sR-mZx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RM1-Sr-Q7o" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -12,11 +12,11 @@ import RxCocoa
 
 final class AuthViewController: UIViewController, AuthViewProtocol {
 
-    private let tappedAuthButtonObserver = PublishSubject<Void>()
-    lazy var tappedAuthButton: Observable<Void> = self.tappedAuthButtonObserver.asObservable()
+    private let tappedAuthObserver = PublishSubject<Void>()
+    lazy var tappedAuth: Observable<Void> = self.tappedAuthObserver.asObservable()
     
-    private let tappedNotAuthButtonObserver = PublishSubject<Void>()
-    lazy var tappedNotAuthButton: Observable<Void> = self.tappedNotAuthButtonObserver.asObservable()
+    private let tappedSkipAuthObserver = PublishSubject<Void>()
+    lazy var tappedSkipAuth: Observable<Void> = self.tappedSkipAuthObserver.asObservable()
     
     private let onCompleteAuthObserver = PublishSubject<String>()
     lazy var onCompleteAuth: Observable<String> = self.onCompleteAuthObserver.asObservable()
@@ -25,7 +25,7 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
     private var viewModel: AuthViewModel!
     
     @IBOutlet private weak var authButton: UIButton!
-    @IBOutlet private weak var notAuthButton: UIButton!
+    @IBOutlet weak var skipAuthButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +44,11 @@ final class AuthViewController: UIViewController, AuthViewProtocol {
     
     private func bindUI() {
         authButton.rx.tap
-            .bind(to: tappedAuthButtonObserver)
+            .bind(to: tappedAuthObserver)
             .addDisposableTo(bag)
         
-        notAuthButton.rx.tap
-            .bind(to: tappedNotAuthButtonObserver)
+        skipAuthButton.rx.tap
+            .bind(to: tappedSkipAuthObserver)
             .addDisposableTo(bag)
     }
     

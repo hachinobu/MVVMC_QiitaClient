@@ -21,7 +21,7 @@ extension AuthenticateQiita {
     enum AuthStatus {
         
         case none
-        case notAuth
+        case skipAuth
         case code(String)
         case authenticated(String)
         
@@ -29,7 +29,7 @@ extension AuthenticateQiita {
             switch self {
             case .authenticated(let token):
                 return token
-            case .none, .code(_), .notAuth:
+            case .none, .code(_), .skipAuth:
                 return nil
             }
         }
@@ -38,7 +38,7 @@ extension AuthenticateQiita {
             switch self {
             case .code(let code):
                 return code
-            case .none, .notAuth, .authenticated(_):
+            case .none, .skipAuth, .authenticated(_):
                 return nil
             }
         }
@@ -47,7 +47,7 @@ extension AuthenticateQiita {
             switch self {
             case .none, .code(_):
                 return false
-            case .authenticated(_), .notAuth:
+            case .authenticated(_), .skipAuth:
                 return true
             }
         }

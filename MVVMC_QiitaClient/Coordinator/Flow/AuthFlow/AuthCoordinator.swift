@@ -35,13 +35,14 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         let authRequest = QiitaAPI.PostAccessTokenRequest(clientId: AuthInfo.clientId, clientSecret: AuthInfo.clientSecret)
         let viewModel = AuthVM(request: authRequest)
         authView.injectViewModel(viewModel: viewModel)
-        authView.tappedAuthButton.subscribe(onNext: { [unowned self] _ in
-            self.authenticateQiita()
+        
+        authView.tappedAuth.subscribe(onNext: { [weak self] _ in
+            self?.authenticateQiita()
         }).addDisposableTo(bag)
         
-        authView.tappedNotAuthButton.subscribe(onNext: { _ in
-            
-        }).addDisposableTo(bag)
+        authView.tappedSkipAuth.do(onNext: { _ in
+            AuthenticateQiita.sharedInstance.status.value = .skipAuth
+        }).bind(to: finishFlowObserver).addDisposableTo(bag)
         
         authView.onCompleteAuth
             .map { token -> Bool in
