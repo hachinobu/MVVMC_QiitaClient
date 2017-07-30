@@ -28,7 +28,7 @@ final class HomeTabCoordinator: BaseCoordinator {
     
     private func showAllItemList() {
         let homeItemList = viewFactory.generateHomeItemListView()
-        let request = QiitaAPI.GetItems()
+        let request = QiitaAPI.GetItems(page: 1)
         let transform = ItemEntityToCellViewModelTransform()
         let viewModel = HomeItemListVM(request: request, transformer: transform)
         homeItemList.injectViewModel(viewModel: viewModel)

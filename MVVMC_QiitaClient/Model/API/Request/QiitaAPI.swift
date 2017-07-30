@@ -51,7 +51,7 @@ final class QiitaAPI {
         
         typealias Response = [ItemEntity]
         
-        var page: Int = 0
+        var page: Int
         
         var method: HTTPMethod {
             return .get
@@ -61,8 +61,8 @@ final class QiitaAPI {
             return "/api/v2/items"
         }
         
-        var parameters: Any? {
-            return ["page": page.description]
+        var queryParameters: [String : Any]? {
+            return ["page": page]
         }
         
     }
