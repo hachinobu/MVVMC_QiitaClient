@@ -14,7 +14,7 @@ struct ItemEntity {
     let body: String
     let coediting: Bool
     let createdAt: String
-    let group: GroupEntity
+    let group: GroupEntity?
     let id: String
     let isPrivate: Bool
     let tagList: [TagEntity]
@@ -31,7 +31,7 @@ extension ItemEntity: ImmutableMappable {
         body = try map.value("body")
         coediting = try map.value("coediting")
         createdAt = try map.value("created_at")
-        group = try map.value("group")
+        group = try? map.value("group")
         id = try map.value("id")
         isPrivate = try map.value("private")
         tagList = try map.value("tags")
