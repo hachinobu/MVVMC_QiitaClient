@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import APIKit
 
 final class ItemListViewController: UIViewController, ItemListViewType {
 
@@ -47,6 +48,7 @@ extension ItemListViewController {
     
     fileprivate func setupUI() {
         tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.tintColor = loadingIndicatorView.indicator.color
         tableView.tableFooterView = loadingIndicatorView
         tableView.estimatedRowHeight = 90
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -60,11 +62,6 @@ extension ItemListViewController {
     
     fileprivate func bindTableView() {
         
-        viewModel.items
-            .map { _ in false }
-            .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
-            .addDisposableTo(bag)
-        
         viewModel.isLoadingIndicatorAnimation
             .drive(loadingIndicatorView.indicator.rx.isAnimating)
             .addDisposableTo(bag)
@@ -72,6 +69,11 @@ extension ItemListViewController {
         viewModel.isLoadingIndicatorAnimation
             .map { !$0 }
             .drive(loadingIndicatorView.indicator.rx.isHidden)
+            .addDisposableTo(bag)
+        
+        viewModel.items
+            .map { _ in false }
+            .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
             .addDisposableTo(bag)
         
         viewModel.items
@@ -108,7 +110,19 @@ extension ItemListViewController {
             .bind(to: selectedUserObserver)
             .addDisposableTo(bag)
         
+        viewModel.error
+            .map { _ in false }
+            .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
+            .addDisposableTo(bag)
+        
+        viewModel.error
+            .filter { $0 as? QiitaError != nil }
+            .map { $0 as! QiitaError }
+            .drive(onNext: { error in
+                print(error.message)
+            }).addDisposableTo(bag)
         
     }
+    
     
 }

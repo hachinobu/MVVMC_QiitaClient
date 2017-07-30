@@ -27,17 +27,63 @@
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="ZBq-MI-SO2"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3N-ft-rhK">
-                        <rect key="frame" x="66" y="29" width="268" height="41.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3N-ft-rhK">
+                        <rect key="frame" x="66" y="29" width="276" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="41.5" id="0Go-X4-Qdh"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="N03-q1-Teg"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <attributedString key="attributedText">
+                            <fragment content="タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル">
+                                <attributes>
+                                    <color key="NSColor" red="0.0" green="0.47843000000000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="16" name=".HiraKakuInterface-W3"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                        <tabStops>
+                                            <textTab alignment="left" location="28">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="56">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="84">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="112">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="140">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="168">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="196">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="224">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="252">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="280">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="308">
+                                                <options/>
+                                            </textTab>
+                                            <textTab alignment="left" location="336">
+                                                <options/>
+                                            </textTab>
+                                        </tabStops>
+                                    </paragraphStyle>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タグ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rx0-GD-wfB">
-                        <rect key="frame" x="66" y="73" width="268" height="21"/>
+                        <rect key="frame" x="66" y="73" width="276" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="k5C-UO-a6Q"/>
                         </constraints>
@@ -66,8 +112,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="eox-Nx-sXL" firstAttribute="top" secondItem="ioZ-dQ-0EL" secondAttribute="top" constant="8" id="08U-Xc-E4J"/>
+                    <constraint firstItem="rx0-GD-wfB" firstAttribute="leading" secondItem="r3N-ft-rhK" secondAttribute="leading" id="0zR-A8-ycy"/>
                     <constraint firstItem="exi-Ne-hPQ" firstAttribute="leading" secondItem="eox-Nx-sXL" secondAttribute="trailing" constant="8" id="1X9-nD-E0g"/>
-                    <constraint firstItem="r3N-ft-rhK" firstAttribute="centerY" secondItem="ioZ-dQ-0EL" secondAttribute="centerY" id="248-fy-544"/>
                     <constraint firstItem="eox-Nx-sXL" firstAttribute="leading" secondItem="ioZ-dQ-0EL" secondAttribute="leading" constant="8" id="3ex-cL-vXE"/>
                     <constraint firstItem="r3N-ft-rhK" firstAttribute="leading" secondItem="eox-Nx-sXL" secondAttribute="trailing" constant="8" id="4Rb-LI-v2s"/>
                     <constraint firstItem="r3N-ft-rhK" firstAttribute="top" secondItem="exi-Ne-hPQ" secondAttribute="bottom" id="7Vp-4g-0Gq"/>
@@ -76,11 +122,11 @@
                     <constraint firstItem="rx0-GD-wfB" firstAttribute="trailing" secondItem="r3N-ft-rhK" secondAttribute="trailing" id="ECY-SI-HXe"/>
                     <constraint firstItem="iKJ-VP-AwV" firstAttribute="width" secondItem="eox-Nx-sXL" secondAttribute="width" id="Huu-AX-1AC"/>
                     <constraint firstAttribute="trailing" secondItem="exi-Ne-hPQ" secondAttribute="trailing" constant="8" id="N4H-H0-9Fb"/>
-                    <constraint firstItem="rx0-GD-wfB" firstAttribute="leading" secondItem="r3N-ft-rhK" secondAttribute="leading" id="NdF-eT-WYY"/>
+                    <constraint firstItem="rx0-GD-wfB" firstAttribute="top" secondItem="r3N-ft-rhK" secondAttribute="bottom" constant="2.5" id="XIv-x5-8Oi"/>
                     <constraint firstItem="exi-Ne-hPQ" firstAttribute="top" secondItem="ioZ-dQ-0EL" secondAttribute="top" constant="8" id="e24-LN-fzt"/>
                     <constraint firstItem="iKJ-VP-AwV" firstAttribute="height" secondItem="eox-Nx-sXL" secondAttribute="height" id="jtZ-Eg-7nq"/>
                     <constraint firstItem="iKJ-VP-AwV" firstAttribute="centerX" secondItem="eox-Nx-sXL" secondAttribute="centerX" id="k6T-GU-O0r"/>
-                    <constraint firstAttribute="trailing" secondItem="r3N-ft-rhK" secondAttribute="trailing" constant="8" id="x6H-Wj-0Jp"/>
+                    <constraint firstAttribute="trailing" secondItem="r3N-ft-rhK" secondAttribute="trailing" id="yt2-w7-8lF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -90,7 +136,7 @@
                 <outlet property="titleLabel" destination="r3N-ft-rhK" id="JPO-3G-rxk"/>
                 <outlet property="userNameLabel" destination="exi-Ne-hPQ" id="WuN-Ci-Rgd"/>
             </connections>
-            <point key="canvasLocation" x="4" y="65"/>
+            <point key="canvasLocation" x="3.5" y="65"/>
         </tableViewCell>
     </objects>
 </document>

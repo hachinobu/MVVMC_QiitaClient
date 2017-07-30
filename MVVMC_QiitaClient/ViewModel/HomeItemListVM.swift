@@ -14,6 +14,8 @@ import APIKit
 
 final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
 
+    private let FirstPage: Int = 1
+    
     lazy var items: Driver<[ItemListTableCellViewModel]> = {
         
         self.fetchItemListAction.elements
@@ -21,14 +23,15 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
             .scan([ItemListTableCellViewModel]()) { elements, results in
                 
                 let page = results.1
-                if page == 0 {
-                    self.currentPage = 0
-                    return elements
+                let objects = results.0
+                if page == self.FirstPage {
+                    self.currentPage = self.FirstPage
+                    return objects
                 }
                 
                 if page > self.currentPage {
                     self.currentPage = page
-                    return elements + results.0
+                    return elements + objects
                 }
                 
                 return elements
@@ -39,7 +42,8 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
     
     lazy var error: Driver<Error> = {
         
-        self.fetchItemListAction.errors.asDriver(onErrorDriveWith: .empty())
+        self.fetchItemListAction.errors
+            .asDriver(onErrorDriveWith: .empty())
             .flatMap { error in
                 switch error {
                 case .underlyingError(let error):
@@ -47,7 +51,7 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
                 default:
                     return Driver.empty()
                 }
-        }
+            }
         
     }()
     
@@ -57,7 +61,7 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
     
     private let bag = DisposeBag()
     private let fetchItemListAction: Action<Int, [ItemListTableCellViewModel]>
-    private var currentPage = 0
+    private var currentPage = 1
     
     lazy var viewDidLoadTrigger: PublishSubject<Void> = PublishSubject<Void>()
     
@@ -81,7 +85,7 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
             
             viewDidLoadTrigger.asObservable()
                 .take(1)
-                .map { 0 }
+                .map { self.FirstPage }
                 .bind(to: fetchItemListAction.inputs)
                 .addDisposableTo(bag)
         
@@ -91,7 +95,7 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
         refresh.asObservable()
             .withLatestFrom(isLoadingIndicatorAnimation.asObservable())
             .filter { !$0 }
-            .map { _ in 0 }
+            .map { _ in self.FirstPage }
             .bind(to: fetchItemListAction.inputs)
             .addDisposableTo(bag)
     }
