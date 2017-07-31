@@ -67,5 +67,24 @@ final class QiitaAPI {
         
     }
 
+    struct GetItemDetailRequest: QiitaRequest {
+        
+        typealias Response = ItemEntity
+        
+        private let itemId: String
+        
+        init(itemId: String) {
+            self.itemId = itemId
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/items/\(itemId)"
+        }
+        
+    }
     
 }
