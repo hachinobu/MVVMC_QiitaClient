@@ -47,7 +47,7 @@ final class QiitaAPI {
         
     }
     
-    struct GetItems: QiitaRequest, PaginationRequest {
+    struct GetItemsRequest: QiitaRequest, PaginationRequest {
         
         typealias Response = [ItemEntity]
         
