@@ -7,18 +7,6 @@
 //
 
 import UIKit
-import RxSwift
-
-protocol ItemDetailHeaderViewModel: class {
-    var itemId: String { get }
-    var userId: String { get }
-    var title: Observable<String?> { get }
-    var tag: Observable<String?> { get }
-    var profileURL: Observable<URL?> { get }
-    var userName: Observable<String?> { get }
-    var likeCount: Observable<String?> { get }
-    var stockCount: Observable<String?> { get }
-}
 
 final class ItemDetailHeaderView: UIView, NibLoadableView {
 
