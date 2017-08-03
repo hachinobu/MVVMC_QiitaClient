@@ -19,5 +19,5 @@ protocol ItemViewModel: class {
     var likeCount: Observable<String?> { get }
     var stockCount: Observable<String?> { get }
     
-    var htmlRenderBody: Observable<String> { get }
+    var htmlRenderBody: String { get }
 }

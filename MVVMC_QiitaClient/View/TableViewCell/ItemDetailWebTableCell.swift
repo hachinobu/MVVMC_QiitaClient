@@ -25,5 +25,5 @@ final class ItemDetailWebTableCell: UITableViewCell {
         super.awakeFromNib()
         addSubview(wkWebView)
     }
-
+    
 }

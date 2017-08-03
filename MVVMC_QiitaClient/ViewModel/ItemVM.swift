@@ -13,6 +13,7 @@ final class ItemVM: ItemViewModel {
     
     var itemId: String
     var userId: String
+    var htmlRenderBody: String
     
     private let titleObserver = Variable<String?>(nil)
     lazy var title: Observable<String?> = self.titleObserver.asObservable()
@@ -32,9 +33,6 @@ final class ItemVM: ItemViewModel {
     private let stockCountObserver = Variable<String?>(nil)
     lazy var stockCount: Observable<String?> = self.stockCountObserver.asObservable()
     
-    private let htmlRenderBodyObserver = Variable<String>("")
-    lazy var htmlRenderBody: Observable<String> = self.htmlRenderBodyObserver.asObservable()
-    
     init(itemId: String,
          userId: String,
          title: String?,
@@ -53,7 +51,7 @@ final class ItemVM: ItemViewModel {
         self.userNameObserver.value = userName
         self.likeCountObserver.value = likeCount
         self.stockCountObserver.value = stockCount
-        self.htmlRenderBodyObserver.value = htmlRenderBody
+        self.htmlRenderBody = htmlRenderBody
         
     }
     
