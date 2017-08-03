@@ -13,6 +13,9 @@ import Action
 
 protocol ItemDetailViewModel: class {
     
-    var item: Driver<ItemViewModel> { get }
+    var itemDetail: Driver<ItemViewModel> { get }
+    var error: Driver<ActionError> { get }
+    
+    var viewDidLoadTrigger: PublishSubject<Void> { get }
     
 }

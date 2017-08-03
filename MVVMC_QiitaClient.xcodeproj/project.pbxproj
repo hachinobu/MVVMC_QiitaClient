@@ -76,8 +76,10 @@
 		C2483F9F1F28A40C00685622 /* ItemListTableCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */; };
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
 		C2FF21DE1F31E5F20002C89E /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */; };
-		C2FF21E01F31E68C0002C89E /* ItemDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21DF1F31E68C0002C89E /* ItemDetailVM.swift */; };
+		C2FF21E01F31E68C0002C89E /* ItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21DF1F31E68C0002C89E /* ItemVM.swift */; };
 		C2FF21E21F31EEB60002C89E /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */; };
+		C2FF21E41F32E3200002C89E /* ItemDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21E31F32E3200002C89E /* ItemDetailVM.swift */; };
+		C2FF21E61F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21E51F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,8 +176,10 @@
 		C2483F9C1F28A30D00685622 /* ItemEntityToCellViewModelTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEntityToCellViewModelTransform.swift; sourceTree = "<group>"; };
 		C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListTableCellVM.swift; sourceTree = "<group>"; };
 		C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
-		C2FF21DF1F31E68C0002C89E /* ItemDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailVM.swift; sourceTree = "<group>"; };
+		C2FF21DF1F31E68C0002C89E /* ItemVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemVM.swift; sourceTree = "<group>"; };
 		C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
+		C2FF21E31F32E3200002C89E /* ItemDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailVM.swift; sourceTree = "<group>"; };
+		C2FF21E51F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemAndCountEntityToItemDetailViewModel.swift; sourceTree = "<group>"; };
 		E6CE478C2039F61480735ED8 /* Pods-MVVMC_QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -484,8 +488,9 @@
 				AD639DF51F28C2B700AA56ED /* HomeItemListVM.swift */,
 				C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */,
 				C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */,
-				C2FF21DF1F31E68C0002C89E /* ItemDetailVM.swift */,
+				C2FF21DF1F31E68C0002C89E /* ItemVM.swift */,
 				C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */,
+				C2FF21E31F32E3200002C89E /* ItemDetailVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -526,6 +531,7 @@
 			children = (
 				C2483F9A1F28A1D200685622 /* Transformable.swift */,
 				C2483F9C1F28A30D00685622 /* ItemEntityToCellViewModelTransform.swift */,
+				C2FF21E51F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift */,
 			);
 			path = Transform;
 			sourceTree = "<group>";
@@ -738,6 +744,7 @@
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
 				AD639E001F2B3C8800AA56ED /* ReusableView.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
+				C2FF21E61F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift in Sources */,
 				AD639E031F2B3F1700AA56ED /* ItemListViewType.swift in Sources */,
 				AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */,
 				AD639DE61F277E3A00AA56ED /* ItemListViewController.swift in Sources */,
@@ -756,7 +763,7 @@
 				AD639DFC1F2B371300AA56ED /* UIViewController+Rx.swift in Sources */,
 				C2483F9F1F28A40C00685622 /* ItemListTableCellVM.swift in Sources */,
 				AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */,
-				C2FF21E01F31E68C0002C89E /* ItemDetailVM.swift in Sources */,
+				C2FF21E01F31E68C0002C89E /* ItemVM.swift in Sources */,
 				AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */,
 				AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */,
 				C2483F9D1F28A30D00685622 /* ItemEntityToCellViewModelTransform.swift in Sources */,
@@ -766,6 +773,7 @@
 				AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */,
 				AD639DD31F263E8300AA56ED /* AuthVM.swift in Sources */,
 				C2483F981F26DC5E00685622 /* AuthRequest.swift in Sources */,
+				C2FF21E41F32E3200002C89E /* ItemDetailVM.swift in Sources */,
 				C2FF21E21F31EEB60002C89E /* ItemDetailViewModel.swift in Sources */,
 				AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */,
 				AD639DD81F27792600AA56ED /* UserEntity.swift in Sources */,

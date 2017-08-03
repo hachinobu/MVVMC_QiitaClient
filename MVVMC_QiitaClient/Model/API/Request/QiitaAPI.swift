@@ -87,4 +87,28 @@ final class QiitaAPI {
         
     }
     
+    struct GetItemStockersRequest {
+        
+        typealias Response = [UserEntity]
+        
+        private let itemId: String
+        
+        init(itemId: String) {
+            self.itemId = itemId
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/items/\(itemId)/stockers"
+        }
+        
+        var queryParameters: [String : Any]? {
+            return ["per_page": 100]
+        }
+        
+    }
+    
 }
