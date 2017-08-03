@@ -10,7 +10,9 @@ import Foundation
 
 struct ItemAndCountEntityToItemDetailViewModel: Transformable {
     
-    func transform(input: (item: ItemEntity, users: [UserEntity])) -> ItemViewModel {
+    func transform(input: (ItemEntity, [UserEntity])) -> ItemViewModel {
+        
+        let input: (item: ItemEntity, users: [UserEntity]) = input
         
         let itemId = input.item.id
         let userId = input.item.user.id

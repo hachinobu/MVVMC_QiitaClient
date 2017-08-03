@@ -27,21 +27,38 @@ final class HomeTabCoordinator: BaseCoordinator {
     }
     
     private func showAllItemList() {
-        let homeItemList = viewFactory.generateHomeItemListView()
+        let itemListView = viewFactory.generateHomeItemListView()
         let request = QiitaAPI.GetItemsRequest(page: 1)
         let transform = ItemEntityToCellViewModelTransform()
         let viewModel = HomeItemListVM(request: request, transformer: transform)
-        homeItemList.injectViewModel(viewModel: viewModel)
+        itemListView.injectViewModel(viewModel: viewModel)
         
-        homeItemList.selectedItem.subscribe(onNext: { itemId in
+        itemListView.selectedItem.subscribe(onNext: { itemId in
             
         }).addDisposableTo(bag)
         
-        homeItemList.selectedUser.subscribe(onNext: { userId in
+        itemListView.selectedUser.subscribe(onNext: { userId in
             
         }).addDisposableTo(bag)
         
-        router.setRoot(presentable: homeItemList, hideBar: false)
+        router.setRoot(presentable: itemListView, hideBar: false)
+        
+    }
+    
+    private func showItemDetail(itemId: String) {
+        let itemDetailView = viewFactory.generateItemDetailView()
+        
+        let itemDetailRequest = QiitaAPI.GetItemDetailRequest(itemId: itemId)
+        let itemStockerRequest = QiitaAPI.GetItemStockersRequest(itemId: itemId)
+        let transformer = ItemAndCountEntityToItemDetailViewModel()
+        let viewModel = ItemDetailVM(itemRequest: itemDetailRequest, countRequest: itemStockerRequest, transformer: transformer)
+        itemDetailView.injectViewModel(viewModel: viewModel)
+        
+        itemDetailView.selectedUser.subscribe(onNext: { userId in
+            
+        }).addDisposableTo(bag)
+        
+        router.push(presentable: itemDetailView, animated: true, completion: nil)
         
     }
     
