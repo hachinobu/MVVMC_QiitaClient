@@ -80,6 +80,9 @@
 		C2FF21E21F31EEB60002C89E /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */; };
 		C2FF21E41F32E3200002C89E /* ItemDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21E31F32E3200002C89E /* ItemDetailVM.swift */; };
 		C2FF21E61F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21E51F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift */; };
+		C2FF21E81F332CC60002C89E /* ItemDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2FF21E71F332CC60002C89E /* ItemDetailViewController.storyboard */; };
+		C2FF21EA1F332DF20002C89E /* ItemDetailViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21E91F332DF20002C89E /* ItemDetailViewType.swift */; };
+		C2FF21EC1F332F1D0002C89E /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21EB1F332F1D0002C89E /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +183,9 @@
 		C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
 		C2FF21E31F32E3200002C89E /* ItemDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailVM.swift; sourceTree = "<group>"; };
 		C2FF21E51F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemAndCountEntityToItemDetailViewModel.swift; sourceTree = "<group>"; };
+		C2FF21E71F332CC60002C89E /* ItemDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ItemDetailViewController.storyboard; sourceTree = "<group>"; };
+		C2FF21E91F332DF20002C89E /* ItemDetailViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewType.swift; sourceTree = "<group>"; };
+		C2FF21EB1F332F1D0002C89E /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		E6CE478C2039F61480735ED8 /* Pods-MVVMC_QiitaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -337,6 +343,7 @@
 				AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */,
 				AD639DBE1F23241600AA56ED /* AuthViewController.swift */,
 				AD639DE51F277E3A00AA56ED /* ItemListViewController.swift */,
+				C2FF21EB1F332F1D0002C89E /* ItemDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -367,6 +374,7 @@
 				AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */,
 				AD639DBC1F23223100AA56ED /* AuthViewController.storyboard */,
 				AD639DE31F277DD200AA56ED /* ItemListViewController.storyboard */,
+				C2FF21E71F332CC60002C89E /* ItemDetailViewController.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -446,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				AD639E021F2B3F1700AA56ED /* ItemListViewType.swift */,
+				C2FF21E91F332DF20002C89E /* ItemDetailViewType.swift */,
 			);
 			path = ItemFlow;
 			sourceTree = "<group>";
@@ -654,6 +663,7 @@
 				AD639DF01F27835E00AA56ED /* LoadingIndicatorView.xib in Resources */,
 				AD639DE41F277DD200AA56ED /* ItemListViewController.storyboard in Resources */,
 				AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */,
+				C2FF21E81F332CC60002C89E /* ItemDetailViewController.storyboard in Resources */,
 				ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */,
 				AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */,
 				AD639DE91F277F2F00AA56ED /* ItemListTableCell.xib in Resources */,
@@ -770,6 +780,7 @@
 				AD5C98941F1F996500DF5039 /* Router.swift in Sources */,
 				AD5C98A51F1F9C3400DF5039 /* TabbarController.swift in Sources */,
 				AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */,
+				C2FF21EA1F332DF20002C89E /* ItemDetailViewType.swift in Sources */,
 				AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */,
 				AD639DD31F263E8300AA56ED /* AuthVM.swift in Sources */,
 				C2483F981F26DC5E00685622 /* AuthRequest.swift in Sources */,
@@ -779,6 +790,7 @@
 				AD639DD81F27792600AA56ED /* UserEntity.swift in Sources */,
 				AD639DEB1F2780A700AA56ED /* ItemListTableCell.swift in Sources */,
 				ADC385651F2F6ABE0092F227 /* ItemDetailHeaderView.swift in Sources */,
+				C2FF21EC1F332F1D0002C89E /* ItemDetailViewController.swift in Sources */,
 				C2483F921F26158000685622 /* QiitaRequestType.swift in Sources */,
 				C2483F8F1F26145A00685622 /* AuthEntity.swift in Sources */,
 				AD639DCE1F24E38300AA56ED /* ViewFactory.swift in Sources */,

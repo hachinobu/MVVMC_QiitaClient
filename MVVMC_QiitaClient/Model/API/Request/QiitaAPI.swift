@@ -87,7 +87,7 @@ final class QiitaAPI {
         
     }
     
-    struct GetItemStockersRequest {
+    struct GetItemStockersRequest: QiitaRequest {
         
         typealias Response = [UserEntity]
         

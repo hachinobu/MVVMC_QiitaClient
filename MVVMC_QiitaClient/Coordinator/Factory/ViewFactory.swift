@@ -29,4 +29,9 @@ extension ViewFactory: HomeTabViewFactory {
         return homeItemListView
     }
     
+    func generateItemDetailView() -> ItemDetailViewType & Presentable {
+        let itemDetailView = UIStoryboard.instantiateInitialViewController(withType: ItemDetailViewController.self)
+        return itemDetailView
+    }
+    
 }

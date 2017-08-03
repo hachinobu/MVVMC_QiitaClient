@@ -28,8 +28,8 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
         itemRequest: ItemRequest,
         countRequest: CountRequest,
         transformer: Transform,
-        session: Session = Session.shared) where Transform.Input == (ItemResult, CountResult), Transform.Output == ItemViewModel,
-        ItemRequest.Response == ItemResult, CountRequest.Response == CountResult {
+        session: Session = Session.shared) where ItemRequest.Response == ItemResult, CountRequest.Response == CountResult,
+        Transform.Input == (ItemResult, CountResult), Transform.Output == ItemViewModel {
             
             let fetchItemAction: Action<Void, ItemResult> = Action { _ in
                 return session.rx.response(request: itemRequest).shareReplayLatestWhileConnected()
@@ -47,6 +47,11 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
                 .amb(fetchStockCountAction.errors)
                 .bind(to: errorObserver)
                 .addDisposableTo(bag)
+            
+            viewDidLoadTrigger.subscribe(onNext: { _ in
+                fetchItemAction.execute(())
+                fetchStockCountAction.execute(())
+            }).addDisposableTo(bag)
         
     }
     
