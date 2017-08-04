@@ -106,8 +106,8 @@ extension ItemListViewController {
                     self?.tableView.deselectRow(at: selectedIndexPath, animated: true)
                 }
             })
-            .map { $0.userId }
-            .bind(to: selectedUserObserver)
+            .map { $0.itemId }
+            .bind(to: selectedItemObserver)
             .addDisposableTo(bag)
         
         viewModel.error

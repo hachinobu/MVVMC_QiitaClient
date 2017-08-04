@@ -59,6 +59,7 @@ extension ItemDetailViewController {
             headerViewModel.title.bind(to: strongSelf.itemHeaderView.titleLabel.rx.text).addDisposableTo(strongSelf.bag)
             headerViewModel.stockCount.bind(to: strongSelf.itemHeaderView.stockCountLabel.rx.text).addDisposableTo(strongSelf.bag)
             headerViewModel.userName.bind(to: strongSelf.itemHeaderView.userNameButton.titleLabel!.rx.text).addDisposableTo(strongSelf.bag)
+            headerViewModel.tag.bind(to: strongSelf.itemHeaderView.tagLabel.rx.text).addDisposableTo(strongSelf.bag)
             
             headerViewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
                 let imageURL = url!
@@ -69,13 +70,21 @@ extension ItemDetailViewController {
                                                                           progressBlock: nil, completionHandler: nil)
             }).addDisposableTo(strongSelf.bag)
             
+            strongSelf.itemHeaderView.userNameButton.rx.tap
+                .map { headerViewModel.userId }
+                .bind(to: strongSelf.selectedUserObserver)
+                .addDisposableTo(strongSelf.bag)
+            
             strongSelf.itemHeaderView.profileImageButton.rx.tap
                 .map { headerViewModel.userId }
                 .bind(to: strongSelf.selectedUserObserver)
                 .addDisposableTo(strongSelf.bag)
             
             
-            
+        }).addDisposableTo(bag)
+        
+        viewModel.error.drive(onNext: { (error) in
+            print(error)
         }).addDisposableTo(bag)
         
     }

@@ -33,8 +33,8 @@ final class HomeTabCoordinator: BaseCoordinator {
         let viewModel = HomeItemListVM(request: request, transformer: transform)
         itemListView.injectViewModel(viewModel: viewModel)
         
-        itemListView.selectedItem.subscribe(onNext: { itemId in
-            
+        itemListView.selectedItem.subscribe(onNext: { [weak self] itemId in
+            self?.showItemDetail(itemId: itemId)
         }).addDisposableTo(bag)
         
         itemListView.selectedUser.subscribe(onNext: { userId in
