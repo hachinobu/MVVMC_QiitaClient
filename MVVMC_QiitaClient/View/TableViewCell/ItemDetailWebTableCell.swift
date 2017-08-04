@@ -13,17 +13,21 @@ final class ItemDetailWebTableCell: UITableViewCell {
     
     lazy var wkWebView: WKWebView = {
         let wkWebView = WKWebView(frame: .zero)
-        wkWebView.translatesAutoresizingMaskIntoConstraints = false
-        wkWebView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        wkWebView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        wkWebView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        wkWebView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         return wkWebView
     }()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         addSubview(wkWebView)
+        setupWkWebViewLayout()
+    }
+    
+    private func setupWkWebViewLayout() {
+        wkWebView.translatesAutoresizingMaskIntoConstraints = false
+        wkWebView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        wkWebView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        wkWebView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        wkWebView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
 }
