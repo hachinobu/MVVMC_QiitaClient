@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Kingfisher
+import WebKit
 
 final class ItemDetailViewController: UIViewController, ItemDetailViewType {
     
@@ -20,6 +21,7 @@ final class ItemDetailViewController: UIViewController, ItemDetailViewType {
     
     fileprivate let bag = DisposeBag()
     fileprivate lazy var itemHeaderView = ItemDetailHeaderView.loadView()
+    fileprivate var webContentHeight: CGFloat = 0.0
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -47,11 +49,21 @@ extension ItemDetailViewController {
     
     fileprivate func bindView() {
         
-        viewModel.itemDetail
-            .map { [$0] }
-            .drive(tableView.rx.items(cellIdentifier: ItemDetailWebTableCell.nibName, cellType: ItemDetailWebTableCell.self)) { row, cellViewModel, cell in
-                cell.wkWebView.loadHTMLString(cellViewModel.htmlRenderBody, baseURL: nil)
-            }.addDisposableTo(bag)
+        let dataSource = ItemDetailTableViewDataSource { [weak self] in
+            self?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+        }
+        
+        viewModel.itemDetail.map { [$0] }
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .addDisposableTo(bag)
+        
+        tableView.delegate = dataSource
+        
+//        viewModel.itemDetail
+//            .map { [$0] }
+//            .drive(tableView.rx.items(cellIdentifier: ItemDetailWebTableCell.nibName, cellType: ItemDetailWebTableCell.self)) { row, cellViewModel, cell in
+//                cell.wkWebView.loadHTMLString(cellViewModel.htmlRenderBody, baseURL: nil)
+//            }.addDisposableTo(bag)
         
         viewModel.itemDetail.drive(onNext: { [weak self] headerViewModel in
             
@@ -90,3 +102,57 @@ extension ItemDetailViewController {
     }
     
 }
+
+
+fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSourceType, UITableViewDataSource, UITableViewDelegate, WKNavigationDelegate {
+    
+    typealias Element = [ItemViewModel]
+    
+    var items: Element = []
+    private var webContentCellHeight: CGFloat = 0.0
+    
+    private let changeContentHeightHandler: () -> Void?
+    
+    init(reloadHandler: @escaping () -> Void) {
+        changeContentHeightHandler = reloadHandler
+    }
+    
+    func tableView(_ tableView: UITableView, observedEvent: Event<[ItemViewModel]>) {
+        if case .next(let items) = observedEvent {
+            self.items = items
+            tableView.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemDetailWebTableCell
+        cell.wkWebView.navigationDelegate = self
+        cell.wkWebView.loadHTMLString(items.first!.htmlRenderBody, baseURL: nil)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return webContentCellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return webContentCellHeight
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        let height = webView.scrollView.contentSize.height
+        if webContentCellHeight == height {
+            return
+        }
+        webContentCellHeight = height
+//        changeContentHeightHandler()
+    }
+    
+}
+
+
+
