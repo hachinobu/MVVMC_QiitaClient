@@ -24,9 +24,9 @@ struct ItemAndCountEntityToItemDetailViewModel: Transformable {
         let likeCount: String
         let count = input.users.count
         if count == 100 {
-            likeCount = "いいね数 " + input.users.count.description + "+"
+            likeCount = "ストック数 " + input.users.count.description + "+"
         } else {
-            likeCount = "いいね数 " + input.users.count.description
+            likeCount = "ストック数 " + input.users.count.description
         }
         
         let htmlRenderBody = input.item.renderedBody

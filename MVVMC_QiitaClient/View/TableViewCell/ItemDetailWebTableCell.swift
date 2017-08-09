@@ -7,27 +7,21 @@
 //
 
 import UIKit
-import WebKit
+import RxSwift
 
 final class ItemDetailWebTableCell: UITableViewCell {
     
-    lazy var wkWebView: WKWebView = {
-        let wkWebView = WKWebView(frame: .zero)
-        return wkWebView
-    }()
+    @IBOutlet weak var webView: UIWebView!
+    var bag = DisposeBag()
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        addSubview(wkWebView)
-        setupWkWebViewLayout()
+        webView.scrollView.isScrollEnabled = false
     }
     
-    private func setupWkWebViewLayout() {
-        wkWebView.translatesAutoresizingMaskIntoConstraints = false
-        wkWebView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        wkWebView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        wkWebView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        wkWebView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bag = DisposeBag()
     }
     
 }

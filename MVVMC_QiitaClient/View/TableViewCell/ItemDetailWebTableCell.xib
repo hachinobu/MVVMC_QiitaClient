@@ -17,8 +17,23 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QsI-cJ-Jq8" id="aC7-FN-2fy">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rbv-tX-yn6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="76.5"/>
+                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </webView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Rbv-tX-yn6" secondAttribute="bottom" id="5aN-gV-Hn7"/>
+                    <constraint firstItem="Rbv-tX-yn6" firstAttribute="leading" secondItem="aC7-FN-2fy" secondAttribute="leading" id="CJD-OQ-IL9"/>
+                    <constraint firstItem="Rbv-tX-yn6" firstAttribute="top" secondItem="aC7-FN-2fy" secondAttribute="top" id="EE6-L7-r0a"/>
+                    <constraint firstAttribute="trailing" secondItem="Rbv-tX-yn6" secondAttribute="trailing" id="em7-vH-4TX"/>
+                </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-34.5" y="55.5"/>
+            <connections>
+                <outlet property="webView" destination="Rbv-tX-yn6" id="XU4-wM-Kvb"/>
+            </connections>
+            <point key="canvasLocation" x="-224.5" y="13.5"/>
         </tableViewCell>
     </objects>
 </document>

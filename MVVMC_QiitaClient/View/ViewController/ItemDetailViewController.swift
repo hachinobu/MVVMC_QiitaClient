@@ -49,28 +49,19 @@ extension ItemDetailViewController {
     
     fileprivate func bindView() {
         
-        let dataSource = ItemDetailTableViewDataSource { [weak self] in
-            self?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
-        }
+        let dataSource = ItemDetailTableViewDataSource()
         
         viewModel.itemDetail.map { [$0] }
             .drive(tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(bag)
         
         tableView.delegate = dataSource
-        
-//        viewModel.itemDetail
-//            .map { [$0] }
-//            .drive(tableView.rx.items(cellIdentifier: ItemDetailWebTableCell.nibName, cellType: ItemDetailWebTableCell.self)) { row, cellViewModel, cell in
-//                cell.wkWebView.loadHTMLString(cellViewModel.htmlRenderBody, baseURL: nil)
-//            }.addDisposableTo(bag)
-        
         viewModel.itemDetail.drive(onNext: { [weak self] headerViewModel in
             
             guard let strongSelf = self else { return }
             headerViewModel.title.bind(to: strongSelf.itemHeaderView.titleLabel.rx.text).addDisposableTo(strongSelf.bag)
             headerViewModel.stockCount.bind(to: strongSelf.itemHeaderView.stockCountLabel.rx.text).addDisposableTo(strongSelf.bag)
-            headerViewModel.userName.bind(to: strongSelf.itemHeaderView.userNameButton.titleLabel!.rx.text).addDisposableTo(strongSelf.bag)
+            headerViewModel.userName.bind(to: strongSelf.itemHeaderView.userNameButton.rx.title()).addDisposableTo(strongSelf.bag)
             headerViewModel.tag.bind(to: strongSelf.itemHeaderView.tagLabel.rx.text).addDisposableTo(strongSelf.bag)
             
             headerViewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
@@ -104,18 +95,12 @@ extension ItemDetailViewController {
 }
 
 
-fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSourceType, UITableViewDataSource, UITableViewDelegate, WKNavigationDelegate {
+fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSourceType, UITableViewDataSource, UITableViewDelegate {
     
     typealias Element = [ItemViewModel]
     
     var items: Element = []
     private var webContentCellHeight: CGFloat = 0.0
-    
-    private let changeContentHeightHandler: () -> Void?
-    
-    init(reloadHandler: @escaping () -> Void) {
-        changeContentHeightHandler = reloadHandler
-    }
     
     func tableView(_ tableView: UITableView, observedEvent: Event<[ItemViewModel]>) {
         if case .next(let items) = observedEvent {
@@ -130,8 +115,17 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemDetailWebTableCell
-        cell.wkWebView.navigationDelegate = self
-        cell.wkWebView.loadHTMLString(items.first!.htmlRenderBody, baseURL: nil)
+        
+        cell.webView.rx.didFinishLoad.subscribe(onNext: { [weak self] _ in
+            guard let strongSelf = self else { return }
+            if strongSelf.webContentCellHeight == cell.webView.scrollView.contentSize.height {
+                return
+            }
+            strongSelf.webContentCellHeight = cell.webView.scrollView.contentSize.height
+            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+        }).addDisposableTo(cell.bag)
+        
+        cell.webView.loadHTMLString(items.first!.htmlRenderBody, baseURL: nil)
         return cell
     }
     
@@ -141,15 +135,6 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return webContentCellHeight
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        let height = webView.scrollView.contentSize.height
-        if webContentCellHeight == height {
-            return
-        }
-        webContentCellHeight = height
-//        changeContentHeightHandler()
     }
     
 }
