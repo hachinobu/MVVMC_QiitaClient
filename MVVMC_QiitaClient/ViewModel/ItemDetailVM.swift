@@ -22,14 +22,17 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
     private let errorObserver = PublishSubject<ActionError>()
     lazy var error: Driver<ActionError> = self.errorObserver.asDriver(onErrorDriveWith: .empty())
     
+    private let hasStockObserver = PublishSubject<Bool>()
+    
     lazy var viewDidLoadTrigger: PublishSubject<Void> = PublishSubject()
     
     init<ItemRequest: QiitaRequest, CountRequest: QiitaRequest, Transform: Transformable>(
         itemRequest: ItemRequest,
         countRequest: CountRequest,
         transformer: Transform,
+        stockStatusRequest: QiitaAPI.GetStockStatusRequest,
         session: Session = Session.shared) where ItemRequest.Response == ItemResult, CountRequest.Response == CountResult,
-        Transform.Input == (ItemResult, CountResult), Transform.Output == ItemViewModel {
+        Transform.Input == (ItemResult, CountResult, Bool), Transform.Output == ItemViewModel {
             
             let fetchItemAction: Action<Void, ItemResult> = Action { _ in
                 return session.rx.response(request: itemRequest).shareReplayLatestWhileConnected()
@@ -39,7 +42,7 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
                 return session.rx.response(request: countRequest).shareReplayLatestWhileConnected()
             }
             
-            Observable.zip(fetchItemAction.elements, fetchStockCountAction.elements) { transformer.transform(input: $0) }
+            Observable.zip(fetchItemAction.elements, fetchStockCountAction.elements, hasStockObserver) { transformer.transform(input: $0) }
                 .bind(to: itemDetailObserver)
                 .addDisposableTo(bag)
             
@@ -48,9 +51,24 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
                 .bind(to: errorObserver)
                 .addDisposableTo(bag)
             
+            let fetchStockStatusAction: Action<Void, Void> = Action { _ in
+                return session.rx.response(request: stockStatusRequest).shareReplayLatestWhileConnected()
+            }
+            
+            fetchStockStatusAction.elements
+                .map { _ in true }
+                .bind(to: hasStockObserver)
+                .addDisposableTo(bag)
+            
+            fetchStockStatusAction.errors
+                .map { _ in false }
+                .bind(to: hasStockObserver)
+                .addDisposableTo(bag)
+            
             viewDidLoadTrigger.subscribe(onNext: { _ in
                 fetchItemAction.execute(())
                 fetchStockCountAction.execute(())
+                fetchStockStatusAction.execute(())
             }).addDisposableTo(bag)
         
     }

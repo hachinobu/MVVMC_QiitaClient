@@ -68,3 +68,12 @@ extension QiitaRequest where Response: Sequence, Response.Iterator.Element: Immu
     }
     
 }
+
+extension QiitaRequest where Response == Void {
+    
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Void {
+        return ()
+    }
+    
+}
+

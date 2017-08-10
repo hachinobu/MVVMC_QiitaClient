@@ -98,6 +98,8 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             viewModel.stockCount.bind(to: cell.stockCountLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.userName.bind(to: cell.userNameButton.rx.title()).addDisposableTo(cell.bag)
             viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.hasStock.filter { $0 }.map { _ in "ストック済み" }.bind(to: cell.stockButton.rx.title()).addDisposableTo(cell.bag)
+            viewModel.hasStock.filter { !$0 }.map { _ in "ストック" }.bind(to: cell.stockButton.rx.title()).addDisposableTo(cell.bag)
             
             viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
                 let imageURL = url!

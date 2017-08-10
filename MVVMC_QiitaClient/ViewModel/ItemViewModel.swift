@@ -18,6 +18,7 @@ protocol ItemViewModel: class {
     var userName: Observable<String?> { get }
     var likeCount: Observable<String?> { get }
     var stockCount: Observable<String?> { get }
+    var hasStock: Observable<Bool> { get }
     
     var htmlRenderBody: String { get }
 }
