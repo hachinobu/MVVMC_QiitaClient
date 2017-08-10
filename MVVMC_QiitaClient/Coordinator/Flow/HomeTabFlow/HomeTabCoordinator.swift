@@ -55,7 +55,7 @@ final class HomeTabCoordinator: BaseCoordinator {
         itemDetailView.injectViewModel(viewModel: viewModel)
         
         itemDetailView.selectedUser.subscribe(onNext: { userId in
-            
+            print(userId)
         }).addDisposableTo(bag)
         
         router.push(presentable: itemDetailView, animated: true, completion: nil)

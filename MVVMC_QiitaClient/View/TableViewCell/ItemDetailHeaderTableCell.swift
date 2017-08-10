@@ -1,15 +1,18 @@
 //
-//  ItemDetailHeaderView.swift
+//  ItemDetailHeaderTableCell.swift
 //  MVVMC_QiitaClient
 //
-//  Created by Takahiro Nishinobu on 2017/07/31.
+//  Created by Nishinobu.Takahiro on 2017/08/10.
 //  Copyright © 2017年 hachinobu. All rights reserved.
 //
 
 import UIKit
+import RxSwift
 
-final class ItemDetailHeaderView: UIView, NibLoadableView {
+class ItemDetailHeaderTableCell: UITableViewCell {
 
+    var bag = DisposeBag()
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -17,14 +20,19 @@ final class ItemDetailHeaderView: UIView, NibLoadableView {
     @IBOutlet weak var userNameButton: UIButton!
     @IBOutlet weak var stockCountLabel: UILabel!
     @IBOutlet weak var stockCountButton: UIButton!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var stockButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImageView.layer.cornerRadius = 8.0
         profileImageView.layer.masksToBounds = true
-        likeButton.layer.cornerRadius = 4.0
-        likeButton.layer.masksToBounds = true
+        stockButton.layer.cornerRadius = 4.0
+        stockButton.layer.masksToBounds = true
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bag = DisposeBag()
+    }
+
 }

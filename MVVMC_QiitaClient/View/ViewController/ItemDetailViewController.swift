@@ -20,10 +20,17 @@ final class ItemDetailViewController: UIViewController, ItemDetailViewType {
     fileprivate var viewModel: ItemDetailViewModel!
     
     fileprivate let bag = DisposeBag()
-    fileprivate lazy var itemHeaderView = ItemDetailHeaderView.loadView()
     fileprivate var webContentHeight: CGFloat = 0.0
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.estimatedRowHeight = 90
+            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.register(type: ItemDetailWebTableCell.self)
+            tableView.register(type: ItemDetailHeaderTableCell.self)
+            tableView.tableFooterView = nil
+        }
+    }
     
     func injectViewModel(viewModel: ItemDetailViewModel) {
         self.viewModel = viewModel
@@ -31,7 +38,6 @@ final class ItemDetailViewController: UIViewController, ItemDetailViewType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
         bindView()
         viewModel.viewDidLoadTrigger.onNext(())
     }
@@ -40,51 +46,15 @@ final class ItemDetailViewController: UIViewController, ItemDetailViewType {
 
 extension ItemDetailViewController {
     
-    fileprivate func setupUI() {
-        tableView.estimatedRowHeight = 90
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(type: ItemDetailWebTableCell.self)
-        tableView.tableHeaderView = itemHeaderView
-    }
-    
     fileprivate func bindView() {
         
-        let dataSource = ItemDetailTableViewDataSource()
+        let dataSource = ItemDetailTableViewDataSource(selectedUserObserver: selectedUserObserver)
         
-        viewModel.itemDetail.map { [$0] }
+        viewModel.itemDetail.map { [$0, $0] }
             .drive(tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(bag)
         
         tableView.delegate = dataSource
-        viewModel.itemDetail.drive(onNext: { [weak self] headerViewModel in
-            
-            guard let strongSelf = self else { return }
-            headerViewModel.title.bind(to: strongSelf.itemHeaderView.titleLabel.rx.text).addDisposableTo(strongSelf.bag)
-            headerViewModel.stockCount.bind(to: strongSelf.itemHeaderView.stockCountLabel.rx.text).addDisposableTo(strongSelf.bag)
-            headerViewModel.userName.bind(to: strongSelf.itemHeaderView.userNameButton.rx.title()).addDisposableTo(strongSelf.bag)
-            headerViewModel.tag.bind(to: strongSelf.itemHeaderView.tagLabel.rx.text).addDisposableTo(strongSelf.bag)
-            
-            headerViewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
-                let imageURL = url!
-                let resource = ImageResource(downloadURL: imageURL, cacheKey: imageURL.absoluteString)
-                strongSelf.itemHeaderView.profileImageView.kf.indicatorType = .activity
-                strongSelf.itemHeaderView.profileImageView.kf.setImage(with: resource, placeholder: nil,
-                                                                          options: [.transition(ImageTransition.fade(1.0)), .cacheMemoryOnly],
-                                                                          progressBlock: nil, completionHandler: nil)
-            }).addDisposableTo(strongSelf.bag)
-            
-            strongSelf.itemHeaderView.userNameButton.rx.tap
-                .map { headerViewModel.userId }
-                .bind(to: strongSelf.selectedUserObserver)
-                .addDisposableTo(strongSelf.bag)
-            
-            strongSelf.itemHeaderView.profileImageButton.rx.tap
-                .map { headerViewModel.userId }
-                .bind(to: strongSelf.selectedUserObserver)
-                .addDisposableTo(strongSelf.bag)
-            
-            
-        }).addDisposableTo(bag)
         
         viewModel.error.drive(onNext: { (error) in
             print(error)
@@ -101,6 +71,11 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     
     var items: Element = []
     private var webContentCellHeight: CGFloat = 0.0
+    var selectedUserObserver: PublishSubject<String>
+    
+    init(selectedUserObserver: PublishSubject<String>) {
+        self.selectedUserObserver = selectedUserObserver
+    }
     
     func tableView(_ tableView: UITableView, observedEvent: Event<[ItemViewModel]>) {
         if case .next(let items) = observedEvent {
@@ -114,6 +89,33 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == 0 {
+            
+            let viewModel = items[indexPath.row]
+            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemDetailHeaderTableCell
+            viewModel.title.bind(to: cell.titleLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.stockCount.bind(to: cell.stockCountLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.userName.bind(to: cell.userNameButton.rx.title()).addDisposableTo(cell.bag)
+            viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
+            
+            viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
+                let imageURL = url!
+                let resource = ImageResource(downloadURL: imageURL, cacheKey: imageURL.absoluteString)
+                cell.profileImageView.kf.indicatorType = .activity
+                cell.profileImageView.kf.setImage(with: resource, placeholder: nil,
+                                                                       options: [.transition(ImageTransition.fade(1.0)), .cacheMemoryOnly],
+                                                                       progressBlock: nil, completionHandler: nil)
+            }).addDisposableTo(cell.bag)
+            
+            cell.userNameButton.rx.tap.amb(cell.profileImageButton.rx.tap).map { _ in
+                return viewModel.userId
+            }.bind(to: selectedUserObserver).addDisposableTo(cell.bag)
+            
+            return cell
+            
+        }
+        
         let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemDetailWebTableCell
         
         cell.webView.rx.didFinishLoad.subscribe(onNext: { [weak self] _ in
@@ -130,11 +132,11 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return webContentCellHeight
+        return indexPath.row == 0 ? UITableViewAutomaticDimension : webContentCellHeight
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return webContentCellHeight
+        return indexPath.row == 0 ? UITableViewAutomaticDimension : webContentCellHeight
     }
     
 }

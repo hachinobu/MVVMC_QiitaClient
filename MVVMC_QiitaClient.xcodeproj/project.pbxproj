@@ -59,8 +59,6 @@
 		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
 		ADBD63C41F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */; };
 		ADBD63C71F2C472800BA9EE2 /* HomeTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C61F2C472800BA9EE2 /* HomeTabCoordinator.swift */; };
-		ADC385651F2F6ABE0092F227 /* ItemDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC385641F2F6ABE0092F227 /* ItemDetailHeaderView.swift */; };
-		ADC385671F2F6AD00092F227 /* ItemDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC385661F2F6AD00092F227 /* ItemDetailHeaderView.xib */; };
 		ADC3856B1F2F760E0092F227 /* ItemDetailWebTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */; };
 		ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */; };
 		C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F851F2608DC00685622 /* AccessTokenStorage.swift */; };
@@ -75,6 +73,8 @@
 		C2483F9D1F28A30D00685622 /* ItemEntityToCellViewModelTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F9C1F28A30D00685622 /* ItemEntityToCellViewModelTransform.swift */; };
 		C2483F9F1F28A40C00685622 /* ItemListTableCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */; };
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
+		C29C29251F3C1A5600189325 /* ItemDetailHeaderTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C29241F3C1A5600189325 /* ItemDetailHeaderTableCell.xib */; };
+		C29C29271F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C29261F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift */; };
 		C2FF21DE1F31E5F20002C89E /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */; };
 		C2FF21E01F31E68C0002C89E /* ItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21DF1F31E68C0002C89E /* ItemVM.swift */; };
 		C2FF21E21F31EEB60002C89E /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */; };
@@ -163,8 +163,6 @@
 		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
 		ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFinishFlowType.swift; sourceTree = "<group>"; };
 		ADBD63C61F2C472800BA9EE2 /* HomeTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabCoordinator.swift; sourceTree = "<group>"; };
-		ADC385641F2F6ABE0092F227 /* ItemDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailHeaderView.swift; sourceTree = "<group>"; };
-		ADC385661F2F6AD00092F227 /* ItemDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailHeaderView.xib; sourceTree = "<group>"; };
 		ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailWebTableCell.swift; sourceTree = "<group>"; };
 		ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailWebTableCell.xib; sourceTree = "<group>"; };
 		C2483F851F2608DC00685622 /* AccessTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenStorage.swift; sourceTree = "<group>"; };
@@ -178,6 +176,8 @@
 		C2483F9A1F28A1D200685622 /* Transformable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformable.swift; sourceTree = "<group>"; };
 		C2483F9C1F28A30D00685622 /* ItemEntityToCellViewModelTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemEntityToCellViewModelTransform.swift; sourceTree = "<group>"; };
 		C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListTableCellVM.swift; sourceTree = "<group>"; };
+		C29C29241F3C1A5600189325 /* ItemDetailHeaderTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailHeaderTableCell.xib; sourceTree = "<group>"; };
+		C29C29261F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailHeaderTableCell.swift; sourceTree = "<group>"; };
 		C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		C2FF21DF1F31E68C0002C89E /* ItemVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemVM.swift; sourceTree = "<group>"; };
 		C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
@@ -435,6 +435,8 @@
 				AD639DEA1F2780A700AA56ED /* ItemListTableCell.swift */,
 				ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */,
 				ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */,
+				C29C29241F3C1A5600189325 /* ItemDetailHeaderTableCell.xib */,
+				C29C29261F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -444,8 +446,6 @@
 			children = (
 				AD639DEF1F27835E00AA56ED /* LoadingIndicatorView.xib */,
 				AD639DF11F2783DC00AA56ED /* LoadingIndicatorView.swift */,
-				ADC385641F2F6ABE0092F227 /* ItemDetailHeaderView.swift */,
-				ADC385661F2F6AD00092F227 /* ItemDetailHeaderView.xib */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -663,11 +663,11 @@
 				AD639DF01F27835E00AA56ED /* LoadingIndicatorView.xib in Resources */,
 				AD639DE41F277DD200AA56ED /* ItemListViewController.storyboard in Resources */,
 				AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */,
+				C29C29251F3C1A5600189325 /* ItemDetailHeaderTableCell.xib in Resources */,
 				C2FF21E81F332CC60002C89E /* ItemDetailViewController.storyboard in Resources */,
 				ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */,
 				AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */,
 				AD639DE91F277F2F00AA56ED /* ItemListTableCell.xib in Resources */,
-				ADC385671F2F6AD00092F227 /* ItemDetailHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,13 +694,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MVVMC_QiitaClient-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		15F3F59C1F91CCFB2C03DDD6 /* [CP] Copy Pods Resources */ = {
@@ -724,9 +727,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/APIKit/APIKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/APIKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -753,6 +771,7 @@
 				AD639DF81F28C49800AA56ED /* PaginationRequest.swift in Sources */,
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
 				AD639E001F2B3C8800AA56ED /* ReusableView.swift in Sources */,
+				C29C29271F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
 				C2FF21E61F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift in Sources */,
 				AD639E031F2B3F1700AA56ED /* ItemListViewType.swift in Sources */,
@@ -789,7 +808,6 @@
 				AD5C989A1F1F998200DF5039 /* Coordinator.swift in Sources */,
 				AD639DD81F27792600AA56ED /* UserEntity.swift in Sources */,
 				AD639DEB1F2780A700AA56ED /* ItemListTableCell.swift in Sources */,
-				ADC385651F2F6ABE0092F227 /* ItemDetailHeaderView.swift in Sources */,
 				C2FF21EC1F332F1D0002C89E /* ItemDetailViewController.swift in Sources */,
 				C2483F921F26158000685622 /* QiitaRequestType.swift in Sources */,
 				C2483F8F1F26145A00685622 /* AuthEntity.swift in Sources */,
