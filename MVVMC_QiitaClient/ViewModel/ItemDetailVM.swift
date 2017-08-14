@@ -24,13 +24,19 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
     
     private let hasStockObserver = PublishSubject<Bool>()
     
+    private let changeStockStatusObserver = PublishSubject<Bool>()
+    lazy var changeStockStatus: Driver<Bool> = self.changeStockStatusObserver.asDriver(onErrorJustReturn: false)
+    
     lazy var viewDidLoadTrigger: PublishSubject<Void> = PublishSubject()
+    lazy var updateStockTrigger: PublishSubject<Void> = PublishSubject()
     
     init<ItemRequest: QiitaRequest, CountRequest: QiitaRequest, Transform: Transformable>(
         itemRequest: ItemRequest,
         countRequest: CountRequest,
         transformer: Transform,
         stockStatusRequest: QiitaAPI.GetStockStatusRequest,
+        putStockRequest: QiitaAPI.PutStockStatusRequest,
+        deleteStockRequest: QiitaAPI.DeleteStockStatusRequest,
         session: Session = Session.shared) where ItemRequest.Response == ItemResult, CountRequest.Response == CountResult,
         Transform.Input == (ItemResult, CountResult, Bool), Transform.Output == ItemViewModel {
             
@@ -65,12 +71,39 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
                 .bind(to: hasStockObserver)
                 .addDisposableTo(bag)
             
+            let putStockAction: Action<Void, Void> = Action { _ in
+                return session.rx.response(request: putStockRequest).shareReplayLatestWhileConnected()
+            }
+            putStockAction.elements.map { _ in true }.bind(to: changeStockStatusObserver).addDisposableTo(bag)
+            putStockAction.errors.map { _ in false }.bind(to: changeStockStatusObserver).addDisposableTo(bag)
+            
+            let deleteStockAction: Action<Void, Void> = Action { _ in
+                return session.rx.response(request: deleteStockRequest).shareReplayLatestWhileConnected()
+            }
+            deleteStockAction.elements.map { _ in false }.bind(to: changeStockStatusObserver).addDisposableTo(bag)
+            deleteStockAction.errors.map { _ in true }.bind(to: changeStockStatusObserver).addDisposableTo(bag)
+            
             viewDidLoadTrigger.subscribe(onNext: { _ in
                 fetchItemAction.execute(())
                 fetchStockCountAction.execute(())
                 fetchStockStatusAction.execute(())
             }).addDisposableTo(bag)
+            
+            let stockStatusObservable = updateStockTrigger.withLatestFrom(hasStockObserver) { $0.1 }.shareReplayLatestWhileConnected()
+            stockStatusObservable.filter { $0 }.subscribe(onNext: { _ in
+                deleteStockAction.execute(())
+            }).addDisposableTo(bag)
+            
+            stockStatusObservable.filter { !$0 }.subscribe(onNext: { _ in
+                putStockAction.execute(())
+            }).addDisposableTo(bag)
         
+            changeStockStatusObserver.withLatestFrom(itemDetail) { (status, itemDetail) in
+                itemDetail.updateStockStatus(status: status)
+            }.subscribe(onNext: { _ in
+                //Noop
+            }).addDisposableTo(bag)
+            
     }
     
 }

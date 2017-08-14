@@ -131,4 +131,44 @@ final class QiitaAPI {
         
     }
     
+    struct PutStockStatusRequest: QiitaRequest {
+        
+        typealias Response = Void
+        
+        private let itemId: String
+        
+        init(itemId: String) {
+            self.itemId = itemId
+        }
+        
+        var method: HTTPMethod {
+            return .put
+        }
+        
+        var path: String {
+            return "/api/v2/items/\(itemId)/stock"
+        }
+        
+    }
+    
+    struct DeleteStockStatusRequest: QiitaRequest {
+        
+        typealias Response = Void
+        
+        private let itemId: String
+        
+        init(itemId: String) {
+            self.itemId = itemId
+        }
+        
+        var method: HTTPMethod {
+            return .delete
+        }
+        
+        var path: String {
+            return "/api/v2/items/\(itemId)/stock"
+        }
+        
+    }
+    
 }

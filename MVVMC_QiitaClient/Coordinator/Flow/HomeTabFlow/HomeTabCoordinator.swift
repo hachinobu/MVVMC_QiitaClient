@@ -52,7 +52,9 @@ final class HomeTabCoordinator: BaseCoordinator {
         let itemStockerRequest = QiitaAPI.GetItemStockersRequest(itemId: itemId)
         let transformer = ItemAndCountEntityToItemDetailViewModel()
         let stockStatusRequet = QiitaAPI.GetStockStatusRequest(itemId: itemId)
-        let viewModel = ItemDetailVM(itemRequest: itemDetailRequest, countRequest: itemStockerRequest, transformer: transformer, stockStatusRequest: stockStatusRequet)
+        let putStockRequest = QiitaAPI.PutStockStatusRequest(itemId: itemId)
+        let deleteStockRequest = QiitaAPI.DeleteStockStatusRequest(itemId: itemId)
+        let viewModel = ItemDetailVM(itemRequest: itemDetailRequest, countRequest: itemStockerRequest, transformer: transformer, stockStatusRequest: stockStatusRequet, putStockRequest: putStockRequest, deleteStockRequest: deleteStockRequest)
         itemDetailView.injectViewModel(viewModel: viewModel)
         
         itemDetailView.selectedUser.subscribe(onNext: { userId in

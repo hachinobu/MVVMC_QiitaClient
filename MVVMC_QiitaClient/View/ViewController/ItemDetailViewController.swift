@@ -21,6 +21,7 @@ final class ItemDetailViewController: UIViewController, ItemDetailViewType {
     
     fileprivate let bag = DisposeBag()
     fileprivate var webContentHeight: CGFloat = 0.0
+    fileprivate let tappedStockButtonObserver: PublishSubject<Void> = PublishSubject()
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -48,7 +49,7 @@ extension ItemDetailViewController {
     
     fileprivate func bindView() {
         
-        let dataSource = ItemDetailTableViewDataSource(selectedUserObserver: selectedUserObserver)
+        let dataSource = ItemDetailTableViewDataSource(selectedUserObserver: selectedUserObserver, tappedStockButtonObserver: tappedStockButtonObserver)
         
         viewModel.itemDetail.map { [$0, $0] }
             .drive(tableView.rx.items(dataSource: dataSource))
@@ -59,6 +60,10 @@ extension ItemDetailViewController {
         viewModel.error.drive(onNext: { (error) in
             print(error)
         }).addDisposableTo(bag)
+        
+        tappedStockButtonObserver
+            .bind(to: viewModel.updateStockTrigger)
+            .addDisposableTo(bag)
         
     }
     
@@ -71,10 +76,12 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     
     var items: Element = []
     private var webContentCellHeight: CGFloat = 0.0
-    var selectedUserObserver: PublishSubject<String>
+    let selectedUserObserver: PublishSubject<String>
+    let tappedStockButtonObserver: PublishSubject<Void>
     
-    init(selectedUserObserver: PublishSubject<String>) {
+    init(selectedUserObserver: PublishSubject<String>, tappedStockButtonObserver: PublishSubject<Void>) {
         self.selectedUserObserver = selectedUserObserver
+        self.tappedStockButtonObserver = tappedStockButtonObserver
     }
     
     func tableView(_ tableView: UITableView, observedEvent: Event<[ItemViewModel]>) {
@@ -114,6 +121,10 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
                 return viewModel.userId
             }.bind(to: selectedUserObserver).addDisposableTo(cell.bag)
             
+            cell.stockButton.rx.tap
+                .bind(to: tappedStockButtonObserver)
+                .addDisposableTo(cell.bag)
+            
             return cell
             
         }
@@ -122,14 +133,16 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
         
         cell.webView.rx.didFinishLoad.subscribe(onNext: { [weak self] _ in
             guard let strongSelf = self else { return }
-            if strongSelf.webContentCellHeight == cell.webView.scrollView.contentSize.height {
+            let height = cell.webView.scrollView.contentSize.height
+            if strongSelf.webContentCellHeight == height {
                 return
             }
-            strongSelf.webContentCellHeight = cell.webView.scrollView.contentSize.height
+            strongSelf.webContentCellHeight = height
             tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
         }).addDisposableTo(cell.bag)
         
         cell.webView.loadHTMLString(items.first!.htmlRenderBody, baseURL: nil)
+        
         return cell
     }
     

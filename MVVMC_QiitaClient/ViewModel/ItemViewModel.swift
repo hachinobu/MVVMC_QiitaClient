@@ -21,4 +21,6 @@ protocol ItemViewModel: class {
     var hasStock: Observable<Bool> { get }
     
     var htmlRenderBody: String { get }
+    
+    func updateStockStatus(status: Bool)
 }

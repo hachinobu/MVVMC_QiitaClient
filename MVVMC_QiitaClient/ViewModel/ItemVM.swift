@@ -60,4 +60,8 @@ final class ItemVM: ItemViewModel {
         
     }
     
+    func updateStockStatus(status: Bool) {
+        hasStockObserver.value = status
+    }
+    
 }
