@@ -138,7 +138,7 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
                 return
             }
             strongSelf.webContentCellHeight = height
-            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+            tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .fade)
         }).addDisposableTo(cell.bag)
         
         cell.webView.loadHTMLString(items.first!.htmlRenderBody, baseURL: nil)
