@@ -23,7 +23,7 @@ protocol QiitaRequest: Request {
 
 extension QiitaRequest {
     
-    var headerField: [String: String] {
+    var headerFields: [String: String] {
         guard let accessToken = AccessTokenStorage.fetchAccessToken() else {
             return [:]
         }
