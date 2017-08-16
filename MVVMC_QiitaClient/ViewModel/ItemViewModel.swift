@@ -16,7 +16,6 @@ protocol ItemViewModel: class {
     var tag: Observable<String?> { get }
     var profileURL: Observable<URL?> { get }
     var userName: Observable<String?> { get }
-    var likeCount: Observable<String?> { get }
     var stockCount: Observable<String?> { get }
     var hasStock: Observable<Bool> { get }
     

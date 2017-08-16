@@ -12,22 +12,19 @@ struct ItemAndCountEntityToItemDetailViewModel: Transformable {
     
     func transform(input: (ItemEntity, [UserEntity], Bool)) -> ItemViewModel {
         
-        let input: (item: ItemEntity, users: [UserEntity], hasStock: Bool) = input
+        let input: (item: ItemEntity, stockUsers: [UserEntity], hasStock: Bool) = input
         
         let itemId = input.item.id
         let userId = input.item.user.id
         let title = input.item.title
-        let tag = input.item.tagList.map { $0.name }.joined(separator: ",")
+        let tag = input.item.tagList.map { $0.name }.joined(separator: ", ")
         let profileURL = URL(string: input.item.user.profileImageUrlString)
         let userName = input.item.user.id
         
-        let likeCount: String
-        let count = input.users.count
-        if count == 100 {
-            likeCount = "ストック数 " + input.users.count.description + "+"
-        } else {
-            likeCount = "ストック数 " + input.users.count.description
-        }
+        let count = input.stockUsers.count
+        var stockCount = "ストック数 " + count.description
+        let suffix = count == 100 ? "+" : ""
+        stockCount.append(suffix)
         
         let htmlRenderBody = input.item.renderedBody
         
@@ -37,8 +34,7 @@ struct ItemAndCountEntityToItemDetailViewModel: Transformable {
                       tag: tag,
                       profileURL: profileURL,
                       userName: userName,
-                      likeCount: likeCount,
-                      stockCount: likeCount,
+                      stockCount: stockCount,
                       hasStock: input.hasStock,
                       htmlRenderBody: htmlRenderBody)
         

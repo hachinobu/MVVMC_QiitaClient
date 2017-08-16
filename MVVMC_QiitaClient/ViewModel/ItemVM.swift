@@ -27,9 +27,6 @@ final class ItemVM: ItemViewModel {
     private let userNameObserver = Variable<String?>(nil)
     lazy var userName: Observable<String?> = self.userNameObserver.asObservable()
     
-    private let likeCountObserver = Variable<String?>(nil)
-    lazy var likeCount: Observable<String?> = self.likeCountObserver.asObservable()
-    
     private let stockCountObserver = Variable<String?>(nil)
     lazy var stockCount: Observable<String?> = self.stockCountObserver.asObservable()
     
@@ -42,7 +39,6 @@ final class ItemVM: ItemViewModel {
          tag: String?,
          profileURL: URL?,
          userName: String?,
-         likeCount: String?,
          stockCount: String?,
          hasStock: Bool,
          htmlRenderBody: String) {
@@ -53,7 +49,6 @@ final class ItemVM: ItemViewModel {
         self.tagObserver.value = tag
         self.profileURLObserver.value = profileURL
         self.userNameObserver.value = userName
-        self.likeCountObserver.value = likeCount
         self.stockCountObserver.value = stockCount
         self.hasStockObserver.value = hasStock
         self.htmlRenderBody = htmlRenderBody
