@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD40099F1F45CE2700F8321D /* UserDetailTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD40099E1F45CE2700F8321D /* UserDetailTableCell.xib */; };
+		AD4009A11F45D20A00F8321D /* UserDetailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4009A01F45D20A00F8321D /* UserDetailTableCell.swift */; };
 		AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C985D1F1F962300DF5039 /* AppDelegate.swift */; };
 		AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98641F1F962300DF5039 /* Assets.xcassets */; };
 		AD5C98681F1F962300DF5039 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98661F1F962300DF5039 /* LaunchScreen.storyboard */; };
@@ -23,6 +25,8 @@
 		AD5C98A51F1F9C3400DF5039 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */; };
 		AD5C98A91F1F9D4100DF5039 /* TabSelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A81F1F9D4100DF5039 /* TabSelectableView.swift */; };
 		AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */; };
+		AD5FA6AA1F45D43E0089B10A /* UserDetailTableCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */; };
+		AD5FA6AC1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */; };
 		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
 		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
 		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
@@ -105,6 +109,8 @@
 /* Begin PBXFileReference section */
 		97D0312F84DE58702220B358 /* Pods-MVVMC_QiitaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.release.xcconfig"; sourceTree = "<group>"; };
 		A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVVMC_QiitaClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD40099E1F45CE2700F8321D /* UserDetailTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailTableCell.xib; sourceTree = "<group>"; };
+		AD4009A01F45D20A00F8321D /* UserDetailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableCell.swift; sourceTree = "<group>"; };
 		AD5C985A1F1F962300DF5039 /* MVVMC_QiitaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMC_QiitaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD5C985D1F1F962300DF5039 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD5C98641F1F962300DF5039 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +133,8 @@
 		AD5C98A41F1F9C3400DF5039 /* TabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		AD5C98A81F1F9D4100DF5039 /* TabSelectableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabSelectableView.swift; sourceTree = "<group>"; };
 		AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabbarController.storyboard; sourceTree = "<group>"; };
+		AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableCellVM.swift; sourceTree = "<group>"; };
+		AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntityToUserDetailTableCellViewModelTransform.swift; sourceTree = "<group>"; };
 		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
 		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
@@ -437,6 +445,8 @@
 				ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */,
 				C29C29241F3C1A5600189325 /* ItemDetailHeaderTableCell.xib */,
 				C29C29261F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift */,
+				AD40099E1F45CE2700F8321D /* UserDetailTableCell.xib */,
+				AD4009A01F45D20A00F8321D /* UserDetailTableCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -500,6 +510,7 @@
 				C2FF21DF1F31E68C0002C89E /* ItemVM.swift */,
 				C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */,
 				C2FF21E31F32E3200002C89E /* ItemDetailVM.swift */,
+				AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -541,6 +552,7 @@
 				C2483F9A1F28A1D200685622 /* Transformable.swift */,
 				C2483F9C1F28A30D00685622 /* ItemEntityToCellViewModelTransform.swift */,
 				C2FF21E51F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift */,
+				AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */,
 			);
 			path = Transform;
 			sourceTree = "<group>";
@@ -663,6 +675,7 @@
 				AD639DF01F27835E00AA56ED /* LoadingIndicatorView.xib in Resources */,
 				AD639DE41F277DD200AA56ED /* ItemListViewController.storyboard in Resources */,
 				AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */,
+				AD40099F1F45CE2700F8321D /* UserDetailTableCell.xib in Resources */,
 				C29C29251F3C1A5600189325 /* ItemDetailHeaderTableCell.xib in Resources */,
 				C2FF21E81F332CC60002C89E /* ItemDetailViewController.storyboard in Resources */,
 				ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */,
@@ -772,11 +785,13 @@
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
 				AD639E001F2B3C8800AA56ED /* ReusableView.swift in Sources */,
 				C29C29271F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift in Sources */,
+				AD4009A11F45D20A00F8321D /* UserDetailTableCell.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
 				C2FF21E61F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift in Sources */,
 				AD639E031F2B3F1700AA56ED /* ItemListViewType.swift in Sources */,
 				AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */,
 				AD639DE61F277E3A00AA56ED /* ItemListViewController.swift in Sources */,
+				AD5FA6AA1F45D43E0089B10A /* UserDetailTableCellVM.swift in Sources */,
 				AD639E081F2C3F2B00AA56ED /* HomeTabViewFactory.swift in Sources */,
 				AD639DCC1F24E30600AA56ED /* AuthViewFactory.swift in Sources */,
 				AD639DDE1F277B3400AA56ED /* ItemEntity.swift in Sources */,
@@ -787,6 +802,7 @@
 				AD639DED1F27826900AA56ED /* NibLoadableView.swift in Sources */,
 				AD639DF21F2783DC00AA56ED /* LoadingIndicatorView.swift in Sources */,
 				ADBD63C41F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift in Sources */,
+				AD5FA6AC1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift in Sources */,
 				C2483F9B1F28A1D200685622 /* Transformable.swift in Sources */,
 				AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */,
 				AD639DFC1F2B371300AA56ED /* UIViewController+Rx.swift in Sources */,
