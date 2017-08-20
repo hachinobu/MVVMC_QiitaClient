@@ -29,6 +29,7 @@
 		AD5FA6AC1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */; };
 		AD5FA6AE1F49C6A10089B10A /* UserDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */; };
 		AD5FA6B01F49C6FE0089B10A /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6AF1F49C6FE0089B10A /* UserDetailViewController.swift */; };
+		AD5FA6B21F49CA570089B10A /* UserDetailViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6B11F49CA570089B10A /* UserDetailViewType.swift */; };
 		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
 		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
 		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
@@ -142,6 +143,7 @@
 		AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntityToUserDetailTableCellViewModelTransform.swift; sourceTree = "<group>"; };
 		AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetailViewController.storyboard; sourceTree = "<group>"; };
 		AD5FA6AF1F49C6FE0089B10A /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		AD5FA6B11F49CA570089B10A /* UserDetailViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewType.swift; sourceTree = "<group>"; };
 		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
 		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 			children = (
 				AD639E021F2B3F1700AA56ED /* ItemListViewType.swift */,
 				C2FF21E91F332DF20002C89E /* ItemDetailViewType.swift */,
+				AD5FA6B11F49CA570089B10A /* UserDetailViewType.swift */,
 			);
 			path = ItemFlow;
 			sourceTree = "<group>";
@@ -787,6 +790,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD5FA6B21F49CA570089B10A /* UserDetailViewType.swift in Sources */,
 				AD5C988F1F1F994200DF5039 /* CoordinatorFactory.swift in Sources */,
 				ADBD63C71F2C472800BA9EE2 /* HomeTabCoordinator.swift in Sources */,
 				AD639DFE1F2B377800AA56ED /* UITableView+Rx.swift in Sources */,
