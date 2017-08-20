@@ -27,6 +27,8 @@
 		AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */; };
 		AD5FA6AA1F45D43E0089B10A /* UserDetailTableCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */; };
 		AD5FA6AC1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */; };
+		AD5FA6AE1F49C6A10089B10A /* UserDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */; };
+		AD5FA6B01F49C6FE0089B10A /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6AF1F49C6FE0089B10A /* UserDetailViewController.swift */; };
 		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
 		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
 		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
@@ -138,6 +140,8 @@
 		AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabbarController.storyboard; sourceTree = "<group>"; };
 		AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableCellVM.swift; sourceTree = "<group>"; };
 		AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntityToUserDetailTableCellViewModelTransform.swift; sourceTree = "<group>"; };
+		AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetailViewController.storyboard; sourceTree = "<group>"; };
+		AD5FA6AF1F49C6FE0089B10A /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
 		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
@@ -358,6 +362,7 @@
 				AD639DBE1F23241600AA56ED /* AuthViewController.swift */,
 				AD639DE51F277E3A00AA56ED /* ItemListViewController.swift */,
 				C2FF21EB1F332F1D0002C89E /* ItemDetailViewController.swift */,
+				AD5FA6AF1F49C6FE0089B10A /* UserDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				AD639DBC1F23223100AA56ED /* AuthViewController.storyboard */,
 				AD639DE31F277DD200AA56ED /* ItemListViewController.storyboard */,
 				C2FF21E71F332CC60002C89E /* ItemDetailViewController.storyboard */,
+				AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -690,6 +696,7 @@
 				ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */,
 				AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */,
 				AD639DE91F277F2F00AA56ED /* ItemListTableCell.xib in Resources */,
+				AD5FA6AE1F49C6A10089B10A /* UserDetailViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +843,7 @@
 				AD639DD81F27792600AA56ED /* UserEntity.swift in Sources */,
 				AD639DEB1F2780A700AA56ED /* ItemListTableCell.swift in Sources */,
 				C2FF21EC1F332F1D0002C89E /* ItemDetailViewController.swift in Sources */,
+				AD5FA6B01F49C6FE0089B10A /* UserDetailViewController.swift in Sources */,
 				C2483F921F26158000685622 /* QiitaRequestType.swift in Sources */,
 				C2483F8F1F26145A00685622 /* AuthEntity.swift in Sources */,
 				AD639DCE1F24E38300AA56ED /* ViewFactory.swift in Sources */,
