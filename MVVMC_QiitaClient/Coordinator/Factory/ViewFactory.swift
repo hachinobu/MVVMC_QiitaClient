@@ -34,4 +34,9 @@ extension ViewFactory: HomeTabViewFactory {
         return itemDetailView
     }
     
+    func generateUserDetailView() -> Presentable & UserDetailViewType {
+        let userDetailView = UIStoryboard.instantiateInitialViewController(withType: UserDetailViewController.self)
+        return userDetailView
+    }
+    
 }

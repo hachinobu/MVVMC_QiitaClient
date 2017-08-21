@@ -171,4 +171,50 @@ final class QiitaAPI {
         
     }
     
+    struct GetUserDetailRequest: QiitaRequest {
+        
+        typealias Response = UserEntity
+        
+        private let userId: String
+        
+        init(userId: String) {
+            self.userId = userId
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/users/\(userId)"
+        }
+        
+    }
+    
+    struct GetUserItemsRequest: QiitaRequest, PaginationRequest {
+        
+        typealias Response = [ItemEntity]
+        
+        private let userId: String
+        var page: Int
+        
+        init(userId: String, page: Int) {
+            self.userId = userId
+            self.page = page
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/users/\(userId)/items"
+        }
+        
+        var queryParameters: [String : Any]? {
+            return ["page": page]
+        }
+        
+    }
+    
 }

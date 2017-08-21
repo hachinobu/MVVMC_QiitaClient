@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserDetailTableCell" rowHeight="290" id="Yyv-d0-2GQ" customClass="UserDetailTableCell" customModule="MVVMC_QiitaClient" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserDetailTableCell" rowHeight="290" id="Yyv-d0-2GQ" customClass="UserDetailTableCell" customModule="MVVMC_QiitaClient" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="290"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yyv-d0-2GQ" id="qPH-xf-nXi">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="290"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="289.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p6D-H3-xwt">
@@ -26,7 +26,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azb-RY-GdT">
-                        <rect key="frame" x="116" y="8" width="251" height="21"/>
+                        <rect key="frame" x="116" y="12" width="251" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="SMh-i6-R3D"/>
                         </constraints>
@@ -35,18 +35,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7M-X0-tC2">
-                        <rect key="frame" x="116" y="33" width="251" height="21"/>
+                        <rect key="frame" x="116" y="37" width="251" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="UYS-mm-WRY"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="21" id="UYS-mm-WRY"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyT-pb-XSq">
-                        <rect key="frame" x="116" y="58" width="251" height="21"/>
+                        <rect key="frame" x="116" y="57" width="251" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="Cmn-gt-8BY"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="21" id="Cmn-gt-8BY"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
@@ -69,7 +69,7 @@
                         <state key="normal" title="フォローされてる数: XX"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿数: XX" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JC2-D2-ZAd">
-                        <rect key="frame" x="116" y="83" width="251" height="21"/>
+                        <rect key="frame" x="116" y="78" width="251" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Xa3-AK-xeo"/>
                         </constraints>
@@ -112,6 +112,7 @@ Cg
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.45882352939999999" green="0.76078431369999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="PyT-pb-XSq" secondAttribute="trailing" constant="8" id="2Jn-vN-TJU"/>
                     <constraint firstItem="J1S-Iz-Hch" firstAttribute="leading" secondItem="LdC-Rq-xJ7" secondAttribute="leading" id="2d2-HX-I51"/>
@@ -124,7 +125,7 @@ Cg
                     <constraint firstItem="Azb-RY-GdT" firstAttribute="leading" secondItem="p6D-H3-xwt" secondAttribute="trailing" constant="8" id="STM-Zb-C3v"/>
                     <constraint firstItem="vdM-Kg-QOz" firstAttribute="top" secondItem="J1S-Iz-Hch" secondAttribute="bottom" constant="8" id="VNa-mF-dfJ"/>
                     <constraint firstAttribute="trailing" secondItem="Azb-RY-GdT" secondAttribute="trailing" constant="8" id="XRD-FI-0uV"/>
-                    <constraint firstItem="Azb-RY-GdT" firstAttribute="top" secondItem="p6D-H3-xwt" secondAttribute="top" id="YPp-LU-bAA"/>
+                    <constraint firstItem="Azb-RY-GdT" firstAttribute="top" secondItem="p6D-H3-xwt" secondAttribute="top" constant="4" id="YPp-LU-bAA"/>
                     <constraint firstAttribute="trailing" secondItem="JC2-D2-ZAd" secondAttribute="trailing" constant="8" id="Z6l-yP-H8p"/>
                     <constraint firstItem="JC2-D2-ZAd" firstAttribute="leading" secondItem="PyT-pb-XSq" secondAttribute="leading" id="a0A-Wi-Rde"/>
                     <constraint firstItem="vdM-Kg-QOz" firstAttribute="leading" secondItem="qPH-xf-nXi" secondAttribute="leading" constant="8" id="dY0-bS-xax"/>

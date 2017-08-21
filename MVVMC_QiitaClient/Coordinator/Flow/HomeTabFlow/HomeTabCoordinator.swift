@@ -37,8 +37,8 @@ final class HomeTabCoordinator: BaseCoordinator {
             self?.showItemDetail(itemId: itemId)
         }).addDisposableTo(bag)
         
-        itemListView.selectedUser.subscribe(onNext: { userId in
-            
+        itemListView.selectedUser.subscribe(onNext: { [weak self] userId in
+            self?.showUserDetail(userId: userId)
         }).addDisposableTo(bag)
         
         router.setRoot(presentable: itemListView, hideBar: false)
@@ -57,12 +57,39 @@ final class HomeTabCoordinator: BaseCoordinator {
         let viewModel = ItemDetailVM(itemRequest: itemDetailRequest, countRequest: itemStockerRequest, transformer: transformer, stockStatusRequest: stockStatusRequet, putStockRequest: putStockRequest, deleteStockRequest: deleteStockRequest)
         itemDetailView.injectViewModel(viewModel: viewModel)
         
-        itemDetailView.selectedUser.subscribe(onNext: { userId in
-            print(userId)
+        itemDetailView.selectedUser.subscribe(onNext: { [weak self] userId in
+            self?.showUserDetail(userId: userId)
         }).addDisposableTo(bag)
         
         router.push(presentable: itemDetailView, animated: true, completion: nil)
         
     }
+    
+    private func showUserDetail(userId: String) {
+        
+        let userDetailView = viewFactory.generateUserDetailView()
+        let userRequest = QiitaAPI.GetUserDetailRequest(userId: userId)
+        let userTransformer = UserEntityToUserDetailTableCellViewModelTransform()
+        let userItemsRequest = QiitaAPI.GetUserItemsRequest(userId: userId, page: 1)
+        let userItemsTransformer = ItemEntityToCellViewModelTransform()
+        let viewModel = UserDetailVM(userRequest: userRequest, itemsRequest: userItemsRequest, userTransformer: userTransformer, itemTransformer: userItemsTransformer)
+        userDetailView.injectViewModel(viewModel: viewModel)
+        
+        userDetailView.selectedItem.subscribe(onNext: { [weak self] itemId in
+            self?.showItemDetail(itemId: itemId)
+        }).addDisposableTo(bag)
+        
+        userDetailView.selectedFollowee.subscribe(onNext: { userId in
+            print(userId)
+        }).addDisposableTo(bag)
+        
+        userDetailView.selectedFollower.subscribe(onNext: { userId in
+            print(userId)
+        }).addDisposableTo(bag)
+        
+        router.push(presentable: userDetailView, animated: true, completion: nil)
+        
+    }
+    
     
 }

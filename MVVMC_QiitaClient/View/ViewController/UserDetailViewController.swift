@@ -55,6 +55,7 @@ extension UserDetailViewController {
         tableView.estimatedRowHeight = 90
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(type: ItemListTableCell.self)
+        tableView.register(type: UserDetailTableCell.self)
     }
     
     fileprivate func setupViewModel() {
@@ -96,7 +97,7 @@ extension UserDetailViewController {
 
 fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSourceType, UITableViewDataSource, UITableViewDelegate {
     
-    typealias Element = [(UserDetailTableCellViewModel, [ItemListTableCellViewModel])]
+    typealias Element = [(userDetail: UserDetailTableCellViewModel, userItems: [ItemListTableCellViewModel])]
     
     var items: Element = []
     let selectedItemObserver: PublishSubject<String>
@@ -131,7 +132,7 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
         
         if indexPath.section == 0 {
             
-            let viewModel = items[0].0
+            let viewModel = items[0].userDetail
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as UserDetailTableCell
             viewModel.userId.bind(to: cell.userIdLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
@@ -139,6 +140,7 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
             viewModel.itemCount.bind(to: cell.itemCountLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.followeeUserCount.bind(to: cell.followeeUserCountLabel.rx.title()).addDisposableTo(cell.bag)
             viewModel.followerUserCount.bind(to: cell.followerUserCountLabel.rx.title()).addDisposableTo(cell.bag)
+            viewModel.description.bind(to: cell.descriptionLabel.rx.text).addDisposableTo(cell.bag)
             
             viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
                 
@@ -170,7 +172,7 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
         }
         
         let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemListTableCell
-        let viewModel = items[0].1[indexPath.row]
+        let viewModel = items[0].userItems[indexPath.row]
         viewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
         viewModel.title.bind(to: cell.titleLabel.rx.text).addDisposableTo(cell.bag)
         viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
@@ -192,6 +194,15 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            return
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+        let viewModel = items[0].userItems[indexPath.row]
+        selectedItemObserver.onNext(viewModel.itemId)
     }
     
 }
