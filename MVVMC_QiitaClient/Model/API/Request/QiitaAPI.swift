@@ -217,4 +217,56 @@ final class QiitaAPI {
         
     }
     
+    struct GetFolloweesRequest: QiitaRequest, PaginationRequest {
+        
+        typealias Response = [UserEntity]
+        
+        private let userId: String
+        var page: Int
+        
+        init(userId: String, page: Int) {
+            self.userId = userId
+            self.page = page
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/users/\(userId)/followees"
+        }
+        
+        var queryParameters: [String : Any]? {
+            return ["page": page, "per_page": 100]
+        }
+        
+    }
+    
+    struct GetFollowersRequest: QiitaRequest, PaginationRequest {
+        
+        typealias Response = [UserEntity]
+        
+        private let userId: String
+        var page: Int
+        
+        init(userId: String, page: Int) {
+            self.userId = userId
+            self.page = page
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/users/\(userId)/followers"
+        }
+        
+        var queryParameters: [String : Any]? {
+            return ["page": page, "per_page": 100]
+        }
+        
+    }
+    
 }
