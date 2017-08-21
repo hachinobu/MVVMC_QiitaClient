@@ -32,6 +32,7 @@
 		AD5FA6B21F49CA570089B10A /* UserDetailViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6B11F49CA570089B10A /* UserDetailViewType.swift */; };
 		AD5FA6B51F4B17840089B10A /* UserListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6B31F4B17840089B10A /* UserListTableCell.swift */; };
 		AD5FA6B61F4B17840089B10A /* UserListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6B41F4B17840089B10A /* UserListTableCell.xib */; };
+		AD5FA6B81F4B1E5F0089B10A /* UserListTableCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6B71F4B1E5F0089B10A /* UserListTableCellVM.swift */; };
 		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
 		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
 		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
@@ -148,6 +149,7 @@
 		AD5FA6B11F49CA570089B10A /* UserDetailViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewType.swift; sourceTree = "<group>"; };
 		AD5FA6B31F4B17840089B10A /* UserListTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListTableCell.swift; sourceTree = "<group>"; };
 		AD5FA6B41F4B17840089B10A /* UserListTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserListTableCell.xib; sourceTree = "<group>"; };
+		AD5FA6B71F4B1E5F0089B10A /* UserListTableCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListTableCellVM.swift; sourceTree = "<group>"; };
 		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
 		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */,
 				C24904461F46D6B60058B300 /* UserDetailViewModel.swift */,
 				C249044A1F46DDC80058B300 /* UserDetailVM.swift */,
+				AD5FA6B71F4B1E5F0089B10A /* UserListTableCellVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				AD5C98A91F1F9D4100DF5039 /* TabSelectableView.swift in Sources */,
 				AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */,
 				AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */,
+				AD5FA6B81F4B1E5F0089B10A /* UserListTableCellVM.swift in Sources */,
 				AD639DBF1F23241600AA56ED /* AuthViewController.swift in Sources */,
 				AD639DC71F247F9000AA56ED /* AuthInfo.swift in Sources */,
 				AD5C989B1F1F998200DF5039 /* DependencyCoordinator.swift in Sources */,
