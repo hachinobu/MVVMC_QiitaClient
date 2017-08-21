@@ -24,6 +24,12 @@ class UserDetailViewController: UIViewController, UserDetailViewType {
     fileprivate var selectedItemObserver = PublishSubject<String>()
     lazy var selectedItem: Observable<String> = self.selectedItemObserver.asObservable()
     
+    fileprivate var selectedFollowerObserver = PublishSubject<String>()
+    lazy var selectedFollower: Observable<String> = self.selectedFollowerObserver.asObservable()
+    
+    fileprivate var selectedFolloweeObserver = PublishSubject<String>()
+    lazy var selectedFollowee: Observable<String> = self.selectedFolloweeObserver.asObservable()
+    
     lazy var reachedBottom: ControlEvent<Void> = self.tableView.rx.reachedBottom
     
     func injectViewModel(viewModel: UserDetailViewModel) {
@@ -32,6 +38,9 @@ class UserDetailViewController: UIViewController, UserDetailViewType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupViewModel()
+        bindView()
         viewModel.viewDidLoadTrigger.onNext(())
     }
 
@@ -68,6 +77,17 @@ extension UserDetailViewController {
             .map { _ in false }
             .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
             .addDisposableTo(bag)
+        
+        let dataSource = UserDetailTableViewDataSource(selectedItemObserver: selectedItemObserver,
+                                                       selectedFolloweeListObserver: selectedFolloweeObserver,
+                                                       selectedFollowerListObserver: selectedFollowerObserver)
+        
+        viewModel.userDetailItemPairs
+            .map { [$0, $0] }
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .addDisposableTo(bag)
+        
+        tableView.delegate = dataSource
         
     }
     
