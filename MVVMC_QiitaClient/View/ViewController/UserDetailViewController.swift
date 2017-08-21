@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class UserDetailViewController: UIViewController, UserDetailViewType {
 
@@ -54,8 +55,124 @@ extension UserDetailViewController {
     
     fileprivate func bindView() {
         
+        viewModel.isLoadingIndicatorAnimation
+            .drive(loadingIndicatorView.indicator.rx.isAnimating)
+            .addDisposableTo(bag)
         
+        viewModel.isLoadingIndicatorAnimation
+            .map { !$0 }
+            .drive(loadingIndicatorView.indicator.rx.isHidden)
+            .addDisposableTo(bag)
+        
+        viewModel.userDetailItemPairs
+            .map { _ in false }
+            .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
+            .addDisposableTo(bag)
         
     }
     
 }
+
+
+fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSourceType, UITableViewDataSource, UITableViewDelegate {
+    
+    typealias Element = [(UserDetailTableCellViewModel, [ItemListTableCellViewModel])]
+    
+    var items: Element = []
+    let selectedItemObserver: PublishSubject<String>
+    let selectedFolloweeListObserver: PublishSubject<String>
+    let selectedFollowerListObserver: PublishSubject<String>
+    
+    init(selectedItemObserver: PublishSubject<String>, selectedFolloweeListObserver: PublishSubject<String>, selectedFollowerListObserver: PublishSubject<String>) {
+        self.selectedItemObserver = selectedItemObserver
+        self.selectedFolloweeListObserver = selectedFolloweeListObserver
+        self.selectedFollowerListObserver = selectedFollowerListObserver
+    }
+    
+    func tableView(_ tableView: UITableView, observedEvent: Event<Element>) {
+        if case .next(let items) = observedEvent {
+            self.items = items
+            tableView.reloadData()
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return items.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+        return items[0].1.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0 {
+            
+            let viewModel = items[0].0
+            let cell = tableView.dequeueReusableCell(indexPath: indexPath) as UserDetailTableCell
+            viewModel.userId.bind(to: cell.userIdLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.company.bind(to: cell.companyLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.itemCount.bind(to: cell.itemCountLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.followeeUserCount.bind(to: cell.followeeUserCountLabel.rx.title()).addDisposableTo(cell.bag)
+            viewModel.followerUserCount.bind(to: cell.followerUserCountLabel.rx.title()).addDisposableTo(cell.bag)
+            
+            viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
+                
+                let imageURL = url!
+                let resource = ImageResource(downloadURL: imageURL, cacheKey: imageURL.absoluteString)
+                cell.profileImageView.kf.indicatorType = .activity
+                cell.profileImageView.kf.setImage(with: resource,
+                                                  placeholder: nil,
+                                                  options: [.transition(ImageTransition.fade(1.0)), .cacheMemoryOnly],
+                                                  progressBlock: nil,
+                                                  completionHandler: nil)
+                
+            }).addDisposableTo(cell.bag)
+            
+            cell.followeeUserCountLabel.rx.tap.withLatestFrom(viewModel.userId)
+                .filter { $0 != nil }
+                .map { $0! }
+                .bind(to: self.selectedFolloweeListObserver)
+                .addDisposableTo(cell.bag)
+            
+            cell.followerUserCountLabel.rx.tap.withLatestFrom(viewModel.userId)
+                .filter { $0 != nil }
+                .map { $0! }
+                .bind(to: self.selectedFollowerListObserver)
+                .addDisposableTo(cell.bag)
+            
+            return cell
+            
+        }
+        
+        let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemListTableCell
+        let viewModel = items[0].1[indexPath.row]
+        viewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
+        viewModel.title.bind(to: cell.titleLabel.rx.text).addDisposableTo(cell.bag)
+        viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
+        viewModel.profileURL.filter { $0 != nil }.map { $0! }.subscribe(onNext: { [weak cell] url in
+            let resource = ImageResource(downloadURL: url, cacheKey: url.absoluteString)
+            cell?.profileImageView.kf.indicatorType = .activity
+            cell?.profileImageView.kf.setImage(with: resource, placeholder: nil,
+                                               options: [.transition(ImageTransition.fade(1.0)), .cacheMemoryOnly],
+                                               progressBlock: nil, completionHandler: nil)
+            
+        }).addDisposableTo(cell.bag)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+}
+
