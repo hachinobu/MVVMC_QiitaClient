@@ -85,6 +85,8 @@
 		C24904471F46D6B60058B300 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24904461F46D6B60058B300 /* UserDetailViewModel.swift */; };
 		C24904491F46D9160058B300 /* UserAndItemsPairToUserDetailTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24904481F46D9160058B300 /* UserAndItemsPairToUserDetailTransform.swift */; };
 		C249044B1F46DDC80058B300 /* UserDetailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249044A1F46DDC80058B300 /* UserDetailVM.swift */; };
+		C249044D1F4C38100058B300 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249044C1F4C38100058B300 /* UserListViewModel.swift */; };
+		C249044F1F4C38AE0058B300 /* UserListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249044E1F4C38AE0058B300 /* UserListVM.swift */; };
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
 		C29C29251F3C1A5600189325 /* ItemDetailHeaderTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C29241F3C1A5600189325 /* ItemDetailHeaderTableCell.xib */; };
 		C29C29271F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C29261F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift */; };
@@ -202,6 +204,8 @@
 		C24904461F46D6B60058B300 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		C24904481F46D9160058B300 /* UserAndItemsPairToUserDetailTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAndItemsPairToUserDetailTransform.swift; sourceTree = "<group>"; };
 		C249044A1F46DDC80058B300 /* UserDetailVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailVM.swift; sourceTree = "<group>"; };
+		C249044C1F4C38100058B300 /* UserListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		C249044E1F4C38AE0058B300 /* UserListVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListVM.swift; sourceTree = "<group>"; };
 		C29C29241F3C1A5600189325 /* ItemDetailHeaderTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailHeaderTableCell.xib; sourceTree = "<group>"; };
 		C29C29261F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailHeaderTableCell.swift; sourceTree = "<group>"; };
 		C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
@@ -537,6 +541,8 @@
 				C24904461F46D6B60058B300 /* UserDetailViewModel.swift */,
 				C249044A1F46DDC80058B300 /* UserDetailVM.swift */,
 				AD5FA6B71F4B1E5F0089B10A /* UserListTableCellVM.swift */,
+				C249044C1F4C38100058B300 /* UserListViewModel.swift */,
+				C249044E1F4C38AE0058B300 /* UserListVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -839,6 +845,7 @@
 				AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */,
 				AD639DFC1F2B371300AA56ED /* UIViewController+Rx.swift in Sources */,
 				C2483F9F1F28A40C00685622 /* ItemListTableCellVM.swift in Sources */,
+				C249044D1F4C38100058B300 /* UserListViewModel.swift in Sources */,
 				AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */,
 				C2FF21E01F31E68C0002C89E /* ItemVM.swift in Sources */,
 				AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */,
@@ -861,6 +868,7 @@
 				C2FF21EC1F332F1D0002C89E /* ItemDetailViewController.swift in Sources */,
 				AD5FA6B01F49C6FE0089B10A /* UserDetailViewController.swift in Sources */,
 				C2483F921F26158000685622 /* QiitaRequestType.swift in Sources */,
+				C249044F1F4C38AE0058B300 /* UserListVM.swift in Sources */,
 				C2483F8F1F26145A00685622 /* AuthEntity.swift in Sources */,
 				AD639DCE1F24E38300AA56ED /* ViewFactory.swift in Sources */,
 				C2483F941F26187C00685622 /* Session+Rx.swift in Sources */,
