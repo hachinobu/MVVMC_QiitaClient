@@ -9,11 +9,12 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Action
 
 protocol UserListViewModel: class {
     
     var items: Driver<[UserListTableCellViewModel]> { get }
-    var error: Driver<Error> { get }
+    var error: Driver<ActionError> { get }
     var isLoadingIndicatorAnimation: Driver<Bool> { get }
     var viewDidLoadTrigger: PublishSubject<Void> { get }
     

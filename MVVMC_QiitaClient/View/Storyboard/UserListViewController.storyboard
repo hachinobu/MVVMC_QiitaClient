@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ffh-k0-MIA">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User List View Controller-->
+        <scene sceneID="sbo-sh-toY">
+            <objects>
+                <viewController id="Ffh-k0-MIA" customClass="UserListViewController" customModule="MVVMC_QiitaClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l8z-ka-KcF"/>
+                        <viewControllerLayoutGuide type="bottom" id="9gp-06-M78"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t9l-Fc-Asw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="emz-GS-8tp">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="emz-GS-8tp" secondAttribute="trailing" id="Tj3-xX-QFE"/>
+                            <constraint firstAttribute="bottom" secondItem="emz-GS-8tp" secondAttribute="bottom" id="dzs-hW-AD6"/>
+                            <constraint firstItem="emz-GS-8tp" firstAttribute="top" secondItem="t9l-Fc-Asw" secondAttribute="top" id="neY-xi-ptx"/>
+                            <constraint firstItem="emz-GS-8tp" firstAttribute="leading" secondItem="t9l-Fc-Asw" secondAttribute="leading" id="xFB-RJ-ljn"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="emz-GS-8tp" id="MS7-II-obw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n09-eZ-26e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55.200000000000003" y="143.47826086956522"/>
+        </scene>
+    </scenes>
+</document>

@@ -12,4 +12,5 @@ protocol HomeTabViewFactory {
     func generateHomeItemListView() -> ItemListViewType & Presentable
     func generateItemDetailView() -> ItemDetailViewType & Presentable
     func generateUserDetailView() -> UserDetailViewType & Presentable
+    func generateUserListView() -> UserListViewType & Presentable
 }

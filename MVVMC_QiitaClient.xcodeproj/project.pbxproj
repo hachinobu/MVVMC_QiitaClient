@@ -90,6 +90,10 @@
 		C24E7EA4EC103D8F6278B248 /* Pods_MVVMC_QiitaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */; };
 		C29C29251F3C1A5600189325 /* ItemDetailHeaderTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29C29241F3C1A5600189325 /* ItemDetailHeaderTableCell.xib */; };
 		C29C29271F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29C29261F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift */; };
+		C2AC175B1F4ED9ED00436414 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AC175A1F4ED9ED00436414 /* UserListViewController.swift */; };
+		C2AC175D1F4ED9FA00436414 /* UserListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C2AC175C1F4ED9FA00436414 /* UserListViewController.storyboard */; };
+		C2AC175F1F4EDCB900436414 /* UserListViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AC175E1F4EDCB900436414 /* UserListViewType.swift */; };
+		C2AC17611F4EE24E00436414 /* UserEntityToUserListTableCellVMTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AC17601F4EE24E00436414 /* UserEntityToUserListTableCellVMTransform.swift */; };
 		C2FF21DE1F31E5F20002C89E /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */; };
 		C2FF21E01F31E68C0002C89E /* ItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21DF1F31E68C0002C89E /* ItemVM.swift */; };
 		C2FF21E21F31EEB60002C89E /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */; };
@@ -208,6 +212,10 @@
 		C249044E1F4C38AE0058B300 /* UserListVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListVM.swift; sourceTree = "<group>"; };
 		C29C29241F3C1A5600189325 /* ItemDetailHeaderTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailHeaderTableCell.xib; sourceTree = "<group>"; };
 		C29C29261F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailHeaderTableCell.swift; sourceTree = "<group>"; };
+		C2AC175A1F4ED9ED00436414 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		C2AC175C1F4ED9FA00436414 /* UserListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserListViewController.storyboard; sourceTree = "<group>"; };
+		C2AC175E1F4EDCB900436414 /* UserListViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewType.swift; sourceTree = "<group>"; };
+		C2AC17601F4EE24E00436414 /* UserEntityToUserListTableCellVMTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntityToUserListTableCellVMTransform.swift; sourceTree = "<group>"; };
 		C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		C2FF21DF1F31E68C0002C89E /* ItemVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemVM.swift; sourceTree = "<group>"; };
 		C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
@@ -375,6 +383,7 @@
 				AD639DE51F277E3A00AA56ED /* ItemListViewController.swift */,
 				C2FF21EB1F332F1D0002C89E /* ItemDetailViewController.swift */,
 				AD5FA6AF1F49C6FE0089B10A /* UserDetailViewController.swift */,
+				C2AC175A1F4ED9ED00436414 /* UserListViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -407,6 +416,7 @@
 				AD639DE31F277DD200AA56ED /* ItemListViewController.storyboard */,
 				C2FF21E71F332CC60002C89E /* ItemDetailViewController.storyboard */,
 				AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */,
+				C2AC175C1F4ED9FA00436414 /* UserListViewController.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -492,6 +502,7 @@
 				AD639E021F2B3F1700AA56ED /* ItemListViewType.swift */,
 				C2FF21E91F332DF20002C89E /* ItemDetailViewType.swift */,
 				AD5FA6B11F49CA570089B10A /* UserDetailViewType.swift */,
+				C2AC175E1F4EDCB900436414 /* UserListViewType.swift */,
 			);
 			path = ItemFlow;
 			sourceTree = "<group>";
@@ -586,6 +597,7 @@
 				C2FF21E51F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift */,
 				AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */,
 				C24904481F46D9160058B300 /* UserAndItemsPairToUserDetailTransform.swift */,
+				C2AC17601F4EE24E00436414 /* UserEntityToUserListTableCellVMTransform.swift */,
 			);
 			path = Transform;
 			sourceTree = "<group>";
@@ -707,6 +719,7 @@
 				AD639DBD1F23223100AA56ED /* AuthViewController.storyboard in Resources */,
 				AD639DF01F27835E00AA56ED /* LoadingIndicatorView.xib in Resources */,
 				AD639DE41F277DD200AA56ED /* ItemListViewController.storyboard in Resources */,
+				C2AC175D1F4ED9FA00436414 /* UserListViewController.storyboard in Resources */,
 				AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */,
 				AD40099F1F45CE2700F8321D /* UserDetailTableCell.xib in Resources */,
 				C29C29251F3C1A5600189325 /* ItemDetailHeaderTableCell.xib in Resources */,
@@ -819,6 +832,7 @@
 				AD639DC71F247F9000AA56ED /* AuthInfo.swift in Sources */,
 				AD5C989B1F1F998200DF5039 /* DependencyCoordinator.swift in Sources */,
 				AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */,
+				C2AC175B1F4ED9ED00436414 /* UserListViewController.swift in Sources */,
 				AD639DF81F28C49800AA56ED /* PaginationRequest.swift in Sources */,
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
 				AD639E001F2B3C8800AA56ED /* ReusableView.swift in Sources */,
@@ -829,6 +843,7 @@
 				AD639E031F2B3F1700AA56ED /* ItemListViewType.swift in Sources */,
 				AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */,
 				AD639DE61F277E3A00AA56ED /* ItemListViewController.swift in Sources */,
+				C2AC175F1F4EDCB900436414 /* UserListViewType.swift in Sources */,
 				AD5FA6AA1F45D43E0089B10A /* UserDetailTableCellVM.swift in Sources */,
 				AD639E081F2C3F2B00AA56ED /* HomeTabViewFactory.swift in Sources */,
 				AD639DCC1F24E30600AA56ED /* AuthViewFactory.swift in Sources */,
@@ -848,6 +863,7 @@
 				C249044D1F4C38100058B300 /* UserListViewModel.swift in Sources */,
 				AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */,
 				C2FF21E01F31E68C0002C89E /* ItemVM.swift in Sources */,
+				C2AC17611F4EE24E00436414 /* UserEntityToUserListTableCellVMTransform.swift in Sources */,
 				AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */,
 				C249044B1F46DDC80058B300 /* UserDetailVM.swift in Sources */,
 				AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */,
