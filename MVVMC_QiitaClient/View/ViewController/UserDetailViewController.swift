@@ -30,7 +30,7 @@ class UserDetailViewController: UIViewController, UserDetailViewType {
     fileprivate var selectedFolloweeObserver = PublishSubject<String>()
     lazy var selectedFollowee: Observable<String> = self.selectedFolloweeObserver.asObservable()
     
-    lazy var reachedBottom: ControlEvent<Void> = self.tableView.rx.reachedBottom
+    fileprivate let reachedBottomObserver: PublishSubject<Void> = PublishSubject()
     
     func injectViewModel(viewModel: UserDetailViewModel) {
         self.viewModel = viewModel
@@ -60,7 +60,7 @@ extension UserDetailViewController {
     
     fileprivate func setupViewModel() {
         viewModel.bindRefresh(refresh: tableView.refreshControl!.rx.controlEvent(.valueChanged).asDriver())
-        viewModel.bindReachedBottom(reachedBottom: tableView.rx.reachedBottom.asDriver())
+        viewModel.bindReachedBottom(reachedBottom: reachedBottomObserver.asDriver(onErrorDriveWith: .empty()))
     }
     
     fileprivate func bindView() {
@@ -81,7 +81,8 @@ extension UserDetailViewController {
         
         let dataSource = UserDetailTableViewDataSource(selectedItemObserver: selectedItemObserver,
                                                        selectedFolloweeListObserver: selectedFolloweeObserver,
-                                                       selectedFollowerListObserver: selectedFollowerObserver)
+                                                       selectedFollowerListObserver: selectedFollowerObserver,
+                                                       reachedBottomObserver: reachedBottomObserver)
         
         viewModel.userDetailItemPairs
             .map { [$0, $0] }
@@ -103,11 +104,13 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
     let selectedItemObserver: PublishSubject<String>
     let selectedFolloweeListObserver: PublishSubject<String>
     let selectedFollowerListObserver: PublishSubject<String>
+    let reachedBottomObserver: PublishSubject<Void>
     
-    init(selectedItemObserver: PublishSubject<String>, selectedFolloweeListObserver: PublishSubject<String>, selectedFollowerListObserver: PublishSubject<String>) {
+    init(selectedItemObserver: PublishSubject<String>, selectedFolloweeListObserver: PublishSubject<String>, selectedFollowerListObserver: PublishSubject<String>, reachedBottomObserver: PublishSubject<Void>) {
         self.selectedItemObserver = selectedItemObserver
         self.selectedFolloweeListObserver = selectedFolloweeListObserver
         self.selectedFollowerListObserver = selectedFollowerListObserver
+        self.reachedBottomObserver = reachedBottomObserver
     }
     
     func tableView(_ tableView: UITableView, observedEvent: Event<Element>) {
@@ -186,6 +189,13 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
         }).addDisposableTo(cell.bag)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard indexPath.section == items.count - 1 && indexPath.row == items[0].userItems.count - 1 else {
+            return
+        }
+        reachedBottomObserver.onNext()
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
