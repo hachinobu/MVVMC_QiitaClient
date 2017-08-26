@@ -52,7 +52,7 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
             itemFetchAction = Action { page in
                 var paginationRequest = itemsRequest
                 paginationRequest.page = page
-                return session.rx.response(request: itemsRequest).map { $0.transform(transformable: itemTransformer) }
+                return session.rx.response(request: paginationRequest).map { $0.transform(transformable: itemTransformer) }
             }
             
             let fetchItemElements = itemFetchAction.elements.withLatestFrom(itemFetchAction.inputs) { $0 }.scan([ItemViewModel]()) { (elements, result) in
