@@ -35,6 +35,8 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
     private let userFetchAction: Action<Void, UserDetailViewModel>
     private let itemFetchAction: Action<Int, [ItemViewModel]>
     
+    private let completedAllData: PublishSubject<Bool> = PublishSubject()
+    
     init<UserRequest: QiitaRequest, ItemsRequest: PaginationRequest, UserTransform: Transformable, ItemTransform: Transformable>(
         userRequest: UserRequest,
         itemsRequest: ItemsRequest,
@@ -54,6 +56,8 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
                 paginationRequest.page = page
                 return session.rx.response(request: paginationRequest).map { $0.transform(transformable: itemTransformer) }
             }
+            
+            itemFetchAction.elements.map { $0.count != itemsRequest.perPage }.bind(to: completedAllData).addDisposableTo(bag)
             
             let fetchItemElements = itemFetchAction.elements.withLatestFrom(itemFetchAction.inputs) { $0 }.scan([ItemViewModel]()) { (elements, result) in
                 let page = result.1
@@ -101,11 +105,18 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
                 self?.itemFetchAction.execute(1)
             }).addDisposableTo(bag)
         
+        refresh.asObservable()
+            .map { false }
+            .bind(to: completedAllData)
+            .addDisposableTo(bag)
+        
     }
     
     func bindReachedBottom(reachedBottom: Driver<Void>) {
         
         reachedBottom.asObservable()
+            .withLatestFrom(completedAllData)
+            .filter { !$0 }
             .withLatestFrom(isLoadingIndicatorAnimation.asObservable())
             .filter { !$0 }
             .map { _ in self.currentPage + 1 }

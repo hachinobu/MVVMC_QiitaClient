@@ -52,6 +52,12 @@ final class QiitaAPI {
         typealias Response = [ItemEntity]
         
         var page: Int
+        let perPage: Int
+        
+        init(page: Int = 1, perPage: Int = 20) {
+            self.page = page
+            self.perPage = perPage
+        }
         
         var method: HTTPMethod {
             return .get
@@ -62,7 +68,7 @@ final class QiitaAPI {
         }
         
         var queryParameters: [String : Any]? {
-            return ["page": page]
+            return ["page": page, "per_page": perPage]
         }
         
     }
@@ -197,10 +203,12 @@ final class QiitaAPI {
         
         private let userId: String
         var page: Int
+        let perPage: Int
         
-        init(userId: String, page: Int) {
+        init(userId: String, page: Int = 1, perPage: Int = 20) {
             self.userId = userId
             self.page = page
+            self.perPage = perPage
         }
         
         var method: HTTPMethod {
@@ -212,7 +220,7 @@ final class QiitaAPI {
         }
         
         var queryParameters: [String : Any]? {
-            return ["page": page]
+            return ["page": page, "per_page": perPage]
         }
         
     }
@@ -223,10 +231,12 @@ final class QiitaAPI {
         
         private let userId: String
         var page: Int
+        let perPage: Int
         
-        init(userId: String, page: Int) {
+        init(userId: String, page: Int = 1, perPage: Int = 100) {
             self.userId = userId
             self.page = page
+            self.perPage = perPage
         }
         
         var method: HTTPMethod {
@@ -238,7 +248,7 @@ final class QiitaAPI {
         }
         
         var queryParameters: [String : Any]? {
-            return ["page": page, "per_page": 100]
+            return ["page": page, "per_page": perPage]
         }
         
     }
@@ -249,10 +259,12 @@ final class QiitaAPI {
         
         private let userId: String
         var page: Int
+        let perPage: Int
         
-        init(userId: String, page: Int) {
+        init(userId: String, page: Int = 1, perPage: Int = 100) {
             self.userId = userId
             self.page = page
+            self.perPage = perPage
         }
         
         var method: HTTPMethod {
@@ -264,7 +276,7 @@ final class QiitaAPI {
         }
         
         var queryParameters: [String : Any]? {
-            return ["page": page, "per_page": 100]
+            return ["page": page, "per_page": perPage]
         }
         
     }

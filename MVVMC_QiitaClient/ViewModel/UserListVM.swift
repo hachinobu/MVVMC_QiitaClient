@@ -28,6 +28,8 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
         self.fetchUsersAction.executing.shareReplayLatestWhileConnected().asDriver(onErrorJustReturn: false)
     }()
     
+    private let completedAllData: PublishSubject<Bool> = PublishSubject()
+    
     var viewDidLoadTrigger: PublishSubject<Void> = PublishSubject()
     
     init<UsersRequest: PaginationRequest, Transform: Transformable>(
@@ -44,6 +46,11 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
                 
                 return session.rx.response(request: paginationRequest).map { $0.transform(transformable: transformer) }
             }
+            
+            fetchUsersAction.elements
+                .map { $0.count != request.perPage }
+                .bind(to: completedAllData)
+                .addDisposableTo(bag)
             
             let firstPage = 1
             
@@ -86,11 +93,18 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
                 self?.fetchUsersAction.execute(1)
             }).addDisposableTo(bag)
         
+        refresh.asObservable()
+            .map { false }
+            .bind(to: completedAllData)
+            .addDisposableTo(bag)
+        
     }
     
     func bindReachedBottom(reachedBottom: Driver<Void>) {
         
         reachedBottom.asObservable()
+            .withLatestFrom(completedAllData)
+            .filter { !$0 }
             .withLatestFrom(isLoadingIndicatorAnimation.asObservable())
             .filter { !$0 }
             .map { _ in self.currentPage + 1 }

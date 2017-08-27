@@ -12,4 +12,5 @@ import ObjectMapper
 
 protocol PaginationRequest: Request {
     var page: Int { get set }
+    var perPage: Int { get }
 }

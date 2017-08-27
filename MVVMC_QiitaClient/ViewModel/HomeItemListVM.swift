@@ -63,6 +63,8 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
     private let fetchItemListAction: Action<Int, [ItemListTableCellViewModel]>
     private var currentPage = 1
     
+    private let completedAllData: PublishSubject<Bool> = PublishSubject()
+    
     lazy var viewDidLoadTrigger: PublishSubject<Void> = PublishSubject<Void>()
     
     init<Request: PaginationRequest, Transform: Transformable>(
@@ -83,6 +85,11 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
                 
             }
             
+            fetchItemListAction.elements
+                .map { $0.count != request.perPage }
+                .bind(to: completedAllData)
+                .addDisposableTo(bag)
+            
             viewDidLoadTrigger.asObservable()
                 .take(1)
                 .map { self.FirstPage }
@@ -98,10 +105,18 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
             .map { _ in self.FirstPage }
             .bind(to: fetchItemListAction.inputs)
             .addDisposableTo(bag)
+        
+        refresh.asObservable()
+            .map { false }
+            .bind(to: completedAllData)
+            .addDisposableTo(bag)
+        
     }
     
     func bindReachedBottom(reachedBottom: Driver<Void>) {
         reachedBottom.asObservable()
+            .withLatestFrom(completedAllData)
+            .filter { !$0 }
             .withLatestFrom(isLoadingIndicatorAnimation.asObservable())
             .filter { !$0 }
             .map { _ in self.currentPage + 1 }
