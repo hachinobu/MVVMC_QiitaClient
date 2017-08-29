@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TagListTableCell" rowHeight="83" id="KGk-i7-Jjw" customClass="TagListTableCell" customModule="MVVMC_QiitaClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QPN-zw-Uvm">
+                        <rect key="frame" x="8" y="8" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="6D9-J9-lZy"/>
+                            <constraint firstAttribute="height" constant="35" id="UUR-xq-GfK"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TagName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nu6-Qu-T2S">
+                        <rect key="frame" x="47" y="8" width="236" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="et5-Y5-w04"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿数 フォロワー数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="954-9y-XBb">
+                        <rect key="frame" x="8" y="51" width="271" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Nu6-Qu-T2S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="2FL-KC-XMf"/>
+                    <constraint firstItem="QPN-zw-Uvm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="AlE-qh-6Rv"/>
+                    <constraint firstAttribute="trailing" secondItem="954-9y-XBb" secondAttribute="trailing" constant="8" id="HF7-LL-7i4"/>
+                    <constraint firstAttribute="trailing" secondItem="Nu6-Qu-T2S" secondAttribute="trailing" constant="4" id="MZy-yV-mkR"/>
+                    <constraint firstItem="954-9y-XBb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="VlU-jH-Ave"/>
+                    <constraint firstItem="Nu6-Qu-T2S" firstAttribute="leading" secondItem="QPN-zw-Uvm" secondAttribute="trailing" constant="4" id="WIR-80-wlL"/>
+                    <constraint firstItem="QPN-zw-Uvm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="axJ-ha-aDO"/>
+                    <constraint firstItem="954-9y-XBb" firstAttribute="top" secondItem="QPN-zw-Uvm" secondAttribute="bottom" constant="8" id="c8G-Rs-1KC"/>
+                    <constraint firstAttribute="bottom" secondItem="954-9y-XBb" secondAttribute="bottom" constant="8" id="wk7-De-ClE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="tagCountLabel" destination="954-9y-XBb" id="2cm-S4-iIp"/>
+                <outlet property="tagImageView" destination="QPN-zw-Uvm" id="vYV-Z7-KfD"/>
+                <outlet property="tagNameLabel" destination="Nu6-Qu-T2S" id="yMr-mN-2F1"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="34.5"/>
+        </tableViewCell>
+    </objects>
+</document>

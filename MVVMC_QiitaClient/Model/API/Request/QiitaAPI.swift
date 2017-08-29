@@ -281,4 +281,30 @@ final class QiitaAPI {
         
     }
     
+    struct GetTagsRequest: QiitaRequest, PaginationRequest {
+        
+        typealias Response = [TagEntity]
+        
+        var page: Int
+        let perPage: Int
+        
+        init(page: Int = 1, perPage: Int = 20) {
+            self.page = page
+            self.perPage = perPage
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/tags"
+        }
+        
+        var queryParameters: [String : Any]? {
+            return ["page": page, "per_page": perPage]
+        }
+        
+    }
+    
 }

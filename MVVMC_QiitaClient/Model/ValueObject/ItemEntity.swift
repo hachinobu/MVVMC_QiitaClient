@@ -17,11 +17,23 @@ struct ItemEntity {
     let group: GroupEntity?
     let id: String
     let isPrivate: Bool
-    let tagList: [TagEntity]
+    let tagList: [ItemTagEntity]
     let title: String
     let updatedAt: String
     let url: String
     let user: UserEntity
+    
+    struct ItemTagEntity: ImmutableMappable {
+        let name: String
+        let versions: [String]
+        
+        init(map: Map) throws {
+            name = try map.value("name")
+            versions = try map.value("versions")
+        }
+        
+    }
+    
 }
 
 extension ItemEntity: ImmutableMappable {
