@@ -39,6 +39,8 @@
 		AD5FA6C21F55A14F0089B10A /* TagListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C11F55A14F0089B10A /* TagListVM.swift */; };
 		AD5FA6C41F55A1C70089B10A /* TagListTableCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C31F55A1C70089B10A /* TagListTableCellVM.swift */; };
 		AD5FA6C61F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C51F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift */; };
+		AD5FA6C81F56EF890089B10A /* TagListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */; };
+		AD5FA6CA1F56EFE10089B10A /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */; };
 		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
 		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
 		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
@@ -169,6 +171,8 @@
 		AD5FA6C11F55A14F0089B10A /* TagListVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListVM.swift; sourceTree = "<group>"; };
 		AD5FA6C31F55A1C70089B10A /* TagListTableCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListTableCellVM.swift; sourceTree = "<group>"; };
 		AD5FA6C51F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEntityToTagListTableCellVMTransform.swift; sourceTree = "<group>"; };
+		AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagListViewController.storyboard; sourceTree = "<group>"; };
+		AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
 		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 				C2FF21EB1F332F1D0002C89E /* ItemDetailViewController.swift */,
 				AD5FA6AF1F49C6FE0089B10A /* UserDetailViewController.swift */,
 				C2AC175A1F4ED9ED00436414 /* UserListViewController.swift */,
+				AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -431,6 +436,7 @@
 				C2FF21E71F332CC60002C89E /* ItemDetailViewController.storyboard */,
 				AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */,
 				C2AC175C1F4ED9FA00436414 /* UserListViewController.storyboard */,
+				AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -748,6 +754,7 @@
 				AD5FA6BE1F559CFE0089B10A /* TagListTableCell.xib in Resources */,
 				AD5FA6B61F4B17840089B10A /* UserListTableCell.xib in Resources */,
 				ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */,
+				AD5FA6C81F56EF890089B10A /* TagListViewController.storyboard in Resources */,
 				AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */,
 				AD639DE91F277F2F00AA56ED /* ItemListTableCell.xib in Resources */,
 				AD5FA6AE1F49C6A10089B10A /* UserDetailViewController.storyboard in Resources */,
@@ -903,6 +910,7 @@
 				AD5FA6C61F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift in Sources */,
 				AD639DD31F263E8300AA56ED /* AuthVM.swift in Sources */,
 				C2483F981F26DC5E00685622 /* AuthRequest.swift in Sources */,
+				AD5FA6CA1F56EFE10089B10A /* TagListViewController.swift in Sources */,
 				C2FF21E41F32E3200002C89E /* ItemDetailVM.swift in Sources */,
 				C2FF21E21F31EEB60002C89E /* ItemDetailViewModel.swift in Sources */,
 				AD5FA6B51F4B17840089B10A /* UserListTableCell.swift in Sources */,
