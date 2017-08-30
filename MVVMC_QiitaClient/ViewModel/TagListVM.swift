@@ -78,6 +78,10 @@ final class TagListVM<Results: Sequence>: TagListViewModel {
                 }.bind(to: self.tagsObserver)
                 .addDisposableTo(bag)
             
+            fetchTagsAction.errors
+                .bind(to: errorObserver)
+                .addDisposableTo(bag)
+            
             viewDidLoadTrigger.subscribe(onNext: { [weak self] _ in
                 self?.fetchTagsAction.execute(1)
             }).addDisposableTo(bag)
