@@ -13,6 +13,7 @@ protocol UserDetailViewType: class {
     var selectedItem: Observable<String> { get }
     var selectedFollower: Observable<String> { get }
     var selectedFollowee: Observable<String> { get }
+    var selectedFollowTagList: Observable<String> { get }
     
     func injectViewModel(viewModel: UserDetailViewModel)
 }

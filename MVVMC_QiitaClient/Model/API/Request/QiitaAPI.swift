@@ -307,4 +307,32 @@ final class QiitaAPI {
         
     }
     
+    struct GetUserFollowTagsRequest: QiitaRequest, PaginationRequest {
+        
+        typealias Response = [TagEntity]
+        
+        let userId: String
+        var page: Int
+        let perPage: Int
+        
+        init(userId: String, page: Int = 1, perPage: Int = 20) {
+            self.userId = userId
+            self.page = page
+            self.perPage = perPage
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/users/\(userId)/following_tags"
+        }
+        
+        var queryParameters: [String : Any]? {
+            return ["page": page, "per_page": perPage]
+        }
+        
+    }
+    
 }

@@ -79,6 +79,10 @@ final class HomeTabCoordinator: BaseCoordinator {
             self?.showItemDetail(itemId: itemId)
         }).addDisposableTo(bag)
         
+        userDetailView.selectedFollowTagList.subscribe(onNext: { [weak self] userId in
+            self?.showUserFollowTagList(userId: userId)
+        }).addDisposableTo(bag)
+        
         userDetailView.selectedFollowee.subscribe(onNext: { [weak self] userId in
             self?.showFolloweeList(userId: userId)
         }).addDisposableTo(bag)
@@ -123,5 +127,20 @@ final class HomeTabCoordinator: BaseCoordinator {
         
     }
     
+    private func showUserFollowTagList(userId: String) {
+        
+        let tagListView = viewFactory.generateTagListView()
+        let userFollowTagRequest = QiitaAPI.GetUserFollowTagsRequest(userId: userId, page: 1, perPage: 20)
+        let transformer = TagEntityToTagListTableCellVMTransform()
+        let viewModel = TagListVM(request: userFollowTagRequest, transformer: transformer)
+        tagListView.injectViewModel(viewModel: viewModel)
+        
+        tagListView.selectedTag.subscribe(onNext: { tag in
+            print(tag)
+        }).addDisposableTo(bag)
+        
+        router.push(presentable: tagListView, animated: true, completion: nil)
+        
+    }
     
 }

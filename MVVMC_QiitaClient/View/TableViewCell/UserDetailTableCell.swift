@@ -27,6 +27,7 @@ final class UserDetailTableCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var itemCountLabel: UILabel!
+    @IBOutlet weak var followTagListButton: UIButton!
     @IBOutlet weak var followeeUserCountLabel: UIButton!
     @IBOutlet weak var followerUserCountLabel: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!

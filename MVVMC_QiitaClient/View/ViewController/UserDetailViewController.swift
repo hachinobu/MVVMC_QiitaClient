@@ -27,6 +27,9 @@ class UserDetailViewController: UIViewController, UserDetailViewType {
     fileprivate var selectedFollowerObserver = PublishSubject<String>()
     lazy var selectedFollower: Observable<String> = self.selectedFollowerObserver.asObservable()
     
+    fileprivate var selectedFollowTagListObserver = PublishSubject<String>()
+    lazy var selectedFollowTagList: Observable<String> = self.selectedFollowTagListObserver.asObservable()
+    
     fileprivate var selectedFolloweeObserver = PublishSubject<String>()
     lazy var selectedFollowee: Observable<String> = self.selectedFolloweeObserver.asObservable()
     
@@ -82,6 +85,7 @@ extension UserDetailViewController {
         let dataSource = UserDetailTableViewDataSource(selectedItemObserver: selectedItemObserver,
                                                        selectedFolloweeListObserver: selectedFolloweeObserver,
                                                        selectedFollowerListObserver: selectedFollowerObserver,
+                                                       selectedFollowTagListObserver: selectedFollowTagListObserver,
                                                        reachedBottomObserver: reachedBottomObserver)
         
         viewModel.userDetailItemPairs
@@ -104,12 +108,14 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
     let selectedItemObserver: PublishSubject<String>
     let selectedFolloweeListObserver: PublishSubject<String>
     let selectedFollowerListObserver: PublishSubject<String>
+    let selectedFollowTagListObserver: PublishSubject<String>
     let reachedBottomObserver: PublishSubject<Void>
     
-    init(selectedItemObserver: PublishSubject<String>, selectedFolloweeListObserver: PublishSubject<String>, selectedFollowerListObserver: PublishSubject<String>, reachedBottomObserver: PublishSubject<Void>) {
+    init(selectedItemObserver: PublishSubject<String>, selectedFolloweeListObserver: PublishSubject<String>, selectedFollowerListObserver: PublishSubject<String>, selectedFollowTagListObserver: PublishSubject<String>, reachedBottomObserver: PublishSubject<Void>) {
         self.selectedItemObserver = selectedItemObserver
         self.selectedFolloweeListObserver = selectedFolloweeListObserver
         self.selectedFollowerListObserver = selectedFollowerListObserver
+        self.selectedFollowTagListObserver = selectedFollowTagListObserver
         self.reachedBottomObserver = reachedBottomObserver
     }
     
@@ -157,6 +163,12 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
                                                   completionHandler: nil)
                 
             }).addDisposableTo(cell.bag)
+            
+            cell.followTagListButton.rx.tap.withLatestFrom(viewModel.userId)
+                .filter { $0 != nil }
+                .map { $0! }
+                .bind(to: self.selectedFollowTagListObserver)
+                .addDisposableTo(cell.bag)
             
             cell.followeeUserCountLabel.rx.tap.withLatestFrom(viewModel.userId)
                 .filter { $0 != nil }

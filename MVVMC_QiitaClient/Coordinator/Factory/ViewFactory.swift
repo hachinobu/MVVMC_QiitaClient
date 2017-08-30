@@ -21,7 +21,6 @@ extension ViewFactory: AuthViewFactory {
     
 }
 
-
 extension ViewFactory: HomeTabViewFactory {
     
     func generateHomeItemListView() -> ItemListViewType & Presentable {
@@ -42,6 +41,11 @@ extension ViewFactory: HomeTabViewFactory {
     func generateUserListView() -> Presentable & UserListViewType {
         let userListView = UIStoryboard.instantiateInitialViewController(withType: UserListViewController.self)
         return userListView
+    }
+    
+    func generateTagListView() -> Presentable & TagListViewType {
+        let tagListView = UIStoryboard.instantiateInitialViewController(withType: TagListViewController.self)
+        return tagListView
     }
     
 }
