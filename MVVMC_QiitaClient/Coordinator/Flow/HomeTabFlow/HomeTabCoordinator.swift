@@ -27,6 +27,7 @@ final class HomeTabCoordinator: BaseCoordinator {
     }
     
     private func showAllItemList() {
+        
         let itemListView = viewFactory.generateHomeItemListView()
         let request = QiitaAPI.GetItemsRequest(page: 1)
         let transform = ItemEntityToCellViewModelTransform()
@@ -135,11 +136,31 @@ final class HomeTabCoordinator: BaseCoordinator {
         let viewModel = TagListVM(request: userFollowTagRequest, transformer: transformer)
         tagListView.injectViewModel(viewModel: viewModel)
         
-        tagListView.selectedTag.subscribe(onNext: { tag in
-            print(tag)
+        tagListView.selectedTagId.subscribe(onNext: { [weak self] tagId in
+            self?.showTagItemList(tagId: tagId)
         }).addDisposableTo(bag)
         
         router.push(presentable: tagListView, animated: true, completion: nil)
+        
+    }
+    
+    private func showTagItemList(tagId: String) {
+        
+        let itemListView = viewFactory.generateHomeItemListView()
+        let tagItemsRequest = QiitaAPI.GetTagItemsRequest(tagId: tagId, page: 1, perPage: 20)
+        let transform = ItemEntityToCellViewModelTransform()
+        let viewModel = HomeItemListVM(request: tagItemsRequest, transformer: transform)
+        itemListView.injectViewModel(viewModel: viewModel)
+        
+        itemListView.selectedItem.subscribe(onNext: { [weak self] itemId in
+            self?.showItemDetail(itemId: itemId)
+        }).addDisposableTo(bag)
+        
+        itemListView.selectedUser.subscribe(onNext: { [weak self] userId in
+            self?.showUserDetail(userId: userId)
+        }).addDisposableTo(bag)
+        
+        router.push(presentable: itemListView, animated: true, completion: nil)
         
     }
     

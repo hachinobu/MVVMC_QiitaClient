@@ -13,8 +13,8 @@ import Kingfisher
 
 final class TagListViewController: UIViewController, TagListViewType {
 
-    fileprivate let selectedTagObserver: PublishSubject<String> = PublishSubject()
-    lazy var selectedTag: Observable<String> = self.selectedTagObserver.asObservable()
+    fileprivate let selectedTagIdObserver: PublishSubject<String> = PublishSubject()
+    lazy var selectedTagId: Observable<String> = self.selectedTagIdObserver.asObservable()
     
     fileprivate let bag = DisposeBag()
     fileprivate lazy var loadingIndicatorView = LoadingIndicatorView.loadView()
@@ -90,7 +90,7 @@ extension TagListViewController {
             if let selectedIndexPath = self?.tableView.indexPathForSelectedRow {
                 self?.tableView.deselectRow(at: selectedIndexPath, animated: true)
             }
-        }).map { $0.tagId }.bind(to: selectedTagObserver).addDisposableTo(bag)
+        }).map { $0.tagId }.bind(to: selectedTagIdObserver).addDisposableTo(bag)
         
         viewModel.error
             .map { _ in false }

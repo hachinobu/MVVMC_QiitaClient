@@ -11,7 +11,7 @@ import RxSwift
 
 protocol TagListViewType: class {
     
-    var selectedTag: Observable<String> { get }
+    var selectedTagId: Observable<String> { get }
     
     func injectViewModel(viewModel: TagListViewModel)
     

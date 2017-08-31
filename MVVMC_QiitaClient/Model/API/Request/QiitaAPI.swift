@@ -53,10 +53,12 @@ final class QiitaAPI {
         
         var page: Int
         let perPage: Int
+        let query: String?
         
-        init(page: Int = 1, perPage: Int = 20) {
+        init(page: Int = 1, perPage: Int = 20, query: String? = nil) {
             self.page = page
             self.perPage = perPage
+            self.query = query
         }
         
         var method: HTTPMethod {
@@ -68,7 +70,11 @@ final class QiitaAPI {
         }
         
         var queryParameters: [String : Any]? {
-            return ["page": page, "per_page": perPage]
+            var parameter =  ["page": page.description, "per_page": perPage.description]
+            if let query = query {
+                parameter["query"] = query
+            }
+            return parameter
         }
         
     }
@@ -331,6 +337,34 @@ final class QiitaAPI {
         
         var queryParameters: [String : Any]? {
             return ["page": page, "per_page": perPage]
+        }
+        
+    }
+    
+    struct GetTagItemsRequest: QiitaRequest, PaginationRequest {
+        
+        typealias Response = [ItemEntity]
+        
+        let tagId: String
+        var page: Int
+        let perPage: Int
+        
+        init(tagId: String, page: Int = 1, perPage: Int = 20) {
+            self.tagId = tagId
+            self.page = page
+            self.perPage = perPage
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/tags/\(tagId)/items"
+        }
+        
+        var queryParameters: [String : Any]? {
+            return  ["page": page.description, "per_page": perPage.description]
         }
         
     }
