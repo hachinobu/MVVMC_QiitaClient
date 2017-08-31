@@ -11,9 +11,13 @@ import RxSwift
 
 class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelectableView {
     
-    private var selectedTimeLineTabObserver = PublishSubject<UINavigationController>()
-    lazy var selectedTimeLineTabObservable: Observable<UINavigationController> =
-        self.selectedTimeLineTabObserver.asObservable()
+    private var selectedItemTabObserver = PublishSubject<UINavigationController>()
+    lazy var selectedItemTabObservable: Observable<UINavigationController> =
+        self.selectedItemTabObserver.asObservable()
+    
+    private var selectedTagTabObserver = PublishSubject<UINavigationController>()
+    lazy var selectedTagTabObservable: Observable<UINavigationController> =
+        self.selectedTagTabObserver.asObservable()
     
     private var selectedMyAccountTabObserver = PublishSubject<UINavigationController>()
     lazy var selectedMyAccountTabObservable: Observable<UINavigationController> =
@@ -22,7 +26,7 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelec
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        selectedIndex = SelectedTab.timeLine.rawValue
+        selectedIndex = SelectedTab.item.rawValue
         if let viewController = customizableViewControllers?.first {
             tabBarController(self, didSelect: viewController)
         }
@@ -35,8 +39,10 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelec
         }
         
         switch selectedTab {
-        case .timeLine:
-            selectedTimeLineTabObserver.onNext(navigationController)
+        case .item:
+            selectedItemTabObserver.onNext(navigationController)
+        case .tag:
+            selectedTagTabObserver.onNext(navigationController)
         case .myAccount:
             selectedMyAccountTabObserver.onNext(navigationController)
         }
@@ -47,7 +53,8 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelec
 fileprivate extension TabbarController {
     
     enum SelectedTab: Int {
-        case timeLine = 0
+        case item = 0
+        case tag
         case myAccount
     }
     

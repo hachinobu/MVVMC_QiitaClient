@@ -26,15 +26,26 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     
     override func start() {
         
-        tabSelected.selectedTimeLineTabObservable.subscribe(onNext: { [unowned self] navigationController in
+        tabSelected.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runHomeTabFlow(navigationController: navigationController)
+        }).addDisposableTo(bag)
+        
+        tabSelected.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
+            self.runTagTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
     }
     
     private func runHomeTabFlow(navigationController: UINavigationController) {
         guard navigationController.viewControllers.isEmpty else { return }
-        let coordinator = coordinatorFactory.generateHomeTabCoordinator(navigationController: navigationController)
+        let coordinator = coordinatorFactory.generateItemTabCoordinator(navigationController: navigationController)
+        coordinator.start()
+        addDependency(coordinator: coordinator)
+    }
+    
+    private func runTagTabFlow(navigationController: UINavigationController) {
+        guard navigationController.viewControllers.isEmpty else { return }
+        let coordinator = coordinatorFactory.generateTagTabCoordinator(navigationController: navigationController)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }

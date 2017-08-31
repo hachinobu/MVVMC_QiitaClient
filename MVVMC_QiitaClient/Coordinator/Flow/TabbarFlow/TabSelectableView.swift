@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 
 protocol TabSelectableView: class {
-    var selectedTimeLineTabObservable: Observable<UINavigationController> { get }
+    var selectedItemTabObservable: Observable<UINavigationController> { get }
+    var selectedTagTabObservable: Observable<UINavigationController> { get }
     var selectedMyAccountTabObservable: Observable<UINavigationController> { get }
 }

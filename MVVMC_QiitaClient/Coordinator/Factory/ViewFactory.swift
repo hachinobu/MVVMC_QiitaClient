@@ -21,7 +21,7 @@ extension ViewFactory: AuthViewFactory {
     
 }
 
-extension ViewFactory: HomeTabViewFactory {
+extension ViewFactory: HomeTabViewFactory, TagTabViewFactory {
     
     func generateHomeItemListView() -> ItemListViewType & Presentable {
         let homeItemListView = UIStoryboard.instantiateInitialViewController(withType: ItemListViewController.self)

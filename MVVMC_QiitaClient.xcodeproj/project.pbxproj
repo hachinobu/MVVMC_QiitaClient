@@ -41,6 +41,8 @@
 		AD5FA6C61F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C51F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift */; };
 		AD5FA6C81F56EF890089B10A /* TagListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */; };
 		AD5FA6CA1F56EFE10089B10A /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */; };
+		AD5FA6CD1F584ACE0089B10A /* TagTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */; };
+		AD5FA6D01F584B290089B10A /* TagTabViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CF1F584B290089B10A /* TagTabViewFactory.swift */; };
 		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
 		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
 		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
@@ -173,6 +175,8 @@
 		AD5FA6C51F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEntityToTagListTableCellVMTransform.swift; sourceTree = "<group>"; };
 		AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagListViewController.storyboard; sourceTree = "<group>"; };
 		AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
+		AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTabCoordinator.swift; sourceTree = "<group>"; };
+		AD5FA6CF1F584B290089B10A /* TagTabViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTabViewFactory.swift; sourceTree = "<group>"; };
 		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
 		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 		AD5C988C1F1F98E900DF5039 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
+				AD5FA6CE1F584AF50089B10A /* Tab */,
 				ADBD63C51F2C468F00BA9EE2 /* HomeTab */,
 				AD639DCA1F24E2E200AA56ED /* Auth */,
 				AD5C988E1F1F994200DF5039 /* CoordinatorFactory.swift */,
@@ -410,6 +415,7 @@
 		AD5C98A61F1F9CA300DF5039 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				AD5FA6CB1F584A9B0089B10A /* TagTabFlow */,
 				AD639E061F2C3F0700AA56ED /* HomeTabFlow */,
 				AD639E011F2B3ECB00AA56ED /* ItemFlow */,
 				AD639DBB1F231EE500AA56ED /* AuthFlow */,
@@ -439,6 +445,22 @@
 				AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		AD5FA6CB1F584A9B0089B10A /* TagTabFlow */ = {
+			isa = PBXGroup;
+			children = (
+				AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */,
+			);
+			path = TagTabFlow;
+			sourceTree = "<group>";
+		};
+		AD5FA6CE1F584AF50089B10A /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				AD5FA6CF1F584B290089B10A /* TagTabViewFactory.swift */,
+			);
+			path = Tab;
 			sourceTree = "<group>";
 		};
 		AD639DBB1F231EE500AA56ED /* AuthFlow */ = {
@@ -877,12 +899,14 @@
 				AD5FA6AA1F45D43E0089B10A /* UserDetailTableCellVM.swift in Sources */,
 				AD639E081F2C3F2B00AA56ED /* HomeTabViewFactory.swift in Sources */,
 				AD639DCC1F24E30600AA56ED /* AuthViewFactory.swift in Sources */,
+				AD5FA6D01F584B290089B10A /* TagTabViewFactory.swift in Sources */,
 				AD639DDE1F277B3400AA56ED /* ItemEntity.swift in Sources */,
 				C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */,
 				C2483F961F26DC0300685622 /* QiitaAPI.swift in Sources */,
 				C2FF21DE1F31E5F20002C89E /* ItemViewModel.swift in Sources */,
 				AD639DF61F28C2B700AA56ED /* HomeItemListVM.swift in Sources */,
 				AD639DED1F27826900AA56ED /* NibLoadableView.swift in Sources */,
+				AD5FA6CD1F584ACE0089B10A /* TagTabCoordinator.swift in Sources */,
 				AD639DF21F2783DC00AA56ED /* LoadingIndicatorView.swift in Sources */,
 				ADBD63C41F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift in Sources */,
 				AD5FA6AC1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift in Sources */,

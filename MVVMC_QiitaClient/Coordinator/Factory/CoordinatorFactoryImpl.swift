@@ -20,9 +20,14 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
         return AuthCoordinator(viewFactory: ViewFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
     }
     
-    func generateHomeTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
+    func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
         let rootController = navigationController ?? UINavigationController()
         return HomeTabCoordinator(viewFactory: ViewFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
+    }
+    
+    func generateTagTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
+        let rootController = navigationController ?? UINavigationController()
+        return TagTabCoordinator(viewFactory: ViewFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
 }

@@ -289,14 +289,21 @@ final class QiitaAPI {
     
     struct GetTagsRequest: QiitaRequest, PaginationRequest {
         
+        enum Sort: String {
+            case count
+            case name
+        }
+        
         typealias Response = [TagEntity]
         
         var page: Int
         let perPage: Int
+        let sort: Sort
         
-        init(page: Int = 1, perPage: Int = 20) {
+        init(page: Int = 1, perPage: Int = 20, sort: Sort = .count) {
             self.page = page
             self.perPage = perPage
+            self.sort = sort
         }
         
         var method: HTTPMethod {
@@ -308,7 +315,7 @@ final class QiitaAPI {
         }
         
         var queryParameters: [String : Any]? {
-            return ["page": page, "per_page": perPage]
+            return ["page": page, "per_page": perPage, "sort": sort.rawValue]
         }
         
     }
