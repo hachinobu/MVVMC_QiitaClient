@@ -48,4 +48,8 @@ extension ViewFactory: HomeTabViewFactory, TagTabViewFactory {
         return tagListView
     }
     
+    func generateTagItemListView() -> ItemListViewType & Presentable {
+        return UIStoryboard.instantiateInitialViewController(withType: ItemListViewController.self)
+    }
+    
 }

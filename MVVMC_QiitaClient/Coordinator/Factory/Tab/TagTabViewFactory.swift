@@ -10,4 +10,8 @@ import Foundation
 
 protocol TagTabViewFactory {
     func generateTagListView() -> TagListViewType & Presentable
+    func generateTagItemListView() -> ItemListViewType & Presentable
+    func generateItemDetailView() -> ItemDetailViewType & Presentable
+    func generateUserDetailView() -> UserDetailViewType & Presentable
+    func generateUserListView() -> UserListViewType & Presentable
 }
