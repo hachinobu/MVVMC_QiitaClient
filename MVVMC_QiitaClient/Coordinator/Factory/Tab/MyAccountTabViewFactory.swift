@@ -10,4 +10,8 @@ import Foundation
 
 protocol MyAccountTabViewFactory {
     func generateUserDetailView() -> UserDetailViewType & Presentable
+    func generateItemDetailView() -> ItemDetailViewType & Presentable
+    func generateUserListView() -> UserListViewType & Presentable
+    func generateTagListView() -> TagListViewType & Presentable
+    func generateTagItemListView() -> ItemListViewType & Presentable
 }
