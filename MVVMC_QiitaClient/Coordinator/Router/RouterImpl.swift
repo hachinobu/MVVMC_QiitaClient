@@ -20,10 +20,6 @@ final class RouterImpl: Router {
         self.completions = [:]
     }
     
-    func toPresent() -> UIViewController? {
-        return rootController
-    }
-    
     func setRoot(presentable: Presentable?, hideBar: Bool) {
         guard let controller = presentable?.toPresent() else { return }
         rootController?.setViewControllers([controller], animated: false)
