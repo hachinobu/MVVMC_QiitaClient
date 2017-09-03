@@ -10,6 +10,7 @@ import UIKit
 
 protocol CoordinatorFactory {
     func generateTabbarCoordinator() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType))
+    func generateNoAuthTabbarCoordinator() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType))
     func generateAuthCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType
     func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator
     func generateTagTabCoordinator(navigationController: UINavigationController?) -> Coordinator

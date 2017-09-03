@@ -39,7 +39,7 @@ class ApplicationCoordinator: BaseCoordinator {
             if strongSelf.hasAccessToken {
                 self?.runMainTabbarFlow()
             } else {
-                self?.runMainTabbarFlow()
+                self?.runNoAuthTabbarFlow()
             }
             self?.removeDependency(coordinator: coordinator)
         }).addDisposableTo(bag)
@@ -50,6 +50,18 @@ class ApplicationCoordinator: BaseCoordinator {
     
     private func runMainTabbarFlow() {
         let (view, coordinator) = coordinatorFactory.generateTabbarCoordinator()
+        coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
+            self?.runAuthFlow()
+            self?.removeDependency(coordinator: coordinator)
+        }).addDisposableTo(bag)
+        
+        addDependency(coordinator: coordinator)
+        router.setRoot(presentable: view, hideBar: true)
+        coordinator.start()
+    }
+    
+    private func runNoAuthTabbarFlow() {
+        let (view, coordinator) = coordinatorFactory.generateNoAuthTabbarCoordinator()
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.runAuthFlow()
             self?.removeDependency(coordinator: coordinator)

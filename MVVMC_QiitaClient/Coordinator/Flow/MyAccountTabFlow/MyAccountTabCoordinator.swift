@@ -54,31 +54,6 @@ final class MyAccountTabCoordinator: BaseCoordinator {
         
         router.setRoot(presentable: myAccountView, hideBar: false)
         
-//        let userRequest = QiitaAPI.GetUserDetailRequest(userId: userId)
-//        let userTransformer = UserEntityToUserDetailTableCellViewModelTransform()
-//        let userItemsRequest = QiitaAPI.GetUserItemsRequest(userId: userId, page: 1)
-//        let userItemsTransformer = ItemEntityToCellViewModelTransform()
-//        let viewModel = UserDetailVM(userRequest: userRequest, itemsRequest: userItemsRequest, userTransformer: userTransformer, itemTransformer: userItemsTransformer)
-//        userDetailView.injectViewModel(viewModel: viewModel)
-//        
-//        userDetailView.selectedItem.subscribe(onNext: { [weak self] itemId in
-//            self?.showItemDetail(itemId: itemId)
-//        }).addDisposableTo(bag)
-//        
-//        userDetailView.selectedFollowTagList.subscribe(onNext: { [weak self] userId in
-//            self?.showUserFollowTagList(userId: userId)
-//        }).addDisposableTo(bag)
-//        
-//        userDetailView.selectedFollowee.subscribe(onNext: { [weak self] userId in
-//            self?.showFolloweeList(userId: userId)
-//        }).addDisposableTo(bag)
-//        
-//        userDetailView.selectedFollower.subscribe(onNext: { [weak self] userId in
-//            self?.showFollowerList(userId: userId)
-//        }).addDisposableTo(bag)
-//
-//        router.push(presentable: userDetailView, animated: true, completion: nil)
-        
     }
     
 }

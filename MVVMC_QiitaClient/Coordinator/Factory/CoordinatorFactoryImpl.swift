@@ -16,6 +16,12 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
         return (tabbarController, tabbarCoordinator)
     }
     
+    func generateNoAuthTabbarCoordinator() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
+        let noAuthTabbarController = UIStoryboard.instantiateInitialViewController(withType: NoAuthTabbarController.self)
+        let noAuthTabbarCoordinator = NoAuthTabbarCoordinator(tabSelected: noAuthTabbarController, coordinatorFactory: CoordinatorFactoryImpl())
+        return (noAuthTabbarController, noAuthTabbarCoordinator)
+    }
+    
     func generateAuthCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType {
         return AuthCoordinator(viewFactory: ViewFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
     }
