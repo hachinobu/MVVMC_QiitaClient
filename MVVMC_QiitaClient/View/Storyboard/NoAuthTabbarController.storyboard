@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--タグ-->
         <scene sceneID="aiB-Wp-QN8">
             <objects>
                 <viewController id="6qf-Fe-CuZ" customClass="NoAuthTabbarController" customModule="MVVMC_QiitaClient" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,13 +22,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Grh-3o-TU2"/>
+                    <tabBarItem key="tabBarItem" title="タグ" id="Grh-3o-TU2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="922-KW-rra" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="726" y="472"/>
         </scene>
-        <!--Item 1-->
+        <!--アイテム-->
         <scene sceneID="Ufe-1p-jZo">
             <objects>
                 <viewController id="C8F-gN-uGl" customClass="NoAuthTabbarController" customModule="MVVMC_QiitaClient" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="PR5-jD-7CM"/>
+                    <tabBarItem key="tabBarItem" title="アイテム" id="PR5-jD-7CM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HPg-NA-Ug3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
