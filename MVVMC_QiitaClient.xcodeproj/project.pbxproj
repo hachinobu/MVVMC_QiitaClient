@@ -43,6 +43,8 @@
 		AD5FA6CA1F56EFE10089B10A /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */; };
 		AD5FA6CD1F584ACE0089B10A /* TagTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */; };
 		AD5FA6D01F584B290089B10A /* TagTabViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CF1F584B290089B10A /* TagTabViewFactory.swift */; };
+		AD5FA6D31F5BD3940089B10A /* MyAccountTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6D21F5BD3940089B10A /* MyAccountTabCoordinator.swift */; };
+		AD5FA6D51F5BD3D80089B10A /* MyAccountTabViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6D41F5BD3D80089B10A /* MyAccountTabViewFactory.swift */; };
 		AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */; };
 		AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */; };
 		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
@@ -177,6 +179,8 @@
 		AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTabCoordinator.swift; sourceTree = "<group>"; };
 		AD5FA6CF1F584B290089B10A /* TagTabViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTabViewFactory.swift; sourceTree = "<group>"; };
+		AD5FA6D21F5BD3940089B10A /* MyAccountTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountTabCoordinator.swift; sourceTree = "<group>"; };
+		AD5FA6D41F5BD3D80089B10A /* MyAccountTabViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountTabViewFactory.swift; sourceTree = "<group>"; };
 		AD639DB51F20EE5500AA56ED /* Storyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Extension.swift"; sourceTree = "<group>"; };
 		AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImpl.swift; sourceTree = "<group>"; };
 		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
@@ -415,6 +419,7 @@
 		AD5C98A61F1F9CA300DF5039 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
+				AD5FA6D11F5BD3550089B10A /* MyAccountTabFlow */,
 				AD5FA6CB1F584A9B0089B10A /* TagTabFlow */,
 				AD639E061F2C3F0700AA56ED /* HomeTabFlow */,
 				AD639E011F2B3ECB00AA56ED /* ItemFlow */,
@@ -459,8 +464,17 @@
 			isa = PBXGroup;
 			children = (
 				AD5FA6CF1F584B290089B10A /* TagTabViewFactory.swift */,
+				AD5FA6D41F5BD3D80089B10A /* MyAccountTabViewFactory.swift */,
 			);
 			path = Tab;
+			sourceTree = "<group>";
+		};
+		AD5FA6D11F5BD3550089B10A /* MyAccountTabFlow */ = {
+			isa = PBXGroup;
+			children = (
+				AD5FA6D21F5BD3940089B10A /* MyAccountTabCoordinator.swift */,
+			);
+			path = MyAccountTabFlow;
 			sourceTree = "<group>";
 		};
 		AD639DBB1F231EE500AA56ED /* AuthFlow */ = {
@@ -916,6 +930,7 @@
 				AD639DFC1F2B371300AA56ED /* UIViewController+Rx.swift in Sources */,
 				AD5FA6BD1F559CFE0089B10A /* TagListTableCell.swift in Sources */,
 				C2483F9F1F28A40C00685622 /* ItemListTableCellVM.swift in Sources */,
+				AD5FA6D31F5BD3940089B10A /* MyAccountTabCoordinator.swift in Sources */,
 				AD5FA6C21F55A14F0089B10A /* TagListVM.swift in Sources */,
 				C249044D1F4C38100058B300 /* UserListViewModel.swift in Sources */,
 				AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */,
@@ -931,6 +946,7 @@
 				AD639DB61F20EE5500AA56ED /* Storyboard+Extension.swift in Sources */,
 				C2FF21EA1F332DF20002C89E /* ItemDetailViewType.swift in Sources */,
 				AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */,
+				AD5FA6D51F5BD3D80089B10A /* MyAccountTabViewFactory.swift in Sources */,
 				AD5FA6C61F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift in Sources */,
 				AD639DD31F263E8300AA56ED /* AuthVM.swift in Sources */,
 				C2483F981F26DC5E00685622 /* AuthRequest.swift in Sources */,

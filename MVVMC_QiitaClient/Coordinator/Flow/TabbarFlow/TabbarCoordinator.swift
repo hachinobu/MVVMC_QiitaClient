@@ -34,6 +34,10 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
             self.runTagTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
+        tabSelected.selectedMyAccountTabObservable.subscribe(onNext: { [unowned self] navigationController in
+            self.runMyAccountTabFlow(navigationController: navigationController)
+        }).addDisposableTo(bag)
+        
     }
     
     private func runHomeTabFlow(navigationController: UINavigationController) {
@@ -46,6 +50,13 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     private func runTagTabFlow(navigationController: UINavigationController) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateTagTabCoordinator(navigationController: navigationController)
+        coordinator.start()
+        addDependency(coordinator: coordinator)
+    }
+    
+    private func runMyAccountTabFlow(navigationController: UINavigationController) {
+        guard navigationController.viewControllers.isEmpty else { return }
+        let coordinator = coordinatorFactory.generateMyAccountTabCoordinator(navigationController: navigationController)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }
