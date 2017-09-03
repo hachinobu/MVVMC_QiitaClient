@@ -28,11 +28,11 @@
             </objects>
             <point key="canvasLocation" x="-377" y="107"/>
         </scene>
-        <!--アイテム-->
+        <!--投稿-->
         <scene sceneID="tdl-cl-9kF">
             <objects>
                 <navigationController id="Ozq-vx-b1X" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="アイテム" id="Pqo-js-E2A"/>
+                    <tabBarItem key="tabBarItem" title="投稿" id="Pqo-js-E2A"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KzL-zr-XU4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

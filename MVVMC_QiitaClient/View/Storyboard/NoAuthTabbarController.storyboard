@@ -28,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="726" y="472"/>
         </scene>
-        <!--アイテム-->
+        <!--投稿-->
         <scene sceneID="Ufe-1p-jZo">
             <objects>
                 <viewController id="C8F-gN-uGl" customClass="NoAuthTabbarController" customModule="MVVMC_QiitaClient" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="アイテム" id="PR5-jD-7CM"/>
+                    <tabBarItem key="tabBarItem" title="投稿" id="PR5-jD-7CM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HPg-NA-Ug3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
