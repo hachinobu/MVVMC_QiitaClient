@@ -376,4 +376,50 @@ final class QiitaAPI {
         
     }
     
+    struct GetAuthUserItemsRequest: QiitaRequest, PaginationRequest {
+        
+        typealias Response = [ItemEntity]
+        
+        var page: Int
+        let perPage: Int
+        let query: String?
+        
+        init(page: Int = 1, perPage: Int = 20, query: String? = nil) {
+            self.page = page
+            self.perPage = perPage
+            self.query = query
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/authenticated_user/items"
+        }
+        
+        var queryParameters: [String : Any]? {
+            var parameter =  ["page": page.description, "per_page": perPage.description]
+            if let query = query {
+                parameter["query"] = query
+            }
+            return parameter
+        }
+        
+    }
+    
+    struct GetAuthenticatedUserRequest: QiitaRequest {
+        
+        typealias Response = UserEntity
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/authenticated_user"
+        }
+        
+    }
+    
 }
