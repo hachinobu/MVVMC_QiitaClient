@@ -121,9 +121,11 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
                 return viewModel.userId
             }.bind(to: selectedUserObserver).addDisposableTo(cell.bag)
             
-            cell.stockButton.rx.tap
-                .bind(to: tappedStockButtonObserver)
-                .addDisposableTo(cell.bag)
+            let tap = cell.stockButton.rx.tap.map { AccessTokenStorage.hasAccessToken() }.shareReplayLatestWhileConnected()
+            tap.filter { $0 }.map { _ in () }.bind(to: tappedStockButtonObserver).addDisposableTo(cell.bag)
+            tap.filter { !$0 }.subscribe(onNext: { _ in
+                print("ログインしてね")
+            }).addDisposableTo(cell.bag)
             
             return cell
             
