@@ -62,8 +62,17 @@ final class HomeTabCoordinator: BaseCoordinator {
             self?.showUserDetail(userId: userId)
         }).addDisposableTo(bag)
         
+        itemDetailView.requiredAuth.subscribe(onNext: { [weak self] _ in
+            self?.authenticateQiita()
+        }).addDisposableTo(bag)
+        
         router.push(presentable: itemDetailView, animated: true, completion: nil)
         
+    }
+    
+    private func authenticateQiita() {
+        let url: String = "http://qiita.com/api/v2/oauth/authorize?client_id=\(AuthInfo.clientId)&scope=read_qiita+write_qiita&state=\(AuthInfo.accessTokenState)"
+        UIApplication.shared.open(URL(string: url)!)
     }
     
     private func showUserDetail(userId: String) {

@@ -17,6 +17,9 @@ final class ItemDetailViewController: UIViewController, ItemDetailViewType {
     fileprivate var selectedUserObserver = PublishSubject<String>()
     lazy var selectedUser: Observable<String> = self.selectedUserObserver.asObservable()
     
+    fileprivate var requiredAuthObserver = PublishSubject<Void>()
+    lazy var requiredAuth: Observable<Void> = self.requiredAuthObserver.asObservable()
+    
     fileprivate var viewModel: ItemDetailViewModel!
     
     fileprivate let bag = DisposeBag()
@@ -49,7 +52,9 @@ extension ItemDetailViewController {
     
     fileprivate func bindView() {
         
-        let dataSource = ItemDetailTableViewDataSource(selectedUserObserver: selectedUserObserver, tappedStockButtonObserver: tappedStockButtonObserver)
+        let dataSource = ItemDetailTableViewDataSource(selectedUserObserver: selectedUserObserver,
+                                                       tappedStockButtonObserver: tappedStockButtonObserver,
+                                                       requiredAuthObserver: requiredAuthObserver)
         
         viewModel.itemDetail.map { [$0, $0] }
             .drive(tableView.rx.items(dataSource: dataSource))
@@ -78,10 +83,12 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     private var webContentCellHeight: CGFloat = 0.0
     let selectedUserObserver: PublishSubject<String>
     let tappedStockButtonObserver: PublishSubject<Void>
+    let requiredAuthObserver: PublishSubject<Void>
     
-    init(selectedUserObserver: PublishSubject<String>, tappedStockButtonObserver: PublishSubject<Void>) {
+    init(selectedUserObserver: PublishSubject<String>, tappedStockButtonObserver: PublishSubject<Void>, requiredAuthObserver: PublishSubject<Void>) {
         self.selectedUserObserver = selectedUserObserver
         self.tappedStockButtonObserver = tappedStockButtonObserver
+        self.requiredAuthObserver = requiredAuthObserver
     }
     
     func tableView(_ tableView: UITableView, observedEvent: Event<[ItemViewModel]>) {
@@ -123,9 +130,7 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             
             let tap = cell.stockButton.rx.tap.map { AccessTokenStorage.hasAccessToken() }.shareReplayLatestWhileConnected()
             tap.filter { $0 }.map { _ in () }.bind(to: tappedStockButtonObserver).addDisposableTo(cell.bag)
-            tap.filter { !$0 }.subscribe(onNext: { _ in
-                print("ログインしてね")
-            }).addDisposableTo(cell.bag)
+            tap.filter { !$0 }.map { _ in }.bind(to: requiredAuthObserver).addDisposableTo(cell.bag)
             
             return cell
             

@@ -12,6 +12,7 @@ import RxSwift
 protocol ItemDetailViewType: class {
     
     var selectedUser: Observable<String> { get }
+    var requiredAuth: Observable<Void> { get }
     
     func injectViewModel(viewModel: ItemDetailViewModel)
     
