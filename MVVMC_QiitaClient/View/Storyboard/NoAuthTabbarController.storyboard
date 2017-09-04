@@ -9,44 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--タグ-->
-        <scene sceneID="aiB-Wp-QN8">
-            <objects>
-                <viewController id="6qf-Fe-CuZ" customClass="NoAuthTabbarController" customModule="MVVMC_QiitaClient" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3BG-uq-jsP"/>
-                        <viewControllerLayoutGuide type="bottom" id="SWH-nN-Ld2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nXs-TM-gls">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="タグ" id="Grh-3o-TU2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="922-KW-rra" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="726" y="472"/>
-        </scene>
-        <!--投稿-->
-        <scene sceneID="Ufe-1p-jZo">
-            <objects>
-                <viewController id="C8F-gN-uGl" customClass="NoAuthTabbarController" customModule="MVVMC_QiitaClient" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mQK-AT-58i"/>
-                        <viewControllerLayoutGuide type="bottom" id="6Yv-OI-gtH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WmM-VZ-zpV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="投稿" id="PR5-jD-7CM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HPg-NA-Ug3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="726" y="-183"/>
-        </scene>
         <!--No Auth Tabbar Controller-->
         <scene sceneID="55D-A5-eKX">
             <objects>
@@ -57,13 +19,45 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="C8F-gN-uGl" kind="relationship" relationship="viewControllers" id="AAh-Km-NUe"/>
-                        <segue destination="6qf-Fe-CuZ" kind="relationship" relationship="viewControllers" id="77S-bD-7Je"/>
+                        <segue destination="Vj7-qf-xe0" kind="relationship" relationship="viewControllers" id="AAh-Km-NUe"/>
+                        <segue destination="rAA-xo-0xS" kind="relationship" relationship="viewControllers" id="77S-bD-7Je"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnq-i5-1m8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-226" y="144"/>
+        </scene>
+        <!--投稿-->
+        <scene sceneID="nzP-KB-ghf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vj7-qf-xe0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="投稿" id="PR5-jD-7CM"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bml-jY-cQO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MU3-Ea-ZNY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725.60000000000002" y="-183.05847076461771"/>
+        </scene>
+        <!--タグ-->
+        <scene sceneID="T9e-bz-roM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rAA-xo-0xS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="タグ" id="Grh-3o-TU2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7MG-Ww-9WZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N2s-WB-34i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725.60000000000002" y="471.8140929535233"/>
         </scene>
     </scenes>
 </document>
