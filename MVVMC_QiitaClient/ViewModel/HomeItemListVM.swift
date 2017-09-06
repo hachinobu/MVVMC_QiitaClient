@@ -19,7 +19,7 @@ final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
     lazy var items: Driver<[ItemListTableCellViewModel]> = {
         
         self.fetchItemListAction.elements
-            .withLatestFrom(self.fetchItemListAction.inputs) { $0 }
+            .withLatestFrom(self.fetchItemListAction.inputs) { ($0, $1) }
             .scan([ItemListTableCellViewModel]()) { elements, results in
                 
                 let page = results.1

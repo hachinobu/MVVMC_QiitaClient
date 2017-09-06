@@ -59,7 +59,7 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
             
             itemFetchAction.elements.map { $0.count != itemsRequest.perPage }.bind(to: completedAllData).addDisposableTo(bag)
             
-            let fetchItemElements = itemFetchAction.elements.withLatestFrom(itemFetchAction.inputs) { $0 }.scan([ItemViewModel]()) { (elements, result) in
+            let fetchItemElements = itemFetchAction.elements.withLatestFrom(itemFetchAction.inputs) { ($0, $1) }.scan([ItemViewModel]()) { (elements, result) in
                 let page = result.1
                 let fetchObjects = result.0
                 if page == 1 {
@@ -84,7 +84,7 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
                 .addDisposableTo(bag)
             
             viewDidLoadTrigger.subscribe(onNext: { [weak self] in
-                self?.userFetchAction.execute()
+                self?.userFetchAction.execute(())
                 self?.itemFetchAction.execute(1)
             }).addDisposableTo(bag)
             
@@ -101,7 +101,7 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
         refresh.asObservable()
             .withLatestFrom(isLoadingIndicatorAnimation.asObservable())
             .filter { !$0 }.subscribe(onNext: { [weak self] _ in
-                self?.userFetchAction.execute()
+                self?.userFetchAction.execute(())
                 self?.itemFetchAction.execute(1)
             }).addDisposableTo(bag)
         

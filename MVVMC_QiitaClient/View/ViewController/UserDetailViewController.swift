@@ -207,7 +207,7 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
         guard indexPath.section == items.count - 1 && indexPath.row == items[0].userItems.count - 1 else {
             return
         }
-        reachedBottomObserver.onNext()
+        reachedBottomObserver.onNext(())
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

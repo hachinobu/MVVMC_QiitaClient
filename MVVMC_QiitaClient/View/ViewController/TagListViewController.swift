@@ -32,7 +32,7 @@ final class TagListViewController: UIViewController, TagListViewType {
         setupUI()
         setupViewModel()
         bindView()
-        viewModel.viewDidLoadTrigger.onNext()
+        viewModel.viewDidLoadTrigger.onNext(())
     }
 
 }

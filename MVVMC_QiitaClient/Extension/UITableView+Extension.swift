@@ -10,12 +10,12 @@ import UIKit
 
 extension UITableView {
     
-    func register<T: UITableViewCell>(type: T.Type) where T: ReusableView, T: NibLoadableView {
+    func register<T: UITableViewCell>(type: T.Type) {
         let nib = UINib(nibName: T.nibName, bundle: nil)
         register(nib, forCellReuseIdentifier: T.reuseIdentifier)
     }
     
-    func dequeueReusableCell<T: UITableViewCell>(indexPath: IndexPath) -> T where T: ReusableView {
+    func dequeueReusableCell<T: UITableViewCell>(indexPath: IndexPath) -> T {
         guard let cell = dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
             fatalError("wrong cell")
         }

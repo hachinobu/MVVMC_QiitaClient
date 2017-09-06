@@ -48,7 +48,7 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
                 return session.rx.response(request: countRequest).shareReplayLatestWhileConnected()
             }
             
-            Observable.zip(fetchItemAction.elements, fetchStockCountAction.elements, hasStockObserver) { transformer.transform(input: $0) }
+            Observable.zip(fetchItemAction.elements, fetchStockCountAction.elements, hasStockObserver) { transformer.transform(input: ($0, $1, $2)) }
                 .bind(to: itemDetailObserver)
                 .addDisposableTo(bag)
             
@@ -89,7 +89,7 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
                 fetchStockStatusAction.execute(())
             }).addDisposableTo(bag)
             
-            let stockStatusObservable = updateStockTrigger.withLatestFrom(hasStockObserver) { $0.1 }.shareReplayLatestWhileConnected()
+            let stockStatusObservable = updateStockTrigger.withLatestFrom(hasStockObserver) { $1 }.shareReplayLatestWhileConnected()
             stockStatusObservable.filter { $0 }.subscribe(onNext: { _ in
                 deleteStockAction.execute(())
             }).addDisposableTo(bag)

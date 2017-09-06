@@ -54,7 +54,7 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
             
             let firstPage = 1
             
-            fetchUsersAction.elements.withLatestFrom(self.fetchUsersAction.inputs) { $0 }
+            fetchUsersAction.elements.withLatestFrom(self.fetchUsersAction.inputs) { ($0, $1) }
                 .scan([UserListTableCellViewModel]()) { [weak self] elements, results in
                     
                     guard let strongSelf = self else {

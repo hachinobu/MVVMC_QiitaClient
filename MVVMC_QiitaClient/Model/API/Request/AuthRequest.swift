@@ -9,7 +9,6 @@
 import Foundation
 import APIKit
 
-protocol AuthRequest: Request {
-    associatedtype Response: AccessTokenProtocol
+protocol AuthRequest: Request where Response: AccessTokenProtocol {
     var code: String { get set }
 }

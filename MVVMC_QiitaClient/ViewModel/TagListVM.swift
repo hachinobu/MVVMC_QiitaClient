@@ -54,7 +54,7 @@ final class TagListVM<Results: Sequence>: TagListViewModel {
             
             let firstPage = 1
             
-            fetchTagsAction.elements.withLatestFrom(self.fetchTagsAction.inputs) { $0 }
+            fetchTagsAction.elements.withLatestFrom(self.fetchTagsAction.inputs) { ($0, $1) }
                 .scan([TagListTableCellViewModel]()) { [weak self] elements, results in
                     
                     guard let strongSelf = self else {
