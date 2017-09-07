@@ -31,7 +31,7 @@ final class HomeTabCoordinator: BaseCoordinator {
         let itemListView = viewFactory.generateHomeItemListView()
         let request = QiitaAPI.GetItemsRequest(page: 1)
         let transform = ItemEntityToCellViewModelTransform()
-        let viewModel = HomeItemListVM(request: request, transformer: transform)
+        let viewModel = ItemListVM(request: request, transformer: transform)
         itemListView.injectViewModel(viewModel: viewModel)
         
         itemListView.selectedItem.subscribe(onNext: { [weak self] itemId in
@@ -158,7 +158,7 @@ final class HomeTabCoordinator: BaseCoordinator {
         let itemListView = viewFactory.generateHomeItemListView()
         let tagItemsRequest = QiitaAPI.GetTagItemsRequest(tagId: tagId, page: 1, perPage: 20)
         let transform = ItemEntityToCellViewModelTransform()
-        let viewModel = HomeItemListVM(request: tagItemsRequest, transformer: transform)
+        let viewModel = ItemListVM(request: tagItemsRequest, transformer: transform)
         itemListView.injectViewModel(viewModel: viewModel)
         
         itemListView.selectedItem.subscribe(onNext: { [weak self] itemId in

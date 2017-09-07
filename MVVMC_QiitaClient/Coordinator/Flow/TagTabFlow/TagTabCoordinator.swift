@@ -47,7 +47,7 @@ final class TagTabCoordinator: BaseCoordinator {
         let itemListView = viewFactory.generateTagItemListView()
         let tagItemsRequest = QiitaAPI.GetTagItemsRequest(tagId: tagId, page: 1, perPage: 20)
         let transform = ItemEntityToCellViewModelTransform()
-        let viewModel = HomeItemListVM(request: tagItemsRequest, transformer: transform)
+        let viewModel = ItemListVM(request: tagItemsRequest, transformer: transform)
         itemListView.injectViewModel(viewModel: viewModel)
         
         itemListView.selectedItem.subscribe(onNext: { [weak self] itemId in

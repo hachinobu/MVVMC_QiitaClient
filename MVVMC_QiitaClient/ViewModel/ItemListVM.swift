@@ -12,7 +12,7 @@ import RxCocoa
 import Action
 import APIKit
 
-final class HomeItemListVM<Results: Sequence>: ItemListViewModel {
+final class ItemListVM<Results: Sequence>: ItemListViewModel {
 
     private let FirstPage: Int = 1
     
