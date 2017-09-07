@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Router {
+protocol Router: Presentable {
     
     func setRoot(presentable: Presentable?, hideBar: Bool)
     func popToRoot(animated: Bool)
