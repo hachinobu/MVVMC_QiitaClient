@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import ObjectMapper
 
-struct UserEntity {
+struct UserEntity: Codable {
     let description: String?
     let facebookId: String?
     let followeesCount: Int
@@ -25,26 +24,23 @@ struct UserEntity {
     let profileImageUrlString: String
     let twitterScreenName: String?
     let websiteUrl: String?
-}
-
-extension UserEntity: ImmutableMappable {
     
-    init(map: Map) throws {
-        description = try? map.value("description")
-        facebookId = try? map.value("facebook_id")
-        followeesCount = try map.value("followees_count")
-        followersCount = try map.value("followers_count")
-        githubLoginName = try? map.value("github_login_name")
-        id = try map.value("id")
-        itemsCount = try map.value("items_count")
-        linkedinId = try? map.value("linkedin_id")
-        location = try? map.value("location")
-        name = try? map.value("name")
-        organization = try? map.value("organization")
-        permanentId = try map.value("permanent_id")
-        profileImageUrlString = try map.value("profile_image_url")
-        twitterScreenName = try? map.value("twitter_screen_name")
-        websiteUrl = try? map.value("website_url")
+    private enum CodingKeys: String, CodingKey {
+        case description
+        case facebookId = "facebook_id"
+        case followeesCount = "followees_count"
+        case followersCount = "followers_count"
+        case githubLoginName = "github_login_name"
+        case id
+        case itemsCount = "items_count"
+        case linkedinId = "linkedin_id"
+        case location
+        case name
+        case organization
+        case permanentId = "permanent_id"
+        case profileImageUrlString = "profile_image_url"
+        case twitterScreenName = "twitter_screen_name"
+        case websiteUrl = "website_url"
     }
     
 }

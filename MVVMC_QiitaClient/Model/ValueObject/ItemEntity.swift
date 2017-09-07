@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import ObjectMapper
 
-struct ItemEntity {
+struct ItemEntity: Codable {
     let renderedBody: String
     let body: String
     let coediting: Bool
@@ -23,34 +22,30 @@ struct ItemEntity {
     let url: String
     let user: UserEntity
     
-    struct ItemTagEntity: ImmutableMappable {
+    private enum CodingKeys: String, CodingKey {
+        case renderedBody = "rendered_body"
+        case body
+        case coediting
+        case createdAt = "created_at"
+        case group
+        case id
+        case isPrivate = "private"
+        case tagList = "tags"
+        case title
+        case updatedAt = "updated_at"
+        case url
+        case user
+    }
+    
+    struct ItemTagEntity: Codable {
         let name: String
         let versions: [String]
         
-        init(map: Map) throws {
-            name = try map.value("name")
-            versions = try map.value("versions")
+        private enum CodingKeys: String, CodingKey {
+            case name
+            case versions
         }
         
-    }
-    
-}
-
-extension ItemEntity: ImmutableMappable {
-    
-    init(map: Map) throws {
-        renderedBody = try map.value("rendered_body")
-        body = try map.value("body")
-        coediting = try map.value("coediting")
-        createdAt = try map.value("created_at")
-        group = try? map.value("group")
-        id = try map.value("id")
-        isPrivate = try map.value("private")
-        tagList = try map.value("tags")
-        title = try map.value("title")
-        updatedAt = try map.value("updated_at")
-        url = try map.value("url")
-        user = try map.value("user")
     }
     
 }

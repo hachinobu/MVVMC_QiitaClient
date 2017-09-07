@@ -7,22 +7,18 @@
 //
 
 import Foundation
-import ObjectMapper
 
-struct TagEntity {
+struct TagEntity: Codable {
     let followersCount: Int
     let iconUrl: String?
     let id: String
     let itemsCount: Int
-}
-
-extension TagEntity: ImmutableMappable {
     
-    init(map: Map) throws {
-        followersCount = try map.value("followers_count")
-        iconUrl = try? map.value("icon_url")
-        id = try map.value("id")
-        itemsCount = try map.value("items_count")
+    private enum CodingKeys: String, CodingKey {
+        case followersCount = "followers_count"
+        case iconUrl = "icon_url"
+        case id
+        case itemsCount = "items_count"
     }
     
 }

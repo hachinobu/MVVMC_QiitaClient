@@ -8,7 +8,6 @@
 
 import Foundation
 import APIKit
-import ObjectMapper
 
 struct QiitaError: Error {
     let message: String
@@ -34,6 +33,10 @@ extension QiitaRequest {
         return URL(string: "https://qiita.com")!
     }
     
+    var dataParser: DataParser {
+        return JSONDataParser(readingOptions: [])
+    }
+    
     func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
         switch urlResponse.statusCode {
         case 200..<300:
@@ -47,26 +50,36 @@ extension QiitaRequest {
     
 }
 
-extension QiitaRequest where Response: ImmutableMappable {
-    
+extension QiitaRequest where Response: Codable {
+
+    var dataParser: DataParser {
+        return CodableParser()
+    }
+
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
-        guard let json = object as? [String : Any] else {
+        guard let data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }
-        return try Response(JSON: json)
+        let decoder = JSONDecoder()
+        return try decoder.decode(Response.self, from: data)
     }
-    
+
 }
 
-extension QiitaRequest where Response: Sequence, Response.Iterator.Element: ImmutableMappable {
-    
+extension QiitaRequest where Response: Codable, Response: Sequence, Response.Iterator.Element: Codable {
+
+    var dataParser: DataParser {
+        return CodableParser()
+    }
+
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
-        guard let jsonArray = object as? [[String: Any]] else {
+        guard let data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }
-        return try Mapper<Response.Iterator.Element>().mapArray(JSONArray: jsonArray) as! Response
+        let decoder = JSONDecoder()
+        return try decoder.decode(Response.self, from: data)
     }
-    
+
 }
 
 extension QiitaRequest where Response == Void {
@@ -75,5 +88,20 @@ extension QiitaRequest where Response == Void {
         return ()
     }
     
+}
+
+class CodableParser: DataParser {
+    // MARK: - DataParser
+    
+    /// Value for `Accept` header field of HTTP request.
+    public var contentType: String? {
+        return "application/json"
+    }
+    
+    /// Return `Any` that expresses structure of JSON response.
+    /// - Throws: `NSError` when `JSONSerialization` fails to deserialize `Data` into `Any`.
+    public func parse(data: Data) throws -> Any {
+        return data
+    }
 }
 

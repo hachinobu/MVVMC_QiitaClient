@@ -8,7 +8,6 @@
 
 import Foundation
 import APIKit
-import ObjectMapper
 
 protocol PaginationRequest: Request {
     var page: Int { get set }

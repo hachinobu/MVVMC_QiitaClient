@@ -7,20 +7,16 @@
 //
 
 import Foundation
-import ObjectMapper
 
-struct AuthEntity {
+struct AuthEntity: Codable {
     let cliendId: String
     let scopes: [String]
     let token: String
-}
-
-extension AuthEntity: ImmutableMappable {
     
-    init(map: Map) throws {
-        cliendId = try map.value("client_id")
-        scopes = try map.value("scopes")
-        token = try map.value("token")
+    private enum CodingKeys: String, CodingKey {
+        case cliendId = "client_id"
+        case scopes
+        case token
     }
     
 }
