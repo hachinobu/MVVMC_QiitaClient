@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AuthViewFactory {
+protocol AuthModuleFactory {
     
     func generateAuthView() -> AuthViewProtocol & Presentable
     

@@ -12,14 +12,14 @@ import RxSwift
 final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
 
     private let bag = DisposeBag()
-    private let viewFactory: AuthViewFactory
+    private let viewFactory: AuthModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
     
     private let finishFlowObserver = PublishSubject<Void>()
     lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
     
-    init(viewFactory: AuthViewFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+    init(viewFactory: AuthModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
         self.viewFactory = viewFactory
         self.coordinatorFactory = coordinatorFactory
         self.router = router

@@ -8,11 +8,11 @@
 
 import UIKit
 
-final class ViewFactory {
+final class ModuleFactory {
 }
 
 //AuthFlow
-extension ViewFactory: AuthViewFactory {
+extension ModuleFactory: AuthModuleFactory {
     
     func generateAuthView() -> AuthViewProtocol & Presentable {
         let authView = UIStoryboard.instantiateInitialViewController(withType: AuthViewController.self)
@@ -21,7 +21,7 @@ extension ViewFactory: AuthViewFactory {
     
 }
 
-extension ViewFactory: HomeTabViewFactory, TagTabViewFactory, MyAccountTabViewFactory {
+extension ModuleFactory: ItemModuleFactory, TagModuleFactory, MyAccountModuleFactory {
     
     func generateHomeItemListView() -> ItemListViewType & Presentable {
         let homeItemListView = UIStoryboard.instantiateInitialViewController(withType: ItemListViewController.self)

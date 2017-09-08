@@ -12,11 +12,11 @@ import RxSwift
 final class TagTabCoordinator: BaseCoordinator {
     
     private let bag = DisposeBag()
-    private let viewFactory: TagTabViewFactory
+    private let viewFactory: TagModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
     
-    init(viewFactory: TagTabViewFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+    init(viewFactory: TagModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
         self.viewFactory = viewFactory
         self.coordinatorFactory = coordinatorFactory
         self.router = router

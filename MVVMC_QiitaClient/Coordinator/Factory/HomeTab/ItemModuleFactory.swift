@@ -1,17 +1,17 @@
 //
-//  TagTabViewFactory.swift
+//  HomeTabViewFactory.swift
 //  MVVMC_QiitaClient
 //
-//  Created by Takahiro Nishinobu on 2017/08/31.
+//  Created by Takahiro Nishinobu on 2017/07/29.
 //  Copyright © 2017年 hachinobu. All rights reserved.
 //
 
 import Foundation
 
-protocol TagTabViewFactory {
-    func generateTagListView() -> TagListViewType & Presentable
-    func generateTagItemListView() -> ItemListViewType & Presentable
+protocol ItemModuleFactory {
+    func generateHomeItemListView() -> ItemListViewType & Presentable
     func generateItemDetailView() -> ItemDetailViewType & Presentable
     func generateUserDetailView() -> UserDetailViewType & Presentable
     func generateUserListView() -> UserListViewType & Presentable
+    func generateTagListView() -> TagListViewType & Presentable
 }

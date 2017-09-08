@@ -12,11 +12,11 @@ import RxSwift
 final class MyAccountTabCoordinator: BaseCoordinator {
 
     private let bag = DisposeBag()
-    private let viewFactory: MyAccountTabViewFactory
+    private let viewFactory: MyAccountModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
     
-    init(viewFactory: MyAccountTabViewFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+    init(viewFactory: MyAccountModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
         self.viewFactory = viewFactory
         self.coordinatorFactory = coordinatorFactory
         self.router = router
