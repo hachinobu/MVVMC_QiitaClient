@@ -1,5 +1,5 @@
 //
-//  MyAccountTabViewFactory.swift
+//  MyAccountModuleFactory.swift
 //  MVVMC_QiitaClient
 //
 //  Created by Takahiro Nishinobu on 2017/09/03.

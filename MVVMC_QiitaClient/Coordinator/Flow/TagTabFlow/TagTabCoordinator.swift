@@ -12,12 +12,12 @@ import RxSwift
 final class TagTabCoordinator: BaseCoordinator {
     
     private let bag = DisposeBag()
-    private let viewFactory: TagModuleFactory
+    private let moduleFactory: TagModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
     
-    init(viewFactory: TagModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
-        self.viewFactory = viewFactory
+    init(moduleFactory: TagModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+        self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
         self.router = router
     }
@@ -28,7 +28,7 @@ final class TagTabCoordinator: BaseCoordinator {
     
     private func showAllTagListView() {
         
-        let tagListView = viewFactory.generateTagListView()
+        let tagListView = moduleFactory.generateTagListView()
         let tagsRequest = QiitaAPI.GetTagsRequest(page: 1, perPage: 20, sort: .count)
         let transformer = TagEntityToTagListTableCellVMTransform()
         let viewModel = TagListVM(request: tagsRequest, transformer: transformer)
@@ -44,7 +44,7 @@ final class TagTabCoordinator: BaseCoordinator {
     
     private func showTagItemList(tagId: String) {
         
-        let itemListView = viewFactory.generateTagItemListView()
+        let itemListView = moduleFactory.generateTagItemListView()
         let tagItemsRequest = QiitaAPI.GetTagItemsRequest(tagId: tagId, page: 1, perPage: 20)
         let transform = ItemEntityToCellViewModelTransform()
         let viewModel = ItemListVM(request: tagItemsRequest, transformer: transform)
@@ -63,7 +63,7 @@ final class TagTabCoordinator: BaseCoordinator {
     }
     
     private func showItemDetail(itemId: String) {
-        let itemDetailView = viewFactory.generateItemDetailView()
+        let itemDetailView = moduleFactory.generateItemDetailView()
         
         let itemDetailRequest = QiitaAPI.GetItemDetailRequest(itemId: itemId)
         let itemStockerRequest = QiitaAPI.GetItemStockersRequest(itemId: itemId)
@@ -84,7 +84,7 @@ final class TagTabCoordinator: BaseCoordinator {
     
     private func showUserDetail(userId: String) {
         
-        let userDetailView = viewFactory.generateUserDetailView()
+        let userDetailView = moduleFactory.generateUserDetailView()
         let userRequest = QiitaAPI.GetUserDetailRequest(userId: userId)
         let userTransformer = UserEntityToUserDetailTableCellViewModelTransform()
         let userItemsRequest = QiitaAPI.GetUserItemsRequest(userId: userId, page: 1)
@@ -114,7 +114,7 @@ final class TagTabCoordinator: BaseCoordinator {
     
     private func showFolloweeList(userId: String) {
         
-        let userListView = viewFactory.generateUserListView()
+        let userListView = moduleFactory.generateUserListView()
         let followerRequest = QiitaAPI.GetFolloweesRequest(userId: userId, page: 1)
         let transformer = UserEntityToUserListTableCellVMTransform()
         let viewModel = UserListVM(request: followerRequest, transformer: transformer)
@@ -130,7 +130,7 @@ final class TagTabCoordinator: BaseCoordinator {
     
     private func showFollowerList(userId: String) {
         
-        let userListView = viewFactory.generateUserListView()
+        let userListView = moduleFactory.generateUserListView()
         let followerRequest = QiitaAPI.GetFollowersRequest(userId: userId, page: 1)
         let transformer = UserEntityToUserListTableCellVMTransform()
         let viewModel = UserListVM(request: followerRequest, transformer: transformer)
@@ -146,7 +146,7 @@ final class TagTabCoordinator: BaseCoordinator {
     
     private func showUserFollowTagList(userId: String) {
         
-        let tagListView = viewFactory.generateTagListView()
+        let tagListView = moduleFactory.generateTagListView()
         let userFollowTagRequest = QiitaAPI.GetUserFollowTagsRequest(userId: userId, page: 1, perPage: 20)
         let transformer = TagEntityToTagListTableCellVMTransform()
         let viewModel = TagListVM(request: userFollowTagRequest, transformer: transformer)

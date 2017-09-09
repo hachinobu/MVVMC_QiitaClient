@@ -1,5 +1,5 @@
 //
-//  TagTabViewFactory.swift
+//  TagModuleFactory.swift
 //  MVVMC_QiitaClient
 //
 //  Created by Takahiro Nishinobu on 2017/08/31.

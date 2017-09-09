@@ -23,22 +23,22 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
     }
     
     func generateAuthCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType {
-        return AuthCoordinator(viewFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+        return AuthCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
     }
     
     func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
         let rootController = navigationController ?? UINavigationController()
-        return HomeTabCoordinator(viewFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
+        return HomeTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
     func generateTagTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
         let rootController = navigationController ?? UINavigationController()
-        return TagTabCoordinator(viewFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
+        return TagTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
     func generateMyAccountTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
         let rootController = navigationController ?? UINavigationController()
-        return MyAccountTabCoordinator(viewFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
+        return MyAccountTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
 }

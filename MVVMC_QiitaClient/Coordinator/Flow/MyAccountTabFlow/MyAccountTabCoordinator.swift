@@ -12,12 +12,12 @@ import RxSwift
 final class MyAccountTabCoordinator: BaseCoordinator {
 
     private let bag = DisposeBag()
-    private let viewFactory: MyAccountModuleFactory
+    private let moduleFactory: MyAccountModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
     
-    init(viewFactory: MyAccountModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
-        self.viewFactory = viewFactory
+    init(moduleFactory: MyAccountModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+        self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
         self.router = router
     }
@@ -28,7 +28,7 @@ final class MyAccountTabCoordinator: BaseCoordinator {
     
     private func showMyAccountView() {
         
-        let myAccountView = viewFactory.generateUserDetailView()
+        let myAccountView = moduleFactory.generateUserDetailView()
         let userRequest = QiitaAPI.GetAuthenticatedUserRequest()
         let userTransformer = UserEntityToUserDetailTableCellViewModelTransform()
         let myItemsRequest = QiitaAPI.GetAuthUserItemsRequest(page: 1, perPage: 20)
@@ -57,7 +57,7 @@ final class MyAccountTabCoordinator: BaseCoordinator {
     }
     
     private func showMyItemDetail(itemId: String) {
-        let itemDetailView = viewFactory.generateItemDetailView()
+        let itemDetailView = moduleFactory.generateItemDetailView()
         
         let itemDetailRequest = QiitaAPI.GetItemDetailRequest(itemId: itemId)
         let itemStockerRequest = QiitaAPI.GetItemStockersRequest(itemId: itemId)
@@ -76,7 +76,7 @@ final class MyAccountTabCoordinator: BaseCoordinator {
     }
     
     private func showItemDetail(itemId: String) {
-        let itemDetailView = viewFactory.generateItemDetailView()
+        let itemDetailView = moduleFactory.generateItemDetailView()
         
         let itemDetailRequest = QiitaAPI.GetItemDetailRequest(itemId: itemId)
         let itemStockerRequest = QiitaAPI.GetItemStockersRequest(itemId: itemId)
@@ -97,7 +97,7 @@ final class MyAccountTabCoordinator: BaseCoordinator {
     
     private func showUserDetail(userId: String) {
         
-        let userDetailView = viewFactory.generateUserDetailView()
+        let userDetailView = moduleFactory.generateUserDetailView()
         let userRequest = QiitaAPI.GetUserDetailRequest(userId: userId)
         let userTransformer = UserEntityToUserDetailTableCellViewModelTransform()
         let userItemsRequest = QiitaAPI.GetUserItemsRequest(userId: userId, page: 1)
@@ -127,7 +127,7 @@ final class MyAccountTabCoordinator: BaseCoordinator {
     
     private func showFolloweeList(userId: String) {
         
-        let userListView = viewFactory.generateUserListView()
+        let userListView = moduleFactory.generateUserListView()
         let followerRequest = QiitaAPI.GetFolloweesRequest(userId: userId, page: 1)
         let transformer = UserEntityToUserListTableCellVMTransform()
         let viewModel = UserListVM(request: followerRequest, transformer: transformer)
@@ -143,7 +143,7 @@ final class MyAccountTabCoordinator: BaseCoordinator {
     
     private func showFollowerList(userId: String) {
         
-        let userListView = viewFactory.generateUserListView()
+        let userListView = moduleFactory.generateUserListView()
         let followerRequest = QiitaAPI.GetFollowersRequest(userId: userId, page: 1)
         let transformer = UserEntityToUserListTableCellVMTransform()
         let viewModel = UserListVM(request: followerRequest, transformer: transformer)
@@ -159,7 +159,7 @@ final class MyAccountTabCoordinator: BaseCoordinator {
     
     private func showUserFollowTagList(userId: String) {
         
-        let tagListView = viewFactory.generateTagListView()
+        let tagListView = moduleFactory.generateTagListView()
         let userFollowTagRequest = QiitaAPI.GetUserFollowTagsRequest(userId: userId, page: 1, perPage: 20)
         let transformer = TagEntityToTagListTableCellVMTransform()
         let viewModel = TagListVM(request: userFollowTagRequest, transformer: transformer)
@@ -175,7 +175,7 @@ final class MyAccountTabCoordinator: BaseCoordinator {
     
     private func showTagItemList(tagId: String) {
         
-        let itemListView = viewFactory.generateTagItemListView()
+        let itemListView = moduleFactory.generateTagItemListView()
         let tagItemsRequest = QiitaAPI.GetTagItemsRequest(tagId: tagId, page: 1, perPage: 20)
         let transform = ItemEntityToCellViewModelTransform()
         let viewModel = ItemListVM(request: tagItemsRequest, transformer: transform)

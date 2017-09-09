@@ -1,5 +1,5 @@
 //
-//  HomeTabViewFactory.swift
+//  ItemModuleFactory.swift
 //  MVVMC_QiitaClient
 //
 //  Created by Takahiro Nishinobu on 2017/07/29.

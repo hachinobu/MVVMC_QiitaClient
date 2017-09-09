@@ -12,15 +12,15 @@ import RxSwift
 final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
 
     private let bag = DisposeBag()
-    private let viewFactory: AuthModuleFactory
+    private let moduleFactory: AuthModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
     
     private let finishFlowObserver = PublishSubject<Void>()
     lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
     
-    init(viewFactory: AuthModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
-        self.viewFactory = viewFactory
+    init(moduleFactory: AuthModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+        self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
         self.router = router
     }
@@ -31,7 +31,7 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     
     private func showAuthView() {
         
-        let authView = viewFactory.generateAuthView()
+        let authView = moduleFactory.generateAuthView()
         let authRequest = QiitaAPI.PostAccessTokenRequest(clientId: AuthInfo.clientId, clientSecret: AuthInfo.clientSecret)
         let viewModel = AuthVM(request: authRequest)
         authView.injectViewModel(viewModel: viewModel)
