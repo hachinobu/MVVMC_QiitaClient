@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol AuthViewProtocol: class {
+protocol AuthViewType: class {
     
     var tappedAuth: Observable<Void> { get }
     var tappedSkipAuth: Observable<Void> { get }

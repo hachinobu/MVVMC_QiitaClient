@@ -14,33 +14,86 @@ final class ModuleFactory {
 //AuthFlow
 extension ModuleFactory: AuthModuleFactory {
     
-    func generateAuthView() -> AuthViewProtocol & Presentable {
+    func generateAuthView() -> AuthViewType & Presentable {
         let authView = UIStoryboard.instantiateInitialViewController(withType: AuthViewController.self)
+        let authRequest = QiitaAPI.PostAccessTokenRequest(clientId: AuthInfo.clientId, clientSecret: AuthInfo.clientSecret)
+        let viewModel = AuthVM(request: authRequest)
+        authView.injectViewModel(viewModel: viewModel)
+        
         return authView
     }
     
 }
 
-extension ModuleFactory: ItemModuleFactory, TagModuleFactory, MyAccountModuleFactory {
+extension ModuleFactory: ItemModuleFactory {
     
-    func generateHomeItemListView() -> ItemListViewType & Presentable {
-        let homeItemListView = UIStoryboard.instantiateInitialViewController(withType: ItemListViewController.self)
-        return homeItemListView
+    func generateAllItemListView() -> ItemListViewType & Presentable {
+        let itemListView = UIStoryboard.instantiateInitialViewController(withType: ItemListViewController.self)
+        let request = QiitaAPI.GetItemsRequest()
+        let transform = ItemEntityToCellViewModelTransform()
+        let viewModel = ItemListVM(request: request, transformer: transform)
+        itemListView.injectViewModel(viewModel: viewModel)
+        
+        return itemListView
     }
     
-    func generateItemDetailView() -> ItemDetailViewType & Presentable {
+    func generateItemDetailView(itemId: String) -> ItemDetailViewType & Presentable {
         let itemDetailView = UIStoryboard.instantiateInitialViewController(withType: ItemDetailViewController.self)
+        let itemDetailRequest = QiitaAPI.GetItemDetailRequest(itemId: itemId)
+        let itemStockerRequest = QiitaAPI.GetItemStockersRequest(itemId: itemId)
+        let transformer = ItemAndCountEntityToItemDetailViewModel()
+        let stockStatusRequet = QiitaAPI.GetStockStatusRequest(itemId: itemId)
+        let putStockRequest = QiitaAPI.PutStockStatusRequest(itemId: itemId)
+        let deleteStockRequest = QiitaAPI.DeleteStockStatusRequest(itemId: itemId)
+        let viewModel = ItemDetailVM(itemRequest: itemDetailRequest, countRequest: itemStockerRequest,
+                                     transformer: transformer, stockStatusRequest: stockStatusRequet,
+                                     putStockRequest: putStockRequest, deleteStockRequest: deleteStockRequest)
+        itemDetailView.injectViewModel(viewModel: viewModel)
+        
         return itemDetailView
     }
     
-    func generateUserDetailView() -> Presentable & UserDetailViewType {
+    func generateUserDetailView(userId: String) -> UserDetailViewType & Presentable  {
         let userDetailView = UIStoryboard.instantiateInitialViewController(withType: UserDetailViewController.self)
+        let userRequest = QiitaAPI.GetUserDetailRequest(userId: userId)
+        let userTransformer = UserEntityToUserDetailTableCellViewModelTransform()
+        let userItemsRequest = QiitaAPI.GetUserItemsRequest(userId: userId)
+        let userItemsTransformer = ItemEntityToCellViewModelTransform()
+        let viewModel = UserDetailVM(userRequest: userRequest, itemsRequest: userItemsRequest,
+                                     userTransformer: userTransformer, itemTransformer: userItemsTransformer)
+        userDetailView.injectViewModel(viewModel: viewModel)
+        
         return userDetailView
     }
     
-    func generateUserListView() -> Presentable & UserListViewType {
+    func generateFolloweeUserListView(userId: String) -> UserListViewType & Presentable  {
         let userListView = UIStoryboard.instantiateInitialViewController(withType: UserListViewController.self)
+        let followerRequest = QiitaAPI.GetFolloweesRequest(userId: userId)
+        let transformer = UserEntityToUserListTableCellVMTransform()
+        let viewModel = UserListVM(request: followerRequest, transformer: transformer)
+        userListView.injectViewModel(viewModel: viewModel)
+        
         return userListView
+    }
+    
+    func generateFollowerUserListView(userId: String) -> UserListViewType & Presentable {
+        let userListView = UIStoryboard.instantiateInitialViewController(withType: UserListViewController.self)
+        let followerRequest = QiitaAPI.GetFollowersRequest(userId: userId)
+        let transformer = UserEntityToUserListTableCellVMTransform()
+        let viewModel = UserListVM(request: followerRequest, transformer: transformer)
+        userListView.injectViewModel(viewModel: viewModel)
+        
+        return userListView
+    }
+    
+    func generateUserFollowTagListView(userId: String) -> TagListViewType & Presentable {
+        let tagListView = UIStoryboard.instantiateInitialViewController(withType: TagListViewController.self)
+        let userFollowTagRequest = QiitaAPI.GetUserFollowTagsRequest(userId: userId)
+        let transformer = TagEntityToTagListTableCellVMTransform()
+        let viewModel = TagListVM(request: userFollowTagRequest, transformer: transformer)
+        tagListView.injectViewModel(viewModel: viewModel)
+        
+        return tagListView
     }
     
     func generateTagListView() -> Presentable & TagListViewType {
@@ -48,8 +101,34 @@ extension ModuleFactory: ItemModuleFactory, TagModuleFactory, MyAccountModuleFac
         return tagListView
     }
     
-    func generateTagItemListView() -> ItemListViewType & Presentable {
-        return UIStoryboard.instantiateInitialViewController(withType: ItemListViewController.self)
+    func generateTagItemListView(tagId: String) -> ItemListViewType & Presentable {
+        let itemListView = UIStoryboard.instantiateInitialViewController(withType: ItemListViewController.self)
+        let tagItemsRequest = QiitaAPI.GetTagItemsRequest(tagId: tagId)
+        let transform = ItemEntityToCellViewModelTransform()
+        let viewModel = ItemListVM(request: tagItemsRequest, transformer: transform)
+        itemListView.injectViewModel(viewModel: viewModel)
+        
+        return itemListView
     }
+    
+}
+
+extension ModuleFactory: TagModuleFactory {
+    
+    func generateAllTagListView() -> TagListViewType & Presentable {
+        let tagListView = UIStoryboard.instantiateInitialViewController(withType: TagListViewController.self)
+        let tagsRequest = QiitaAPI.GetTagsRequest()
+        let transformer = TagEntityToTagListTableCellVMTransform()
+        let viewModel = TagListVM(request: tagsRequest, transformer: transformer)
+        tagListView.injectViewModel(viewModel: viewModel)
+        
+        return tagListView
+    }
+    
+}
+
+extension ModuleFactory: MyAccountModuleFactory {
+    
+    
     
 }

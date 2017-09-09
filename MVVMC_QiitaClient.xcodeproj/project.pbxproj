@@ -54,7 +54,7 @@
 		AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */; };
 		AD639DBD1F23223100AA56ED /* AuthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD639DBC1F23223100AA56ED /* AuthViewController.storyboard */; };
 		AD639DBF1F23241600AA56ED /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DBE1F23241600AA56ED /* AuthViewController.swift */; };
-		AD639DC11F246D5800AA56ED /* AuthViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DC01F246D5800AA56ED /* AuthViewProtocol.swift */; };
+		AD639DC11F246D5800AA56ED /* AuthViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DC01F246D5800AA56ED /* AuthViewType.swift */; };
 		AD639DC41F24752500AA56ED /* AuthenticateQiita.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DC31F24752500AA56ED /* AuthenticateQiita.swift */; };
 		AD639DC71F247F9000AA56ED /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DC61F247F9000AA56ED /* AuthInfo.swift */; };
 		AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639DC81F24E17D00AA56ED /* AuthCoordinator.swift */; };
@@ -194,7 +194,7 @@
 		AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabbarCoordinator.swift; sourceTree = "<group>"; };
 		AD639DBC1F23223100AA56ED /* AuthViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AuthViewController.storyboard; sourceTree = "<group>"; };
 		AD639DBE1F23241600AA56ED /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		AD639DC01F246D5800AA56ED /* AuthViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewProtocol.swift; sourceTree = "<group>"; };
+		AD639DC01F246D5800AA56ED /* AuthViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewType.swift; sourceTree = "<group>"; };
 		AD639DC31F24752500AA56ED /* AuthenticateQiita.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticateQiita.swift; path = MVVMC_QiitaClient/Model/Auth/AuthenticateQiita.swift; sourceTree = SOURCE_ROOT; };
 		AD639DC61F247F9000AA56ED /* AuthInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
 		AD639DC81F24E17D00AA56ED /* AuthCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
@@ -492,7 +492,7 @@
 		AD639DBB1F231EE500AA56ED /* AuthFlow */ = {
 			isa = PBXGroup;
 			children = (
-				AD639DC01F246D5800AA56ED /* AuthViewProtocol.swift */,
+				AD639DC01F246D5800AA56ED /* AuthViewType.swift */,
 				AD639DC81F24E17D00AA56ED /* AuthCoordinator.swift */,
 			);
 			path = AuthFlow;
@@ -980,7 +980,7 @@
 				AD639DCE1F24E38300AA56ED /* ModuleFactory.swift in Sources */,
 				C2483F941F26187C00685622 /* Session+Rx.swift in Sources */,
 				AD639DD51F26414900AA56ED /* AccessTokenProtocol.swift in Sources */,
-				AD639DC11F246D5800AA56ED /* AuthViewProtocol.swift in Sources */,
+				AD639DC11F246D5800AA56ED /* AuthViewType.swift in Sources */,
 				C2483F881F2609D200685622 /* AppDelegate+Auth.swift in Sources */,
 				C24904471F46D6B60058B300 /* UserDetailViewModel.swift in Sources */,
 				AD639DDA1F277A2600AA56ED /* TagEntity.swift in Sources */,

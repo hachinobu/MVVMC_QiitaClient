@@ -9,9 +9,11 @@
 import Foundation
 
 protocol ItemModuleFactory {
-    func generateHomeItemListView() -> ItemListViewType & Presentable
-    func generateItemDetailView() -> ItemDetailViewType & Presentable
-    func generateUserDetailView() -> UserDetailViewType & Presentable
-    func generateUserListView() -> UserListViewType & Presentable
-    func generateTagListView() -> TagListViewType & Presentable
+    func generateAllItemListView() -> ItemListViewType & Presentable
+    func generateItemDetailView(itemId: String) -> ItemDetailViewType & Presentable
+    func generateUserDetailView(userId: String) -> UserDetailViewType & Presentable
+    func generateFolloweeUserListView(userId: String) -> UserListViewType & Presentable
+    func generateFollowerUserListView(userId: String) -> UserListViewType & Presentable
+    func generateUserFollowTagListView(userId: String) -> TagListViewType & Presentable
+    func generateTagItemListView(tagId: String) -> ItemListViewType & Presentable
 }

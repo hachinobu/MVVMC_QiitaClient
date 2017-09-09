@@ -32,10 +32,6 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     private func showAuthView() {
         
         let authView = moduleFactory.generateAuthView()
-        let authRequest = QiitaAPI.PostAccessTokenRequest(clientId: AuthInfo.clientId, clientSecret: AuthInfo.clientSecret)
-        let viewModel = AuthVM(request: authRequest)
-        authView.injectViewModel(viewModel: viewModel)
-        
         authView.tappedAuth.subscribe(onNext: { [weak self] _ in
             self?.authenticateQiita()
         }).addDisposableTo(bag)

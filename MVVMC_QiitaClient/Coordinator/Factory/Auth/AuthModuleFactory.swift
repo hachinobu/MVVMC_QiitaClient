@@ -10,6 +10,6 @@ import UIKit
 
 protocol AuthModuleFactory {
     
-    func generateAuthView() -> AuthViewProtocol & Presentable
+    func generateAuthView() -> AuthViewType & Presentable
     
 }
