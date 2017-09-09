@@ -10,4 +10,6 @@ import Foundation
 
 protocol MyAccountModuleFactory {
     
+    func generateMyAccountView() -> UserDetailViewType & Presentable
+    
 }

@@ -129,6 +129,16 @@ extension ModuleFactory: TagModuleFactory {
 
 extension ModuleFactory: MyAccountModuleFactory {
     
-    
+    func generateMyAccountView() -> UserDetailViewType & Presentable {
+        let myAccountView = UIStoryboard.instantiateInitialViewController(withType: UserDetailViewController.self)
+        let userRequest = QiitaAPI.GetAuthenticatedUserRequest()
+        let userTransformer = UserEntityToUserDetailTableCellViewModelTransform()
+        let myItemsRequest = QiitaAPI.GetAuthUserItemsRequest()
+        let myItemsTransformer = ItemEntityToCellViewModelTransform()
+        let viewModel = UserDetailVM(userRequest: userRequest, itemsRequest: myItemsRequest, userTransformer: userTransformer, itemTransformer: myItemsTransformer)
+        myAccountView.injectViewModel(viewModel: viewModel)
+        
+        return myAccountView
+    }
     
 }
