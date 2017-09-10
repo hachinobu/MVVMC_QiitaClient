@@ -48,10 +48,24 @@ final class HomeTabCoordinator: BaseCoordinator {
         }).addDisposableTo(bag)
         
         itemDetailView.requiredAuth.subscribe(onNext: { [weak self] _ in
-            self?.authenticateQiita()
+            self?.runAuth()
         }).addDisposableTo(bag)
         
         router.push(presentable: itemDetailView, animated: true, completion: nil)
+        
+    }
+    
+    private func runAuth() {
+        
+        let (module, coordinator) = coordinatorFactory.generateAuthCoordinatorBox()
+        coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
+            self?.router.dismiss(animated: true, completion: nil)
+            self?.removeDependency(coordinator: coordinator)
+        }).addDisposableTo(bag)
+        
+        addDependency(coordinator: coordinator)
+        router.present(presentable: module, animated: true)
+        coordinator.start()
         
     }
     

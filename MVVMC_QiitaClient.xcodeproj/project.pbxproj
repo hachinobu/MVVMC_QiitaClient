@@ -83,6 +83,8 @@
 		AD639E051F2B42DE00AA56ED /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639E041F2B42DE00AA56ED /* UITableView+Extension.swift */; };
 		AD639E081F2C3F2B00AA56ED /* ItemModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639E071F2C3F2B00AA56ED /* ItemModuleFactory.swift */; };
 		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
+		ADA27C531F657AE300F49825 /* PresentNavigationController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */; };
+		ADA27C551F657B7700F49825 /* PresentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA27C541F657B7700F49825 /* PresentNavigationController.swift */; };
 		ADBD63C41F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */; };
 		ADBD63C71F2C472800BA9EE2 /* HomeTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C61F2C472800BA9EE2 /* HomeTabCoordinator.swift */; };
 		ADC3856B1F2F760E0092F227 /* ItemDetailWebTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */; };
@@ -223,6 +225,8 @@
 		AD639E041F2B42DE00AA56ED /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		AD639E071F2C3F2B00AA56ED /* ItemModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModuleFactory.swift; sourceTree = "<group>"; };
 		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
+		ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PresentNavigationController.storyboard; sourceTree = "<group>"; };
+		ADA27C541F657B7700F49825 /* PresentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentNavigationController.swift; sourceTree = "<group>"; };
 		ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFinishFlowType.swift; sourceTree = "<group>"; };
 		ADBD63C61F2C472800BA9EE2 /* HomeTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabCoordinator.swift; sourceTree = "<group>"; };
 		ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailWebTableCell.swift; sourceTree = "<group>"; };
@@ -421,6 +425,7 @@
 				C2AC175A1F4ED9ED00436414 /* UserListViewController.swift */,
 				AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */,
 				AD5FA6DA1F5C1C950089B10A /* NoAuthTabbarController.swift */,
+				ADA27C541F657B7700F49825 /* PresentNavigationController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				C2AC175C1F4ED9FA00436414 /* UserListViewController.storyboard */,
 				AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */,
 				AD5FA6D61F5C1BE60089B10A /* NoAuthTabbarController.storyboard */,
+				ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -801,6 +807,7 @@
 				AD40099F1F45CE2700F8321D /* UserDetailTableCell.xib in Resources */,
 				C29C29251F3C1A5600189325 /* ItemDetailHeaderTableCell.xib in Resources */,
 				C2FF21E81F332CC60002C89E /* ItemDetailViewController.storyboard in Resources */,
+				ADA27C531F657AE300F49825 /* PresentNavigationController.storyboard in Resources */,
 				AD5FA6BE1F559CFE0089B10A /* TagListTableCell.xib in Resources */,
 				AD5FA6B61F4B17840089B10A /* UserListTableCell.xib in Resources */,
 				ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */,
@@ -918,6 +925,7 @@
 				AD4009A11F45D20A00F8321D /* UserDetailTableCell.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
 				C2FF21E61F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift in Sources */,
+				ADA27C551F657B7700F49825 /* PresentNavigationController.swift in Sources */,
 				AD639E031F2B3F1700AA56ED /* ItemListViewType.swift in Sources */,
 				AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */,
 				AD639DE61F277E3A00AA56ED /* ItemListViewController.swift in Sources */,

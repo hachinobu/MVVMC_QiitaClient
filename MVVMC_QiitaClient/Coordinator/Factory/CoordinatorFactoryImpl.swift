@@ -41,4 +41,11 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
         return MyAccountTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
+    func generateAuthCoordinatorBox() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
+        let navigation = UIStoryboard.instantiateInitialViewController(withType: PresentNavigationController.self)
+        let router = RouterImpl(rootController: navigation)
+        let coordinator = AuthCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+        return (router, coordinator)
+    }
+    
 }

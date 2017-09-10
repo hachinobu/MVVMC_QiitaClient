@@ -52,6 +52,15 @@ extension AuthenticateQiita {
             }
         }
         
+        func isSkipAuth() -> Bool {
+            switch self {
+            case .skipAuth:
+                return true
+            default:
+                return false
+            }
+        }
+        
     }
     
 }

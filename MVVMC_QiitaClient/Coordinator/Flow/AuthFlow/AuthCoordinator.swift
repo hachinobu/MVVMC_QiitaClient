@@ -26,7 +26,12 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     }
     
     override func start() {
-        showAuthView()
+        let status = AuthenticateQiita.sharedInstance.status.value
+        if !status.isAuthorized() {
+            showAuthView()
+        } else if status.isSkipAuth() {
+            showLoginAuthView()
+        }
     }
     
     private func showAuthView() {
@@ -52,10 +57,22 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         router.setRoot(presentable: authView, hideBar: true)
     }
     
+    private func showLoginAuthView() {
+        
+        let authView = moduleFactory.generateAuthView()
+        authView.tappedAuth.subscribe(onNext: { [weak self] _ in
+            self?.authenticateQiita()
+        }).addDisposableTo(bag)
+        
+        router.setRoot(presentable: authView, hideBar: true)
+        
+    }
+    
     private func authenticateQiita() {
         let url: String = "http://qiita.com/api/v2/oauth/authorize?client_id=\(AuthInfo.clientId)&scope=read_qiita+write_qiita&state=\(AuthInfo.accessTokenState)"
         UIApplication.shared.open(URL(string: url)!)
     }
+    
     
     
 }
