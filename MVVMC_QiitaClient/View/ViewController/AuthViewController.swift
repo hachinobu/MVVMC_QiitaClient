@@ -21,6 +21,11 @@ final class AuthViewController: UIViewController, AuthViewType {
     private let onCompleteAuthObserver = PublishSubject<String>()
     lazy var onCompleteAuth: Observable<String> = self.onCompleteAuthObserver.asObservable()
     
+    private let closeButtonTappedObserver = PublishSubject<Void>()
+    lazy var closeButtonTapped: Observable<Void> = self.closeButtonTappedObserver.asObservable()
+    
+    var skipButtonHidden: Bool = false
+    
     private let bag = DisposeBag()
     private var viewModel: AuthViewModel!
     
@@ -40,6 +45,7 @@ final class AuthViewController: UIViewController, AuthViewType {
     
     private func setupUI() {
         authButton.layer.cornerRadius = 4.0
+        skipAuthButton.isHidden = skipButtonHidden
     }
     
     private func bindUI() {

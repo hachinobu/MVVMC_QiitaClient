@@ -60,6 +60,10 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     private func showLoginAuthView() {
         
         let authView = moduleFactory.generateAuthView()
+        authView.skipButtonHidden = true
+        authView.closeButtonTapped.subscribe(onNext: { (_) in
+            
+        }).addDisposableTo(bag)
         authView.tappedAuth.subscribe(onNext: { [weak self] _ in
             self?.authenticateQiita()
         }).addDisposableTo(bag)

@@ -15,6 +15,9 @@ protocol AuthViewType: class {
     var tappedAuth: Observable<Void> { get }
     var tappedSkipAuth: Observable<Void> { get }
     var onCompleteAuth: Observable<String> { get }
+    var closeButtonTapped: Observable<Void> { get }
+    
+    var skipButtonHidden: Bool { set get }
     
     func injectViewModel(viewModel: AuthViewModel)
     
