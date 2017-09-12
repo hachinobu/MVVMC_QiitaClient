@@ -48,30 +48,30 @@ final class HomeTabCoordinator: BaseCoordinator {
         }).addDisposableTo(bag)
         
         itemDetailView.requiredAuth.subscribe(onNext: { [weak self] _ in
-            self?.runAuth()
+            self?.runAuthFlow()
         }).addDisposableTo(bag)
         
         router.push(presentable: itemDetailView, animated: true, completion: nil)
         
     }
     
-    private func runAuth() {
+    private func runAuthFlow() {
         
         let (module, coordinator) = coordinatorFactory.generateAuthCoordinatorBox()
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.router.dismiss(animated: true, completion: nil)
             self?.removeDependency(coordinator: coordinator)
+            
+            if AccessTokenStorage.hasAccessToken() {
+                
+            }
+            
         }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)
         router.present(presentable: module, animated: true)
         coordinator.start()
         
-    }
-    
-    private func authenticateQiita() {
-        let url: String = "http://qiita.com/api/v2/oauth/authorize?client_id=\(AuthInfo.clientId)&scope=read_qiita+write_qiita&state=\(AuthInfo.accessTokenState)"
-        UIApplication.shared.open(URL(string: url)!)
     }
     
     private func showUserDetail(userId: String) {

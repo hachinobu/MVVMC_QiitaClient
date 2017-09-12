@@ -61,14 +61,22 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         let authView = moduleFactory.generateAuthView()
         authView.skipButtonHidden = true
-        authView.closeButtonTapped.subscribe(onNext: { (_) in
-            
-        }).addDisposableTo(bag)
+        authView.closeButtonTapped.bind(to: finishFlowObserver).addDisposableTo(bag)
+        
         authView.tappedAuth.subscribe(onNext: { [weak self] _ in
             self?.authenticateQiita()
         }).addDisposableTo(bag)
         
-        router.setRoot(presentable: authView, hideBar: true)
+        authView.onCompleteAuth
+            .map { token -> Bool in
+                AuthenticateQiita.sharedInstance.status.value = .authenticated(token)
+                return AccessTokenStorage.saveAccessToken(token: token)
+            }.filter { $0 }
+            .map { _ in }
+            .bind(to: finishFlowObserver)
+            .addDisposableTo(bag)
+        
+        router.setRoot(presentable: authView, hideBar: false)
         
     }
     

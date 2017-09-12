@@ -15,6 +15,10 @@ class ApplicationCoordinator: BaseCoordinator {
         return AccessTokenStorage.hasAccessToken()
     }
     
+    private var isSkipAuth: Bool {
+        return AuthenticateQiita.sharedInstance.status.value.isSkipAuth()
+    }
+    
     private let bag = DisposeBag()
     private let router: Router
     private let coordinatorFactory: CoordinatorFactory
@@ -27,6 +31,8 @@ class ApplicationCoordinator: BaseCoordinator {
     override func start() {
         if hasAccessToken {
             runMainTabbarFlow()
+        } else if isSkipAuth {
+            runNoAuthTabbarFlow()
         } else {
             runAuthFlow()
         }
@@ -35,12 +41,7 @@ class ApplicationCoordinator: BaseCoordinator {
     private func runAuthFlow() {
         let coordinator = coordinatorFactory.generateAuthCoordinator(router: router)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
-            guard let strongSelf = self else { return }
-            if strongSelf.hasAccessToken {
-                self?.runMainTabbarFlow()
-            } else {
-                self?.runNoAuthTabbarFlow()
-            }
+            self?.start()
             self?.removeDependency(coordinator: coordinator)
         }).addDisposableTo(bag)
         
@@ -51,7 +52,7 @@ class ApplicationCoordinator: BaseCoordinator {
     private func runMainTabbarFlow() {
         let (view, coordinator) = coordinatorFactory.generateTabbarCoordinator()
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
-            self?.runAuthFlow()
+            self?.start()
             self?.removeDependency(coordinator: coordinator)
         }).addDisposableTo(bag)
         
@@ -63,7 +64,7 @@ class ApplicationCoordinator: BaseCoordinator {
     private func runNoAuthTabbarFlow() {
         let (view, coordinator) = coordinatorFactory.generateNoAuthTabbarCoordinator()
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
-            self?.runAuthFlow()
+            self?.start()
             self?.removeDependency(coordinator: coordinator)
         }).addDisposableTo(bag)
         

@@ -46,9 +46,14 @@ final class AuthViewController: UIViewController, AuthViewType {
     private func setupUI() {
         authButton.layer.cornerRadius = 4.0
         skipAuthButton.isHidden = skipButtonHidden
+        if let hasNavigationBar = navigationController?.navigationBar.isHidden, !hasNavigationBar {
+            let closeButton = UIBarButtonItem(barButtonSystemItem: .stop, target: nil, action: nil)
+            navigationItem.leftBarButtonItem = closeButton
+        }
     }
     
     private func bindUI() {
+        
         authButton.rx.tap
             .bind(to: tappedAuthObserver)
             .addDisposableTo(bag)
@@ -56,6 +61,14 @@ final class AuthViewController: UIViewController, AuthViewType {
         skipAuthButton.rx.tap
             .bind(to: tappedSkipAuthObserver)
             .addDisposableTo(bag)
+        
+        if let closeButton = navigationItem.leftBarButtonItem {
+            navigationController?.navigationBar.isHidden = false
+            closeButton.rx.tap
+                .bind(to: closeButtonTappedObserver)
+                .addDisposableTo(bag)
+        }
+        
     }
     
     private func bindAuth() {
