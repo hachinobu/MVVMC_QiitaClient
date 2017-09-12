@@ -65,17 +65,7 @@ final class HomeTabCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
             self?.router.dismiss(animated: true, completion: nil)
             self?.removeDependency(coordinator: coordinator)
         }).filter { AccessTokenStorage.hasAccessToken() }.bind(to: finishFlowObserver).addDisposableTo(bag)
-        
-//        coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
-//            self?.router.dismiss(animated: true, completion: nil)
-//            self?.removeDependency(coordinator: coordinator)
-//
-//            if AccessTokenStorage.hasAccessToken() {
-//                self?.finishFlowObserver.onNext(())
-//            }
-//
-//        }).addDisposableTo(bag)
-        
+                
         addDependency(coordinator: coordinator)
         router.present(presentable: module, animated: true)
         coordinator.start()
