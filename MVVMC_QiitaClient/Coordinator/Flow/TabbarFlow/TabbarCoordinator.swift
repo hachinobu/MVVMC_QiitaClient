@@ -43,6 +43,9 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     private func runHomeTabFlow(navigationController: UINavigationController) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateItemTabCoordinator(navigationController: navigationController)
+        coordinator.finishFlow
+            .bind(to: finishFlowObserver)
+            .addDisposableTo(bag)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }

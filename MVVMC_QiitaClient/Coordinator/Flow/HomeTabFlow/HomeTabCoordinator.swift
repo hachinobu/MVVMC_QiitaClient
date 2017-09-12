@@ -9,7 +9,10 @@
 import Foundation
 import RxSwift
 
-final class HomeTabCoordinator: BaseCoordinator {
+final class HomeTabCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
+    
+    private let finishFlowObserver = PublishSubject<Void>()
+    lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
     
     private let bag = DisposeBag()
     private let moduleFactory: ItemModuleFactory
@@ -58,15 +61,20 @@ final class HomeTabCoordinator: BaseCoordinator {
     private func runAuthFlow() {
         
         let (module, coordinator) = coordinatorFactory.generateAuthCoordinatorBox()
-        coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
+        coordinator.finishFlow.do(onNext: { [weak self, weak coordinator] _ in
             self?.router.dismiss(animated: true, completion: nil)
             self?.removeDependency(coordinator: coordinator)
-            
-            if AccessTokenStorage.hasAccessToken() {
-                
-            }
-            
-        }).addDisposableTo(bag)
+        }).filter { AccessTokenStorage.hasAccessToken() }.bind(to: finishFlowObserver).addDisposableTo(bag)
+        
+//        coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
+//            self?.router.dismiss(animated: true, completion: nil)
+//            self?.removeDependency(coordinator: coordinator)
+//
+//            if AccessTokenStorage.hasAccessToken() {
+//                self?.finishFlowObserver.onNext(())
+//            }
+//
+//        }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)
         router.present(presentable: module, animated: true)
