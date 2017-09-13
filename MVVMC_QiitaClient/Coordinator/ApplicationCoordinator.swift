@@ -57,8 +57,9 @@ class ApplicationCoordinator: BaseCoordinator {
         }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)
-        router.setRoot(presentable: view, hideBar: true)
         coordinator.start()
+        router.setRoot(presentable: view, hideBar: true)
+        
     }
     
     private func runNoAuthTabbarFlow() {
