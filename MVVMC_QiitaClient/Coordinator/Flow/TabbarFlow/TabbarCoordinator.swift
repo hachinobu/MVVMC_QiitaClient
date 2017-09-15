@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
+class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordinatorFinishFlowType {
     
     private let bag = DisposeBag()
     
@@ -18,6 +18,9 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     
     private let finishFlowObserver = PublishSubject<Void>()
     lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
+    
+    private let finishItemFlowObserver = PublishSubject<DeepLinkOption>()
+    lazy var finishItemFlow: Observable<DeepLinkOption> = self.finishItemFlowObserver.asObservable()
     
     init(tabSelected: TabSelectableView, coordinatorFactory: CoordinatorFactory) {
         self.tabSelected = tabSelected
@@ -40,24 +43,29 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
     }
     
-    private func runHomeTabFlow(navigationController: UINavigationController) {
+    override func start(option: DeepLinkOption) {
+        start()
+        
+    }
+    
+    private func runHomeTabFlow(navigationController: UINavigationController, option: DeepLinkOption? = nil) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateItemTabCoordinator(navigationController: navigationController)
-        coordinator.finishFlow
-            .bind(to: finishFlowObserver)
+        coordinator.finishItemFlow
+            .bind(to: finishItemFlowObserver)
             .addDisposableTo(bag)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }
     
-    private func runTagTabFlow(navigationController: UINavigationController) {
+    private func runTagTabFlow(navigationController: UINavigationController, option: DeepLinkOption? = nil) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateTagTabCoordinator(navigationController: navigationController)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }
     
-    private func runMyAccountTabFlow(navigationController: UINavigationController) {
+    private func runMyAccountTabFlow(navigationController: UINavigationController, option: DeepLinkOption? = nil) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateMyAccountTabCoordinator(navigationController: navigationController)
         coordinator.start()

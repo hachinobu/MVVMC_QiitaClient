@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
+class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordinatorFinishFlowType {
     
     private let bag = DisposeBag()
     
@@ -18,6 +18,9 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     
     private let finishFlowObserver = PublishSubject<Void>()
     lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
+    
+    private let finishItemFlowObserver = PublishSubject<DeepLinkOption>()
+    lazy var finishItemFlow: Observable<DeepLinkOption> = self.finishItemFlowObserver.asObservable()
     
     init(tabSelected: NoAuthTabSelectable, coordinatorFactory: CoordinatorFactory) {
         self.tabSelected = tabSelected
@@ -39,7 +42,10 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     private func runHomeTabFlow(navigationController: UINavigationController) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateItemTabCoordinator(navigationController: navigationController)
-        coordinator.finishFlow.filter { AccessTokenStorage.hasAccessToken() }.bind(to: finishFlowObserver).addDisposableTo(bag)
+        coordinator.finishItemFlow
+            .filter { _ in AccessTokenStorage.hasAccessToken() }
+            .bind(to: finishItemFlowObserver)
+            .addDisposableTo(bag)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }

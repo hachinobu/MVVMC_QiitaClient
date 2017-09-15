@@ -9,10 +9,10 @@
 import Foundation
 import RxSwift
 
-final class HomeTabCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
+final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
     
-    private let finishFlowObserver = PublishSubject<Void>()
-    lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
+    private let finishItemFlowObserver = PublishSubject<DeepLinkOption>()
+    lazy var finishItemFlow: Observable<DeepLinkOption> = self.finishItemFlowObserver.asObservable()
     
     private let bag = DisposeBag()
     private let moduleFactory: ItemModuleFactory
@@ -51,20 +51,23 @@ final class HomeTabCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         }).addDisposableTo(bag)
         
         itemDetailView.requiredAuth.subscribe(onNext: { [weak self] _ in
-            self?.runAuthFlow()
+            self?.runAuthFlow(option: DeepLinkOption.item(itemId))
         }).addDisposableTo(bag)
         
         router.push(presentable: itemDetailView, animated: true, completion: nil)
         
     }
     
-    private func runAuthFlow() {
+    private func runAuthFlow(option: DeepLinkOption) {
         
         let (module, coordinator) = coordinatorFactory.generateAuthCoordinatorBox()
         coordinator.finishFlow.do(onNext: { [weak self, weak coordinator] _ in
             self?.router.dismiss(animated: true, completion: nil)
             self?.removeDependency(coordinator: coordinator)
-        }).filter { AccessTokenStorage.hasAccessToken() }.bind(to: finishFlowObserver).addDisposableTo(bag)
+        }).filter { AccessTokenStorage.hasAccessToken() && option.hasItemId() }
+            .map { option }
+            .bind(to: finishItemFlowObserver)
+            .addDisposableTo(bag)
                 
         addDependency(coordinator: coordinator)
         router.present(presentable: module, animated: true)

@@ -12,3 +12,7 @@ import RxSwift
 protocol CoordinatorFinishFlowType {
     var finishFlow: Observable<Void> { get }
 }
+
+protocol ItemCoordinatorFinishFlowType {
+    var finishItemFlow: Observable<DeepLinkOption> { get }
+}

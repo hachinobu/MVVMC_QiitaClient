@@ -38,6 +38,19 @@ class ApplicationCoordinator: BaseCoordinator {
         }
     }
     
+    override func start(option: DeepLinkOption) {
+        if hasAccessToken {
+            if childCoordinators.count == 0 {
+                runMainTabbarFlow(option: option)
+            } else {
+                childCoordinators.forEach { $0.start(option: option) }
+            }
+            runMainTabbarFlow(option: option)
+        } else {
+            start()
+        }
+    }
+    
     private func runAuthFlow() {
         let coordinator = coordinatorFactory.generateAuthCoordinator(router: router)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
@@ -49,7 +62,7 @@ class ApplicationCoordinator: BaseCoordinator {
         coordinator.start()
     }
     
-    private func runMainTabbarFlow() {
+    private func runMainTabbarFlow(option: DeepLinkOption? = nil) {
         let (view, coordinator) = coordinatorFactory.generateTabbarCoordinator()
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.start()
@@ -57,15 +70,18 @@ class ApplicationCoordinator: BaseCoordinator {
         }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)
-        coordinator.start()
+        if let option = option {
+            coordinator.start(option: option)
+        } else {
+            coordinator.start()
+        }
         router.setRoot(presentable: view, hideBar: true)
-        
     }
     
     private func runNoAuthTabbarFlow() {
         let (view, coordinator) = coordinatorFactory.generateNoAuthTabbarCoordinator()
-        coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
-            self?.start()
+        coordinator.finishItemFlow.subscribe(onNext: { [weak self, weak coordinator] option in
+            self?.start(option: option)
             self?.removeDependency(coordinator: coordinator)
         }).addDisposableTo(bag)
         

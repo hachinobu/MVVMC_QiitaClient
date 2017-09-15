@@ -14,6 +14,10 @@ class BaseCoordinator: Coordinator, DependencyCoordinator {
     
     func start() { fatalError("Required Override method") }
     
+    func start(option: DeepLinkOption) {
+        
+    }
+    
     func addDependency(coordinator: Coordinator) {
         if childCoordinators.contains(where: { $0 === coordinator }) {
             return

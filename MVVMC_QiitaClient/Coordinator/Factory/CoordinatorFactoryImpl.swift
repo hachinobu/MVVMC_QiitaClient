@@ -16,7 +16,7 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
         return (tabbarController, tabbarCoordinator)
     }
     
-    func generateNoAuthTabbarCoordinator() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
+    func generateNoAuthTabbarCoordinator() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType & ItemCoordinatorFinishFlowType)) {
         let noAuthTabbarController = UIStoryboard.instantiateInitialViewController(withType: NoAuthTabbarController.self)
         let noAuthTabbarCoordinator = NoAuthTabbarCoordinator(tabSelected: noAuthTabbarController, coordinatorFactory: CoordinatorFactoryImpl())
         return (noAuthTabbarController, noAuthTabbarCoordinator)
@@ -26,7 +26,7 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
         return AuthCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
     }
     
-    func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType {
+    func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator & ItemCoordinatorFinishFlowType {
         let rootController = navigationController ?? UINavigationController()
         return HomeTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
