@@ -44,8 +44,10 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
     }
     
     override func start(option: DeepLinkOption) {
-        start()
-        
+        if childCoordinators.isEmpty {
+            start()
+        }
+        childCoordinators.forEach { $0.start(option: option) }
     }
     
     private func runHomeTabFlow(navigationController: UINavigationController, option: DeepLinkOption? = nil) {

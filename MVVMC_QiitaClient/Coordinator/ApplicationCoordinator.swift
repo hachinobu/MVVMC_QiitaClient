@@ -40,7 +40,7 @@ class ApplicationCoordinator: BaseCoordinator {
     
     override func start(option: DeepLinkOption) {
         if hasAccessToken {
-            if childCoordinators.count == 0 {
+            if childCoordinators.isEmpty {
                 runMainTabbarFlow(option: option)
             } else {
                 childCoordinators.forEach { $0.start(option: option) }
@@ -86,8 +86,8 @@ class ApplicationCoordinator: BaseCoordinator {
         }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)
-        router.setRoot(presentable: view, hideBar: true)
         coordinator.start()
+        router.setRoot(presentable: view, hideBar: true)
     }
     
 }

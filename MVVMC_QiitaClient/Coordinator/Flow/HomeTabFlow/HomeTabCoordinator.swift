@@ -29,6 +29,13 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
         showAllItemList()
     }
     
+    override func start(option: DeepLinkOption) {
+        if option.hasItemId() {
+            router.popToRoot(animated: false)
+            showItemDetail(itemId: option.linkId()!)
+        }
+    }
+    
     private func showAllItemList() {
         
         let itemListView = moduleFactory.generateAllItemListView()        
