@@ -90,7 +90,6 @@
 		ADC3856B1F2F760E0092F227 /* ItemDetailWebTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */; };
 		ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */; };
 		C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F851F2608DC00685622 /* AccessTokenStorage.swift */; };
-		C2483F881F2609D200685622 /* AppDelegate+Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F871F2609D200685622 /* AppDelegate+Auth.swift */; };
 		C2483F8C1F2611F400685622 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F8B1F2611F400685622 /* AuthViewModel.swift */; };
 		C2483F8F1F26145A00685622 /* AuthEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F8E1F26145A00685622 /* AuthEntity.swift */; };
 		C2483F921F26158000685622 /* QiitaRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F911F26158000685622 /* QiitaRequestType.swift */; };
@@ -232,7 +231,6 @@
 		ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailWebTableCell.swift; sourceTree = "<group>"; };
 		ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailWebTableCell.xib; sourceTree = "<group>"; };
 		C2483F851F2608DC00685622 /* AccessTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenStorage.swift; sourceTree = "<group>"; };
-		C2483F871F2609D200685622 /* AppDelegate+Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Auth.swift"; sourceTree = "<group>"; };
 		C2483F8B1F2611F400685622 /* AuthViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		C2483F8E1F26145A00685622 /* AuthEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthEntity.swift; sourceTree = "<group>"; };
 		C2483F911F26158000685622 /* QiitaRequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QiitaRequestType.swift; sourceTree = "<group>"; };
@@ -339,7 +337,6 @@
 				AD5C98A21F1F9C0000DF5039 /* View */,
 				AD5C988B1F1F98A800DF5039 /* Coordinator */,
 				AD5C985D1F1F962300DF5039 /* AppDelegate.swift */,
-				C2483F871F2609D200685622 /* AppDelegate+Auth.swift */,
 				AD5C98641F1F962300DF5039 /* Assets.xcassets */,
 				AD5C98661F1F962300DF5039 /* LaunchScreen.storyboard */,
 				AD5C98691F1F962300DF5039 /* Info.plist */,
@@ -989,7 +986,6 @@
 				C2483F941F26187C00685622 /* Session+Rx.swift in Sources */,
 				AD639DD51F26414900AA56ED /* AccessTokenProtocol.swift in Sources */,
 				AD639DC11F246D5800AA56ED /* AuthViewType.swift in Sources */,
-				C2483F881F2609D200685622 /* AppDelegate+Auth.swift in Sources */,
 				C24904471F46D6B60058B300 /* UserDetailViewModel.swift in Sources */,
 				AD639DDA1F277A2600AA56ED /* TagEntity.swift in Sources */,
 				C2483F8C1F2611F400685622 /* AuthViewModel.swift in Sources */,
@@ -1089,7 +1085,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1140,7 +1136,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

@@ -8,10 +8,13 @@
 
 import UIKit
 import RxSwift
+import SafariServices
 
 final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
 
     private let bag = DisposeBag()
+    private var authSession: SFAuthenticationSession?
+    
     private let moduleFactory: AuthModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
@@ -81,10 +84,32 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     }
     
     private func authenticateQiita() {
-        let url: String = "http://qiita.com/api/v2/oauth/authorize?client_id=\(AuthInfo.clientId)&scope=read_qiita+write_qiita&state=\(AuthInfo.accessTokenState)"
-        UIApplication.shared.open(URL(string: url)!)
+        let url: URL = URL(string:"https://qiita.com/api/v2/oauth/authorize?client_id=\(AuthInfo.clientId)&scope=read_qiita+write_qiita&state=\(AuthInfo.accessTokenState)")!
+        authSession = SFAuthenticationSession(url: url, callbackURLScheme: AuthInfo.redirectUrlScheme) { [weak self] (url, error) in
+            if let url = url {
+                self?.fetchAuthoriedCode(url: url)
+            }
+        }
+        authSession?.start()
     }
     
-    
+    private func fetchAuthoriedCode(url: URL) {
+        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        guard let scheme = urlComponents?.scheme, scheme.hasPrefix(AuthInfo.redirectUrlScheme),
+            let queryItems = urlComponents?.queryItems else { return }
+        
+        let query = queryItems.reduce([String : String]()) { (result, item) in
+            var queryInfo = result
+            let value = item.value ?? ""
+            queryInfo[item.name] = value
+            return queryInfo
+        }
+        
+        guard let code = query["code"], let state = query["state"],
+            state == AuthInfo.accessTokenState else { return }
+        
+        AuthenticateQiita.sharedInstance.status.value = .code(code)
+        
+    }
     
 }
