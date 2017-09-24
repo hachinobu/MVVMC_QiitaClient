@@ -13,8 +13,9 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
     
     private let bag = DisposeBag()
     
-    private let tabSelected: TabSelectableView
+    private let moduleFactory: TabModuleFactory
     private let coordinatorFactory: CoordinatorFactory
+    private let router: Router
     
     private let finishFlowObserver = PublishSubject<Void>()
     lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
@@ -22,24 +23,29 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
     private let finishItemFlowObserver = PublishSubject<DeepLinkOption>()
     lazy var finishItemFlow: Observable<DeepLinkOption> = self.finishItemFlowObserver.asObservable()
     
-    init(tabSelected: TabSelectableView, coordinatorFactory: CoordinatorFactory) {
-        self.tabSelected = tabSelected
+    init(moduleFactory: TabModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+        self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
+        self.router = router
     }
     
     override func start() {
         
-        tabSelected.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
+        let tabbarView = moduleFactory.generateAuthTabView()
+        
+        tabbarView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runHomeTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
-        tabSelected.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
+        tabbarView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runTagTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
-        tabSelected.selectedMyAccountTabObservable.subscribe(onNext: { [unowned self] navigationController in
+        tabbarView.selectedMyAccountTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runMyAccountTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
+        
+        router.setRoot(presentable: tabbarView, hideBar: true)
         
     }
     

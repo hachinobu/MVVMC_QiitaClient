@@ -25,6 +25,28 @@ extension ModuleFactory: AuthModuleFactory {
     
 }
 
+extension ModuleFactory: NavigationModuleFactory {
+    
+    func generateNavigationView() -> Router {
+        let navigation = UIStoryboard.instantiateInitialViewController(withType: PresentNavigationController.self)
+        let router = RouterImpl(rootController: navigation)
+        return router
+    }
+    
+}
+
+extension ModuleFactory: TabModuleFactory {
+    
+    func generateAuthTabView() -> Presentable & TabSelectableView {
+        return UIStoryboard.instantiateInitialViewController(withType: TabbarController.self)
+    }
+    
+    func generateNoAuthTabView() -> NoAuthTabSelectable & Presentable {
+        return UIStoryboard.instantiateInitialViewController(withType: NoAuthTabbarController.self)
+    }
+    
+}
+
 extension ModuleFactory: ItemModuleFactory {
     
     func generateAllItemListView() -> ItemListViewType & Presentable {

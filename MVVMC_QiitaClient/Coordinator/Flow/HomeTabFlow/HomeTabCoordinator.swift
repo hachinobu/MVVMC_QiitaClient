@@ -74,10 +74,10 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
             .map { option }
             .bind(to: finishItemFlowObserver)
             .addDisposableTo(bag)
-                
+        
         addDependency(coordinator: coordinator)
-        router.present(presentable: module, animated: true)
         coordinator.start()
+        router.present(presentable: module, animated: true)
         
     }
     

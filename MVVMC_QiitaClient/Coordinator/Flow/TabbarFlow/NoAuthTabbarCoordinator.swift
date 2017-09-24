@@ -13,8 +13,9 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
     
     private let bag = DisposeBag()
     
-    private let tabSelected: NoAuthTabSelectable
+    private let moduleFactory: TabModuleFactory
     private let coordinatorFactory: CoordinatorFactory
+    private let router: Router
     
     private let finishFlowObserver = PublishSubject<Void>()
     lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
@@ -22,20 +23,25 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
     private let finishItemFlowObserver = PublishSubject<DeepLinkOption>()
     lazy var finishItemFlow: Observable<DeepLinkOption> = self.finishItemFlowObserver.asObservable()
     
-    init(tabSelected: NoAuthTabSelectable, coordinatorFactory: CoordinatorFactory) {
-        self.tabSelected = tabSelected
+    init(moduleFactory: TabModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+        self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
+        self.router = router
     }
     
     override func start() {
         
-        tabSelected.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
+        let tabView = moduleFactory.generateNoAuthTabView()
+        
+        tabView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runHomeTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
-        tabSelected.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
+        tabView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runTagTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
+        
+        router.setRoot(presentable: tabView, hideBar: true)
         
     }
     
