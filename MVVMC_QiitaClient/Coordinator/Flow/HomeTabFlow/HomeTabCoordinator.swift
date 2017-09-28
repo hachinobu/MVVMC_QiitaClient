@@ -62,7 +62,6 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
         
         let (module, coordinator) = coordinatorFactory.generateAuthCoordinatorBox()
         coordinator.finishFlow.do(onNext: { [weak self, weak coordinator] _ in
-            self?.router.dismiss(animated: true, completion: nil)
             self?.removeDependency(coordinator: coordinator)
         }).filter { AccessTokenStorage.hasAccessToken() && option.hasItemId() }
             .map { option }

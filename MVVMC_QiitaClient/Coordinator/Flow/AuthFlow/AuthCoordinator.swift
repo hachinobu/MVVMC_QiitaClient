@@ -70,14 +70,15 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
             self?.authenticateQiita()
         }).addDisposableTo(bag)
         
-        authView.onCompleteAuth
-            .map { token -> Bool in
-                AuthenticateQiita.sharedInstance.status.value = .authenticated(token)
-                return AccessTokenStorage.saveAccessToken(token: token)
-            }.filter { $0 }
-            .map { _ in }
-            .bind(to: finishFlowObserver)
-            .addDisposableTo(bag)
+        authView.onCompleteAuth.do(onNext: { [weak self] token in
+            self?.router.dismiss(animated: true, completion: nil)
+            AuthenticateQiita.sharedInstance.status.value = .authenticated(token)
+        }).map { token -> Bool in
+            return AccessTokenStorage.saveAccessToken(token: token)
+        }.filter { $0 }
+        .map { _ in }
+        .bind(to: finishFlowObserver)
+        .addDisposableTo(bag)
         
         router.setRoot(presentable: authView, hideBar: false)
         
