@@ -64,7 +64,9 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         let authView = moduleFactory.generateAuthView()
         authView.skipButtonHidden = true
-        authView.closeButtonTapped.bind(to: finishFlowObserver).addDisposableTo(bag)
+        authView.closeButtonTapped.do(onNext: { [weak self] _ in
+            self?.router.dismiss(animated: true, completion: nil)
+        }).bind(to: finishFlowObserver).addDisposableTo(bag)
         
         authView.tappedAuth.subscribe(onNext: { [weak self] _ in
             self?.authenticateQiita()
