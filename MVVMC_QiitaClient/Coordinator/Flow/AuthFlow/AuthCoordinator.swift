@@ -87,7 +87,7 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     }
     
     private func authenticateQiita() {
-        let url: URL = URL(string:"https://qiita.com/api/v2/oauth/authorize?client_id=\(AuthInfo.clientId)&scope=read_qiita+write_qiita&state=\(AuthInfo.accessTokenState)")!
+        let url: URL = URL(string:"http://qiita.com/api/v2/oauth/authorize?client_id=\(AuthInfo.clientId)&scope=read_qiita+write_qiita&state=\(AuthInfo.accessTokenState)")!
         authSession = SFAuthenticationSession(url: url, callbackURLScheme: AuthInfo.redirectUrlScheme) { [weak self] (url, error) in
             if let url = url {
                 self?.fetchAuthoriedCode(url: url)
