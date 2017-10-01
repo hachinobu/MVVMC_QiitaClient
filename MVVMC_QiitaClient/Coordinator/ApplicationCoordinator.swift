@@ -45,7 +45,6 @@ class ApplicationCoordinator: BaseCoordinator {
             } else {
                 childCoordinators.forEach { $0.start(option: option) }
             }
-            runMainTabbarFlow(option: option)
         } else {
             start()
         }
