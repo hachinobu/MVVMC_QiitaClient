@@ -11,6 +11,13 @@ import RxSwift
 
 class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelectableView {
     
+    lazy var itemTabNavigationController: UINavigationController = {
+        guard let navigationController = viewControllers?[SelectedTab.item.rawValue] as? UINavigationController else {
+            return UINavigationController.init()
+        }
+        return navigationController
+    }()
+    
     private var selectedItemTabObserver = PublishSubject<UINavigationController>()
     lazy var selectedItemTabObservable: Observable<UINavigationController> =
         self.selectedItemTabObserver.asObservable()
