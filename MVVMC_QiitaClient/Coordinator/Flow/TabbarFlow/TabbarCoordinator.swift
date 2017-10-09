@@ -52,14 +52,23 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
     override func start(option: DeepLinkOption) {
         
         if childCoordinators.isEmpty {
-            start()
+            
             let tabbarView = moduleFactory.generateAuthTabView()
-            switch option {
-            case .item(_):
-                runHomeTabFlow(navigationController: tabbarView.itemTabNavigationController, option: option)
-            case .tag(_):
-                return
-            }
+            
+            tabbarView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
+                self.runHomeTabFlow(navigationController: navigationController, option: option)
+            }).addDisposableTo(bag)
+            
+            tabbarView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
+                self.runTagTabFlow(navigationController: navigationController)
+            }).addDisposableTo(bag)
+            
+            tabbarView.selectedMyAccountTabObservable.subscribe(onNext: { [unowned self] navigationController in
+                self.runMyAccountTabFlow(navigationController: navigationController)
+            }).addDisposableTo(bag)
+            
+            router.setRoot(presentable: tabbarView, hideBar: true)
+            
         } else {
             childCoordinators.forEach { $0.start(option: option) }
         }
@@ -72,10 +81,9 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         coordinator.finishItemFlow
             .bind(to: finishItemFlowObserver)
             .addDisposableTo(bag)
+        coordinator.start()
         if let option = option {
             coordinator.start(option: option)
-        } else {
-            coordinator.start()
         }
         addDependency(coordinator: coordinator)
     }

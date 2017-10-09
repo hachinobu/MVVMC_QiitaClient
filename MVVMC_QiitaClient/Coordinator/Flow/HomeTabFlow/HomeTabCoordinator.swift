@@ -31,7 +31,6 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
     
     override func start(option: DeepLinkOption) {
         if option.hasItemId() {
-            router.popToRoot(animated: false)
             showItemDetail(itemId: option.linkId()!)
         }
     }
@@ -62,7 +61,6 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
         }).addDisposableTo(bag)
         
         router.push(presentable: itemDetailView, animated: true, completion: nil)
-        
     }
     
     private func runAuthFlow(option: DeepLinkOption) {
