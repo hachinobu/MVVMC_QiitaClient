@@ -53,8 +53,8 @@ class ApplicationCoordinator: BaseCoordinator {
     private func runAuthFlow() {
         let coordinator = coordinatorFactory.generateAuthCoordinator(router: router)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
-            self?.start()
             self?.removeDependency(coordinator: coordinator)
+            self?.start()
         }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)
@@ -64,8 +64,8 @@ class ApplicationCoordinator: BaseCoordinator {
     private func runMainTabbarFlow(option: DeepLinkOption? = nil) {
         let coordinator = coordinatorFactory.generateTabbarCoordinator(router: router)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
-            self?.start()
             self?.removeDependency(coordinator: coordinator)
+            self?.start()
         }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)
@@ -79,8 +79,8 @@ class ApplicationCoordinator: BaseCoordinator {
     private func runNoAuthTabbarFlow() {
         let coordinator = coordinatorFactory.generateNoAuthTabbarCoordinator(router: router)
         coordinator.finishItemFlow.subscribe(onNext: { [weak self, weak coordinator] option in
-            self?.start(option: option)
             self?.removeDependency(coordinator: coordinator)
+            self?.start(option: option)
         }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)
