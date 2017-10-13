@@ -11,12 +11,13 @@ import Foundation
 enum DeepLinkOption {
     case item(String)
     case tag(String)
+    case myAccount
     
     func hasItemId() -> Bool {
         switch self {
         case .item(_):
             return true
-        default:
+        case .tag(_), .myAccount:
             return false
         }
     }
@@ -27,6 +28,8 @@ enum DeepLinkOption {
             return itemId
         case .tag(let tagId):
             return tagId
+        case .myAccount:
+            return nil
         }
     }
     

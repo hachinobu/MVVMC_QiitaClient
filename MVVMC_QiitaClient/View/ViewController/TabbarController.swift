@@ -13,7 +13,21 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelec
     
     lazy var itemTabNavigationController: UINavigationController = {
         guard let navigationController = viewControllers?[SelectedTab.item.rawValue] as? UINavigationController else {
-            return UINavigationController.init()
+            return UINavigationController()
+        }
+        return navigationController
+    }()
+    
+    lazy var tagTabNavigationController: UINavigationController = {
+        guard let navigationController = viewControllers?[SelectedTab.tag.rawValue] as? UINavigationController else {
+            return UINavigationController()
+        }
+        return navigationController
+    }()
+    
+    lazy var myAccountNavigationController: UINavigationController = {
+        guard let navigationController = viewControllers?[SelectedTab.myAccount.rawValue] as? UINavigationController else {
+            return UINavigationController()
         }
         return navigationController
     }()
@@ -44,7 +58,7 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelec
             let selectedTab = SelectedTab(rawValue: selectedIndex) else {
             return
         }
-        
+
         switch selectedTab {
         case .item:
             selectedItemTabObserver.onNext(navigationController)

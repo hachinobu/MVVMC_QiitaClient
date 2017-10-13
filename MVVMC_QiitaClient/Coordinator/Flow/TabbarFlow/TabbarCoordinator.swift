@@ -45,6 +45,8 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
             self.runMyAccountTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
+        runHomeTabFlow(navigationController: tabbarView.itemTabNavigationController)
+        
         router.setRoot(presentable: tabbarView, hideBar: true)
         
     }
@@ -52,26 +54,62 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
     override func start(option: DeepLinkOption) {
         
         if childCoordinators.isEmpty {
-            
-            let tabbarView = moduleFactory.generateAuthTabView()
-            
-            tabbarView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
-                self.runHomeTabFlow(navigationController: navigationController, option: option)
-            }).addDisposableTo(bag)
-            
-            tabbarView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
-                self.runTagTabFlow(navigationController: navigationController)
-            }).addDisposableTo(bag)
-            
-            tabbarView.selectedMyAccountTabObservable.subscribe(onNext: { [unowned self] navigationController in
-                self.runMyAccountTabFlow(navigationController: navigationController)
-            }).addDisposableTo(bag)
-            
-            router.setRoot(presentable: tabbarView, hideBar: true)
-            
-        } else {
-            childCoordinators.forEach { $0.start(option: option) }
+            start()
         }
+        
+        switch option {
+        case .item(_):
+            if let coordinator = childCoordinators.filter ({ $0 is HomeTabCoordinator }).first {
+                coordinator.start(option: option)
+            } else if let navigationController = router.toPresent().flatMap({ $0 as? TabbarController })?.itemTabNavigationController {
+                runHomeTabFlow(navigationController: navigationController, option: option)
+            }
+        case .tag(_):
+            if let coordinator = childCoordinators.filter({ $0 is TagTabCoordinator }).first {
+                coordinator.start(option: option)
+            } else if let navigationController = router.toPresent().flatMap({ $0 as? TabbarController })?.tagTabNavigationController {
+                runTagTabFlow(navigationController: navigationController, option: option)
+            }
+        case .myAccount:
+            if let coordinator = childCoordinators.filter({ $0 is MyAccountTabCoordinator }).first {
+                coordinator.start(option: option)
+            } else if let navigationController = router.toPresent().flatMap({ $0 as? TabbarController })?.tagTabNavigationController {
+                runTagTabFlow(navigationController: navigationController, option: option)
+            }
+        }
+        
+        
+        
+//        childCoordinators.forEach { coordinator in
+//            switch coordinator {
+//            case is AuthCoordinator:
+//                print("")
+//            case _:
+//                print("")
+//            }
+//        }
+//
+//        if childCoordinators.isEmpty {
+//
+//            let tabbarView = moduleFactory.generateAuthTabView()
+//
+//            tabbarView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
+//                self.runHomeTabFlow(navigationController: navigationController, option: option)
+//            }).addDisposableTo(bag)
+//
+//            tabbarView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
+//                self.runTagTabFlow(navigationController: navigationController)
+//            }).addDisposableTo(bag)
+//
+//            tabbarView.selectedMyAccountTabObservable.subscribe(onNext: { [unowned self] navigationController in
+//                self.runMyAccountTabFlow(navigationController: navigationController)
+//            }).addDisposableTo(bag)
+//
+//            router.setRoot(presentable: tabbarView, hideBar: true)
+//
+//        } else {
+//            childCoordinators.forEach { $0.start(option: option) }
+//        }
         
     }
     

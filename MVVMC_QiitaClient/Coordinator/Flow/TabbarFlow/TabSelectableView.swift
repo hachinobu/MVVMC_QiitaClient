@@ -12,6 +12,8 @@ import RxSwift
 protocol TabSelectableView: class {
     
     var itemTabNavigationController: UINavigationController { get }
+    var tagTabNavigationController: UINavigationController { get }
+    var myAccountNavigationController: UINavigationController { get }
     
     var selectedItemTabObservable: Observable<UINavigationController> { get }
     var selectedTagTabObservable: Observable<UINavigationController> { get }
