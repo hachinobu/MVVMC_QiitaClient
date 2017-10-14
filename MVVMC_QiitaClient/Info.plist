@@ -10,6 +10,18 @@
 			<key>UIApplicationShortcutItemType</key>
 			<string>item</string>
 		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>iOS TAG</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>tag</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>MyAccount</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>myAccount</string>
+		</dict>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>

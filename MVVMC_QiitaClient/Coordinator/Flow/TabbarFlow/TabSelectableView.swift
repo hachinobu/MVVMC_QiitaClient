@@ -18,4 +18,7 @@ protocol TabSelectableView: class {
     var selectedItemTabObservable: Observable<UINavigationController> { get }
     var selectedTagTabObservable: Observable<UINavigationController> { get }
     var selectedMyAccountTabObservable: Observable<UINavigationController> { get }
+    
+    func chnageSelectedTab(index: Int)
+    
 }

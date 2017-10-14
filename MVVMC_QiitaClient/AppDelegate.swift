@@ -31,7 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch shortcutItem.type {
         case "item":
             applicationCoordinator.start(option: .item("dc2ff32fa2be6b78ea86"))
-        default:
+        case "tag":
+            applicationCoordinator.start(option: .tag("iOS"))
+        case "myAccount":
+            applicationCoordinator.start(option: .myAccount)
+        case _:
             return
         }
         

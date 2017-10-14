@@ -45,8 +45,6 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
             self.runMyAccountTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
-        runHomeTabFlow(navigationController: tabbarView.itemTabNavigationController)
-        
         router.setRoot(presentable: tabbarView, hideBar: true)
         
     }
@@ -57,59 +55,25 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
             start()
         }
         
-        switch option {
-        case .item(_):
-            if let coordinator = childCoordinators.filter ({ $0 is HomeTabCoordinator }).first {
-                coordinator.start(option: option)
-            } else if let navigationController = router.toPresent().flatMap({ $0 as? TabbarController })?.itemTabNavigationController {
-                runHomeTabFlow(navigationController: navigationController, option: option)
-            }
-        case .tag(_):
-            if let coordinator = childCoordinators.filter({ $0 is TagTabCoordinator }).first {
-                coordinator.start(option: option)
-            } else if let navigationController = router.toPresent().flatMap({ $0 as? TabbarController })?.tagTabNavigationController {
-                runTagTabFlow(navigationController: navigationController, option: option)
-            }
-        case .myAccount:
-            if let coordinator = childCoordinators.filter({ $0 is MyAccountTabCoordinator }).first {
-                coordinator.start(option: option)
-            } else if let navigationController = router.toPresent().flatMap({ $0 as? TabbarController })?.tagTabNavigationController {
-                runTagTabFlow(navigationController: navigationController, option: option)
-            }
+        guard let nav = router.toPresent() as? UINavigationController,
+            let tabSelectableView = nav.viewControllers.flatMap ({ $0 as? TabSelectableView }).first else {
+                return
         }
         
+        let coordinator: Coordinator?
+        switch option {
+        case .item(_):
+            tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.item.rawValue)
+            coordinator = childCoordinators.flatMap { $0 as? HomeTabCoordinator }.first
+        case .tag(_):
+            tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.tag.rawValue)
+            coordinator = childCoordinators.flatMap { $0 as? TagTabCoordinator }.first
+        case .myAccount:
+            tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.myAccount.rawValue)
+            coordinator = childCoordinators.flatMap { $0 as? MyAccountTabCoordinator }.first
+        }
         
-        
-//        childCoordinators.forEach { coordinator in
-//            switch coordinator {
-//            case is AuthCoordinator:
-//                print("")
-//            case _:
-//                print("")
-//            }
-//        }
-//
-//        if childCoordinators.isEmpty {
-//
-//            let tabbarView = moduleFactory.generateAuthTabView()
-//
-//            tabbarView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
-//                self.runHomeTabFlow(navigationController: navigationController, option: option)
-//            }).addDisposableTo(bag)
-//
-//            tabbarView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
-//                self.runTagTabFlow(navigationController: navigationController)
-//            }).addDisposableTo(bag)
-//
-//            tabbarView.selectedMyAccountTabObservable.subscribe(onNext: { [unowned self] navigationController in
-//                self.runMyAccountTabFlow(navigationController: navigationController)
-//            }).addDisposableTo(bag)
-//
-//            router.setRoot(presentable: tabbarView, hideBar: true)
-//
-//        } else {
-//            childCoordinators.forEach { $0.start(option: option) }
-//        }
+        coordinator?.start(option: option)
         
     }
     

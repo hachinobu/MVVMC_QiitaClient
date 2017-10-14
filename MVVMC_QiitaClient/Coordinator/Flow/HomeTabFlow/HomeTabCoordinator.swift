@@ -30,9 +30,10 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
     }
     
     override func start(option: DeepLinkOption) {
-        if option.hasItemId() {
-            showItemDetail(itemId: option.linkId()!)
+        guard option.isItem(), let id = option.linkId() else {
+            return
         }
+        showItemDetail(itemId: id)
     }
     
     private func showAllItemList() {
@@ -68,7 +69,7 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
         let (module, coordinator) = coordinatorFactory.generateAuthCoordinatorBox()
         coordinator.finishFlow.do(onNext: { [weak self, weak coordinator] _ in
             self?.removeDependency(coordinator: coordinator)
-        }).filter { AccessTokenStorage.hasAccessToken() && option.hasItemId() }
+        }).filter { AccessTokenStorage.hasAccessToken() && option.isItem() }
             .map { option }
             .bind(to: finishItemFlowObserver)
             .addDisposableTo(bag)

@@ -28,6 +28,13 @@ final class TagTabCoordinator: BaseCoordinator {
         showAllTagListView()
     }
     
+    override func start(option: DeepLinkOption) {
+        guard option.isTag(), let id = option.linkId() else {
+            return
+        }
+        showTagItemList(tagId: id)
+    }
+    
     private func showAllTagListView() {
         
         let tagListView = moduleFactory.generateAllTagListView()

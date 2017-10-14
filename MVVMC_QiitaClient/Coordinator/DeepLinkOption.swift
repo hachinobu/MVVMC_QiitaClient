@@ -13,11 +13,29 @@ enum DeepLinkOption {
     case tag(String)
     case myAccount
     
-    func hasItemId() -> Bool {
+    func isItem() -> Bool {
         switch self {
         case .item(_):
             return true
         case .tag(_), .myAccount:
+            return false
+        }
+    }
+
+    func isTag() -> Bool {
+        switch self {
+        case .tag(_):
+            return true
+        case .item(_), .myAccount:
+            return false
+        }
+    }
+    
+    func isMyAccount() -> Bool {
+        switch self {
+        case .myAccount:
+            return true
+        case .item(_), .tag(_):
             return false
         }
     }

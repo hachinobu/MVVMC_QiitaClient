@@ -53,6 +53,17 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelec
         }
     }
     
+    func chnageSelectedTab(index: Int) {
+        if SelectedTab(rawValue: index) == nil {
+            return
+        }
+        selectedIndex = index
+        guard let viewController = customizableViewControllers?.first else {
+            return
+        }
+        tabBarController(self, didSelect: viewController)
+    }
+    
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard let navigationController = viewControllers?[selectedIndex] as? UINavigationController,
             let selectedTab = SelectedTab(rawValue: selectedIndex) else {
@@ -71,7 +82,7 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelec
 
 }
 
-fileprivate extension TabbarController {
+extension TabbarController {
     
     enum SelectedTab: Int {
         case item = 0

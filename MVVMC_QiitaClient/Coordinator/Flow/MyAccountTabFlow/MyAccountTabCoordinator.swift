@@ -28,6 +28,13 @@ final class MyAccountTabCoordinator: BaseCoordinator {
         showMyAccountView()
     }
     
+    override func start(option: DeepLinkOption) {
+        guard option.isMyAccount() else {
+            return
+        }
+        start()
+    }
+    
     private func showMyAccountView() {
 
         let myAccountView = moduleFactory.generateMyAccountView()
