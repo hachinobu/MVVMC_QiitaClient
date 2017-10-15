@@ -133,6 +133,16 @@ extension ModuleFactory: ItemModuleFactory {
         return itemListView
     }
     
+    func generateLikeUserListView(itemId: String) -> UserListViewType & Presentable {
+        let userListView = UIStoryboard.instantiateInitialViewController(withType: UserListViewController.self)
+        let likeUserRequest = QiitaAPI.GetItemLikesRequest(itemId: itemId)
+        let transform = LikeUserEntityToUserListTableCellVMTransform()
+        let viewModel = UserListVM(request: likeUserRequest, transformer: transform)
+        userListView.injectViewModel(viewModel: viewModel)
+        
+        return userListView
+    }
+    
 }
 
 extension ModuleFactory: TagModuleFactory {
