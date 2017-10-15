@@ -20,6 +20,12 @@ final class ItemDetailViewController: UIViewController, ItemDetailViewType {
     fileprivate var requiredAuthObserver = PublishSubject<Void>()
     lazy var requiredAuth: Observable<Void> = self.requiredAuthObserver.asObservable()
     
+    fileprivate var selectedLikeCountObserver = PublishSubject<String>()
+    lazy var selectedLikeCount: Observable<String> = self.selectedLikeCountObserver.asObservable()
+    
+    fileprivate var selectedStockCountObserver = PublishSubject<String>()
+    lazy var selectedStockCount: Observable<String> = self.selectedStockCountObserver.asObservable()
+    
     fileprivate var viewModel: ItemDetailViewModel!
     
     fileprivate let bag = DisposeBag()
