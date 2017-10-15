@@ -13,6 +13,8 @@ protocol ItemDetailViewType: class {
     
     var selectedUser: Observable<String> { get }
     var requiredAuth: Observable<Void> { get }
+    var selectedLikeCount: Observable<String> { get }
+    var selectedStockCount: Observable<String> { get }
     
     func injectViewModel(viewModel: ItemDetailViewModel)
     
