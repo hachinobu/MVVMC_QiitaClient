@@ -85,6 +85,8 @@
 		AD639E051F2B42DE00AA56ED /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639E041F2B42DE00AA56ED /* UITableView+Extension.swift */; };
 		AD639E081F2C3F2B00AA56ED /* ItemModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD639E071F2C3F2B00AA56ED /* ItemModuleFactory.swift */; };
 		AD74B4C81F20ED8B00B2EC04 /* ReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */; };
+		AD99B93C1F9382CE0007459A /* LikeUserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99B93B1F9382CE0007459A /* LikeUserEntity.swift */; };
+		AD99B93E1F93999F0007459A /* LikeUserEntityToUserListTableCellVMTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD99B93D1F93999F0007459A /* LikeUserEntityToUserListTableCellVMTransform.swift */; };
 		ADA27C531F657AE300F49825 /* PresentNavigationController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */; };
 		ADA27C551F657B7700F49825 /* PresentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA27C541F657B7700F49825 /* PresentNavigationController.swift */; };
 		ADBD63C41F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */; };
@@ -229,6 +231,8 @@
 		AD639E041F2B42DE00AA56ED /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		AD639E071F2C3F2B00AA56ED /* ItemModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemModuleFactory.swift; sourceTree = "<group>"; };
 		AD74B4C71F20ED8B00B2EC04 /* ReusableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableViewController.swift; sourceTree = "<group>"; };
+		AD99B93B1F9382CE0007459A /* LikeUserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeUserEntity.swift; sourceTree = "<group>"; };
+		AD99B93D1F93999F0007459A /* LikeUserEntityToUserListTableCellVMTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeUserEntityToUserListTableCellVMTransform.swift; sourceTree = "<group>"; };
 		ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PresentNavigationController.storyboard; sourceTree = "<group>"; };
 		ADA27C541F657B7700F49825 /* PresentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentNavigationController.swift; sourceTree = "<group>"; };
 		ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFinishFlowType.swift; sourceTree = "<group>"; };
@@ -661,6 +665,7 @@
 				AD639DD91F277A2600AA56ED /* TagEntity.swift */,
 				AD639DDB1F277AB500AA56ED /* GroupEntity.swift */,
 				AD639DDD1F277B3400AA56ED /* ItemEntity.swift */,
+				AD99B93B1F9382CE0007459A /* LikeUserEntity.swift */,
 			);
 			path = ValueObject;
 			sourceTree = "<group>";
@@ -684,6 +689,7 @@
 				AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */,
 				C24904481F46D9160058B300 /* UserAndItemsPairToUserDetailTransform.swift */,
 				C2AC17601F4EE24E00436414 /* UserEntityToUserListTableCellVMTransform.swift */,
+				AD99B93D1F93999F0007459A /* LikeUserEntityToUserListTableCellVMTransform.swift */,
 				AD5FA6C51F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift */,
 			);
 			path = Transform;
@@ -925,6 +931,7 @@
 				AD5C98931F1F996500DF5039 /* Presentable.swift in Sources */,
 				C2AC175B1F4ED9ED00436414 /* UserListViewController.swift in Sources */,
 				AD639DF81F28C49800AA56ED /* PaginationRequest.swift in Sources */,
+				AD99B93C1F9382CE0007459A /* LikeUserEntity.swift in Sources */,
 				AD639DB81F20EEE900AA56ED /* CoordinatorFactoryImpl.swift in Sources */,
 				AD639E001F2B3C8800AA56ED /* ReusableView.swift in Sources */,
 				C29C29271F3C1B9E00189325 /* ItemDetailHeaderTableCell.swift in Sources */,
@@ -953,6 +960,7 @@
 				AD5FA6AC1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift in Sources */,
 				AD5FA6C01F55A0190089B10A /* TagListViewModel.swift in Sources */,
 				C2483F9B1F28A1D200685622 /* Transformable.swift in Sources */,
+				AD99B93E1F93999F0007459A /* LikeUserEntityToUserListTableCellVMTransform.swift in Sources */,
 				AD0EF1C81F6EB2C300D1B503 /* TabModuleFactory.swift in Sources */,
 				AD639DC91F24E17D00AA56ED /* AuthCoordinator.swift in Sources */,
 				AD639DFC1F2B371300AA56ED /* UIViewController+Rx.swift in Sources */,
