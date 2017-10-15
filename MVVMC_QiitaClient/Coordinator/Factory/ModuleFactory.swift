@@ -64,12 +64,12 @@ extension ModuleFactory: ItemModuleFactory {
         let itemDetailRequest = QiitaAPI.GetItemDetailRequest(itemId: itemId)
         let itemStockerRequest = QiitaAPI.GetItemStockersRequest(itemId: itemId)
         let transformer = ItemAndCountEntityToItemDetailViewModel()
-        let stockStatusRequet = QiitaAPI.GetStockStatusRequest(itemId: itemId)
-        let putStockRequest = QiitaAPI.PutStockStatusRequest(itemId: itemId)
-        let deleteStockRequest = QiitaAPI.DeleteStockStatusRequest(itemId: itemId)
-        let viewModel = ItemDetailVM(itemRequest: itemDetailRequest, countRequest: itemStockerRequest,
-                                     transformer: transformer, stockStatusRequest: stockStatusRequet,
-                                     putStockRequest: putStockRequest, deleteStockRequest: deleteStockRequest)
+        let getStatusRequet = QiitaAPI.GetLikeStatusRequest(itemId: itemId)
+        let putStatusRequest = QiitaAPI.PutLikeStatusRequest(itemId: itemId)
+        let deleteStatusRequest = QiitaAPI.DeleteLikeStatusRequest(itemId: itemId)
+        
+        let viewModel = ItemDetailVM(itemRequest: itemDetailRequest, countRequest: itemStockerRequest, transformer: transformer,
+                                     getStatusRequest: getStatusRequet, putStatusRequest: putStatusRequest, deleteStatusRequest: deleteStatusRequest)
         itemDetailView.injectViewModel(viewModel: viewModel)
         
         return itemDetailView

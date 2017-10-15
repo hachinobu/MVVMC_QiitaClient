@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -53,7 +52,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿者" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exi-Ne-hPQ">
-                        <rect key="frame" x="66" y="8" width="268" height="21"/>
+                        <rect key="frame" x="66" y="8" width="40" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="A9N-HA-rcu"/>
                             <constraint firstAttribute="height" constant="21" id="v4E-Pa-Ie1"/>
@@ -70,6 +69,15 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKJ-VP-AwV">
                         <rect key="frame" x="8" y="8" width="50" height="50"/>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="いいね数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mlp-vZ-He4">
+                        <rect key="frame" x="280.5" y="8" width="53.5" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="oQb-88-4pP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="eox-Nx-sXL" firstAttribute="top" secondItem="ioZ-dQ-0EL" secondAttribute="top" constant="8" id="08U-Xc-E4J"/>
@@ -77,20 +85,23 @@
                     <constraint firstItem="exi-Ne-hPQ" firstAttribute="leading" secondItem="eox-Nx-sXL" secondAttribute="trailing" constant="8" id="1X9-nD-E0g"/>
                     <constraint firstItem="eox-Nx-sXL" firstAttribute="leading" secondItem="ioZ-dQ-0EL" secondAttribute="leading" constant="8" id="3ex-cL-vXE"/>
                     <constraint firstItem="r3N-ft-rhK" firstAttribute="leading" secondItem="eox-Nx-sXL" secondAttribute="trailing" constant="8" id="4Rb-LI-v2s"/>
+                    <constraint firstAttribute="trailing" secondItem="mlp-vZ-He4" secondAttribute="trailing" constant="8" id="4Wh-6R-q4D"/>
                     <constraint firstItem="r3N-ft-rhK" firstAttribute="top" secondItem="exi-Ne-hPQ" secondAttribute="bottom" id="7Vp-4g-0Gq"/>
                     <constraint firstAttribute="bottom" secondItem="rx0-GD-wfB" secondAttribute="bottom" constant="6" id="A5F-Fb-JhL"/>
                     <constraint firstItem="iKJ-VP-AwV" firstAttribute="centerY" secondItem="eox-Nx-sXL" secondAttribute="centerY" id="Dwc-HR-eht"/>
                     <constraint firstItem="rx0-GD-wfB" firstAttribute="trailing" secondItem="r3N-ft-rhK" secondAttribute="trailing" id="ECY-SI-HXe"/>
                     <constraint firstItem="iKJ-VP-AwV" firstAttribute="width" secondItem="eox-Nx-sXL" secondAttribute="width" id="Huu-AX-1AC"/>
-                    <constraint firstAttribute="trailing" secondItem="exi-Ne-hPQ" secondAttribute="trailing" constant="8" id="N4H-H0-9Fb"/>
+                    <constraint firstItem="mlp-vZ-He4" firstAttribute="leading" secondItem="exi-Ne-hPQ" secondAttribute="trailing" priority="250" constant="8" id="KlJ-Rg-VzO"/>
                     <constraint firstItem="rx0-GD-wfB" firstAttribute="top" secondItem="r3N-ft-rhK" secondAttribute="bottom" constant="2.5" id="XIv-x5-8Oi"/>
                     <constraint firstItem="exi-Ne-hPQ" firstAttribute="top" secondItem="ioZ-dQ-0EL" secondAttribute="top" constant="8" id="e24-LN-fzt"/>
                     <constraint firstItem="iKJ-VP-AwV" firstAttribute="height" secondItem="eox-Nx-sXL" secondAttribute="height" id="jtZ-Eg-7nq"/>
                     <constraint firstItem="iKJ-VP-AwV" firstAttribute="centerX" secondItem="eox-Nx-sXL" secondAttribute="centerX" id="k6T-GU-O0r"/>
+                    <constraint firstItem="mlp-vZ-He4" firstAttribute="centerY" secondItem="exi-Ne-hPQ" secondAttribute="centerY" id="sQg-gi-5nu"/>
                     <constraint firstAttribute="trailing" secondItem="r3N-ft-rhK" secondAttribute="trailing" id="yt2-w7-8lF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="likeCountLabel" destination="mlp-vZ-He4" id="cGE-Qq-oe5"/>
                 <outlet property="profileImageButton" destination="iKJ-VP-AwV" id="rqb-JG-a2E"/>
                 <outlet property="profileImageView" destination="eox-Nx-sXL" id="bBP-wf-dkJ"/>
                 <outlet property="tagLabel" destination="rx0-GD-wfB" id="GH9-Ud-SrP"/>

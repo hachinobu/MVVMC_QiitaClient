@@ -15,9 +15,9 @@ protocol ItemDetailViewModel: class {
     
     var itemDetail: Driver<ItemViewModel> { get }
     var error: Driver<ActionError> { get }
-    var changeStockStatus: Driver<Bool> { get }
+    var changeStatus: Driver<Bool> { get }
     
     var viewDidLoadTrigger: PublishSubject<Void> { get }
-    var updateStockTrigger: PublishSubject<Void> { get }
+    var updateStatusTrigger: PublishSubject<Void> { get }
     
 }

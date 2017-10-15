@@ -104,4 +104,3 @@ class CodableParser: DataParser {
         return data
     }
 }
-

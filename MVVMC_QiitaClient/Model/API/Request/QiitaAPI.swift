@@ -183,6 +183,66 @@ final class QiitaAPI {
         
     }
     
+    struct GetLikeStatusRequest: QiitaRequest {
+        
+        typealias Response = Void
+        
+        private let itemId: String
+        
+        init(itemId: String) {
+            self.itemId = itemId
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/items/\(itemId)/like"
+        }
+        
+    }
+    
+    struct PutLikeStatusRequest: QiitaRequest {
+        
+        typealias Response = Void
+        
+        private let itemId: String
+        
+        init(itemId: String) {
+            self.itemId = itemId
+        }
+        
+        var method: HTTPMethod {
+            return .put
+        }
+        
+        var path: String {
+            return "/api/v2/items/\(itemId)/like"
+        }
+        
+    }
+    
+    struct DeleteLikeStatusRequest: QiitaRequest {
+        
+        typealias Response = Void
+        
+        private let itemId: String
+        
+        init(itemId: String) {
+            self.itemId = itemId
+        }
+        
+        var method: HTTPMethod {
+            return .delete
+        }
+        
+        var path: String {
+            return "/api/v2/items/\(itemId)/like"
+        }
+        
+    }
+    
     struct GetUserDetailRequest: QiitaRequest {
         
         typealias Response = UserEntity

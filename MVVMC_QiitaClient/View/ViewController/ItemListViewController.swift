@@ -82,6 +82,7 @@ extension ItemListViewController {
                 guard let strongSelf = self else { return }
                 
                 cellViewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
+                cellViewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).addDisposableTo(cell.bag)
                 cellViewModel.title.bind(to: cell.titleLabel.rx.text).addDisposableTo(cell.bag)
                 cellViewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
                 cellViewModel.profileURL.filter { $0 != nil }.map { $0! }.subscribe(onNext: { [weak cell] url in

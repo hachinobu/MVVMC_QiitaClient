@@ -67,7 +67,7 @@ extension ItemDetailViewController {
         }).addDisposableTo(bag)
         
         tappedStockButtonObserver
-            .bind(to: viewModel.updateStockTrigger)
+            .bind(to: viewModel.updateStatusTrigger)
             .addDisposableTo(bag)
         
     }
@@ -109,11 +109,12 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             let viewModel = items[indexPath.row]
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemDetailHeaderTableCell
             viewModel.title.bind(to: cell.titleLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.stockCount.bind(to: cell.stockCountLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.userName.bind(to: cell.userNameButton.rx.title()).addDisposableTo(cell.bag)
             viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.hasStock.filter { $0 }.map { _ in "ストック済み" }.bind(to: cell.stockButton.rx.title()).addDisposableTo(cell.bag)
-            viewModel.hasStock.filter { !$0 }.map { _ in "ストック" }.bind(to: cell.stockButton.rx.title()).addDisposableTo(cell.bag)
+            viewModel.hasStock.filter { $0 }.map { _ in "いいね済み" }.bind(to: cell.stockButton.rx.title()).addDisposableTo(cell.bag)
+            viewModel.hasStock.filter { !$0 }.map { _ in "いいね" }.bind(to: cell.stockButton.rx.title()).addDisposableTo(cell.bag)
             
             viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
                 let imageURL = url!

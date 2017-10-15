@@ -14,6 +14,7 @@ protocol ItemListTableCellViewModel: class {
     var userId: String { get }
     var profileURL: Observable<URL?> { get }
     var userName: Observable<String?> { get }
+    var likeCount: Observable<String?> { get }
     var title: Observable<String?> { get }
     var tag: Observable<String?> { get }
 }
@@ -23,6 +24,7 @@ class ItemListTableCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
     

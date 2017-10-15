@@ -18,6 +18,8 @@ class ItemDetailHeaderTableCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var userNameButton: UIButton!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var stockCountLabel: UILabel!
     @IBOutlet weak var stockCountButton: UIButton!
     @IBOutlet weak var stockButton: UIButton!

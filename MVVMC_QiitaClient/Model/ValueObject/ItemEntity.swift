@@ -15,6 +15,7 @@ struct ItemEntity: Codable {
     let createdAt: String
     let group: GroupEntity?
     let id: String
+    let likeCount: Int
     let isPrivate: Bool
     let tagList: [ItemTagEntity]
     let title: String
@@ -29,6 +30,7 @@ struct ItemEntity: Codable {
         case createdAt = "created_at"
         case group
         case id
+        case likeCount = "likes_count"
         case isPrivate = "private"
         case tagList = "tags"
         case title
