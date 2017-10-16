@@ -22,14 +22,14 @@ class ItemDetailHeaderTableCell: UITableViewCell {
     @IBOutlet weak var likeCountButton: UIButton!
     @IBOutlet weak var stockCountLabel: UILabel!
     @IBOutlet weak var stockCountButton: UIButton!
-    @IBOutlet weak var stockButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         profileImageView.layer.cornerRadius = 8.0
         profileImageView.layer.masksToBounds = true
-        stockButton.layer.cornerRadius = 4.0
-        stockButton.layer.masksToBounds = true
+        likeButton.layer.cornerRadius = 4.0
+        likeButton.layer.masksToBounds = true
     }
     
     override func prepareForReuse() {

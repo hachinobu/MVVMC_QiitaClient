@@ -133,8 +133,8 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             viewModel.stockCount.bind(to: cell.stockCountLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.userName.bind(to: cell.userNameButton.rx.title()).addDisposableTo(cell.bag)
             viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.hasStock.filter { $0 }.map { _ in "いいね済み" }.bind(to: cell.stockButton.rx.title()).addDisposableTo(cell.bag)
-            viewModel.hasStock.filter { !$0 }.map { _ in "いいね" }.bind(to: cell.stockButton.rx.title()).addDisposableTo(cell.bag)
+            viewModel.hasStock.filter { $0 }.map { _ in "いいね済み" }.bind(to: cell.likeButton.rx.title()).addDisposableTo(cell.bag)
+            viewModel.hasStock.filter { !$0 }.map { _ in "いいね" }.bind(to: cell.likeButton.rx.title()).addDisposableTo(cell.bag)
             
             viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
                 let imageURL = url!
@@ -152,7 +152,7 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             cell.likeCountButton.rx.tap.map { viewModel.itemId }.bind(to: selectedLikeCountObserver).addDisposableTo(cell.bag)
             cell.stockCountButton.rx.tap.map { viewModel.itemId }.bind(to: selectedStockCountObserver).addDisposableTo(cell.bag)
             
-            let tap = cell.stockButton.rx.tap.map { AccessTokenStorage.hasAccessToken() }.shareReplayLatestWhileConnected()
+            let tap = cell.likeButton.rx.tap.map { AccessTokenStorage.hasAccessToken() }.shareReplayLatestWhileConnected()
             tap.filter { $0 }.map { _ in }.bind(to: tappedStockButtonObserver).addDisposableTo(cell.bag)
             tap.filter { !$0 }.map { _ in }.bind(to: requiredAuthObserver).addDisposableTo(cell.bag)
             

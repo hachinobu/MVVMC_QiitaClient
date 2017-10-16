@@ -128,11 +128,11 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="likeButton" destination="B9F-Ke-cYs" id="gi5-Di-LGJ"/>
                 <outlet property="likeCountButton" destination="4Ax-YU-znR" id="4PH-Hw-p3M"/>
                 <outlet property="likeCountLabel" destination="iBD-JS-7w6" id="yMp-6b-Pdg"/>
                 <outlet property="profileImageButton" destination="Cam-RA-r9p" id="6hF-rO-114"/>
                 <outlet property="profileImageView" destination="mRx-Tv-k99" id="XSx-OS-nZ3"/>
-                <outlet property="stockButton" destination="B9F-Ke-cYs" id="gi5-Di-LGJ"/>
                 <outlet property="stockCountButton" destination="hYo-Xz-OKw" id="plf-BD-wXO"/>
                 <outlet property="stockCountLabel" destination="Sxv-qn-3Vb" id="cUf-nL-rF5"/>
                 <outlet property="tagLabel" destination="BJG-QI-WMQ" id="1Kk-0J-YMC"/>
