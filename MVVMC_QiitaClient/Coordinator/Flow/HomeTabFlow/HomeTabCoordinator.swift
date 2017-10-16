@@ -61,6 +61,10 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
             self?.runAuthFlow(option: DeepLinkOption.item(itemId))
         }).addDisposableTo(bag)
         
+        itemDetailView.selectedLikeCount.subscribe(onNext: { [weak self] itemId in
+            self?.showItemLikeUserList(itemId: itemId)
+        }).addDisposableTo(bag)
+                
         router.push(presentable: itemDetailView, animated: true, completion: nil)
     }
     

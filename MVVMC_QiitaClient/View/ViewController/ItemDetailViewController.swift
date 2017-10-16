@@ -62,6 +62,14 @@ extension ItemDetailViewController {
                                                        tappedStockButtonObserver: tappedStockButtonObserver,
                                                        requiredAuthObserver: requiredAuthObserver)
         
+        dataSource.selectedLikeCount
+            .bind(to: selectedLikeCountObserver)
+            .addDisposableTo(bag)
+        
+        dataSource.selectedStockCount
+            .bind(to: selectedStockCountObserver)
+            .addDisposableTo(bag)
+        
         viewModel.itemDetail.map { [$0, $0] }
             .drive(tableView.rx.items(dataSource: dataSource))
             .addDisposableTo(bag)
@@ -90,6 +98,12 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     let selectedUserObserver: PublishSubject<String>
     let tappedStockButtonObserver: PublishSubject<Void>
     let requiredAuthObserver: PublishSubject<Void>
+    
+    private let selectedLikeCountObserver = PublishSubject<String>()
+    lazy var selectedLikeCount: Observable<String> = self.selectedLikeCountObserver.asObservable()
+    
+    private let selectedStockCountObserver = PublishSubject<String>()
+    lazy var selectedStockCount: Observable<String> = self.selectedStockCountObserver.asObservable()
     
     init(selectedUserObserver: PublishSubject<String>, tappedStockButtonObserver: PublishSubject<Void>, requiredAuthObserver: PublishSubject<Void>) {
         self.selectedUserObserver = selectedUserObserver
@@ -135,8 +149,11 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
                 return viewModel.userId
             }.bind(to: selectedUserObserver).addDisposableTo(cell.bag)
             
+            cell.likeCountButton.rx.tap.map { viewModel.itemId }.bind(to: selectedLikeCountObserver).addDisposableTo(cell.bag)
+            cell.stockCountButton.rx.tap.map { viewModel.itemId }.bind(to: selectedStockCountObserver).addDisposableTo(cell.bag)
+            
             let tap = cell.stockButton.rx.tap.map { AccessTokenStorage.hasAccessToken() }.shareReplayLatestWhileConnected()
-            tap.filter { $0 }.map { _ in () }.bind(to: tappedStockButtonObserver).addDisposableTo(cell.bag)
+            tap.filter { $0 }.map { _ in }.bind(to: tappedStockButtonObserver).addDisposableTo(cell.bag)
             tap.filter { !$0 }.map { _ in }.bind(to: requiredAuthObserver).addDisposableTo(cell.bag)
             
             return cell
