@@ -143,6 +143,16 @@ extension ModuleFactory: ItemModuleFactory {
         return userListView
     }
     
+    func generateStockUserListView(itemId: String) -> UserListViewType & Presentable {
+        let userListView = UIStoryboard.instantiateInitialViewController(withType: UserListViewController.self)
+        let stockUserRequest = QiitaAPI.GetItemStocksRequest(itemId: itemId)
+        let transformer = UserEntityToUserListTableCellVMTransform()
+        let viewModel = UserListVM(request: stockUserRequest, transformer: transformer)
+        userListView.injectViewModel(viewModel: viewModel)
+        
+        return userListView
+    }
+    
 }
 
 extension ModuleFactory: TagModuleFactory {

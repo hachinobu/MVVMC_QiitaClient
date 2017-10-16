@@ -17,4 +17,5 @@ protocol ItemModuleFactory {
     func generateUserFollowTagListView(userId: String) -> TagListViewType & Presentable
     func generateTagItemListView(tagId: String) -> ItemListViewType & Presentable
     func generateLikeUserListView(itemId: String) -> UserListViewType & Presentable
+    func generateStockUserListView(itemId: String) -> UserListViewType & Presentable
 }

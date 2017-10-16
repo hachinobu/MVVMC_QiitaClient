@@ -99,6 +99,34 @@ final class QiitaAPI {
         
     }
     
+    struct GetItemStocksRequest: QiitaRequest, PaginationRequest {
+        
+        typealias Response = [UserEntity]
+        
+        private let itemId: String
+        var page: Int
+        let perPage: Int
+        
+        init(itemId: String, page: Int = 1, perPage: Int = 100) {
+            self.itemId = itemId
+            self.page = page
+            self.perPage = perPage
+        }
+        
+        var method: HTTPMethod {
+            return .get
+        }
+        
+        var path: String {
+            return "/api/v2/items/\(itemId)/stockers"
+        }
+        
+        var queryParameters: [String : Any]? {
+            return ["page": page, "per_page": 100]
+        }
+        
+    }
+    
     struct GetItemStockersRequest: QiitaRequest {
         
         typealias Response = [UserEntity]

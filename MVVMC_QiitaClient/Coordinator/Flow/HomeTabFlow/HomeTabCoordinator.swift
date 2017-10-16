@@ -64,6 +64,10 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
         itemDetailView.selectedLikeCount.subscribe(onNext: { [weak self] itemId in
             self?.showItemLikeUserList(itemId: itemId)
         }).addDisposableTo(bag)
+        
+        itemDetailView.selectedStockCount.subscribe(onNext: { [weak self] itemId in
+            self?.showItemStockUserList(itemId: itemId)
+        }).addDisposableTo(bag)
                 
         router.push(presentable: itemDetailView, animated: true, completion: nil)
     }
@@ -162,6 +166,18 @@ final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
     private func showItemLikeUserList(itemId: String) {
         
         let userListView = moduleFactory.generateLikeUserListView(itemId: itemId)
+        
+        userListView.selectedUser.subscribe(onNext: { [weak self] userId in
+            self?.showUserDetail(userId: userId)
+        }).addDisposableTo(bag)
+        
+        router.push(presentable: userListView, animated: true, completion: nil)
+        
+    }
+    
+    private func showItemStockUserList(itemId: String) {
+        
+        let userListView = moduleFactory.generateStockUserListView(itemId: itemId)
         
         userListView.selectedUser.subscribe(onNext: { [weak self] userId in
             self?.showUserDetail(userId: userId)
