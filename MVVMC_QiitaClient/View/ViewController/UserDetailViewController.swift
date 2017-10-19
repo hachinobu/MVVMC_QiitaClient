@@ -189,7 +189,7 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
         let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemListTableCell
         let viewModel = items[0].userItems[indexPath.row]
         viewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
-        viewModel.title.bind(to: cell.titleLabel.rx.text).addDisposableTo(cell.bag)
+        viewModel.title.bind(to: cell.titleLabel.rx.attributedText).addDisposableTo(cell.bag)
         viewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).addDisposableTo(cell.bag)
         viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
         viewModel.profileURL.filter { $0 != nil }.map { $0! }.subscribe(onNext: { [weak cell] url in

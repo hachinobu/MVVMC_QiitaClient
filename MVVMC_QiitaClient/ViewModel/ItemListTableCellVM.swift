@@ -24,13 +24,13 @@ final class ItemListTableCellVM: ItemListTableCellViewModel {
     private let likeCountObserver = Variable<String?>(nil)
     lazy var likeCount: Observable<String?> = self.likeCountObserver.asObservable()
     
-    private let titleObserver = Variable<String?>(nil)
-    lazy var title: Observable<String?> = self.titleObserver.asObservable()
+    private let titleObserver = Variable<NSAttributedString?>(nil)
+    lazy var title: Observable<NSAttributedString?> = self.titleObserver.asObservable()
     
     private let tagObserver = Variable<String?>(nil)
     lazy var tag: Observable<String?> = self.tagObserver.asObservable()
     
-    init(itemId: String, userId: String, profileURL: URL?, userName: String?, likeCount: String?, title: String?, tag: String?) {
+    init(itemId: String, userId: String, profileURL: URL?, userName: String?, likeCount: String?, title: NSAttributedString?, tag: String?) {
         self.itemId = itemId
         self.userId = userId
         self.profileURLObserver.value = profileURL

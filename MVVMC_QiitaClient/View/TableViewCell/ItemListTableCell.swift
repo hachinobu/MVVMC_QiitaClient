@@ -15,7 +15,7 @@ protocol ItemListTableCellViewModel: class {
     var profileURL: Observable<URL?> { get }
     var userName: Observable<String?> { get }
     var likeCount: Observable<String?> { get }
-    var title: Observable<String?> { get }
+    var title: Observable<NSAttributedString?> { get }
     var tag: Observable<String?> { get }
 }
 
