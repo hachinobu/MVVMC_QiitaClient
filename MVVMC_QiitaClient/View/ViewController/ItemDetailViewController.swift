@@ -128,7 +128,7 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             
             let viewModel = items[indexPath.row]
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemDetailHeaderTableCell
-            viewModel.title.bind(to: cell.titleLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.title.bind(to: cell.titleLabel.rx.attributedText).addDisposableTo(cell.bag)
             viewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.stockCount.bind(to: cell.stockCountLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.userName.bind(to: cell.userNameButton.rx.title()).addDisposableTo(cell.bag)

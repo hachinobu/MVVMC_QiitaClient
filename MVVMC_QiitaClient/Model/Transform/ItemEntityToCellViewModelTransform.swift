@@ -6,7 +6,6 @@
 //  Copyright © 2017年 hachinobu. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct ItemEntityToCellViewModelTransform: Transformable {

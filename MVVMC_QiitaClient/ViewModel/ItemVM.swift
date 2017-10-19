@@ -15,8 +15,8 @@ final class ItemVM: ItemViewModel {
     var userId: String
     var htmlRenderBody: String
     
-    private let titleObserver = Variable<String?>(nil)
-    lazy var title: Observable<String?> = self.titleObserver.asObservable()
+    private let titleObserver = Variable<NSAttributedString?>(nil)
+    lazy var title: Observable<NSAttributedString?> = self.titleObserver.asObservable()
     
     private let tagObserver = Variable<String?>(nil)
     lazy var tag: Observable<String?> = self.tagObserver.asObservable()
@@ -38,7 +38,7 @@ final class ItemVM: ItemViewModel {
     
     init(itemId: String,
          userId: String,
-         title: String?,
+         title: NSAttributedString?,
          tag: String?,
          profileURL: URL?,
          userName: String?,

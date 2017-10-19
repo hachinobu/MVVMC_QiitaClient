@@ -6,9 +6,17 @@
 //  Copyright © 2017年 hachinobu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct ItemAndCountEntityToItemDetailViewModel: Transformable {
+    
+    private var paragraphStyle: NSParagraphStyle {
+        let lineHeight: CGFloat = 22.0
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.maximumLineHeight = lineHeight
+        paragraphStyle.minimumLineHeight = lineHeight
+        return paragraphStyle
+    }
     
     func transform(input: (ItemEntity, [UserEntity], Bool)) -> ItemViewModel {
         
@@ -16,7 +24,10 @@ struct ItemAndCountEntityToItemDetailViewModel: Transformable {
         
         let itemId = input.item.id
         let userId = input.item.user.id
-        let title = input.item.title
+        
+        let attributedTitle = NSMutableAttributedString(string: input.item.title)
+        attributedTitle.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedTitle.length))
+        
         let tag = input.item.tagList.map { $0.name }.joined(separator: ", ")
         let profileURL = URL(string: input.item.user.profileImageUrlString)
         let userName = input.item.user.id
@@ -30,7 +41,7 @@ struct ItemAndCountEntityToItemDetailViewModel: Transformable {
         
         return ItemVM(itemId: itemId,
                       userId: userId,
-                      title: title,
+                      title: attributedTitle,
                       tag: tag,
                       profileURL: profileURL,
                       userName: userName,
