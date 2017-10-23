@@ -33,6 +33,10 @@ class UserDetailViewController: UIViewController, UserDetailViewType {
     fileprivate var selectedFolloweeObserver = PublishSubject<String>()
     lazy var selectedFollowee: Observable<String> = self.selectedFolloweeObserver.asObservable()
     
+    var isDisplayButton: Bool = false
+    fileprivate var logoutActionObserver = PublishSubject<Void>()
+    lazy var logoutAction: Observable<Void> = self.logoutActionObserver.asObservable()
+    
     fileprivate let reachedBottomObserver: PublishSubject<Void> = PublishSubject()
     
     func injectViewModel(viewModel: UserDetailViewModel) {
@@ -86,7 +90,12 @@ extension UserDetailViewController {
                                                        selectedFolloweeListObserver: selectedFolloweeObserver,
                                                        selectedFollowerListObserver: selectedFollowerObserver,
                                                        selectedFollowTagListObserver: selectedFollowTagListObserver,
+                                                       isDisplayButton: isDisplayButton,
                                                        reachedBottomObserver: reachedBottomObserver)
+        
+        dataSource.logoutAction
+            .bind(to: logoutActionObserver)
+            .addDisposableTo(bag)
         
         viewModel.userDetailItemPairs
             .map { [$0, $0] }
@@ -110,12 +119,17 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
     let selectedFollowerListObserver: PublishSubject<String>
     let selectedFollowTagListObserver: PublishSubject<String>
     let reachedBottomObserver: PublishSubject<Void>
+    let isDisplayButton: Bool
     
-    init(selectedItemObserver: PublishSubject<String>, selectedFolloweeListObserver: PublishSubject<String>, selectedFollowerListObserver: PublishSubject<String>, selectedFollowTagListObserver: PublishSubject<String>, reachedBottomObserver: PublishSubject<Void>) {
+    fileprivate var logoutActionObserver = PublishSubject<Void>()
+    lazy var logoutAction: Observable<Void> = self.logoutActionObserver.asObservable()
+    
+    init(selectedItemObserver: PublishSubject<String>, selectedFolloweeListObserver: PublishSubject<String>, selectedFollowerListObserver: PublishSubject<String>, selectedFollowTagListObserver: PublishSubject<String>, isDisplayButton: Bool, reachedBottomObserver: PublishSubject<Void>) {
         self.selectedItemObserver = selectedItemObserver
         self.selectedFolloweeListObserver = selectedFolloweeListObserver
         self.selectedFollowerListObserver = selectedFollowerListObserver
         self.selectedFollowTagListObserver = selectedFollowTagListObserver
+        self.isDisplayButton = isDisplayButton
         self.reachedBottomObserver = reachedBottomObserver
     }
     
@@ -149,7 +163,7 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
             viewModel.itemCount.bind(to: cell.itemCountLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.followeeUserCount.bind(to: cell.followeeUserCountLabel.rx.title()).addDisposableTo(cell.bag)
             viewModel.followerUserCount.bind(to: cell.followerUserCountLabel.rx.title()).addDisposableTo(cell.bag)
-            viewModel.description.bind(to: cell.descriptionLabel.rx.text).addDisposableTo(cell.bag)
+            viewModel.description.bind(to: cell.descriptionLabel.rx.attributedText).addDisposableTo(cell.bag)
             
             viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
                 
@@ -181,6 +195,11 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
                 .map { $0! }
                 .bind(to: self.selectedFollowerListObserver)
                 .addDisposableTo(cell.bag)
+            
+            cell.logoutButton.constraints
+                .filter { $0.firstAttribute == .height }
+                .first?.constant = isDisplayButton ? 30.0 : 0.0
+            cell.logoutButton.rx.tap.bind(to: logoutActionObserver).addDisposableTo(cell.bag)
             
             return cell
             

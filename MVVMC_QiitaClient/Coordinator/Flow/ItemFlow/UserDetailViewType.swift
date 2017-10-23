@@ -14,6 +14,8 @@ protocol UserDetailViewType: class {
     var selectedFollower: Observable<String> { get }
     var selectedFollowee: Observable<String> { get }
     var selectedFollowTagList: Observable<String> { get }
+    var isDisplayButton: Bool { get }
+    var logoutAction: Observable<Void> { get }
     
     func injectViewModel(viewModel: UserDetailViewModel)
 }

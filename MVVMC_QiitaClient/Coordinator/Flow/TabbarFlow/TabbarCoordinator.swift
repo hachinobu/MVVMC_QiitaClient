@@ -100,6 +100,9 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
     private func runMyAccountTabFlow(navigationController: UINavigationController, option: DeepLinkOption? = nil) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateMyAccountTabCoordinator(navigationController: navigationController)
+        coordinator.finishFlow
+            .bind(to: finishFlowObserver)
+            .addDisposableTo(bag)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }

@@ -32,11 +32,11 @@ class UserDetailTableCellVM: UserDetailTableCellViewModel {
     private let followerUserCountObserver = Variable<String?>(nil)
     lazy var followerUserCount: Observable<String?> = self.followerUserCountObserver.asObservable()
     
-    private let descriptionObserver = Variable<String?>(nil)
-    lazy var description: Observable<String?> = self.descriptionObserver.asObservable()
+    private let descriptionObserver = Variable<NSAttributedString?>(nil)
+    lazy var description: Observable<NSAttributedString?> = self.descriptionObserver.asObservable()
     
     init(profileURL: URL?, userId: String?, userName: String?, company: String?,
-         itemCount: String?, followeeUserCount: String?, followerUserCount: String?, description: String?) {
+         itemCount: String?, followeeUserCount: String?, followerUserCount: String?, description: NSAttributedString?) {
         
         self.profileURLObserver.value = profileURL
         self.userIdObserver.value = userId

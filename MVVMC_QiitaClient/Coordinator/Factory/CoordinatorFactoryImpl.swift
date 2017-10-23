@@ -34,7 +34,7 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
         return TagTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
-    func generateMyAccountTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
+    func generateMyAccountTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType {
         let rootController = navigationController ?? UINavigationController()
         return MyAccountTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }

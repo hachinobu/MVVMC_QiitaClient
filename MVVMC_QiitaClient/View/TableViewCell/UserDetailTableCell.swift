@@ -17,7 +17,7 @@ protocol UserDetailTableCellViewModel: class {
     var itemCount: Observable<String?> { get }
     var followeeUserCount: Observable<String?> { get }
     var followerUserCount: Observable<String?> { get }
-    var description: Observable<String?> { get }
+    var description: Observable<NSAttributedString?> { get }
 }
 
 final class UserDetailTableCell: UITableViewCell {
@@ -31,6 +31,7 @@ final class UserDetailTableCell: UITableViewCell {
     @IBOutlet weak var followeeUserCountLabel: UIButton!
     @IBOutlet weak var followerUserCountLabel: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var logoutButton: UIButton!
     
     var bag = DisposeBag()
     
@@ -38,6 +39,9 @@ final class UserDetailTableCell: UITableViewCell {
         super.awakeFromNib()
         profileImageView.layer.cornerRadius = 8.0
         profileImageView.layer.masksToBounds = true
+        logoutButton.layer.cornerRadius = 4.0
+        logoutButton.layer.masksToBounds = true
+        logoutButton.setTitle("ログアウト", for: .normal)
     }
     
     override func prepareForReuse() {

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-final class MyAccountTabCoordinator: BaseCoordinator {
+final class MyAccountTabCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
 
     typealias Module = ItemModuleFactory & MyAccountModuleFactory
     
@@ -17,6 +17,9 @@ final class MyAccountTabCoordinator: BaseCoordinator {
     private let moduleFactory: Module
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
+    
+    private let finishFlowObserver = PublishSubject<Void>()
+    lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
     
     init(moduleFactory: Module, coordinatorFactory: CoordinatorFactory, router: Router) {
         self.moduleFactory = moduleFactory
@@ -54,6 +57,14 @@ final class MyAccountTabCoordinator: BaseCoordinator {
         myAccountView.selectedFollower.subscribe(onNext: { [weak self] userId in
             self?.showFollowerList(userId: userId)
         }).addDisposableTo(bag)
+        
+        myAccountView.logoutAction.do(onNext: { _ in
+            AuthenticateQiita.sharedInstance.status.value = .none
+        }).map { AccessTokenStorage.deleteAccessToken() }
+            .filter { $0 }
+            .map { _ in }
+            .bind(to: finishFlowObserver)
+            .addDisposableTo(bag)
 
         router.setRoot(presentable: myAccountView, hideBar: false)
 

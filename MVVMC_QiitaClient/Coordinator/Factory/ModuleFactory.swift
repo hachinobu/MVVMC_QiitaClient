@@ -179,6 +179,7 @@ extension ModuleFactory: MyAccountModuleFactory {
         let myItemsTransformer = ItemEntityToCellViewModelTransform()
         let viewModel = UserDetailVM(userRequest: userRequest, itemsRequest: myItemsRequest, userTransformer: userTransformer, itemTransformer: myItemsTransformer)
         myAccountView.injectViewModel(viewModel: viewModel)
+        myAccountView.isDisplayButton = true
         
         return myAccountView
     }

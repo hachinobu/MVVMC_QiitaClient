@@ -6,9 +6,17 @@
 //  Copyright © 2017年 hachinobu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct UserEntityToUserDetailTableCellViewModelTransform: Transformable {
+    
+    private var paragraphStyle: NSParagraphStyle {
+        let lineHeight: CGFloat = 22.0
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.maximumLineHeight = lineHeight
+        paragraphStyle.minimumLineHeight = lineHeight
+        return paragraphStyle
+    }
     
     func transform(input: UserEntity) -> UserDetailTableCellViewModel {
         
@@ -19,11 +27,14 @@ struct UserEntityToUserDetailTableCellViewModelTransform: Transformable {
         let itemCount = "投稿数: " + input.itemsCount.description
         let followeeCount = "フォローしている数:" + input.followeesCount.description
         let followerCount = "フォローされてる数:" + input.followersCount.description
-        let description = input.description
+        
+        let description = input.description ?? ""
+        let attributedDescription = NSMutableAttributedString(string: description)
+        attributedDescription.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedDescription.length))
         
         return UserDetailTableCellVM(profileURL: profileURL, userId: userId, userName: userName,
                                      company: company, itemCount: itemCount, followeeUserCount: followeeCount,
-                                     followerUserCount: followerCount, description: description)
+                                     followerUserCount: followerCount, description: attributedDescription)
         
     }
     

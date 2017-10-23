@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="326"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yyv-d0-2GQ" id="qPH-xf-nXi">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="326"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="325.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p6D-H3-xwt">
@@ -77,38 +76,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdM-Kg-QOz">
-                        <rect key="frame" x="8" y="191" width="359" height="126.5"/>
-                        <attributedString key="attributedText">
-                            <fragment content="ああああああああああああああああ">
-                                <attributes>
-                                    <font key="NSFont" size="17" name=".HiraKakuInterface-W3"/>
-                                </attributes>
-                            </fragment>
-                            <fragment>
-                                <string key="content" base64-UTF8="YES">
-Cg
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdM-Kg-QOz">
+                        <rect key="frame" x="8" y="191" width="359" height="88"/>
+                        <string key="text">ああああああああああああああああ
+あああああ
 </string>
-                                <attributes>
-                                    <font key="NSFont" metaFont="system" size="17"/>
-                                </attributes>
-                            </fragment>
-                            <fragment content="あああああ">
-                                <attributes>
-                                    <font key="NSFont" size="17" name=".HiraKakuInterface-W3"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="7" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                            <fragment>
-                                <string key="content" base64-UTF8="YES">
-Cg
-</string>
-                                <attributes>
-                                    <font key="NSFont" metaFont="system" size="17"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacingBefore="7" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                        <fontDescription key="fontDescription" name=".HiraKakuInterface-W3" family=".Hiragino Kaku Gothic Interface" pointSize="17"/>
+                        <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgS-Pw-fYP">
@@ -119,15 +93,27 @@ Cg
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="フォロータグ一覧 &gt;"/>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxu-uC-BaM">
+                        <rect key="frame" x="8" y="287" width="359" height="30"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="UX0-S7-nNC"/>
+                        </constraints>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="1" green="0.2815793393803282" blue="0.18559419020295476" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.45882352939999999" green="0.76078431369999999" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="wxu-uC-BaM" secondAttribute="bottom" constant="8" id="0zC-ez-5VO"/>
                     <constraint firstAttribute="trailing" secondItem="PyT-pb-XSq" secondAttribute="trailing" constant="8" id="2Jn-vN-TJU"/>
                     <constraint firstItem="J1S-Iz-Hch" firstAttribute="leading" secondItem="LdC-Rq-xJ7" secondAttribute="leading" id="2d2-HX-I51"/>
+                    <constraint firstItem="wxu-uC-BaM" firstAttribute="top" secondItem="vdM-Kg-QOz" secondAttribute="bottom" constant="8" id="4Ia-zS-TTT"/>
                     <constraint firstItem="PyT-pb-XSq" firstAttribute="leading" secondItem="p6D-H3-xwt" secondAttribute="trailing" constant="8" id="6hy-WX-MPA"/>
                     <constraint firstItem="zgS-Pw-fYP" firstAttribute="top" secondItem="p6D-H3-xwt" secondAttribute="bottom" constant="4" id="7t1-RG-mLC"/>
                     <constraint firstItem="p6D-H3-xwt" firstAttribute="top" secondItem="qPH-xf-nXi" secondAttribute="top" constant="8" id="EHK-rR-0V5"/>
-                    <constraint firstAttribute="bottom" secondItem="vdM-Kg-QOz" secondAttribute="bottom" constant="8" id="G5h-oc-NVr"/>
+                    <constraint firstItem="wxu-uC-BaM" firstAttribute="leading" secondItem="qPH-xf-nXi" secondAttribute="leading" constant="8" id="KT4-a7-OeI"/>
                     <constraint firstItem="q7M-X0-tC2" firstAttribute="top" secondItem="Azb-RY-GdT" secondAttribute="bottom" constant="4" id="Lde-nF-kst"/>
                     <constraint firstItem="PyT-pb-XSq" firstAttribute="top" secondItem="q7M-X0-tC2" secondAttribute="bottom" constant="4" id="Rzg-p5-nGO"/>
                     <constraint firstItem="Azb-RY-GdT" firstAttribute="leading" secondItem="p6D-H3-xwt" secondAttribute="trailing" constant="8" id="STM-Zb-C3v"/>
@@ -135,6 +121,7 @@ Cg
                     <constraint firstAttribute="trailing" secondItem="Azb-RY-GdT" secondAttribute="trailing" constant="8" id="XRD-FI-0uV"/>
                     <constraint firstItem="zgS-Pw-fYP" firstAttribute="leading" secondItem="p6D-H3-xwt" secondAttribute="leading" id="YHA-dU-QaS"/>
                     <constraint firstItem="Azb-RY-GdT" firstAttribute="top" secondItem="p6D-H3-xwt" secondAttribute="top" constant="4" id="YPp-LU-bAA"/>
+                    <constraint firstAttribute="trailing" secondItem="wxu-uC-BaM" secondAttribute="trailing" constant="8" id="Yb4-73-riH"/>
                     <constraint firstAttribute="trailing" secondItem="JC2-D2-ZAd" secondAttribute="trailing" constant="8" id="Z6l-yP-H8p"/>
                     <constraint firstItem="JC2-D2-ZAd" firstAttribute="leading" secondItem="PyT-pb-XSq" secondAttribute="leading" id="a0A-Wi-Rde"/>
                     <constraint firstItem="vdM-Kg-QOz" firstAttribute="leading" secondItem="qPH-xf-nXi" secondAttribute="leading" constant="8" id="dY0-bS-xax"/>
@@ -155,6 +142,7 @@ Cg
                 <outlet property="followeeUserCountLabel" destination="LdC-Rq-xJ7" id="gPX-dd-Qir"/>
                 <outlet property="followerUserCountLabel" destination="J1S-Iz-Hch" id="xhl-pN-G2a"/>
                 <outlet property="itemCountLabel" destination="JC2-D2-ZAd" id="2xv-Va-7qf"/>
+                <outlet property="logoutButton" destination="wxu-uC-BaM" id="zFb-Dz-MdY"/>
                 <outlet property="profileImageView" destination="p6D-H3-xwt" id="cUB-hv-SKD"/>
                 <outlet property="userIdLabel" destination="Azb-RY-GdT" id="dAJ-O3-0CI"/>
                 <outlet property="userNameLabel" destination="q7M-X0-tC2" id="dmX-J6-lCj"/>

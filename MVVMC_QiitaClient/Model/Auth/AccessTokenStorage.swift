@@ -16,6 +16,11 @@ struct AccessTokenStorage {
         return UserDefaults.standard.string(forKey: tokenKey)
     }
     
+    static func deleteAccessToken() -> Bool {
+        UserDefaults.standard.removeObject(forKey: tokenKey)
+        return UserDefaults.standard.synchronize()
+    }
+    
     static func saveAccessToken(token: String) -> Bool {
         UserDefaults.standard.set(token, forKey: tokenKey)
         return UserDefaults.standard.synchronize()
