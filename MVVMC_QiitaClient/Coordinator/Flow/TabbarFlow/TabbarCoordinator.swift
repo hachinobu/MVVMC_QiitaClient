@@ -34,7 +34,7 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         let tabbarView = moduleFactory.generateAuthTabView()
         
         tabbarView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
-            self.runHomeTabFlow(navigationController: navigationController)
+            self.runItemTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
         tabbarView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
@@ -64,7 +64,7 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         switch option {
         case .item(_):
             tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.item.rawValue)
-            coordinator = childCoordinators.flatMap { $0 as? HomeTabCoordinator }.first
+            coordinator = childCoordinators.flatMap { $0 as? ItemTabCoordinator }.first
         case .tag(_):
             tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.tag.rawValue)
             coordinator = childCoordinators.flatMap { $0 as? TagTabCoordinator }.first
@@ -77,7 +77,7 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         
     }
     
-    private func runHomeTabFlow(navigationController: UINavigationController, option: DeepLinkOption? = nil) {
+    private func runItemTabFlow(navigationController: UINavigationController, option: DeepLinkOption? = nil) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateItemTabCoordinator(navigationController: navigationController)
         coordinator.finishItemFlow

@@ -26,7 +26,7 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
     
     func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator & ItemCoordinatorFinishFlowType {
         let rootController = navigationController ?? UINavigationController()
-        return HomeTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
+        return ItemTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
     func generateTagTabCoordinator(navigationController: UINavigationController?) -> Coordinator {

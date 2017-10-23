@@ -90,7 +90,7 @@
 		ADA27C531F657AE300F49825 /* PresentNavigationController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */; };
 		ADA27C551F657B7700F49825 /* PresentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA27C541F657B7700F49825 /* PresentNavigationController.swift */; };
 		ADBD63C41F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */; };
-		ADBD63C71F2C472800BA9EE2 /* HomeTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C61F2C472800BA9EE2 /* HomeTabCoordinator.swift */; };
+		ADBD63C71F2C472800BA9EE2 /* ItemTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C61F2C472800BA9EE2 /* ItemTabCoordinator.swift */; };
 		ADC3856B1F2F760E0092F227 /* ItemDetailWebTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */; };
 		ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */; };
 		C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F851F2608DC00685622 /* AccessTokenStorage.swift */; };
@@ -236,7 +236,7 @@
 		ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PresentNavigationController.storyboard; sourceTree = "<group>"; };
 		ADA27C541F657B7700F49825 /* PresentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentNavigationController.swift; sourceTree = "<group>"; };
 		ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFinishFlowType.swift; sourceTree = "<group>"; };
-		ADBD63C61F2C472800BA9EE2 /* HomeTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabCoordinator.swift; sourceTree = "<group>"; };
+		ADBD63C61F2C472800BA9EE2 /* ItemTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTabCoordinator.swift; sourceTree = "<group>"; };
 		ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailWebTableCell.swift; sourceTree = "<group>"; };
 		ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailWebTableCell.xib; sourceTree = "<group>"; };
 		C2483F851F2608DC00685622 /* AccessTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenStorage.swift; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 			children = (
 				AD5FA6D11F5BD3550089B10A /* MyAccountTabFlow */,
 				AD5FA6CB1F584A9B0089B10A /* TagTabFlow */,
-				AD639E061F2C3F0700AA56ED /* HomeTabFlow */,
+				AD639E061F2C3F0700AA56ED /* ItemTabFlow */,
 				AD639E011F2B3ECB00AA56ED /* ItemFlow */,
 				AD639DBB1F231EE500AA56ED /* AuthFlow */,
 				AD5C98A71F1F9CC400DF5039 /* TabbarFlow */,
@@ -594,12 +594,12 @@
 			path = ItemFlow;
 			sourceTree = "<group>";
 		};
-		AD639E061F2C3F0700AA56ED /* HomeTabFlow */ = {
+		AD639E061F2C3F0700AA56ED /* ItemTabFlow */ = {
 			isa = PBXGroup;
 			children = (
-				ADBD63C61F2C472800BA9EE2 /* HomeTabCoordinator.swift */,
+				ADBD63C61F2C472800BA9EE2 /* ItemTabCoordinator.swift */,
 			);
-			path = HomeTabFlow;
+			path = ItemTabFlow;
 			sourceTree = "<group>";
 		};
 		AD74B4C61F20ED4200B2EC04 /* Extension */ = {
@@ -917,7 +917,7 @@
 			files = (
 				AD5FA6B21F49CA570089B10A /* UserDetailViewType.swift in Sources */,
 				AD5C988F1F1F994200DF5039 /* CoordinatorFactory.swift in Sources */,
-				ADBD63C71F2C472800BA9EE2 /* HomeTabCoordinator.swift in Sources */,
+				ADBD63C71F2C472800BA9EE2 /* ItemTabCoordinator.swift in Sources */,
 				AD639DFE1F2B377800AA56ED /* UITableView+Rx.swift in Sources */,
 				C24904491F46D9160058B300 /* UserAndItemsPairToUserDetailTransform.swift in Sources */,
 				AD5C98A91F1F9D4100DF5039 /* TabSelectableView.swift in Sources */,

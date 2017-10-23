@@ -1,5 +1,5 @@
 //
-//  HomeTabCoordinator.swift
+//  ItemTabCoordinator.swift
 //  MVVMC_QiitaClient
 //
 //  Created by Takahiro Nishinobu on 2017/07/29.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-final class HomeTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
+final class ItemTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
     
     private let finishItemFlowObserver = PublishSubject<DeepLinkOption>()
     lazy var finishItemFlow: Observable<DeepLinkOption> = self.finishItemFlowObserver.asObservable()

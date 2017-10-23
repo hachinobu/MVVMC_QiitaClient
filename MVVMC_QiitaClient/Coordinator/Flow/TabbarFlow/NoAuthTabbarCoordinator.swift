@@ -34,7 +34,7 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
         let tabView = moduleFactory.generateNoAuthTabView()
         
         tabView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
-            self.runHomeTabFlow(navigationController: navigationController)
+            self.runItemTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
         tabView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
@@ -45,7 +45,7 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
         
     }
     
-    private func runHomeTabFlow(navigationController: UINavigationController) {
+    private func runItemTabFlow(navigationController: UINavigationController) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateItemTabCoordinator(navigationController: navigationController)
         coordinator.finishItemFlow
