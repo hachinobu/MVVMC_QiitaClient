@@ -217,10 +217,13 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
                 .bind(to: self.selectedFollowerListObserver)
                 .addDisposableTo(cell.bag)
             
-            cell.logoutButton.constraints
-                .filter { $0.firstAttribute == .height }
-                .first?.constant = isDisplayButton ? 30.0 : 0.0
-            cell.logoutButton.rx.tap.bind(to: logoutActionObserver).addDisposableTo(cell.bag)
+            let logoutButtonHeight: CGFloat = isDisplayButton ? 30.0 : 0.0
+            cell.logoutButton.heightAnchor
+                .constraint(equalToConstant: logoutButtonHeight).isActive = true
+            
+            cell.logoutButton.rx.tap
+                .bind(to: logoutActionObserver)
+                .addDisposableTo(cell.bag)
             
             return cell
             
