@@ -58,9 +58,19 @@ extension ItemDetailViewController {
     
     fileprivate func bindView() {
         
-        let dataSource = ItemDetailTableViewDataSource(selectedUserObserver: selectedUserObserver,
-                                                       tappedStockButtonObserver: tappedStockButtonObserver,
-                                                       requiredAuthObserver: requiredAuthObserver)
+        let dataSource = ItemDetailTableViewDataSource()
+        
+        dataSource.selectedUser
+            .bind(to: selectedUserObserver)
+            .addDisposableTo(bag)
+        
+        dataSource.tappedStockButton
+            .bind(to: tappedStockButtonObserver)
+            .addDisposableTo(bag)
+        
+        dataSource.requiredAuth
+            .bind(to: requiredAuthObserver)
+            .addDisposableTo(bag)
         
         dataSource.selectedLikeCount
             .bind(to: selectedLikeCountObserver)
@@ -95,21 +105,21 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     
     var items: Element = []
     private var webContentCellHeight: CGFloat = 0.0
-    let selectedUserObserver: PublishSubject<String>
-    let tappedStockButtonObserver: PublishSubject<Void>
-    let requiredAuthObserver: PublishSubject<Void>
+    
+    private let selectedUserObserver = PublishSubject<String>()
+    fileprivate lazy var selectedUser: Observable<String> = self.selectedUserObserver.asObservable()
+    
+    private let tappedStockButtonObserver = PublishSubject<Void>()
+    fileprivate lazy var tappedStockButton: Observable<Void> = self.tappedStockButtonObserver.asObservable()
+    
+    private let requiredAuthObserver = PublishSubject<Void>()
+    fileprivate lazy var requiredAuth: Observable<Void> = self.requiredAuthObserver.asObservable()
     
     private let selectedLikeCountObserver = PublishSubject<String>()
-    lazy var selectedLikeCount: Observable<String> = self.selectedLikeCountObserver.asObservable()
+    fileprivate lazy var selectedLikeCount: Observable<String> = self.selectedLikeCountObserver.asObservable()
     
     private let selectedStockCountObserver = PublishSubject<String>()
-    lazy var selectedStockCount: Observable<String> = self.selectedStockCountObserver.asObservable()
-    
-    init(selectedUserObserver: PublishSubject<String>, tappedStockButtonObserver: PublishSubject<Void>, requiredAuthObserver: PublishSubject<Void>) {
-        self.selectedUserObserver = selectedUserObserver
-        self.tappedStockButtonObserver = tappedStockButtonObserver
-        self.requiredAuthObserver = requiredAuthObserver
-    }
+    fileprivate lazy var selectedStockCount: Observable<String> = self.selectedStockCountObserver.asObservable()
     
     func tableView(_ tableView: UITableView, observedEvent: Event<[ItemViewModel]>) {
         if case .next(let items) = observedEvent {
