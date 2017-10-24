@@ -86,12 +86,27 @@ extension UserDetailViewController {
             .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
             .addDisposableTo(bag)
         
-        let dataSource = UserDetailTableViewDataSource(selectedItemObserver: selectedItemObserver,
-                                                       selectedFolloweeListObserver: selectedFolloweeObserver,
-                                                       selectedFollowerListObserver: selectedFollowerObserver,
-                                                       selectedFollowTagListObserver: selectedFollowTagListObserver,
-                                                       isDisplayButton: isDisplayButton,
-                                                       reachedBottomObserver: reachedBottomObserver)
+        let dataSource = UserDetailTableViewDataSource(isDisplayButton: isDisplayButton)
+        
+        dataSource.selectedItem
+            .bind(to: selectedItemObserver)
+            .addDisposableTo(bag)
+        
+        dataSource.selectedFolloweeList
+            .bind(to: selectedFolloweeObserver)
+            .addDisposableTo(bag)
+        
+        dataSource.selectedFollowerList
+            .bind(to: selectedFollowerObserver)
+            .addDisposableTo(bag)
+        
+        dataSource.selectedFollowTagList
+            .bind(to: selectedFollowTagListObserver)
+            .addDisposableTo(bag)
+        
+        dataSource.reachedBottom
+            .bind(to: reachedBottomObserver)
+            .addDisposableTo(bag)
         
         dataSource.logoutAction
             .bind(to: logoutActionObserver)
@@ -114,23 +129,29 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
     typealias Element = [(userDetail: UserDetailTableCellViewModel, userItems: [ItemListTableCellViewModel])]
     
     var items: Element = []
-    let selectedItemObserver: PublishSubject<String>
-    let selectedFolloweeListObserver: PublishSubject<String>
-    let selectedFollowerListObserver: PublishSubject<String>
-    let selectedFollowTagListObserver: PublishSubject<String>
-    let reachedBottomObserver: PublishSubject<Void>
+    
+    private let selectedItemObserver = PublishSubject<String>()
+    fileprivate lazy var selectedItem = self.selectedItemObserver.asObservable()
+    
+    private let selectedFolloweeListObserver = PublishSubject<String>()
+    fileprivate lazy var selectedFolloweeList = self.selectedFolloweeListObserver.asObservable()
+    
+    private let selectedFollowerListObserver = PublishSubject<String>()
+    fileprivate lazy var selectedFollowerList = self.selectedFollowerListObserver.asObservable()
+    
+    private let selectedFollowTagListObserver = PublishSubject<String>()
+    fileprivate lazy var selectedFollowTagList = self.selectedFollowTagListObserver.asObservable()
+    
+    private let reachedBottomObserver = PublishSubject<Void>()
+    fileprivate lazy var reachedBottom = self.reachedBottomObserver.asObservable()
+    
     let isDisplayButton: Bool
     
     fileprivate var logoutActionObserver = PublishSubject<Void>()
     lazy var logoutAction: Observable<Void> = self.logoutActionObserver.asObservable()
     
-    init(selectedItemObserver: PublishSubject<String>, selectedFolloweeListObserver: PublishSubject<String>, selectedFollowerListObserver: PublishSubject<String>, selectedFollowTagListObserver: PublishSubject<String>, isDisplayButton: Bool, reachedBottomObserver: PublishSubject<Void>) {
-        self.selectedItemObserver = selectedItemObserver
-        self.selectedFolloweeListObserver = selectedFolloweeListObserver
-        self.selectedFollowerListObserver = selectedFollowerListObserver
-        self.selectedFollowTagListObserver = selectedFollowTagListObserver
+    init(isDisplayButton: Bool) {
         self.isDisplayButton = isDisplayButton
-        self.reachedBottomObserver = reachedBottomObserver
     }
     
     func tableView(_ tableView: UITableView, observedEvent: Event<Element>) {
