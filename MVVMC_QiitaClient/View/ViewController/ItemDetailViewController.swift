@@ -30,7 +30,7 @@ final class ItemDetailViewController: UIViewController, ItemDetailViewType {
     
     fileprivate let bag = DisposeBag()
     fileprivate var webContentHeight: CGFloat = 0.0
-    fileprivate let tappedStockButtonObserver: PublishSubject<Void> = PublishSubject()
+    fileprivate let tappedLikeButtonObserver: PublishSubject<Void> = PublishSubject()
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -64,8 +64,8 @@ extension ItemDetailViewController {
             .bind(to: selectedUserObserver)
             .addDisposableTo(bag)
         
-        dataSource.tappedStockButton
-            .bind(to: tappedStockButtonObserver)
+        dataSource.tappedLikeButton
+            .bind(to: tappedLikeButtonObserver)
             .addDisposableTo(bag)
         
         dataSource.requiredAuth
@@ -90,7 +90,7 @@ extension ItemDetailViewController {
             print(error)
         }).addDisposableTo(bag)
         
-        tappedStockButtonObserver
+        tappedLikeButtonObserver
             .bind(to: viewModel.updateStatusTrigger)
             .addDisposableTo(bag)
         
@@ -109,8 +109,8 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
     private let selectedUserObserver = PublishSubject<String>()
     fileprivate lazy var selectedUser: Observable<String> = self.selectedUserObserver.asObservable()
     
-    private let tappedStockButtonObserver = PublishSubject<Void>()
-    fileprivate lazy var tappedStockButton: Observable<Void> = self.tappedStockButtonObserver.asObservable()
+    private let tappedLikeButtonObserver = PublishSubject<Void>()
+    fileprivate lazy var tappedLikeButton: Observable<Void> = self.tappedLikeButtonObserver.asObservable()
     
     private let requiredAuthObserver = PublishSubject<Void>()
     fileprivate lazy var requiredAuth: Observable<Void> = self.requiredAuthObserver.asObservable()
@@ -143,8 +143,8 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             viewModel.stockCount.bind(to: cell.stockCountLabel.rx.text).addDisposableTo(cell.bag)
             viewModel.userName.bind(to: cell.userNameButton.rx.title()).addDisposableTo(cell.bag)
             viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.hasStock.filter { $0 }.map { _ in "いいね済み" }.bind(to: cell.likeButton.rx.title()).addDisposableTo(cell.bag)
-            viewModel.hasStock.filter { !$0 }.map { _ in "いいね" }.bind(to: cell.likeButton.rx.title()).addDisposableTo(cell.bag)
+            viewModel.hasLike.filter { $0 }.map { _ in "いいね済み" }.bind(to: cell.likeButton.rx.title()).addDisposableTo(cell.bag)
+            viewModel.hasLike.filter { !$0 }.map { _ in "いいね" }.bind(to: cell.likeButton.rx.title()).addDisposableTo(cell.bag)
             
             viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
                 let imageURL = url!
@@ -163,7 +163,7 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             cell.stockCountButton.rx.tap.map { viewModel.itemId }.bind(to: selectedStockCountObserver).addDisposableTo(cell.bag)
             
             let tap = cell.likeButton.rx.tap.map { AccessTokenStorage.hasAccessToken() }.shareReplayLatestWhileConnected()
-            tap.filter { $0 }.map { _ in }.bind(to: tappedStockButtonObserver).addDisposableTo(cell.bag)
+            tap.filter { $0 }.map { _ in }.bind(to: tappedLikeButtonObserver).addDisposableTo(cell.bag)
             tap.filter { !$0 }.map { _ in }.bind(to: requiredAuthObserver).addDisposableTo(cell.bag)
             
             return cell
