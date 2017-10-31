@@ -21,44 +21,54 @@ extension AuthenticateQiita {
     enum AuthStatus {
         
         case none
-        case skipAuth
+        case skip
+        case loginFromItem
+        case loginFromAccount
         case code(String)
         case authenticated(String)
         
         func fetchAccessToken() -> String? {
-            switch self {
-            case .authenticated(let token):
-                return token
-            case .none, .code(_), .skipAuth:
+            guard case let .authenticated(token) = self else {
                 return nil
             }
+            return token
         }
         
         func fetchCode() -> String? {
-            switch self {
-            case .code(let code):
-                return code
-            case .none, .skipAuth, .authenticated(_):
+            guard case let .code(code) = self else {
                 return nil
             }
+            return code
         }
         
         func isAuthorized() -> Bool {
             switch self {
             case .none, .code(_):
                 return false
-            case .authenticated(_), .skipAuth:
+            case .authenticated(_), .skip, .loginFromItem, .loginFromAccount:
                 return true
             }
         }
         
-        func isSkipAuth() -> Bool {
-            switch self {
-            case .skipAuth:
-                return true
-            default:
+        func isSkip() -> Bool {
+            guard case .skip = self else {
                 return false
             }
+            return true
+        }
+        
+        func isLoginFromItem() -> Bool {
+            guard case .loginFromItem = self else {
+                return false
+            }
+            return true
+        }
+        
+        func isLoginFromSignIn() -> Bool {
+            guard case .loginFromAccount = self else {
+                return false
+            }
+            return true
         }
         
     }

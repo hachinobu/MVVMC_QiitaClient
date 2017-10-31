@@ -16,7 +16,7 @@ class ApplicationCoordinator: BaseCoordinator {
     }
     
     private var isSkipAuth: Bool {
-        return AuthenticateQiita.sharedInstance.status.value.isSkipAuth()
+        return AuthenticateQiita.sharedInstance.status.value.isSkip()
     }
     
     private let bag = DisposeBag()
@@ -81,6 +81,11 @@ class ApplicationCoordinator: BaseCoordinator {
         coordinator.finishItemFlow.subscribe(onNext: { [weak self, weak coordinator] option in
             self?.removeDependency(coordinator: coordinator)
             self?.start(option: option)
+        }).addDisposableTo(bag)
+        
+        coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] in
+            self?.removeDependency(coordinator: coordinator)
+            self?.start()
         }).addDisposableTo(bag)
         
         addDependency(coordinator: coordinator)

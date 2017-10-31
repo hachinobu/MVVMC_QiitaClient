@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gk0-La-PNt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gk0-La-PNt">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,6 +20,7 @@
                     <connections>
                         <segue destination="Vj7-qf-xe0" kind="relationship" relationship="viewControllers" id="AAh-Km-NUe"/>
                         <segue destination="rAA-xo-0xS" kind="relationship" relationship="viewControllers" id="77S-bD-7Je"/>
+                        <segue destination="WtP-Yy-vfj" kind="relationship" relationship="viewControllers" id="2sf-Ll-kq0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnq-i5-1m8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -34,7 +34,7 @@
                     <tabBarItem key="tabBarItem" title="投稿" id="PR5-jD-7CM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bml-jY-cQO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -50,7 +50,7 @@
                     <tabBarItem key="tabBarItem" title="タグ" id="Grh-3o-TU2"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7MG-Ww-9WZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -58,6 +58,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N2s-WB-34i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="725.60000000000002" y="471.8140929535233"/>
+        </scene>
+        <!--サインイン-->
+        <scene sceneID="aZ6-Xp-Mlr">
+            <objects>
+                <navigationController id="WtP-Yy-vfj" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="サインイン" id="IjF-uD-MY7"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="joj-Xz-kzx">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vxT-yi-CwC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="726" y="1146"/>
         </scene>
     </scenes>
 </document>

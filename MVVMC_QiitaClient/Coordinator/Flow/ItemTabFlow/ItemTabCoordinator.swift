@@ -58,6 +58,7 @@ final class ItemTabCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType {
         }).addDisposableTo(bag)
         
         itemDetailView.requiredAuth.subscribe(onNext: { [weak self] _ in
+            AuthenticateQiita.sharedInstance.status.value = .loginFromItem
             self?.runAuthFlow(option: DeepLinkOption.item(itemId))
         }).addDisposableTo(bag)
         

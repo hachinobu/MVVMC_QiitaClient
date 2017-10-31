@@ -41,6 +41,10 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
             self.runTagTabFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
+        tabView.selectedSignInTabObservable.subscribe(onNext: { [unowned self] navigationController in
+            self.runSignInTabFlow(navigationController: navigationController)
+        }).addDisposableTo(bag)
+        
         router.setRoot(presentable: tabView, hideBar: true)
         
     }
@@ -59,6 +63,18 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
     private func runTagTabFlow(navigationController: UINavigationController) {
         guard navigationController.viewControllers.isEmpty else { return }
         let coordinator = coordinatorFactory.generateTagTabCoordinator(navigationController: navigationController)
+        coordinator.start()
+        addDependency(coordinator: coordinator)
+    }
+    
+    private func runSignInTabFlow(navigationController: UINavigationController) {
+        AuthenticateQiita.sharedInstance.status.value = .loginFromAccount
+        guard navigationController.viewControllers.isEmpty else { return }
+        let coordinator = coordinatorFactory.generateSignInTabCoordinator(navigationController: navigationController)
+        coordinator.finishFlow
+            .filter { AccessTokenStorage.hasAccessToken() }
+            .bind(to: finishFlowObserver)
+            .addDisposableTo(bag)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }

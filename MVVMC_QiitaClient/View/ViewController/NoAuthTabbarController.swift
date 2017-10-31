@@ -12,12 +12,13 @@ import RxSwift
 final class NoAuthTabbarController: UITabBarController, UITabBarControllerDelegate, NoAuthTabSelectable {
 
     private var selectedItemTabObserver = PublishSubject<UINavigationController>()
-    lazy var selectedItemTabObservable: Observable<UINavigationController> =
-        self.selectedItemTabObserver.asObservable()
+    lazy var selectedItemTabObservable = self.selectedItemTabObserver.asObservable()
     
     private var selectedTagTabObserver = PublishSubject<UINavigationController>()
-    lazy var selectedTagTabObservable: Observable<UINavigationController> =
-        self.selectedTagTabObserver.asObservable()
+    lazy var selectedTagTabObservable = self.selectedTagTabObserver.asObservable()
+    
+    private var selectedSignInTabObserver = PublishSubject<UINavigationController>()
+    lazy var selectedSignInTabObservable = self.selectedSignInTabObserver.asObservable()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,8 @@ final class NoAuthTabbarController: UITabBarController, UITabBarControllerDelega
             selectedItemTabObserver.onNext(navigationController)
         case .tag:
             selectedTagTabObserver.onNext(navigationController)
+        case .signin:
+            selectedSignInTabObserver.onNext(navigationController)
         }
     }
 
@@ -49,6 +52,7 @@ fileprivate extension NoAuthTabbarController {
     enum NoAuthSelectedTab: Int {
         case item = 0
         case tag
+        case signin
     }
     
 }

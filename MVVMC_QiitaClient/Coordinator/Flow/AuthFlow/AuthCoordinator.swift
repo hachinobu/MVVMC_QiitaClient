@@ -32,8 +32,10 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         let status = AuthenticateQiita.sharedInstance.status.value
         if !status.isAuthorized() {
             showAuthView()
-        } else if status.isSkipAuth() {
-            showLoginAuthView()
+        } else if status.isLoginFromItem() {
+            showLoginAuthViewFromItem()
+        } else if status.isLoginFromSignIn() {
+            showLoingAuthViewFromSignIn()
         }
     }
     
@@ -45,7 +47,7 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         }).addDisposableTo(bag)
         
         authView.tappedSkipAuth.do(onNext: { _ in
-            AuthenticateQiita.sharedInstance.status.value = .skipAuth
+            AuthenticateQiita.sharedInstance.status.value = .skip
         }).bind(to: finishFlowObserver).addDisposableTo(bag)
         
         authView.onCompleteAuth
@@ -60,10 +62,11 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         router.setRoot(presentable: authView, hideBar: true)
     }
     
-    private func showLoginAuthView() {
+    private func showLoginAuthViewFromItem() {
         
         let authView = moduleFactory.generateAuthView()
         authView.skipButtonHidden = true
+        
         authView.closeButtonTapped.do(onNext: { [weak self] _ in
             self?.router.dismiss(animated: true, completion: nil)
         }).bind(to: finishFlowObserver).addDisposableTo(bag)
@@ -83,6 +86,28 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         .addDisposableTo(bag)
         
         router.setRoot(presentable: authView, hideBar: false)
+        
+    }
+    
+    private func showLoingAuthViewFromSignIn() {
+        
+        let authView = moduleFactory.generateAuthView()
+        authView.skipButtonHidden = true
+        
+        authView.tappedAuth.subscribe(onNext: { [weak self] _ in
+            self?.authenticateQiita()
+        }).addDisposableTo(bag)
+        
+        authView.onCompleteAuth
+            .map { token -> Bool in
+                AuthenticateQiita.sharedInstance.status.value = .authenticated(token)
+                return AccessTokenStorage.saveAccessToken(token: token)
+            }.filter { $0 }
+            .map { _ in }
+            .bind(to: finishFlowObserver)
+            .addDisposableTo(bag)
+        
+        router.setRoot(presentable: authView, hideBar: true)
         
     }
     

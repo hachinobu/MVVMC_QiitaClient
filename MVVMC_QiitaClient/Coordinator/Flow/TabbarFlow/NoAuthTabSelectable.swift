@@ -12,4 +12,5 @@ import RxSwift
 protocol NoAuthTabSelectable: class {
     var selectedItemTabObservable: Observable<UINavigationController> { get }
     var selectedTagTabObservable: Observable<UINavigationController> { get }
+    var selectedSignInTabObservable: Observable<UINavigationController> { get }
 }
