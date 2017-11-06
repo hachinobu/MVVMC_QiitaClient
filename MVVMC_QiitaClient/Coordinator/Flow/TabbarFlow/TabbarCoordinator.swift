@@ -42,7 +42,7 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         }).addDisposableTo(bag)
         
         tabbarView.selectedMyAccountTabObservable.subscribe(onNext: { [unowned self] navigationController in
-            self.runMyAccountTabFlow(navigationController: navigationController)
+            self.runUserFlow(navigationController: navigationController)
         }).addDisposableTo(bag)
         
         router.setRoot(presentable: tabbarView, hideBar: true)
@@ -62,7 +62,7 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         
         let coordinator: Coordinator?
         switch option {
-        case .item(_):
+        case .itemDetail(_):
             tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.item.rawValue)
             coordinator = childCoordinators.flatMap { $0 as? ItemTabCoordinator }.first
         case .tag(_):
@@ -70,7 +70,9 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
             coordinator = childCoordinators.flatMap { $0 as? TagTabCoordinator }.first
         case .myAccount:
             tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.myAccount.rawValue)
-            coordinator = childCoordinators.flatMap { $0 as? MyAccountTabCoordinator }.first
+            coordinator = childCoordinators.flatMap { $0 as? UserCoordinator }.first
+        default:
+            return
         }
         
         coordinator?.start(option: option)
@@ -97,9 +99,9 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         addDependency(coordinator: coordinator)
     }
     
-    private func runMyAccountTabFlow(navigationController: UINavigationController, option: DeepLinkOption? = nil) {
+    private func runUserFlow(navigationController: UINavigationController, option: DeepLinkOption? = nil) {
         guard navigationController.viewControllers.isEmpty else { return }
-        let coordinator = coordinatorFactory.generateMyAccountTabCoordinator(navigationController: navigationController)
+        let coordinator = coordinatorFactory.generateUserCoordinator(navigationController: navigationController)
         coordinator.finishFlow
             .bind(to: finishFlowObserver)
             .addDisposableTo(bag)

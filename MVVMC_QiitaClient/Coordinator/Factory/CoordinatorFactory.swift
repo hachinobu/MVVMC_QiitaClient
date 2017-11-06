@@ -14,7 +14,10 @@ protocol CoordinatorFactory {
     func generateAuthCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType
     func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator & ItemCoordinatorFinishFlowType
     func generateTagTabCoordinator(navigationController: UINavigationController?) -> Coordinator
-    func generateMyAccountTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType
+    func generateUserCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType
     func generateSignInTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType
     func generateAuthCoordinatorBox() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType))
+    func generateItemCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType))
+    func generateTagCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType))
+    func generateUserCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType))
 }

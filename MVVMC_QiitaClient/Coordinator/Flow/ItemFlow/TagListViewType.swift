@@ -12,6 +12,7 @@ import RxSwift
 protocol TagListViewType: class {
     
     var selectedTagId: Observable<String> { get }
+    var deinitView: Observable<Void> { get }
     
     func injectViewModel(viewModel: TagListViewModel)
     

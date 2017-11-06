@@ -50,6 +50,10 @@ class ApplicationCoordinator: BaseCoordinator {
         }
     }
     
+}
+
+extension ApplicationCoordinator {
+    
     private func runAuthFlow() {
         let coordinator = coordinatorFactory.generateAuthCoordinator(router: router)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in

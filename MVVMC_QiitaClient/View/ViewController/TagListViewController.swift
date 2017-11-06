@@ -16,6 +16,9 @@ final class TagListViewController: UIViewController, TagListViewType {
     fileprivate let selectedTagIdObserver: PublishSubject<String> = PublishSubject()
     lazy var selectedTagId: Observable<String> = self.selectedTagIdObserver.asObservable()
     
+    fileprivate let deinitViewObserver = PublishSubject<Void>()
+    lazy var deinitView = self.deinitViewObserver.asObservable()
+    
     fileprivate let bag = DisposeBag()
     fileprivate lazy var loadingIndicatorView = LoadingIndicatorView.loadView()
     
@@ -33,6 +36,10 @@ final class TagListViewController: UIViewController, TagListViewType {
         setupViewModel()
         bindView()
         viewModel.viewDidLoadTrigger.onNext(())
+    }
+    
+    deinit {
+        deinitViewObserver.onNext(())
     }
 
 }

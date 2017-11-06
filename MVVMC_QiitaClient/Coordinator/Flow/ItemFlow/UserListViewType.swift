@@ -12,6 +12,7 @@ import RxSwift
 protocol UserListViewType: class {
     
     var selectedUser: Observable<String> { get }
+    var deinitView: Observable<Void> { get }
     
     func injectViewModel(viewModel: UserListViewModel)
     
