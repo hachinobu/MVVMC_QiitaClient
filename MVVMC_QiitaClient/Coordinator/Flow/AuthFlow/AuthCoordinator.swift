@@ -35,7 +35,7 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         } else if status.isLoginFromItem() {
             showLoginAuthViewFromItem()
         } else if status.isLoginFromSignIn() {
-            showLoingAuthViewFromSignIn()
+            showLoginAuthViewFromSignIn()
         }
     }
     
@@ -89,7 +89,7 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
     }
     
-    private func showLoingAuthViewFromSignIn() {
+    private func showLoginAuthViewFromSignIn() {
         
         let authView = moduleFactory.generateAuthView()
         authView.skipButtonHidden = true
