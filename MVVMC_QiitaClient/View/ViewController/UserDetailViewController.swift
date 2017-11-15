@@ -39,6 +39,9 @@ class UserDetailViewController: UIViewController, UserDetailViewType {
     
     fileprivate let reachedBottomObserver: PublishSubject<Void> = PublishSubject()
     
+    fileprivate var deinitViewObserver = PublishSubject<Void>()
+    lazy var deinitView = self.deinitViewObserver.asObservable()
+    
     func injectViewModel(viewModel: UserDetailViewModel) {
         self.viewModel = viewModel
     }
@@ -49,6 +52,10 @@ class UserDetailViewController: UIViewController, UserDetailViewType {
         setupViewModel()
         bindView()
         viewModel.viewDidLoadTrigger.onNext(())
+    }
+    
+    deinit {
+        deinitViewObserver.onNext(())
     }
 
 }

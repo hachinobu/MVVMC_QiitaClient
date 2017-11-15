@@ -11,6 +11,8 @@
 		AD0EF1CA1F6EB88800D1B503 /* NavigationModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0EF1C91F6EB88800D1B503 /* NavigationModuleFactory.swift */; };
 		AD40099F1F45CE2700F8321D /* UserDetailTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD40099E1F45CE2700F8321D /* UserDetailTableCell.xib */; };
 		AD4009A11F45D20A00F8321D /* UserDetailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4009A01F45D20A00F8321D /* UserDetailTableCell.swift */; };
+		AD553A131FB1D07A0029A94A /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD553A121FB1D07A0029A94A /* UserCoordinator.swift */; };
+		AD553A151FB1D1760029A94A /* UserModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD553A141FB1D1760029A94A /* UserModuleFactory.swift */; };
 		AD5C985E1F1F962300DF5039 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C985D1F1F962300DF5039 /* AppDelegate.swift */; };
 		AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98641F1F962300DF5039 /* Assets.xcassets */; };
 		AD5C98681F1F962300DF5039 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98661F1F962300DF5039 /* LaunchScreen.storyboard */; };
@@ -45,7 +47,6 @@
 		AD5FA6CA1F56EFE10089B10A /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */; };
 		AD5FA6CD1F584ACE0089B10A /* TagTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */; };
 		AD5FA6D01F584B290089B10A /* TagModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CF1F584B290089B10A /* TagModuleFactory.swift */; };
-		AD5FA6D31F5BD3940089B10A /* MyAccountTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6D21F5BD3940089B10A /* MyAccountTabCoordinator.swift */; };
 		AD5FA6D51F5BD3D80089B10A /* MyAccountModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6D41F5BD3D80089B10A /* MyAccountModuleFactory.swift */; };
 		AD5FA6D71F5C1BE60089B10A /* NoAuthTabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6D61F5C1BE60089B10A /* NoAuthTabbarController.storyboard */; };
 		AD5FA6D91F5C1C4F0089B10A /* NoAuthTabSelectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6D81F5C1C4F0089B10A /* NoAuthTabSelectable.swift */; };
@@ -151,6 +152,8 @@
 		AD0EF1C91F6EB88800D1B503 /* NavigationModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModuleFactory.swift; sourceTree = "<group>"; };
 		AD40099E1F45CE2700F8321D /* UserDetailTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailTableCell.xib; sourceTree = "<group>"; };
 		AD4009A01F45D20A00F8321D /* UserDetailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableCell.swift; sourceTree = "<group>"; };
+		AD553A121FB1D07A0029A94A /* UserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
+		AD553A141FB1D1760029A94A /* UserModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModuleFactory.swift; sourceTree = "<group>"; };
 		AD5C985A1F1F962300DF5039 /* MVVMC_QiitaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMC_QiitaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD5C985D1F1F962300DF5039 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD5C98641F1F962300DF5039 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,7 +194,6 @@
 		AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTabCoordinator.swift; sourceTree = "<group>"; };
 		AD5FA6CF1F584B290089B10A /* TagModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModuleFactory.swift; sourceTree = "<group>"; };
-		AD5FA6D21F5BD3940089B10A /* MyAccountTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountTabCoordinator.swift; sourceTree = "<group>"; };
 		AD5FA6D41F5BD3D80089B10A /* MyAccountModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountModuleFactory.swift; sourceTree = "<group>"; };
 		AD5FA6D61F5C1BE60089B10A /* NoAuthTabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NoAuthTabbarController.storyboard; sourceTree = "<group>"; };
 		AD5FA6D81F5C1C4F0089B10A /* NoAuthTabSelectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAuthTabSelectable.swift; sourceTree = "<group>"; };
@@ -314,6 +316,14 @@
 				A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD553A111FB1D02F0029A94A /* UserFlow */ = {
+			isa = PBXGroup;
+			children = (
+				AD553A121FB1D07A0029A94A /* UserCoordinator.swift */,
+			);
+			path = UserFlow;
 			sourceTree = "<group>";
 		};
 		AD5C98511F1F962300DF5039 = {
@@ -443,9 +453,9 @@
 		AD5C98A61F1F9CA300DF5039 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				AD5FA6D11F5BD3550089B10A /* MyAccountTabFlow */,
 				AD5FA6CB1F584A9B0089B10A /* TagTabFlow */,
 				AD639E061F2C3F0700AA56ED /* ItemTabFlow */,
+				AD553A111FB1D02F0029A94A /* UserFlow */,
 				AD639E011F2B3ECB00AA56ED /* ItemFlow */,
 				AD639DBB1F231EE500AA56ED /* AuthFlow */,
 				AD5C98A71F1F9CC400DF5039 /* TabbarFlow */,
@@ -493,16 +503,9 @@
 			children = (
 				AD5FA6CF1F584B290089B10A /* TagModuleFactory.swift */,
 				AD5FA6D41F5BD3D80089B10A /* MyAccountModuleFactory.swift */,
+				AD553A141FB1D1760029A94A /* UserModuleFactory.swift */,
 			);
 			path = Tab;
-			sourceTree = "<group>";
-		};
-		AD5FA6D11F5BD3550089B10A /* MyAccountTabFlow */ = {
-			isa = PBXGroup;
-			children = (
-				AD5FA6D21F5BD3940089B10A /* MyAccountTabCoordinator.swift */,
-			);
-			path = MyAccountTabFlow;
 			sourceTree = "<group>";
 		};
 		AD639DBB1F231EE500AA56ED /* AuthFlow */ = {
@@ -924,6 +927,7 @@
 				AD639DBA1F20EF5700AA56ED /* TabbarCoordinator.swift in Sources */,
 				AD5C989C1F1F998200DF5039 /* BaseCoordinator.swift in Sources */,
 				AD5FA6B81F4B1E5F0089B10A /* UserListTableCellVM.swift in Sources */,
+				AD553A151FB1D1760029A94A /* UserModuleFactory.swift in Sources */,
 				AD639DBF1F23241600AA56ED /* AuthViewController.swift in Sources */,
 				AD5FA6C41F55A1C70089B10A /* TagListTableCellVM.swift in Sources */,
 				AD639DC71F247F9000AA56ED /* AuthInfo.swift in Sources */,
@@ -952,6 +956,7 @@
 				C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */,
 				C2483F961F26DC0300685622 /* QiitaAPI.swift in Sources */,
 				C2FF21DE1F31E5F20002C89E /* ItemViewModel.swift in Sources */,
+				AD553A131FB1D07A0029A94A /* UserCoordinator.swift in Sources */,
 				AD639DF61F28C2B700AA56ED /* ItemListVM.swift in Sources */,
 				AD639DED1F27826900AA56ED /* NibLoadableView.swift in Sources */,
 				AD5FA6CD1F584ACE0089B10A /* TagTabCoordinator.swift in Sources */,
@@ -966,7 +971,6 @@
 				AD639DFC1F2B371300AA56ED /* UIViewController+Rx.swift in Sources */,
 				AD5FA6BD1F559CFE0089B10A /* TagListTableCell.swift in Sources */,
 				C2483F9F1F28A40C00685622 /* ItemListTableCellVM.swift in Sources */,
-				AD5FA6D31F5BD3940089B10A /* MyAccountTabCoordinator.swift in Sources */,
 				AD5FA6C21F55A14F0089B10A /* TagListVM.swift in Sources */,
 				C249044D1F4C38100058B300 /* UserListViewModel.swift in Sources */,
 				AD639DF41F2787C600AA56ED /* ItemListViewModel.swift in Sources */,

@@ -20,6 +20,9 @@ final class UserListViewController: UIViewController, UserListViewType {
     
     @IBOutlet weak var tableView: UITableView!
     
+    fileprivate var deinitViewObserver = PublishSubject<Void>()
+    lazy var deinitView = self.deinitViewObserver.asObservable()
+    
     fileprivate lazy var loadingIndicatorView = LoadingIndicatorView.loadView()
     let bag = DisposeBag()
     
@@ -33,6 +36,10 @@ final class UserListViewController: UIViewController, UserListViewType {
         setupViewModel()
         bindView()
         viewModel.viewDidLoadTrigger.onNext(())
+    }
+    
+    deinit {
+        deinitViewObserver.onNext(())
     }
     
 }

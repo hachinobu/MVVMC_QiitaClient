@@ -9,16 +9,17 @@
 import Foundation
 import RxSwift
 
-final class TagTabCoordinator: BaseCoordinator {
+final class TagTabCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     
-    typealias TagModule = ItemModuleFactory & TagModuleFactory
+    private let finishFlowObserver = PublishSubject<Void>()
+    lazy var finishFlow = self.finishFlowObserver.asObservable()
     
     private let bag = DisposeBag()
-    private let moduleFactory: TagModule
+    private let moduleFactory: TagModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
     
-    init(moduleFactory: TagModule, coordinatorFactory: CoordinatorFactory, router: Router) {
+    init(moduleFactory: TagModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
         self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
         self.router = router
@@ -29,10 +30,14 @@ final class TagTabCoordinator: BaseCoordinator {
     }
     
     override func start(option: DeepLinkOption) {
-        guard option.isTag(), let id = option.linkId() else {
+        switch option {
+        case .tag(_):
+            runItemFlow(option: option)
+        case .user(let id):
+            showUserFollowTagList(userId: id)
+        default:
             return
         }
-        showTagItemList(tagId: id)
     }
     
     private func showAllTagListView() {
@@ -40,86 +45,11 @@ final class TagTabCoordinator: BaseCoordinator {
         let tagListView = moduleFactory.generateAllTagListView()
         
         tagListView.selectedTagId.subscribe(onNext: { [weak self] tagId in
-            self?.showTagItemList(tagId: tagId)
+            self?.runItemFlow(option: .tag(tagId))
         }).addDisposableTo(bag)
         
         router.setRoot(presentable: tagListView, hideBar: false)
         
-    }
-    
-    private func showTagItemList(tagId: String) {
-
-        let itemListView = moduleFactory.generateTagItemListView(tagId: tagId)
-
-        itemListView.selectedItem.subscribe(onNext: { [weak self] itemId in
-            self?.showItemDetail(itemId: itemId)
-        }).addDisposableTo(bag)
-
-        itemListView.selectedUser.subscribe(onNext: { [weak self] userId in
-            self?.showUserDetail(userId: userId)
-        }).addDisposableTo(bag)
-
-        router.push(presentable: itemListView, animated: true, completion: nil)
-
-    }
-
-    private func showItemDetail(itemId: String) {
-        let itemDetailView = moduleFactory.generateItemDetailView(itemId: itemId)
-
-        itemDetailView.selectedUser.subscribe(onNext: { [weak self] userId in
-            self?.showUserDetail(userId: userId)
-        }).addDisposableTo(bag)
-
-        router.push(presentable: itemDetailView, animated: true, completion: nil)
-
-    }
-
-    private func showUserDetail(userId: String) {
-
-        let userDetailView = moduleFactory.generateUserDetailView(userId: userId)
-        
-        userDetailView.selectedItem.subscribe(onNext: { [weak self] itemId in
-            self?.showItemDetail(itemId: itemId)
-        }).addDisposableTo(bag)
-
-        userDetailView.selectedFollowTagList.subscribe(onNext: { [weak self] userId in
-            self?.showUserFollowTagList(userId: userId)
-        }).addDisposableTo(bag)
-
-        userDetailView.selectedFollowee.subscribe(onNext: { [weak self] userId in
-            self?.showFolloweeList(userId: userId)
-        }).addDisposableTo(bag)
-
-        userDetailView.selectedFollower.subscribe(onNext: { [weak self] userId in
-            self?.showFollowerList(userId: userId)
-        }).addDisposableTo(bag)
-
-        router.push(presentable: userDetailView, animated: true, completion: nil)
-
-    }
-
-    private func showFolloweeList(userId: String) {
-
-        let userListView = moduleFactory.generateFolloweeUserListView(userId: userId)
-
-        userListView.selectedUser.subscribe(onNext: { [weak self] userId in
-            self?.showUserDetail(userId: userId)
-        }).addDisposableTo(bag)
-
-        router.push(presentable: userListView, animated: true, completion: nil)
-
-    }
-
-    private func showFollowerList(userId: String) {
-
-        let userListView = moduleFactory.generateFollowerUserListView(userId: userId)
-
-        userListView.selectedUser.subscribe(onNext: { [weak self] userId in
-            self?.showUserDetail(userId: userId)
-        }).addDisposableTo(bag)
-
-        router.push(presentable: userListView, animated: true, completion: nil)
-
     }
 
     private func showUserFollowTagList(userId: String) {
@@ -127,11 +57,37 @@ final class TagTabCoordinator: BaseCoordinator {
         let tagListView = moduleFactory.generateUserFollowTagListView(userId: userId)
 
         tagListView.selectedTagId.subscribe(onNext: { [weak self] tagId in
-            self?.showTagItemList(tagId: tagId)
+            self?.runItemFlow(option: .tag(tagId))
         }).addDisposableTo(bag)
+
+        tagListView.deinitView.bind(to: finishFlowObserver).addDisposableTo(bag)
 
         router.push(presentable: tagListView, animated: true, completion: nil)
 
     }
     
 }
+
+extension TagTabCoordinator {
+    
+    private func runItemFlow(option: DeepLinkOption) {
+        
+        guard let navigationController = router.toPresent() as? UINavigationController else {
+            return
+        }
+        
+        let (presentable, coordinator) = coordinatorFactory.generateItemCoordinatorBox(navigationController: navigationController)
+        coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
+            self?.removeDependency(coordinator: coordinator)
+        }).addDisposableTo(bag)
+        
+        addDependency(coordinator: coordinator)
+        
+        coordinator.start(option: option)
+        router.push(presentable: presentable, animated: true, completion: nil)
+        
+    }
+    
+}
+
+

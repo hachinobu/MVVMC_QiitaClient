@@ -75,6 +75,57 @@ extension ModuleFactory: ItemModuleFactory {
         return itemDetailView
     }
     
+    func generateTagItemListView(tagId: String) -> ItemListViewType & Presentable {
+        let itemListView = UIStoryboard.instantiateInitialViewController(withType: ItemListViewController.self)
+        let tagItemsRequest = QiitaAPI.GetTagItemsRequest(tagId: tagId)
+        let transform = ItemEntityToCellViewModelTransform()
+        let viewModel = ItemListVM(request: tagItemsRequest, transformer: transform)
+        itemListView.injectViewModel(viewModel: viewModel)
+        
+        return itemListView
+    }
+        
+}
+
+extension ModuleFactory: TagModuleFactory {
+    
+    func generateAllTagListView() -> TagListViewType & Presentable {
+        let tagListView = UIStoryboard.instantiateInitialViewController(withType: TagListViewController.self)
+        let tagsRequest = QiitaAPI.GetTagsRequest()
+        let transformer = TagEntityToTagListTableCellVMTransform()
+        let viewModel = TagListVM(request: tagsRequest, transformer: transformer)
+        tagListView.injectViewModel(viewModel: viewModel)
+        
+        return tagListView
+    }
+    
+    func generateUserFollowTagListView(userId: String) -> TagListViewType & Presentable {
+        let tagListView = UIStoryboard.instantiateInitialViewController(withType: TagListViewController.self)
+        let userFollowTagRequest = QiitaAPI.GetUserFollowTagsRequest(userId: userId)
+        let transformer = TagEntityToTagListTableCellVMTransform()
+        let viewModel = TagListVM(request: userFollowTagRequest, transformer: transformer)
+        tagListView.injectViewModel(viewModel: viewModel)
+        
+        return tagListView
+    }
+    
+}
+
+extension ModuleFactory: UserModuleFactory {
+    
+    func generateMyAccountView() -> UserDetailViewType & Presentable {
+        let myAccountView = UIStoryboard.instantiateInitialViewController(withType: UserDetailViewController.self)
+        let userRequest = QiitaAPI.GetAuthenticatedUserRequest()
+        let userTransformer = UserEntityToUserDetailTableCellViewModelTransform()
+        let myItemsRequest = QiitaAPI.GetAuthUserItemsRequest()
+        let myItemsTransformer = ItemEntityToCellViewModelTransform()
+        let viewModel = UserDetailVM(userRequest: userRequest, itemsRequest: myItemsRequest, userTransformer: userTransformer, itemTransformer: myItemsTransformer)
+        myAccountView.injectViewModel(viewModel: viewModel)
+        myAccountView.isDisplayButton = true
+        
+        return myAccountView
+    }
+    
     func generateUserDetailView(userId: String) -> UserDetailViewType & Presentable  {
         let userDetailView = UIStoryboard.instantiateInitialViewController(withType: UserDetailViewController.self)
         let userRequest = QiitaAPI.GetUserDetailRequest(userId: userId)
@@ -108,31 +159,6 @@ extension ModuleFactory: ItemModuleFactory {
         return userListView
     }
     
-    func generateUserFollowTagListView(userId: String) -> TagListViewType & Presentable {
-        let tagListView = UIStoryboard.instantiateInitialViewController(withType: TagListViewController.self)
-        let userFollowTagRequest = QiitaAPI.GetUserFollowTagsRequest(userId: userId)
-        let transformer = TagEntityToTagListTableCellVMTransform()
-        let viewModel = TagListVM(request: userFollowTagRequest, transformer: transformer)
-        tagListView.injectViewModel(viewModel: viewModel)
-        
-        return tagListView
-    }
-    
-    func generateTagListView() -> Presentable & TagListViewType {
-        let tagListView = UIStoryboard.instantiateInitialViewController(withType: TagListViewController.self)
-        return tagListView
-    }
-    
-    func generateTagItemListView(tagId: String) -> ItemListViewType & Presentable {
-        let itemListView = UIStoryboard.instantiateInitialViewController(withType: ItemListViewController.self)
-        let tagItemsRequest = QiitaAPI.GetTagItemsRequest(tagId: tagId)
-        let transform = ItemEntityToCellViewModelTransform()
-        let viewModel = ItemListVM(request: tagItemsRequest, transformer: transform)
-        itemListView.injectViewModel(viewModel: viewModel)
-        
-        return itemListView
-    }
-    
     func generateLikeUserListView(itemId: String) -> UserListViewType & Presentable {
         let userListView = UIStoryboard.instantiateInitialViewController(withType: UserListViewController.self)
         let likeUserRequest = QiitaAPI.GetItemLikesRequest(itemId: itemId)
@@ -151,37 +177,6 @@ extension ModuleFactory: ItemModuleFactory {
         userListView.injectViewModel(viewModel: viewModel)
         
         return userListView
-    }
-    
-}
-
-extension ModuleFactory: TagModuleFactory {
-    
-    func generateAllTagListView() -> TagListViewType & Presentable {
-        let tagListView = UIStoryboard.instantiateInitialViewController(withType: TagListViewController.self)
-        let tagsRequest = QiitaAPI.GetTagsRequest()
-        let transformer = TagEntityToTagListTableCellVMTransform()
-        let viewModel = TagListVM(request: tagsRequest, transformer: transformer)
-        tagListView.injectViewModel(viewModel: viewModel)
-        
-        return tagListView
-    }
-    
-}
-
-extension ModuleFactory: MyAccountModuleFactory {
-    
-    func generateMyAccountView() -> UserDetailViewType & Presentable {
-        let myAccountView = UIStoryboard.instantiateInitialViewController(withType: UserDetailViewController.self)
-        let userRequest = QiitaAPI.GetAuthenticatedUserRequest()
-        let userTransformer = UserEntityToUserDetailTableCellViewModelTransform()
-        let myItemsRequest = QiitaAPI.GetAuthUserItemsRequest()
-        let myItemsTransformer = ItemEntityToCellViewModelTransform()
-        let viewModel = UserDetailVM(userRequest: userRequest, itemsRequest: myItemsRequest, userTransformer: userTransformer, itemTransformer: myItemsTransformer)
-        myAccountView.injectViewModel(viewModel: viewModel)
-        myAccountView.isDisplayButton = true
-        
-        return myAccountView
     }
     
 }

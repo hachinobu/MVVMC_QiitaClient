@@ -9,15 +9,18 @@
 import Foundation
 
 enum DeepLinkOption {
-    case item(String)
+    case itemDetail(String)
     case tag(String)
+    case user(String)
     case myAccount
+    case likeUserList(String)
+    case stockUserList(String)
     
     func isItem() -> Bool {
         switch self {
-        case .item(_):
+        case .itemDetail(_):
             return true
-        case .tag(_), .myAccount:
+        default:
             return false
         }
     }
@@ -26,7 +29,7 @@ enum DeepLinkOption {
         switch self {
         case .tag(_):
             return true
-        case .item(_), .myAccount:
+        default:
             return false
         }
     }
@@ -35,19 +38,17 @@ enum DeepLinkOption {
         switch self {
         case .myAccount:
             return true
-        case .item(_), .tag(_):
+        default:
             return false
         }
     }
     
-    func linkId() -> String? {
+    func isUser() -> Bool {
         switch self {
-        case .item(let itemId):
-            return itemId
-        case .tag(let tagId):
-            return tagId
-        case .myAccount:
-            return nil
+        case .user(_):
+            return true
+        default:
+            return false
         }
     }
     

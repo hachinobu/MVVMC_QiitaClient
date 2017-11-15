@@ -39,15 +39,36 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
         return AuthCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
-    func generateMyAccountTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType {
+    func generateUserCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType {
         let rootController = navigationController ?? UINavigationController()
-        return MyAccountTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
+        return UserCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
     func generateAuthCoordinatorBox() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
         let navigation = UIStoryboard.instantiateInitialViewController(withType: PresentNavigationController.self)
         let router = RouterImpl(rootController: navigation)
         let coordinator = AuthCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+        return (router, coordinator)
+    }
+    
+    func generateItemCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
+        let rootController = navigationController ?? UINavigationController()
+        let router = RouterImpl(rootController: rootController)
+        let coordinator = ItemTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+        return (router, coordinator)
+    }
+    
+    func generateTagCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
+        let rootController = navigationController ?? UINavigationController()
+        let router = RouterImpl(rootController: rootController)
+        let coordinator = TagTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+        return (router, coordinator)
+    }
+    
+    func generateUserCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
+        let rootController = navigationController ?? UINavigationController()
+        let router = RouterImpl(rootController: rootController)
+        let coordinator = UserCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
         return (router, coordinator)
     }
     

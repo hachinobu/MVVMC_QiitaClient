@@ -28,6 +28,9 @@ final class ItemListViewController: UIViewController, ItemListViewType {
     fileprivate var selectedUserObserver = PublishSubject<String>()
     lazy var selectedUser: Observable<String> = self.selectedUserObserver.asObservable()
     
+    fileprivate var deinitViewObserver = PublishSubject<Void>()
+    lazy var deinitView = self.deinitViewObserver.asObservable()
+    
     lazy var reachedBottom: ControlEvent<Void> = self.tableView.rx.reachedBottom
     
     func injectViewModel(viewModel: ItemListViewModel) {
@@ -40,6 +43,10 @@ final class ItemListViewController: UIViewController, ItemListViewType {
         setupViewModel()
         bindTableView()
         viewModel.viewDidLoadTrigger.onNext(())
+    }
+    
+    deinit {
+        deinitViewObserver.onNext(())
     }
     
 }
