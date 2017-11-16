@@ -26,12 +26,12 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
     
     func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator & ItemCoordinatorFinishFlowType {
         let rootController = navigationController ?? UINavigationController()
-        return ItemTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
+        return ItemCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
     func generateTagTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
         let rootController = navigationController ?? UINavigationController()
-        return TagTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
+        return TagCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
     func generateSignInTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType {
@@ -54,14 +54,14 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
     func generateItemCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
         let rootController = navigationController ?? UINavigationController()
         let router = RouterImpl(rootController: rootController)
-        let coordinator = ItemTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+        let coordinator = ItemCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
         return (router, coordinator)
     }
     
     func generateTagCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
         let rootController = navigationController ?? UINavigationController()
         let router = RouterImpl(rootController: rootController)
-        let coordinator = TagTabCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+        let coordinator = TagCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
         return (router, coordinator)
     }
     

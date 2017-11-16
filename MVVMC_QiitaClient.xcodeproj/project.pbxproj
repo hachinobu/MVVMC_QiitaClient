@@ -45,7 +45,7 @@
 		AD5FA6C61F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C51F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift */; };
 		AD5FA6C81F56EF890089B10A /* TagListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */; };
 		AD5FA6CA1F56EFE10089B10A /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */; };
-		AD5FA6CD1F584ACE0089B10A /* TagTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */; };
+		AD5FA6CD1F584ACE0089B10A /* TagCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CC1F584ACE0089B10A /* TagCoordinator.swift */; };
 		AD5FA6D01F584B290089B10A /* TagModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CF1F584B290089B10A /* TagModuleFactory.swift */; };
 		AD5FA6D51F5BD3D80089B10A /* MyAccountModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6D41F5BD3D80089B10A /* MyAccountModuleFactory.swift */; };
 		AD5FA6D71F5C1BE60089B10A /* NoAuthTabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6D61F5C1BE60089B10A /* NoAuthTabbarController.storyboard */; };
@@ -91,7 +91,7 @@
 		ADA27C531F657AE300F49825 /* PresentNavigationController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */; };
 		ADA27C551F657B7700F49825 /* PresentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA27C541F657B7700F49825 /* PresentNavigationController.swift */; };
 		ADBD63C41F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */; };
-		ADBD63C71F2C472800BA9EE2 /* ItemTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C61F2C472800BA9EE2 /* ItemTabCoordinator.swift */; };
+		ADBD63C71F2C472800BA9EE2 /* ItemCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBD63C61F2C472800BA9EE2 /* ItemCoordinator.swift */; };
 		ADC3856B1F2F760E0092F227 /* ItemDetailWebTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */; };
 		ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */; };
 		C2483F861F2608DC00685622 /* AccessTokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2483F851F2608DC00685622 /* AccessTokenStorage.swift */; };
@@ -192,7 +192,7 @@
 		AD5FA6C51F55A34E0089B10A /* TagEntityToTagListTableCellVMTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEntityToTagListTableCellVMTransform.swift; sourceTree = "<group>"; };
 		AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TagListViewController.storyboard; sourceTree = "<group>"; };
 		AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
-		AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTabCoordinator.swift; sourceTree = "<group>"; };
+		AD5FA6CC1F584ACE0089B10A /* TagCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCoordinator.swift; sourceTree = "<group>"; };
 		AD5FA6CF1F584B290089B10A /* TagModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModuleFactory.swift; sourceTree = "<group>"; };
 		AD5FA6D41F5BD3D80089B10A /* MyAccountModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountModuleFactory.swift; sourceTree = "<group>"; };
 		AD5FA6D61F5C1BE60089B10A /* NoAuthTabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NoAuthTabbarController.storyboard; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 		ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PresentNavigationController.storyboard; sourceTree = "<group>"; };
 		ADA27C541F657B7700F49825 /* PresentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentNavigationController.swift; sourceTree = "<group>"; };
 		ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFinishFlowType.swift; sourceTree = "<group>"; };
-		ADBD63C61F2C472800BA9EE2 /* ItemTabCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTabCoordinator.swift; sourceTree = "<group>"; };
+		ADBD63C61F2C472800BA9EE2 /* ItemCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCoordinator.swift; sourceTree = "<group>"; };
 		ADC3856A1F2F760E0092F227 /* ItemDetailWebTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailWebTableCell.swift; sourceTree = "<group>"; };
 		ADC3856C1F2F7C100092F227 /* ItemDetailWebTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemDetailWebTableCell.xib; sourceTree = "<group>"; };
 		C2483F851F2608DC00685622 /* AccessTokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessTokenStorage.swift; sourceTree = "<group>"; };
@@ -322,6 +322,8 @@
 			isa = PBXGroup;
 			children = (
 				AD553A121FB1D07A0029A94A /* UserCoordinator.swift */,
+				C2AC175E1F4EDCB900436414 /* UserListViewType.swift */,
+				AD5FA6B11F49CA570089B10A /* UserDetailViewType.swift */,
 			);
 			path = UserFlow;
 			sourceTree = "<group>";
@@ -385,13 +387,13 @@
 		AD5C988B1F1F98A800DF5039 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				AD5C98A61F1F9CA300DF5039 /* Flow */,
+				AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */,
+				AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */,
 				AD5C98961F1F998200DF5039 /* Coordinator.swift */,
 				AD5C98971F1F998200DF5039 /* DependencyCoordinator.swift */,
-				AD5C98981F1F998200DF5039 /* BaseCoordinator.swift */,
-				AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */,
 				ADBD63C31F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift */,
 				C2C793331F6A5FD4002F90E5 /* DeepLinkOption.swift */,
+				AD5C98A61F1F9CA300DF5039 /* Flow */,
 				AD5C988D1F1F992200DF5039 /* Router */,
 				AD5C988C1F1F98E900DF5039 /* Factory */,
 			);
@@ -401,14 +403,8 @@
 		AD5C988C1F1F98E900DF5039 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
-				AD5FA6CE1F584AF50089B10A /* Tab */,
-				ADBD63C51F2C468F00BA9EE2 /* HomeTab */,
-				AD639DCA1F24E2E200AA56ED /* Auth */,
-				AD5C988E1F1F994200DF5039 /* CoordinatorFactory.swift */,
-				AD0EF1C71F6EB2C300D1B503 /* TabModuleFactory.swift */,
-				AD0EF1C91F6EB88800D1B503 /* NavigationModuleFactory.swift */,
-				AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */,
-				AD639DCD1F24E38300AA56ED /* ModuleFactory.swift */,
+				AD699E081FBDC84100EF0C32 /* Module */,
+				AD699E071FBDC7C300EF0C32 /* Coordinator */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -453,10 +449,6 @@
 		AD5C98A61F1F9CA300DF5039 /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				AD5FA6CB1F584A9B0089B10A /* TagTabFlow */,
-				AD639E061F2C3F0700AA56ED /* ItemTabFlow */,
-				AD553A111FB1D02F0029A94A /* UserFlow */,
-				AD639E011F2B3ECB00AA56ED /* ItemFlow */,
 				AD639DBB1F231EE500AA56ED /* AuthFlow */,
 				AD5C98A71F1F9CC400DF5039 /* TabbarFlow */,
 			);
@@ -466,10 +458,13 @@
 		AD5C98A71F1F9CC400DF5039 /* TabbarFlow */ = {
 			isa = PBXGroup;
 			children = (
-				AD5C98A81F1F9D4100DF5039 /* TabSelectableView.swift */,
 				AD639DB91F20EF5700AA56ED /* TabbarCoordinator.swift */,
 				AD5FA6DC1F5C1EDF0089B10A /* NoAuthTabbarCoordinator.swift */,
+				AD5C98A81F1F9D4100DF5039 /* TabSelectableView.swift */,
 				AD5FA6D81F5C1C4F0089B10A /* NoAuthTabSelectable.swift */,
+				AD639E011F2B3ECB00AA56ED /* ItemFlow */,
+				AD5FA6CB1F584A9B0089B10A /* TagFlow */,
+				AD553A111FB1D02F0029A94A /* UserFlow */,
 			);
 			path = TabbarFlow;
 			sourceTree = "<group>";
@@ -490,22 +485,13 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		AD5FA6CB1F584A9B0089B10A /* TagTabFlow */ = {
+		AD5FA6CB1F584A9B0089B10A /* TagFlow */ = {
 			isa = PBXGroup;
 			children = (
-				AD5FA6CC1F584ACE0089B10A /* TagTabCoordinator.swift */,
+				AD5FA6CC1F584ACE0089B10A /* TagCoordinator.swift */,
+				C2AC17621F56CA3500436414 /* TagListViewType.swift */,
 			);
-			path = TagTabFlow;
-			sourceTree = "<group>";
-		};
-		AD5FA6CE1F584AF50089B10A /* Tab */ = {
-			isa = PBXGroup;
-			children = (
-				AD5FA6CF1F584B290089B10A /* TagModuleFactory.swift */,
-				AD5FA6D41F5BD3D80089B10A /* MyAccountModuleFactory.swift */,
-				AD553A141FB1D1760029A94A /* UserModuleFactory.swift */,
-			);
-			path = Tab;
+			path = TagFlow;
 			sourceTree = "<group>";
 		};
 		AD639DBB1F231EE500AA56ED /* AuthFlow */ = {
@@ -535,14 +521,6 @@
 				AD639DC61F247F9000AA56ED /* AuthInfo.swift */,
 				C2483F851F2608DC00685622 /* AccessTokenStorage.swift */,
 				AD639DD41F26414900AA56ED /* AccessTokenProtocol.swift */,
-			);
-			path = Auth;
-			sourceTree = "<group>";
-		};
-		AD639DCA1F24E2E200AA56ED /* Auth */ = {
-			isa = PBXGroup;
-			children = (
-				AD639DCB1F24E30600AA56ED /* AuthModuleFactory.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -588,21 +566,72 @@
 		AD639E011F2B3ECB00AA56ED /* ItemFlow */ = {
 			isa = PBXGroup;
 			children = (
+				ADBD63C61F2C472800BA9EE2 /* ItemCoordinator.swift */,
 				AD639E021F2B3F1700AA56ED /* ItemListViewType.swift */,
 				C2FF21E91F332DF20002C89E /* ItemDetailViewType.swift */,
-				AD5FA6B11F49CA570089B10A /* UserDetailViewType.swift */,
-				C2AC175E1F4EDCB900436414 /* UserListViewType.swift */,
-				C2AC17621F56CA3500436414 /* TagListViewType.swift */,
 			);
 			path = ItemFlow;
 			sourceTree = "<group>";
 		};
-		AD639E061F2C3F0700AA56ED /* ItemTabFlow */ = {
+		AD699E071FBDC7C300EF0C32 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				ADBD63C61F2C472800BA9EE2 /* ItemTabCoordinator.swift */,
+				AD5C988E1F1F994200DF5039 /* CoordinatorFactory.swift */,
+				AD639DB71F20EEE900AA56ED /* CoordinatorFactoryImpl.swift */,
 			);
-			path = ItemTabFlow;
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		AD699E081FBDC84100EF0C32 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				AD5FA6CF1F584B290089B10A /* TagModuleFactory.swift */,
+				AD5FA6D41F5BD3D80089B10A /* MyAccountModuleFactory.swift */,
+				AD553A141FB1D1760029A94A /* UserModuleFactory.swift */,
+				AD639E071F2C3F2B00AA56ED /* ItemModuleFactory.swift */,
+				AD639DCB1F24E30600AA56ED /* AuthModuleFactory.swift */,
+				AD0EF1C71F6EB2C300D1B503 /* TabModuleFactory.swift */,
+				AD0EF1C91F6EB88800D1B503 /* NavigationModuleFactory.swift */,
+				AD639DCD1F24E38300AA56ED /* ModuleFactory.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		AD699E091FBDC8B100EF0C32 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */,
+				AD639DF51F28C2B700AA56ED /* ItemListVM.swift */,
+				C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */,
+				C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */,
+				C2FF21DF1F31E68C0002C89E /* ItemVM.swift */,
+				C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */,
+				C2FF21E31F32E3200002C89E /* ItemDetailVM.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		AD699E0A1FBDC8C500EF0C32 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */,
+				C24904461F46D6B60058B300 /* UserDetailViewModel.swift */,
+				C249044A1F46DDC80058B300 /* UserDetailVM.swift */,
+				AD5FA6B71F4B1E5F0089B10A /* UserListTableCellVM.swift */,
+				C249044C1F4C38100058B300 /* UserListViewModel.swift */,
+				C249044E1F4C38AE0058B300 /* UserListVM.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		AD699E0B1FBDC8F900EF0C32 /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+				AD5FA6BF1F55A0190089B10A /* TagListViewModel.swift */,
+				AD5FA6C11F55A14F0089B10A /* TagListVM.swift */,
+				AD5FA6C31F55A1C70089B10A /* TagListTableCellVM.swift */,
+			);
+			path = Tag;
 			sourceTree = "<group>";
 		};
 		AD74B4C61F20ED4200B2EC04 /* Extension */ = {
@@ -619,34 +648,13 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		ADBD63C51F2C468F00BA9EE2 /* HomeTab */ = {
-			isa = PBXGroup;
-			children = (
-				AD639E071F2C3F2B00AA56ED /* ItemModuleFactory.swift */,
-			);
-			path = HomeTab;
-			sourceTree = "<group>";
-		};
 		C2483F891F2611B800685622 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				C2483F8A1F2611C900685622 /* Auth */,
-				AD639DF31F2787C600AA56ED /* ItemListViewModel.swift */,
-				AD639DF51F28C2B700AA56ED /* ItemListVM.swift */,
-				C2483F9E1F28A40C00685622 /* ItemListTableCellVM.swift */,
-				C2FF21DD1F31E5F20002C89E /* ItemViewModel.swift */,
-				C2FF21DF1F31E68C0002C89E /* ItemVM.swift */,
-				C2FF21E11F31EEB60002C89E /* ItemDetailViewModel.swift */,
-				C2FF21E31F32E3200002C89E /* ItemDetailVM.swift */,
-				AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */,
-				C24904461F46D6B60058B300 /* UserDetailViewModel.swift */,
-				C249044A1F46DDC80058B300 /* UserDetailVM.swift */,
-				AD5FA6B71F4B1E5F0089B10A /* UserListTableCellVM.swift */,
-				C249044C1F4C38100058B300 /* UserListViewModel.swift */,
-				C249044E1F4C38AE0058B300 /* UserListVM.swift */,
-				AD5FA6BF1F55A0190089B10A /* TagListViewModel.swift */,
-				AD5FA6C11F55A14F0089B10A /* TagListVM.swift */,
-				AD5FA6C31F55A1C70089B10A /* TagListTableCellVM.swift */,
+				AD699E091FBDC8B100EF0C32 /* Item */,
+				AD699E0B1FBDC8F900EF0C32 /* Tag */,
+				AD699E0A1FBDC8C500EF0C32 /* User */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -920,7 +928,7 @@
 			files = (
 				AD5FA6B21F49CA570089B10A /* UserDetailViewType.swift in Sources */,
 				AD5C988F1F1F994200DF5039 /* CoordinatorFactory.swift in Sources */,
-				ADBD63C71F2C472800BA9EE2 /* ItemTabCoordinator.swift in Sources */,
+				ADBD63C71F2C472800BA9EE2 /* ItemCoordinator.swift in Sources */,
 				AD639DFE1F2B377800AA56ED /* UITableView+Rx.swift in Sources */,
 				C24904491F46D9160058B300 /* UserAndItemsPairToUserDetailTransform.swift in Sources */,
 				AD5C98A91F1F9D4100DF5039 /* TabSelectableView.swift in Sources */,
@@ -959,7 +967,7 @@
 				AD553A131FB1D07A0029A94A /* UserCoordinator.swift in Sources */,
 				AD639DF61F28C2B700AA56ED /* ItemListVM.swift in Sources */,
 				AD639DED1F27826900AA56ED /* NibLoadableView.swift in Sources */,
-				AD5FA6CD1F584ACE0089B10A /* TagTabCoordinator.swift in Sources */,
+				AD5FA6CD1F584ACE0089B10A /* TagCoordinator.swift in Sources */,
 				AD639DF21F2783DC00AA56ED /* LoadingIndicatorView.swift in Sources */,
 				ADBD63C41F2C444600BA9EE2 /* CoordinatorFinishFlowType.swift in Sources */,
 				AD5FA6AC1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift in Sources */,

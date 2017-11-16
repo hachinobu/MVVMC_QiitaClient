@@ -1,5 +1,5 @@
 //
-//  TagTabCoordinator.swift
+//  TagCoordinator.swift
 //  MVVMC_QiitaClient
 //
 //  Created by Takahiro Nishinobu on 2017/08/31.
@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-final class TagTabCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
+final class TagCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     
     private let finishFlowObserver = PublishSubject<Void>()
     lazy var finishFlow = self.finishFlowObserver.asObservable()
@@ -68,7 +68,7 @@ final class TagTabCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     
 }
 
-extension TagTabCoordinator {
+extension TagCoordinator {
     
     private func runItemFlow(option: DeepLinkOption) {
         

@@ -64,10 +64,10 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         switch option {
         case .itemDetail(_):
             tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.item.rawValue)
-            coordinator = childCoordinators.flatMap { $0 as? ItemTabCoordinator }.first
+            coordinator = childCoordinators.flatMap { $0 as? ItemCoordinator }.first
         case .tag(_):
             tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.tag.rawValue)
-            coordinator = childCoordinators.flatMap { $0 as? TagTabCoordinator }.first
+            coordinator = childCoordinators.flatMap { $0 as? TagCoordinator }.first
         case .myAccount:
             tabSelectableView.chnageSelectedTab(index: TabbarController.SelectedTab.myAccount.rawValue)
             coordinator = childCoordinators.flatMap { $0 as? UserCoordinator }.first
