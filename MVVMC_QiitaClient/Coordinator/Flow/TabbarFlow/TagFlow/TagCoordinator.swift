@@ -46,7 +46,7 @@ final class TagCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         tagListView.selectedTagId.subscribe(onNext: { [weak self] tagId in
             self?.runItemFlow(option: .tag(tagId))
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         router.setRoot(presentable: tagListView, hideBar: false)
         
@@ -58,9 +58,9 @@ final class TagCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
 
         tagListView.selectedTagId.subscribe(onNext: { [weak self] tagId in
             self?.runItemFlow(option: .tag(tagId))
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
 
-        tagListView.deinitView.bind(to: finishFlowObserver).addDisposableTo(bag)
+        tagListView.deinitView.bind(to: finishFlowObserver).disposed(by: bag)
 
         router.push(presentable: tagListView, animated: true, completion: nil)
 
@@ -79,7 +79,7 @@ extension TagCoordinator {
         let (presentable, coordinator) = coordinatorFactory.generateItemCoordinatorBox(navigationController: navigationController)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.removeDependency(coordinator: coordinator)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         addDependency(coordinator: coordinator)
         

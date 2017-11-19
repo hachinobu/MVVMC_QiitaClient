@@ -59,7 +59,7 @@ extension ApplicationCoordinator {
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.removeDependency(coordinator: coordinator)
             self?.start()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         addDependency(coordinator: coordinator)
         coordinator.start()
@@ -70,7 +70,7 @@ extension ApplicationCoordinator {
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.removeDependency(coordinator: coordinator)
             self?.start()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         addDependency(coordinator: coordinator)
         if let option = option {
@@ -85,12 +85,12 @@ extension ApplicationCoordinator {
         coordinator.finishItemFlow.subscribe(onNext: { [weak self, weak coordinator] option in
             self?.removeDependency(coordinator: coordinator)
             self?.start(option: option)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] in
             self?.removeDependency(coordinator: coordinator)
             self?.start()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         addDependency(coordinator: coordinator)
         coordinator.start()

@@ -56,7 +56,7 @@ final class ItemListVM<Results: Sequence>: ItemListViewModel {
     }()
     
     lazy var isLoadingIndicatorAnimation: Driver<Bool> = {
-        self.fetchItemListAction.executing.shareReplayLatestWhileConnected().asDriver(onErrorJustReturn: false)
+        self.fetchItemListAction.executing.share().asDriver(onErrorJustReturn: false)
     }()
     
     private let bag = DisposeBag()
@@ -81,20 +81,20 @@ final class ItemListVM<Results: Sequence>: ItemListViewModel {
                 
                 return session.rx.response(request: paginationRequest)
                     .map { $0.transform(transformable: transformer) }
-                    .shareReplayLatestWhileConnected()
+                    .share()
                 
             }
             
             fetchItemListAction.elements
                 .map { $0.count != request.perPage }
                 .bind(to: completedAllData)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             viewDidLoadTrigger.asObservable()
                 .take(1)
                 .map { self.FirstPage }
                 .bind(to: fetchItemListAction.inputs)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
         
     }
     
@@ -104,12 +104,12 @@ final class ItemListVM<Results: Sequence>: ItemListViewModel {
             .filter { !$0 }
             .map { _ in self.FirstPage }
             .bind(to: fetchItemListAction.inputs)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         refresh.asObservable()
             .map { false }
             .bind(to: completedAllData)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     
@@ -121,7 +121,7 @@ final class ItemListVM<Results: Sequence>: ItemListViewModel {
             .filter { !$0 }
             .map { _ in self.currentPage + 1 }
             .bind(to: fetchItemListAction.inputs)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
     }
     
     

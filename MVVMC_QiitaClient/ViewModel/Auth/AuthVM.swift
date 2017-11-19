@@ -46,7 +46,7 @@ final class AuthVM<Object: AccessTokenProtocol>: AuthViewModel {
         
         fetchTokenTrigger.subscribe(onNext: { [weak self] code in
             self?.fetchTokenAction.execute(code)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
     }
     

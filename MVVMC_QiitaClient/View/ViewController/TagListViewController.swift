@@ -64,23 +64,23 @@ extension TagListViewController {
         
         viewModel.isLoadingIndicatorAnimation
             .drive(loadingIndicatorView.indicator.rx.isAnimating)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.isLoadingIndicatorAnimation
             .map { !$0 }
             .drive(loadingIndicatorView.indicator.rx.isHidden)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.tags
             .map { _ in false }
             .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.tags
             .drive(tableView.rx.items(cellIdentifier: TagListTableCell.nibName, cellType: TagListTableCell.self)) { row, viewModel, cell in
                 
-                viewModel.tagName.bind(to: cell.tagNameLabel.rx.text).addDisposableTo(cell.bag)
-                viewModel.tagCountInfo.bind(to: cell.tagCountLabel.rx.text).addDisposableTo(cell.bag)
+                viewModel.tagName.bind(to: cell.tagNameLabel.rx.text).disposed(by: cell.bag)
+                viewModel.tagCountInfo.bind(to: cell.tagCountLabel.rx.text).disposed(by: cell.bag)
                 
                 viewModel.tagImageURL.filter { $0 != nil }.map { $0! }.subscribe(onNext: { [weak cell] url in
                     let resource = ImageResource(downloadURL: url, cacheKey: url.absoluteString)
@@ -89,24 +89,24 @@ extension TagListViewController {
                                                        options: [.transition(ImageTransition.fade(1.0)), .cacheMemoryOnly],
                                                        progressBlock: nil, completionHandler: nil)
                     
-                }).addDisposableTo(cell.bag)
+                }).disposed(by: cell.bag)
                 
-            }.addDisposableTo(bag)
+            }.disposed(by: bag)
         
         tableView.rx.modelSelected(TagListTableCellViewModel.self).do(onNext: { [weak self] _ in
             if let selectedIndexPath = self?.tableView.indexPathForSelectedRow {
                 self?.tableView.deselectRow(at: selectedIndexPath, animated: true)
             }
-        }).map { $0.tagId }.bind(to: selectedTagIdObserver).addDisposableTo(bag)
+        }).map { $0.tagId }.bind(to: selectedTagIdObserver).disposed(by: bag)
         
         viewModel.error
             .map { _ in false }
             .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.error.drive(onNext: { (error) in
             print(error.localizedDescription)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
     }
     

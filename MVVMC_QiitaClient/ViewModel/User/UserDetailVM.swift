@@ -57,7 +57,7 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
                 return session.rx.response(request: paginationRequest).map { $0.transform(transformable: itemTransformer) }
             }
             
-            itemFetchAction.elements.map { $0.count != itemsRequest.perPage }.bind(to: completedAllData).addDisposableTo(bag)
+            itemFetchAction.elements.map { $0.count != itemsRequest.perPage }.bind(to: completedAllData).disposed(by: bag)
             
             let fetchItemElements = itemFetchAction.elements.withLatestFrom(itemFetchAction.inputs) { ($0, $1) }.scan([ItemViewModel]()) { (elements, result) in
                 let page = result.1
@@ -77,21 +77,21 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
             
             Observable.combineLatest(userFetchAction.elements, fetchItemElements)
                 .bind(to: userDetailItemPairsObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             Observable.amb([userFetchAction.errors, itemFetchAction.errors])
                 .bind(to: errorObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             viewDidLoadTrigger.subscribe(onNext: { [weak self] in
                 self?.userFetchAction.execute(())
                 self?.itemFetchAction.execute(1)
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
             
             Observable.combineLatest(userFetchAction.executing, itemFetchAction.executing)
                 .map { $0.0 || $0.1 }
                 .bind(to: isLoadingIndicatorAnimationObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
         
     }
@@ -103,12 +103,12 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
             .filter { !$0 }.subscribe(onNext: { [weak self] _ in
                 self?.userFetchAction.execute(())
                 self?.itemFetchAction.execute(1)
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
         
         refresh.asObservable()
             .map { false }
             .bind(to: completedAllData)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     
@@ -121,7 +121,7 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
             .filter { !$0 }
             .map { _ in self.currentPage + 1 }
             .bind(to: itemFetchAction.inputs)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     

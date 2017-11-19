@@ -35,15 +35,15 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
         
         tabView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runItemTabFlow(navigationController: navigationController)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         tabView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runTagTabFlow(navigationController: navigationController)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         tabView.selectedSignInTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runSignInTabFlow(navigationController: navigationController)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         router.setRoot(presentable: tabView, hideBar: true)
         
@@ -55,7 +55,7 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
         coordinator.finishItemFlow
             .filter { _ in AccessTokenStorage.hasAccessToken() }
             .bind(to: finishItemFlowObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }
@@ -74,7 +74,7 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
         coordinator.finishFlow
             .filter { AccessTokenStorage.hasAccessToken() }
             .bind(to: finishFlowObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }

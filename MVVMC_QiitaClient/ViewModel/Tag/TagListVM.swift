@@ -50,7 +50,7 @@ final class TagListVM<Results: Sequence>: TagListViewModel {
             fetchTagsAction.elements
                 .map { $0.count != request.perPage }
                 .bind(to: completedAllData)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             let firstPage = 1
             
@@ -76,15 +76,15 @@ final class TagListVM<Results: Sequence>: TagListViewModel {
                     return elements
                     
                 }.bind(to: self.tagsObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             fetchTagsAction.errors
                 .bind(to: errorObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             viewDidLoadTrigger.subscribe(onNext: { [weak self] _ in
                 self?.fetchTagsAction.execute(1)
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
             
     }
     
@@ -95,12 +95,12 @@ final class TagListVM<Results: Sequence>: TagListViewModel {
             .withLatestFrom(isLoadingIndicatorAnimation.asObservable())
             .filter { !$0 }.subscribe(onNext: { [weak self] _ in
                 self?.fetchTagsAction.execute(1)
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
         
         refresh.asObservable()
             .map { false }
             .bind(to: completedAllData)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     
@@ -113,7 +113,7 @@ final class TagListVM<Results: Sequence>: TagListViewModel {
             .filter { !$0 }
             .map { _ in self.currentPage + 1 }
             .bind(to: fetchTagsAction.inputs)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     

@@ -52,19 +52,19 @@ final class UserCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         myAccountView.selectedItem.subscribe(onNext: { [weak self] itemId in
             self?.runItemFlow(option: .itemDetail(itemId))
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         myAccountView.selectedFollowTagList.subscribe(onNext: { [weak self] userId in
             self?.runTagFlow(option: .user(userId))
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         myAccountView.selectedFollowee.subscribe(onNext: { [weak self] userId in
             self?.showFolloweeList(userId: userId)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         myAccountView.selectedFollower.subscribe(onNext: { [weak self] userId in
             self?.showFollowerList(userId: userId)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         myAccountView.logoutAction.do(onNext: { _ in
             AuthenticateQiita.sharedInstance.status.value = .none
@@ -72,7 +72,7 @@ final class UserCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
             .filter { $0 }
             .map { _ in }
             .bind(to: finishFlowObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         router.setRoot(presentable: myAccountView, hideBar: false)
         
@@ -84,21 +84,21 @@ final class UserCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         userDetailView.selectedItem.subscribe(onNext: { [weak self] itemId in
             self?.runItemFlow(option: .itemDetail(itemId))
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         userDetailView.selectedFollowTagList.subscribe(onNext: { [weak self] userId in
             self?.runTagFlow(option: .user(userId))
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         userDetailView.selectedFollowee.subscribe(onNext: { [weak self] userId in
             self?.showFolloweeList(userId: userId)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         userDetailView.selectedFollower.subscribe(onNext: { [weak self] userId in
             self?.showFollowerList(userId: userId)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
-        userDetailView.deinitView.bind(to: finishFlowObserver).addDisposableTo(bag)
+        userDetailView.deinitView.bind(to: finishFlowObserver).disposed(by: bag)
         
         router.push(presentable: userDetailView, animated: true, completion: nil)
         
@@ -110,7 +110,7 @@ final class UserCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         userListView.selectedUser.subscribe(onNext: { [weak self] userId in
             self?.showUserDetail(userId: userId)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         router.push(presentable: userListView, animated: true, completion: nil)
         
@@ -122,7 +122,7 @@ final class UserCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         userListView.selectedUser.subscribe(onNext: { [weak self] userId in
             self?.showUserDetail(userId: userId)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         router.push(presentable: userListView, animated: true, completion: nil)
         
@@ -134,9 +134,9 @@ final class UserCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         userListView.selectedUser.subscribe(onNext: { [weak self] userId in
             self?.showUserDetail(userId: userId)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
-        userListView.deinitView.bind(to: finishFlowObserver).addDisposableTo(bag)
+        userListView.deinitView.bind(to: finishFlowObserver).disposed(by: bag)
         
         router.push(presentable: userListView, animated: true, completion: nil)
         
@@ -148,9 +148,9 @@ final class UserCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         userListView.selectedUser.subscribe(onNext: { [weak self] userId in
             self?.showUserDetail(userId: userId)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
-        userListView.deinitView.bind(to: finishFlowObserver).addDisposableTo(bag)
+        userListView.deinitView.bind(to: finishFlowObserver).disposed(by: bag)
         
         router.push(presentable: userListView, animated: true, completion: nil)
         
@@ -169,7 +169,7 @@ extension UserCoordinator {
         let (presentable, coordinator) = coordinatorFactory.generateItemCoordinatorBox(navigationController: navigationController)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.removeDependency(coordinator: coordinator)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         addDependency(coordinator: coordinator)
         coordinator.start(option: option)
@@ -186,7 +186,7 @@ extension UserCoordinator {
         let (presentable, coordinator) = coordinatorFactory.generateTagCoordinatorBox(navigationController: navigationController)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.removeDependency(coordinator: coordinator)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         addDependency(coordinator: coordinator)
         coordinator.start(option: option)

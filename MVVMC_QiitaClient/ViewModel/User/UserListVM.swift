@@ -25,7 +25,7 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
     lazy var error: Driver<ActionError> = self.errorObserver.asDriver(onErrorDriveWith: .empty())
     
     lazy var isLoadingIndicatorAnimation: Driver<Bool> = {
-        self.fetchUsersAction.executing.shareReplayLatestWhileConnected().asDriver(onErrorJustReturn: false)
+        self.fetchUsersAction.executing.share().asDriver(onErrorJustReturn: false)
     }()
     
     private let completedAllData: PublishSubject<Bool> = PublishSubject()
@@ -50,7 +50,7 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
             fetchUsersAction.elements
                 .map { $0.count != request.perPage }
                 .bind(to: completedAllData)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             let firstPage = 1
             
@@ -76,11 +76,11 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
                     return elements
                     
                 }.bind(to: self.itemsObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             viewDidLoadTrigger.subscribe(onNext: { [weak self] _ in
                 self?.fetchUsersAction.execute(1)
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
             
             
     }
@@ -91,12 +91,12 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
             .withLatestFrom(isLoadingIndicatorAnimation.asObservable())
             .filter { !$0 }.subscribe(onNext: { [weak self] _ in
                 self?.fetchUsersAction.execute(1)
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
         
         refresh.asObservable()
             .map { false }
             .bind(to: completedAllData)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     
@@ -109,7 +109,7 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
             .filter { !$0 }
             .map { _ in self.currentPage + 1 }
             .bind(to: fetchUsersAction.inputs)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     

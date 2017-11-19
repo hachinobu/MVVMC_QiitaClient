@@ -44,11 +44,11 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         let authView = moduleFactory.generateAuthView()
         authView.tappedAuth.subscribe(onNext: { [weak self] _ in
             self?.authenticateQiita()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         authView.tappedSkipAuth.do(onNext: { _ in
             AuthenticateQiita.sharedInstance.status.value = .skip
-        }).bind(to: finishFlowObserver).addDisposableTo(bag)
+        }).bind(to: finishFlowObserver).disposed(by: bag)
         
         authView.onCompleteAuth
             .map { token -> Bool in
@@ -57,7 +57,7 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
             }.filter { $0 }
             .map { _ in }
             .bind(to: finishFlowObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         router.setRoot(presentable: authView, hideBar: true)
     }
@@ -69,11 +69,11 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         authView.closeButtonTapped.do(onNext: { [weak self] _ in
             self?.router.dismiss(animated: true, completion: nil)
-        }).bind(to: finishFlowObserver).addDisposableTo(bag)
+        }).bind(to: finishFlowObserver).disposed(by: bag)
         
         authView.tappedAuth.subscribe(onNext: { [weak self] _ in
             self?.authenticateQiita()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         authView.onCompleteAuth.do(onNext: { [weak self] token in
             self?.router.dismiss(animated: true, completion: nil)
@@ -83,7 +83,7 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         }.filter { $0 }
         .map { _ in }
         .bind(to: finishFlowObserver)
-        .addDisposableTo(bag)
+        .disposed(by: bag)
         
         router.setRoot(presentable: authView, hideBar: false)
         
@@ -96,7 +96,7 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
         authView.tappedAuth.subscribe(onNext: { [weak self] _ in
             self?.authenticateQiita()
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         authView.onCompleteAuth
             .map { token -> Bool in
@@ -105,7 +105,7 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
             }.filter { $0 }
             .map { _ in }
             .bind(to: finishFlowObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         router.setRoot(presentable: authView, hideBar: true)
         

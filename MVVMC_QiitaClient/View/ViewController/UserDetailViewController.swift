@@ -81,48 +81,48 @@ extension UserDetailViewController {
         
         viewModel.isLoadingIndicatorAnimation
             .drive(loadingIndicatorView.indicator.rx.isAnimating)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.isLoadingIndicatorAnimation
             .map { !$0 }
             .drive(loadingIndicatorView.indicator.rx.isHidden)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.userDetailItemPairs
             .map { _ in false }
             .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         let dataSource = UserDetailTableViewDataSource(isDisplayButton: isDisplayButton)
         
         dataSource.selectedItem
             .bind(to: selectedItemObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         dataSource.selectedFolloweeList
             .bind(to: selectedFolloweeObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         dataSource.selectedFollowerList
             .bind(to: selectedFollowerObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         dataSource.selectedFollowTagList
             .bind(to: selectedFollowTagListObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         dataSource.reachedBottom
             .bind(to: reachedBottomObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         dataSource.logoutAction
             .bind(to: logoutActionObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.userDetailItemPairs
             .map { [$0, $0] }
             .drive(tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         tableView.delegate = dataSource
         
@@ -185,13 +185,13 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
             
             let viewModel = items[0].userDetail
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as UserDetailTableCell
-            viewModel.userId.bind(to: cell.userIdLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.company.bind(to: cell.companyLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.itemCount.bind(to: cell.itemCountLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.followeeUserCount.bind(to: cell.followeeUserCountLabel.rx.title()).addDisposableTo(cell.bag)
-            viewModel.followerUserCount.bind(to: cell.followerUserCountLabel.rx.title()).addDisposableTo(cell.bag)
-            viewModel.description.bind(to: cell.descriptionLabel.rx.attributedText).addDisposableTo(cell.bag)
+            viewModel.userId.bind(to: cell.userIdLabel.rx.text).disposed(by: cell.bag)
+            viewModel.userName.bind(to: cell.userNameLabel.rx.text).disposed(by: cell.bag)
+            viewModel.company.bind(to: cell.companyLabel.rx.text).disposed(by: cell.bag)
+            viewModel.itemCount.bind(to: cell.itemCountLabel.rx.text).disposed(by: cell.bag)
+            viewModel.followeeUserCount.bind(to: cell.followeeUserCountLabel.rx.title()).disposed(by: cell.bag)
+            viewModel.followerUserCount.bind(to: cell.followerUserCountLabel.rx.title()).disposed(by: cell.bag)
+            viewModel.description.bind(to: cell.descriptionLabel.rx.attributedText).disposed(by: cell.bag)
             
             viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
                 
@@ -204,25 +204,25 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
                                                   progressBlock: nil,
                                                   completionHandler: nil)
                 
-            }).addDisposableTo(cell.bag)
+            }).disposed(by: cell.bag)
             
             cell.followTagListButton.rx.tap.withLatestFrom(viewModel.userId)
                 .filter { $0 != nil }
                 .map { $0! }
                 .bind(to: self.selectedFollowTagListObserver)
-                .addDisposableTo(cell.bag)
+                .disposed(by: cell.bag)
             
             cell.followeeUserCountLabel.rx.tap.withLatestFrom(viewModel.userId)
                 .filter { $0 != nil }
                 .map { $0! }
                 .bind(to: self.selectedFolloweeListObserver)
-                .addDisposableTo(cell.bag)
+                .disposed(by: cell.bag)
             
             cell.followerUserCountLabel.rx.tap.withLatestFrom(viewModel.userId)
                 .filter { $0 != nil }
                 .map { $0! }
                 .bind(to: self.selectedFollowerListObserver)
-                .addDisposableTo(cell.bag)
+                .disposed(by: cell.bag)
             
             let logoutButtonHeight: CGFloat = isDisplayButton ? 30.0 : 0.0
             cell.logoutButton.heightAnchor
@@ -230,7 +230,7 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
             
             cell.logoutButton.rx.tap
                 .bind(to: logoutActionObserver)
-                .addDisposableTo(cell.bag)
+                .disposed(by: cell.bag)
             
             return cell
             
@@ -238,10 +238,10 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
         
         let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemListTableCell
         let viewModel = items[0].userItems[indexPath.row]
-        viewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
-        viewModel.title.bind(to: cell.titleLabel.rx.attributedText).addDisposableTo(cell.bag)
-        viewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).addDisposableTo(cell.bag)
-        viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
+        viewModel.userName.bind(to: cell.userNameLabel.rx.text).disposed(by: cell.bag)
+        viewModel.title.bind(to: cell.titleLabel.rx.attributedText).disposed(by: cell.bag)
+        viewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).disposed(by: cell.bag)
+        viewModel.tag.bind(to: cell.tagLabel.rx.text).disposed(by: cell.bag)
         viewModel.profileURL.filter { $0 != nil }.map { $0! }.subscribe(onNext: { [weak cell] url in
             let resource = ImageResource(downloadURL: url, cacheKey: url.absoluteString)
             cell?.profileImageView.kf.indicatorType = .activity
@@ -249,7 +249,7 @@ fileprivate class UserDetailTableViewDataSource: NSObject, RxTableViewDataSource
                                                options: [.transition(ImageTransition.fade(1.0)), .cacheMemoryOnly],
                                                progressBlock: nil, completionHandler: nil)
             
-        }).addDisposableTo(cell.bag)
+        }).disposed(by: cell.bag)
         
         return cell
     }

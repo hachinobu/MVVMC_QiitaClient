@@ -64,22 +64,22 @@ extension UserListViewController {
         
         viewModel.isLoadingIndicatorAnimation
             .drive(loadingIndicatorView.indicator.rx.isAnimating)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.isLoadingIndicatorAnimation
             .map { !$0 }
             .drive(loadingIndicatorView.indicator.rx.isHidden)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.items
             .map { _ in false }
             .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.items
             .drive(tableView.rx.items(cellIdentifier: UserListTableCell.nibName, cellType: UserListTableCell.self)) { row, viewModel, cell in
                 
-                viewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
+                viewModel.userName.bind(to: cell.userNameLabel.rx.text).disposed(by: cell.bag)
                 
                 viewModel.profileURL.filter { $0 != nil }.map { $0! }.subscribe(onNext: { [weak cell] url in
                     let resource = ImageResource(downloadURL: url, cacheKey: url.absoluteString)
@@ -88,24 +88,24 @@ extension UserListViewController {
                                                        options: [.transition(ImageTransition.fade(1.0)), .cacheMemoryOnly],
                                                        progressBlock: nil, completionHandler: nil)
                     
-                }).addDisposableTo(cell.bag)
+                }).disposed(by: cell.bag)
                 
-            }.addDisposableTo(bag)
+            }.disposed(by: bag)
         
         tableView.rx.modelSelected(UserListTableCellViewModel.self).do(onNext: { [weak self] _ in
             if let selectedIndexPath = self?.tableView.indexPathForSelectedRow {
                 self?.tableView.deselectRow(at: selectedIndexPath, animated: true)
             }
-        }).map { $0.userId }.bind(to: selectedUserObserver).addDisposableTo(bag)
+        }).map { $0.userId }.bind(to: selectedUserObserver).disposed(by: bag)
         
         viewModel.error
             .map { _ in false }
             .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.error.drive(onNext: { (error) in
             print(error.localizedDescription)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
     }
     

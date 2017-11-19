@@ -71,26 +71,26 @@ extension ItemListViewController {
         
         viewModel.isLoadingIndicatorAnimation
             .drive(loadingIndicatorView.indicator.rx.isAnimating)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.isLoadingIndicatorAnimation
             .map { !$0 }
             .drive(loadingIndicatorView.indicator.rx.isHidden)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.items
             .map { _ in false }
             .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.items
             .drive(tableView.rx.items(cellIdentifier: ItemListTableCell.nibName, cellType: ItemListTableCell.self)) { [weak self] row, cellViewModel, cell in
                 
                 guard let strongSelf = self else { return }
-                cellViewModel.userName.bind(to: cell.userNameLabel.rx.text).addDisposableTo(cell.bag)
-                cellViewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).addDisposableTo(cell.bag)
-                cellViewModel.title.bind(to: cell.titleLabel.rx.attributedText).addDisposableTo(cell.bag)
-                cellViewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
+                cellViewModel.userName.bind(to: cell.userNameLabel.rx.text).disposed(by: cell.bag)
+                cellViewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).disposed(by: cell.bag)
+                cellViewModel.title.bind(to: cell.titleLabel.rx.attributedText).disposed(by: cell.bag)
+                cellViewModel.tag.bind(to: cell.tagLabel.rx.text).disposed(by: cell.bag)
                 cellViewModel.profileURL.filter { $0 != nil }.map { $0! }.subscribe(onNext: { [weak cell] url in
                     let resource = ImageResource(downloadURL: url, cacheKey: url.absoluteString)
                     cell?.profileImageView.kf.indicatorType = .activity
@@ -98,14 +98,14 @@ extension ItemListViewController {
                                                        options: [.transition(ImageTransition.fade(1.0)), .cacheMemoryOnly],
                                                        progressBlock: nil, completionHandler: nil)
                     
-                }).addDisposableTo(cell.bag)
+                }).disposed(by: cell.bag)
                 
                 cell.profileImageButton.rx.tap
                     .map { cellViewModel.userId }
                     .bind(to: strongSelf.selectedUserObserver)
-                    .addDisposableTo(cell.bag)
+                    .disposed(by: cell.bag)
                 
-        }.addDisposableTo(bag)
+        }.disposed(by: bag)
         
         tableView.rx.modelSelected(ItemListTableCellViewModel.self)
             .do(onNext: { [weak self] _ in
@@ -115,19 +115,19 @@ extension ItemListViewController {
             })
             .map { $0.itemId }
             .bind(to: selectedItemObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.error
             .map { _ in false }
             .drive(tableView.refreshControl!.rx.isRefreshing.asObserver())
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.error
             .filter { $0 as? QiitaError != nil }
             .map { $0 as! QiitaError }
             .drive(onNext: { error in
                 print(error.message)
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
         
     }
     

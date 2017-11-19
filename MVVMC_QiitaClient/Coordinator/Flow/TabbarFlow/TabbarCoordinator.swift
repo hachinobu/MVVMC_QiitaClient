@@ -35,15 +35,15 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         
         tabbarView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runItemTabFlow(navigationController: navigationController)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         tabbarView.selectedTagTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runTagTabFlow(navigationController: navigationController)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         tabbarView.selectedMyAccountTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runUserFlow(navigationController: navigationController)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         router.setRoot(presentable: tabbarView, hideBar: true)
         
@@ -84,7 +84,7 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         let coordinator = coordinatorFactory.generateItemTabCoordinator(navigationController: navigationController)
         coordinator.finishItemFlow
             .bind(to: finishItemFlowObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         coordinator.start()
         if let option = option {
             coordinator.start(option: option)
@@ -104,7 +104,7 @@ class TabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordin
         let coordinator = coordinatorFactory.generateUserCoordinator(navigationController: navigationController)
         coordinator.finishFlow
             .bind(to: finishFlowObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }

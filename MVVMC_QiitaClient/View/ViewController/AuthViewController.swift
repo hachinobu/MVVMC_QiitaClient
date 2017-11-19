@@ -56,33 +56,33 @@ final class AuthViewController: UIViewController, AuthViewType {
         
         authButton.rx.tap
             .bind(to: tappedAuthObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         skipAuthButton.rx.tap
             .bind(to: tappedSkipAuthObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         if let closeButton = navigationItem.leftBarButtonItem {
             navigationController?.navigationBar.isHidden = false
             closeButton.rx.tap
                 .bind(to: closeButtonTappedObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
         }
         
     }
     
     private func bindAuth() {
         
-        let authStatus = AuthenticateQiita.sharedInstance.status.asObservable().shareReplayLatestWhileConnected()
+        let authStatus = AuthenticateQiita.sharedInstance.status.asObservable().share()
         authStatus.map { $0.fetchCode() }
             .filter { $0 != nil }
             .map { $0! }
             .bind(to: viewModel.fetchTokenTrigger)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.accessToken
             .bind(to: onCompleteAuthObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
 

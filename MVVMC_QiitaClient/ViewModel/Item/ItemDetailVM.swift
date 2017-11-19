@@ -43,68 +43,68 @@ final class ItemDetailVM<ItemResult, CountResult>: ItemDetailViewModel {
         GetStatusRequest.Response == Void, PutStatusRequest.Response == Void, DeleteStatusRequest.Response == Void {
             
             let fetchItemAction: Action<Void, ItemResult> = Action { _ in
-                return session.rx.response(request: itemRequest).shareReplayLatestWhileConnected()
+                return session.rx.response(request: itemRequest).share()
             }
             
             let fetchStockCountAction: Action<Void, CountResult> = Action { _ in
-                return session.rx.response(request: countRequest).shareReplayLatestWhileConnected()
+                return session.rx.response(request: countRequest).share()
             }
             
             Observable.zip(fetchItemAction.elements, fetchStockCountAction.elements, hasLikeObserver) { transformer.transform(input: ($0, $1, $2)) }
                 .bind(to: itemDetailObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             fetchItemAction.errors
                 .amb(fetchStockCountAction.errors)
                 .bind(to: errorObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             let fetchLikeStatusAction: Action<Void, Void> = Action { _ in
-                return session.rx.response(request: getStatusRequest).shareReplayLatestWhileConnected()
+                return session.rx.response(request: getStatusRequest).share()
             }
             
             fetchLikeStatusAction.elements
                 .map { _ in true }
                 .bind(to: hasLikeObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             fetchLikeStatusAction.errors
                 .map { _ in false }
                 .bind(to: hasLikeObserver)
-                .addDisposableTo(bag)
+                .disposed(by: bag)
             
             let putStatusAction: Action<Void, Void> = Action { _ in
-                return session.rx.response(request: putStatusRequest).shareReplayLatestWhileConnected()
+                return session.rx.response(request: putStatusRequest).share()
             }
-            putStatusAction.elements.map { _ in true }.bind(to: changeLikeStatusObserver).addDisposableTo(bag)
-            putStatusAction.errors.map { _ in false }.bind(to: changeLikeStatusObserver).addDisposableTo(bag)
+            putStatusAction.elements.map { _ in true }.bind(to: changeLikeStatusObserver).disposed(by: bag)
+            putStatusAction.errors.map { _ in false }.bind(to: changeLikeStatusObserver).disposed(by: bag)
             
             let deleteStatusAction: Action<Void, Void> = Action { _ in
-                return session.rx.response(request: deleteStatusRequest).shareReplayLatestWhileConnected()
+                return session.rx.response(request: deleteStatusRequest).share()
             }
-            deleteStatusAction.elements.map { _ in false }.bind(to: changeLikeStatusObserver).addDisposableTo(bag)
-            deleteStatusAction.errors.map { _ in true }.bind(to: changeLikeStatusObserver).addDisposableTo(bag)
+            deleteStatusAction.elements.map { _ in false }.bind(to: changeLikeStatusObserver).disposed(by: bag)
+            deleteStatusAction.errors.map { _ in true }.bind(to: changeLikeStatusObserver).disposed(by: bag)
             
             viewDidLoadTrigger.subscribe(onNext: { _ in
                 fetchItemAction.execute(())
                 fetchStockCountAction.execute(())
                 fetchLikeStatusAction.execute(())
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
             
-            let likeStatusObservable = updateStatusTrigger.withLatestFrom(hasLikeObserver) { $1 }.shareReplayLatestWhileConnected()
+            let likeStatusObservable = updateStatusTrigger.withLatestFrom(hasLikeObserver) { $1 }.share()
             likeStatusObservable.filter { $0 }.subscribe(onNext: { _ in
                 deleteStatusAction.execute(())
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
             
             likeStatusObservable.filter { !$0 }.subscribe(onNext: { _ in
                 putStatusAction.execute(())
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
         
             changeLikeStatusObserver.withLatestFrom(itemDetail) { (status, itemDetail) in
                 itemDetail.updateLikeStatus(status: status)
             }.subscribe(onNext: { _ in
                 //Noop
-            }).addDisposableTo(bag)
+            }).disposed(by: bag)
             
     }
     

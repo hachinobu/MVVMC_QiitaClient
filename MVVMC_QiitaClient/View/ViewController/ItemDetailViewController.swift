@@ -62,37 +62,37 @@ extension ItemDetailViewController {
         
         dataSource.selectedUser
             .bind(to: selectedUserObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         dataSource.tappedLikeButton
             .bind(to: tappedLikeButtonObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         dataSource.requiredAuth
             .bind(to: requiredAuthObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         dataSource.selectedLikeCount
             .bind(to: selectedLikeCountObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         dataSource.selectedStockCount
             .bind(to: selectedStockCountObserver)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         viewModel.itemDetail.map { [$0, $0] }
             .drive(tableView.rx.items(dataSource: dataSource))
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
         tableView.delegate = dataSource
         
         viewModel.error.drive(onNext: { (error) in
             print(error)
-        }).addDisposableTo(bag)
+        }).disposed(by: bag)
         
         tappedLikeButtonObserver
             .bind(to: viewModel.updateStatusTrigger)
-            .addDisposableTo(bag)
+            .disposed(by: bag)
         
     }
     
@@ -138,13 +138,13 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             
             let viewModel = items[indexPath.row]
             let cell = tableView.dequeueReusableCell(indexPath: indexPath) as ItemDetailHeaderTableCell
-            viewModel.title.bind(to: cell.titleLabel.rx.attributedText).addDisposableTo(cell.bag)
-            viewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.stockCount.bind(to: cell.stockCountLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.userName.bind(to: cell.userNameButton.rx.title()).addDisposableTo(cell.bag)
-            viewModel.tag.bind(to: cell.tagLabel.rx.text).addDisposableTo(cell.bag)
-            viewModel.hasLike.filter { $0 }.map { _ in "いいね済み" }.bind(to: cell.likeButton.rx.title()).addDisposableTo(cell.bag)
-            viewModel.hasLike.filter { !$0 }.map { _ in "いいね" }.bind(to: cell.likeButton.rx.title()).addDisposableTo(cell.bag)
+            viewModel.title.bind(to: cell.titleLabel.rx.attributedText).disposed(by: cell.bag)
+            viewModel.likeCount.bind(to: cell.likeCountLabel.rx.text).disposed(by: cell.bag)
+            viewModel.stockCount.bind(to: cell.stockCountLabel.rx.text).disposed(by: cell.bag)
+            viewModel.userName.bind(to: cell.userNameButton.rx.title()).disposed(by: cell.bag)
+            viewModel.tag.bind(to: cell.tagLabel.rx.text).disposed(by: cell.bag)
+            viewModel.hasLike.filter { $0 }.map { _ in "いいね済み" }.bind(to: cell.likeButton.rx.title()).disposed(by: cell.bag)
+            viewModel.hasLike.filter { !$0 }.map { _ in "いいね" }.bind(to: cell.likeButton.rx.title()).disposed(by: cell.bag)
             
             viewModel.profileURL.filter { $0 != nil }.subscribe(onNext: { url in
                 let imageURL = url!
@@ -153,18 +153,18 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
                 cell.profileImageView.kf.setImage(with: resource, placeholder: nil,
                                                                        options: [.transition(ImageTransition.fade(1.0)), .cacheMemoryOnly],
                                                                        progressBlock: nil, completionHandler: nil)
-            }).addDisposableTo(cell.bag)
+            }).disposed(by: cell.bag)
             
             cell.userNameButton.rx.tap.amb(cell.profileImageButton.rx.tap).map { _ in
                 return viewModel.userId
-            }.bind(to: selectedUserObserver).addDisposableTo(cell.bag)
+            }.bind(to: selectedUserObserver).disposed(by: cell.bag)
             
-            cell.likeCountButton.rx.tap.map { viewModel.itemId }.bind(to: selectedLikeCountObserver).addDisposableTo(cell.bag)
-            cell.stockCountButton.rx.tap.map { viewModel.itemId }.bind(to: selectedStockCountObserver).addDisposableTo(cell.bag)
+            cell.likeCountButton.rx.tap.map { viewModel.itemId }.bind(to: selectedLikeCountObserver).disposed(by: cell.bag)
+            cell.stockCountButton.rx.tap.map { viewModel.itemId }.bind(to: selectedStockCountObserver).disposed(by: cell.bag)
             
-            let tap = cell.likeButton.rx.tap.map { AccessTokenStorage.hasAccessToken() }.shareReplayLatestWhileConnected()
-            tap.filter { $0 }.map { _ in }.bind(to: tappedLikeButtonObserver).addDisposableTo(cell.bag)
-            tap.filter { !$0 }.map { _ in }.bind(to: requiredAuthObserver).addDisposableTo(cell.bag)
+            let tap = cell.likeButton.rx.tap.map { AccessTokenStorage.hasAccessToken() }.share()
+            tap.filter { $0 }.map { _ in }.bind(to: tappedLikeButtonObserver).disposed(by: cell.bag)
+            tap.filter { !$0 }.map { _ in }.bind(to: requiredAuthObserver).disposed(by: cell.bag)
             
             return cell
             
@@ -180,7 +180,7 @@ fileprivate class ItemDetailTableViewDataSource: NSObject, RxTableViewDataSource
             }
             strongSelf.webContentCellHeight = height
             tableView.reloadRows(at: [IndexPath(row: 1, section: 0)], with: .fade)
-        }).addDisposableTo(cell.bag)
+        }).disposed(by: cell.bag)
         
         cell.webView.loadHTMLString(items.first!.htmlRenderBody, baseURL: nil)
         
