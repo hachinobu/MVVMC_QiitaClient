@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol TabSelectableView: class {
+protocol AuthenticatedTabSelectableView: class {
     
     var itemTabNavigationController: UINavigationController { get }
     var tagTabNavigationController: UINavigationController { get }

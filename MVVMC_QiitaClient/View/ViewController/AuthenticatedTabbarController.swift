@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelectableView {
+class AuthenticatedTabbarController: UITabBarController, UITabBarControllerDelegate, AuthenticatedTabSelectableView {
     
     lazy var itemTabNavigationController: UINavigationController = {
         guard let navigationController = viewControllers?[SelectedTab.item.rawValue] as? UINavigationController else {
@@ -82,7 +82,7 @@ class TabbarController: UITabBarController, UITabBarControllerDelegate, TabSelec
 
 }
 
-extension TabbarController {
+extension AuthenticatedTabbarController {
     
     enum SelectedTab: Int {
         case item = 0

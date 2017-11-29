@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class AuthViewController: UIViewController, AuthViewType {
+final class AuthViewController: UIViewController, AuthenticationType {
 
     private let tappedAuthObserver = PublishSubject<Void>()
     lazy var tappedAuth: Observable<Void> = self.tappedAuthObserver.asObservable()

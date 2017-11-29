@@ -1,5 +1,5 @@
 //
-//  AuthViewProtocol.swift
+//  AuthenticationType.swift
 //  MVVMC_QiitaClient
 //
 //  Created by Takahiro Nishinobu on 2017/07/23.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol AuthViewType: class {
+protocol AuthenticationType: class {
     
     var tappedAuth: Observable<Void> { get }
     var tappedSkipAuth: Observable<Void> { get }

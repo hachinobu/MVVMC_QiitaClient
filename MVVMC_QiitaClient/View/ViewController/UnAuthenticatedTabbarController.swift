@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-final class NoAuthTabbarController: UITabBarController, UITabBarControllerDelegate, NoAuthTabSelectable {
+final class UnAuthenticatedTabbarController: UITabBarController, UITabBarControllerDelegate, UnAuthenticatedTabSelectableView {
 
     private var selectedItemTabObserver = PublishSubject<UINavigationController>()
     lazy var selectedItemTabObservable = self.selectedItemTabObserver.asObservable()
@@ -47,7 +47,7 @@ final class NoAuthTabbarController: UITabBarController, UITabBarControllerDelega
 
 }
 
-fileprivate extension NoAuthTabbarController {
+fileprivate extension UnAuthenticatedTabbarController {
     
     enum NoAuthSelectedTab: Int {
         case item = 0

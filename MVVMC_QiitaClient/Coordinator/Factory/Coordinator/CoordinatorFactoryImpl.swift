@@ -10,33 +10,31 @@ import UIKit
 
 final class CoordinatorFactoryImpl: CoordinatorFactory {
     
-    func generateTabbarCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType {
-        let tabbarCoordinator = TabbarCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
-        return tabbarCoordinator
+    func generateAuthenticatedCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType {
+        return AuthenticatedCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
     }
     
-    func generateNoAuthTabbarCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType & ItemCoordinatorFinishFlowType {
-        let noAuthTabbarCoordinator = NoAuthTabbarCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
-        return noAuthTabbarCoordinator
+    func generateUnAuthenticatedCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType & ItemCoordinatorFinishFlowType {
+        return UnAuthenticatedCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
     }
     
-    func generateAuthCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType {
-        return AuthCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+    func generateAuthenticationCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType {
+        return AuthenticationCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
     }
     
-    func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator & ItemCoordinatorFinishFlowType {
+    func generateItemCoordinator(navigationController: UINavigationController?) -> Coordinator & ItemCoordinatorFinishFlowType {
         let rootController = navigationController ?? UINavigationController()
         return ItemCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
-    func generateTagTabCoordinator(navigationController: UINavigationController?) -> Coordinator {
+    func generateTagCoordinator(navigationController: UINavigationController?) -> Coordinator {
         let rootController = navigationController ?? UINavigationController()
         return TagCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
-    func generateSignInTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType {
+    func generateLogInTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType {
         let rootController = navigationController ?? UINavigationController()
-        return AuthCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
+        return AuthenticationCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: RouterImpl(rootController: rootController))
     }
     
     func generateUserCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType {
@@ -47,7 +45,7 @@ final class CoordinatorFactoryImpl: CoordinatorFactory {
     func generateAuthCoordinatorBox() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType)) {
         let navigation = UIStoryboard.instantiateInitialViewController(withType: PresentNavigationController.self)
         let router = RouterImpl(rootController: navigation)
-        let coordinator = AuthCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
+        let coordinator = AuthenticationCoordinator(moduleFactory: ModuleFactory(), coordinatorFactory: CoordinatorFactoryImpl(), router: router)
         return (router, coordinator)
     }
     

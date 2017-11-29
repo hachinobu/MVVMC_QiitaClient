@@ -1,5 +1,5 @@
 //
-//  NoAuthTabbarCoordinator.swift
+//  UnAuthenticatedCoordinator.swift
 //  MVVMC_QiitaClient
 //
 //  Created by Takahiro Nishinobu on 2017/09/03.
@@ -9,11 +9,11 @@
 import UIKit
 import RxSwift
 
-class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordinatorFinishFlowType {
+class UnAuthenticatedCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemCoordinatorFinishFlowType {
     
     private let bag = DisposeBag()
     
-    private let moduleFactory: TabModuleFactory
+    private let moduleFactory: UnAuthenticatedModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
     
@@ -23,7 +23,7 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
     private let finishItemFlowObserver = PublishSubject<DeepLinkOption>()
     lazy var finishItemFlow: Observable<DeepLinkOption> = self.finishItemFlowObserver.asObservable()
     
-    init(moduleFactory: TabModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+    init(moduleFactory: UnAuthenticatedModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
         self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
         self.router = router
@@ -31,7 +31,7 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
     
     override func start() {
         
-        let tabView = moduleFactory.generateNoAuthTabView()
+        let tabView = moduleFactory.generateUnAuthenticatedTabView()
         
         tabView.selectedItemTabObservable.subscribe(onNext: { [unowned self] navigationController in
             self.runItemTabFlow(navigationController: navigationController)
@@ -42,7 +42,7 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
         }).disposed(by: bag)
         
         tabView.selectedSignInTabObservable.subscribe(onNext: { [unowned self] navigationController in
-            self.runSignInTabFlow(navigationController: navigationController)
+            self.runLoginTabFlow(navigationController: navigationController)
         }).disposed(by: bag)
         
         router.setRoot(presentable: tabView, hideBar: true)
@@ -51,7 +51,7 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
     
     private func runItemTabFlow(navigationController: UINavigationController) {
         guard navigationController.viewControllers.isEmpty else { return }
-        let coordinator = coordinatorFactory.generateItemTabCoordinator(navigationController: navigationController)
+        let coordinator = coordinatorFactory.generateItemCoordinator(navigationController: navigationController)
         coordinator.finishItemFlow
             .filter { _ in AccessTokenStorage.hasAccessToken() }
             .bind(to: finishItemFlowObserver)
@@ -62,15 +62,15 @@ class NoAuthTabbarCoordinator: BaseCoordinator, CoordinatorFinishFlowType, ItemC
     
     private func runTagTabFlow(navigationController: UINavigationController) {
         guard navigationController.viewControllers.isEmpty else { return }
-        let coordinator = coordinatorFactory.generateTagTabCoordinator(navigationController: navigationController)
+        let coordinator = coordinatorFactory.generateTagCoordinator(navigationController: navigationController)
         coordinator.start()
         addDependency(coordinator: coordinator)
     }
     
-    private func runSignInTabFlow(navigationController: UINavigationController) {
+    private func runLoginTabFlow(navigationController: UINavigationController) {
         AuthenticateQiita.sharedInstance.status.value = .loginFromAccount
         guard navigationController.viewControllers.isEmpty else { return }
-        let coordinator = coordinatorFactory.generateSignInTabCoordinator(navigationController: navigationController)
+        let coordinator = coordinatorFactory.generateLogInTabCoordinator(navigationController: navigationController)
         coordinator.finishFlow
             .filter { AccessTokenStorage.hasAccessToken() }
             .bind(to: finishFlowObserver)

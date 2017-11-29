@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-protocol NoAuthTabSelectable: class {
+protocol UnAuthenticatedTabSelectableView: class {
     var selectedItemTabObservable: Observable<UINavigationController> { get }
     var selectedTagTabObservable: Observable<UINavigationController> { get }
     var selectedSignInTabObservable: Observable<UINavigationController> { get }

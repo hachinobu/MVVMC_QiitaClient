@@ -30,18 +30,18 @@ class ApplicationCoordinator: BaseCoordinator {
     
     override func start() {
         if hasAccessToken {
-            runMainTabbarFlow()
+            runAuthenticatedFlow()
         } else if isSkipAuth {
-            runNoAuthTabbarFlow()
+            runUnAuthenticatedFlow()
         } else {
-            runAuthFlow()
+            runAuthenticationFlow()
         }
     }
     
     override func start(option: DeepLinkOption) {
         if hasAccessToken {
             if childCoordinators.isEmpty {
-                runMainTabbarFlow(option: option)
+                runAuthenticatedFlow(option: option)
             } else {
                 childCoordinators.forEach { $0.start(option: option) }
             }
@@ -54,8 +54,8 @@ class ApplicationCoordinator: BaseCoordinator {
 
 extension ApplicationCoordinator {
     
-    private func runAuthFlow() {
-        let coordinator = coordinatorFactory.generateAuthCoordinator(router: router)
+    private func runAuthenticationFlow() {
+        let coordinator = coordinatorFactory.generateAuthenticationCoordinator(router: router)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.removeDependency(coordinator: coordinator)
             self?.start()
@@ -65,8 +65,8 @@ extension ApplicationCoordinator {
         coordinator.start()
     }
     
-    private func runMainTabbarFlow(option: DeepLinkOption? = nil) {
-        let coordinator = coordinatorFactory.generateTabbarCoordinator(router: router)
+    private func runAuthenticatedFlow(option: DeepLinkOption? = nil) {
+        let coordinator = coordinatorFactory.generateAuthenticatedCoordinator(router: router)
         coordinator.finishFlow.subscribe(onNext: { [weak self, weak coordinator] _ in
             self?.removeDependency(coordinator: coordinator)
             self?.start()
@@ -80,8 +80,8 @@ extension ApplicationCoordinator {
         }
     }
     
-    private func runNoAuthTabbarFlow() {
-        let coordinator = coordinatorFactory.generateNoAuthTabbarCoordinator(router: router)
+    private func runUnAuthenticatedFlow() {
+        let coordinator = coordinatorFactory.generateUnAuthenticatedCoordinator(router: router)
         coordinator.finishItemFlow.subscribe(onNext: { [weak self, weak coordinator] option in
             self?.removeDependency(coordinator: coordinator)
             self?.start(option: option)

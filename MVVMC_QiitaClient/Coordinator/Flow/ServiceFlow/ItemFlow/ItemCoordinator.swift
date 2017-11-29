@@ -77,7 +77,6 @@ final class ItemCoordinator: BaseCoordinator, ItemCoordinatorFinishFlowType, Coo
         itemDetailView.selectedStockCount.subscribe(onNext: { [weak self] itemId in
             self?.runUserFlow(option: .stockUserList(itemId))
         }).disposed(by: bag)
-        
         router.push(presentable: itemDetailView, animated: true, completion: nil)
     }
     

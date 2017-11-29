@@ -1,5 +1,5 @@
 //
-//  AuthCoordinator.swift
+//  AuthenticationCoordinator.swift
 //  MVVMC_QiitaClient
 //
 //  Created by Takahiro Nishinobu on 2017/07/23.
@@ -10,19 +10,19 @@ import UIKit
 import RxSwift
 import SafariServices
 
-final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
+final class AuthenticationCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
 
     private let bag = DisposeBag()
     private var authSession: SFAuthenticationSession?
     
-    private let moduleFactory: AuthModuleFactory
+    private let moduleFactory: AuthenticationModuleFactory
     private let coordinatorFactory: CoordinatorFactory
     private let router: Router
     
     private let finishFlowObserver = PublishSubject<Void>()
     lazy var finishFlow: Observable<Void> = self.finishFlowObserver.asObservable()
     
-    init(moduleFactory: AuthModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
+    init(moduleFactory: AuthenticationModuleFactory, coordinatorFactory: CoordinatorFactory, router: Router) {
         self.moduleFactory = moduleFactory
         self.coordinatorFactory = coordinatorFactory
         self.router = router
@@ -31,17 +31,17 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
     override func start() {
         let status = AuthenticateQiita.sharedInstance.status.value
         if !status.isAuthorized() {
-            showAuthView()
+            showAuthenticationView()
         } else if status.isLoginFromItem() {
-            showLoginAuthViewFromItem()
+            showLoginViewFromItem()
         } else if status.isLoginFromSignIn() {
-            showLoginAuthViewFromSignInTab()
+            showLoginViewFromAccount()
         }
     }
     
-    private func showAuthView() {
+    private func showAuthenticationView() {
         
-        let authView = moduleFactory.generateAuthView()
+        let authView = moduleFactory.generateAuthenticationView()
         authView.tappedAuth.subscribe(onNext: { [weak self] _ in
             self?.authenticateQiita()
         }).disposed(by: bag)
@@ -62,9 +62,9 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         router.setRoot(presentable: authView, hideBar: true)
     }
     
-    private func showLoginAuthViewFromItem() {
+    private func showLoginViewFromItem() {
         
-        let authView = moduleFactory.generateAuthView()
+        let authView = moduleFactory.generateAuthenticationView()
         authView.skipButtonHidden = true
         
         authView.closeButtonTapped.do(onNext: { [weak self] _ in
@@ -89,9 +89,9 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         
     }
     
-    private func showLoginAuthViewFromSignInTab() {
+    private func showLoginViewFromAccount() {
         
-        let authView = moduleFactory.generateAuthView()
+        let authView = moduleFactory.generateAuthenticationView()
         authView.skipButtonHidden = true
         
         authView.tappedAuth.subscribe(onNext: { [weak self] _ in
@@ -126,11 +126,9 @@ final class AuthCoordinator: BaseCoordinator, CoordinatorFinishFlowType {
         guard let scheme = urlComponents?.scheme, scheme.hasPrefix(AuthInfo.redirectUrlScheme),
             let queryItems = urlComponents?.queryItems else { return }
         
-        let query = queryItems.reduce([String : String]()) { (result, item) in
-            var queryInfo = result
+        let query = queryItems.reduce(into: [String: String]()) { (result, item) in
             let value = item.value ?? ""
-            queryInfo[item.name] = value
-            return queryInfo
+            result[item.name] = value
         }
         
         guard let code = query["code"], let state = query["state"],

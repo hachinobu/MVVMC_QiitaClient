@@ -12,9 +12,9 @@ final class ModuleFactory {
 }
 
 //AuthFlow
-extension ModuleFactory: AuthModuleFactory {
+extension ModuleFactory: AuthenticationModuleFactory {
     
-    func generateAuthView() -> AuthViewType & Presentable {
+    func generateAuthenticationView() -> AuthenticationType & Presentable {
         let authView = UIStoryboard.instantiateInitialViewController(withType: AuthViewController.self)
         let authRequest = QiitaAPI.PostAccessTokenRequest(clientId: AuthInfo.clientId, clientSecret: AuthInfo.clientSecret)
         let viewModel = AuthVM(request: authRequest)
@@ -35,14 +35,18 @@ extension ModuleFactory: NavigationModuleFactory {
     
 }
 
-extension ModuleFactory: TabModuleFactory {
+extension ModuleFactory: AuthenticatedModuleFactory {
     
-    func generateAuthTabView() -> Presentable & TabSelectableView {
-        return UIStoryboard.instantiateInitialViewController(withType: TabbarController.self)
+    func generateAuthenticatedTabView() -> Presentable & AuthenticatedTabSelectableView {
+        return UIStoryboard.instantiateInitialViewController(withType: AuthenticatedTabbarController.self)
     }
     
-    func generateNoAuthTabView() -> NoAuthTabSelectable & Presentable {
-        return UIStoryboard.instantiateInitialViewController(withType: NoAuthTabbarController.self)
+}
+
+extension ModuleFactory: UnAuthenticatedModuleFactory {
+    
+    func generateUnAuthenticatedTabView() -> UnAuthenticatedTabSelectableView & Presentable {
+        return UIStoryboard.instantiateInitialViewController(withType: UnAuthenticatedTabbarController.self)
     }
     
 }

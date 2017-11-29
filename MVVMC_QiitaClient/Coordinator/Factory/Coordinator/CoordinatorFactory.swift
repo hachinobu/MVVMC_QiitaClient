@@ -9,13 +9,13 @@
 import UIKit
 
 protocol CoordinatorFactory {
-    func generateTabbarCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType
-    func generateNoAuthTabbarCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType & ItemCoordinatorFinishFlowType
-    func generateAuthCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType
-    func generateItemTabCoordinator(navigationController: UINavigationController?) -> Coordinator & ItemCoordinatorFinishFlowType
-    func generateTagTabCoordinator(navigationController: UINavigationController?) -> Coordinator
+    func generateAuthenticatedCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType
+    func generateUnAuthenticatedCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType & ItemCoordinatorFinishFlowType
+    func generateAuthenticationCoordinator(router: Router) -> Coordinator & CoordinatorFinishFlowType
+    func generateItemCoordinator(navigationController: UINavigationController?) -> Coordinator & ItemCoordinatorFinishFlowType
+    func generateTagCoordinator(navigationController: UINavigationController?) -> Coordinator
     func generateUserCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType
-    func generateSignInTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType
+    func generateLogInTabCoordinator(navigationController: UINavigationController?) -> Coordinator & CoordinatorFinishFlowType
     func generateAuthCoordinatorBox() -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType))
     func generateItemCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType))
     func generateTagCoordinatorBox(navigationController: UINavigationController?) -> (presentable: Presentable?, coordinator: (Coordinator & CoordinatorFinishFlowType))

@@ -1,5 +1,5 @@
 //
-//  AuthModuleFactory.swift
+//  AuthenticationModuleFactory.swift
 //  MVVMC_QiitaClient
 //
 //  Created by Takahiro Nishinobu on 2017/07/23.
@@ -8,8 +8,6 @@
 
 import UIKit
 
-protocol AuthModuleFactory {
-    
-    func generateAuthView() -> AuthViewType & Presentable
-    
+protocol AuthenticationModuleFactory {
+    func generateAuthenticationView() -> AuthenticationType & Presentable
 }
