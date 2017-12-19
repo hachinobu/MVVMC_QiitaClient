@@ -36,7 +36,7 @@ final class UserListVM<Results: Sequence>: UserListViewModel {
         request: UsersRequest,
         transformer: Transform,
         session: Session = Session.shared
-        ) where Transform.Input == Results.Iterator.Element,
+        ) where Transform.Input == Results.Element,
         Transform.Output == UserListTableCellViewModel, UsersRequest.Response == Results {
             
             fetchUsersAction = Action { page in

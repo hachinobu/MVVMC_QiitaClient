@@ -19,7 +19,7 @@ protocol Transformable {
 
 extension Sequence {
     
-    func transform<T: Transformable>(transformable: T) -> [T.Output] where Iterator.Element == T.Input {
+    func transform<T: Transformable>(transformable: T) -> [T.Output] where Element == T.Input {
         return map { transformable.transform(input: $0) }
     }
     

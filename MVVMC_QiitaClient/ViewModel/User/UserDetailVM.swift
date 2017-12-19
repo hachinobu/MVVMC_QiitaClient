@@ -45,7 +45,7 @@ final class UserDetailVM<UserResult, ItemsResult: Sequence>: UserDetailViewModel
         session: Session = Session.shared
         ) where UserRequest.Response == UserResult, ItemsRequest.Response == ItemsResult,
         UserTransform.Input == UserResult, UserTransform.Output == UserDetailViewModel,
-        ItemTransform.Input == ItemsResult.Iterator.Element, ItemTransform.Output == ItemViewModel {
+        ItemTransform.Input == ItemsResult.Element, ItemTransform.Output == ItemViewModel {
             
             userFetchAction = Action { _ in
                 return session.rx.response(request: userRequest).map { userTransformer.transform(input: $0) }

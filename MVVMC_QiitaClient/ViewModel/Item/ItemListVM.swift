@@ -71,7 +71,7 @@ final class ItemListVM<Results: Sequence>: ItemListViewModel {
         request: Request,
         transformer: Transform,
         session: Session = Session.shared
-        ) where Transform.Input == Results.Iterator.Element,
+        ) where Transform.Input == Results.Element,
         Transform.Output == ItemListTableCellViewModel, Request.Response == Results {
             
             fetchItemListAction = Action { page in

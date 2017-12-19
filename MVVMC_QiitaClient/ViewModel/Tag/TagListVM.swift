@@ -35,7 +35,7 @@ final class TagListVM<Results: Sequence>: TagListViewModel {
     init<TagsRequest: PaginationRequest, Transform: Transformable>
         (request: TagsRequest,
          transformer: Transform,
-         session: Session = Session.shared) where Transform.Input == Results.Iterator.Element,
+         session: Session = Session.shared) where Transform.Input == Results.Element,
         Transform.Output == TagListTableCellViewModel, TagsRequest.Response == Results {
         
             fetchTagsAction = Action { page in

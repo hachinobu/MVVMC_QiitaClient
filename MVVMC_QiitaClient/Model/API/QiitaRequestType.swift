@@ -66,7 +66,7 @@ extension QiitaRequest where Response: Codable {
 
 }
 
-extension QiitaRequest where Response: Codable, Response: Sequence, Response.Iterator.Element: Codable {
+extension QiitaRequest where Response: Codable, Response: Sequence, Response.Element: Codable {
 
     var dataParser: DataParser {
         return CodableParser()
