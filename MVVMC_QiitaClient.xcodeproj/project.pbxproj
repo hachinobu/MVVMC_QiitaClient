@@ -27,7 +27,7 @@
 		AD5C989D1F1F998200DF5039 /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */; };
 		AD5C98A51F1F9C3400DF5039 /* AuthenticatedTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A41F1F9C3400DF5039 /* AuthenticatedTabbarController.swift */; };
 		AD5C98A91F1F9D4100DF5039 /* AuthenticatedTabSelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5C98A81F1F9D4100DF5039 /* AuthenticatedTabSelectableView.swift */; };
-		AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */; };
+		AD5C98AC1F1FA31A00DF5039 /* AuthenticatedTabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5C98AB1F1FA31A00DF5039 /* AuthenticatedTabbarController.storyboard */; };
 		AD5FA6AA1F45D43E0089B10A /* UserDetailTableCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */; };
 		AD5FA6AC1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */; };
 		AD5FA6AE1F49C6A10089B10A /* UserDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */; };
@@ -46,7 +46,7 @@
 		AD5FA6CA1F56EFE10089B10A /* TagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */; };
 		AD5FA6CD1F584ACE0089B10A /* TagCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CC1F584ACE0089B10A /* TagCoordinator.swift */; };
 		AD5FA6D01F584B290089B10A /* TagModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6CF1F584B290089B10A /* TagModuleFactory.swift */; };
-		AD5FA6D71F5C1BE60089B10A /* NoAuthTabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6D61F5C1BE60089B10A /* NoAuthTabbarController.storyboard */; };
+		AD5FA6D71F5C1BE60089B10A /* UnAuthenticatedTabbarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD5FA6D61F5C1BE60089B10A /* UnAuthenticatedTabbarController.storyboard */; };
 		AD5FA6D91F5C1C4F0089B10A /* UnAuthenticatedTabSelectableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6D81F5C1C4F0089B10A /* UnAuthenticatedTabSelectableView.swift */; };
 		AD5FA6DB1F5C1C950089B10A /* UnAuthenticatedTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6DA1F5C1C950089B10A /* UnAuthenticatedTabbarController.swift */; };
 		AD5FA6DD1F5C1EDF0089B10A /* UnAuthenticatedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5FA6DC1F5C1EDF0089B10A /* UnAuthenticatedCoordinator.swift */; };
@@ -174,7 +174,7 @@
 		AD5C98991F1F998200DF5039 /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		AD5C98A41F1F9C3400DF5039 /* AuthenticatedTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedTabbarController.swift; sourceTree = "<group>"; };
 		AD5C98A81F1F9D4100DF5039 /* AuthenticatedTabSelectableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedTabSelectableView.swift; sourceTree = "<group>"; };
-		AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabbarController.storyboard; sourceTree = "<group>"; };
+		AD5C98AB1F1FA31A00DF5039 /* AuthenticatedTabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AuthenticatedTabbarController.storyboard; sourceTree = "<group>"; };
 		AD5FA6A91F45D43E0089B10A /* UserDetailTableCellVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableCellVM.swift; sourceTree = "<group>"; };
 		AD5FA6AB1F45DA740089B10A /* UserEntityToUserDetailTableCellViewModelTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntityToUserDetailTableCellViewModelTransform.swift; sourceTree = "<group>"; };
 		AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserDetailViewController.storyboard; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		AD5FA6C91F56EFE10089B10A /* TagListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListViewController.swift; sourceTree = "<group>"; };
 		AD5FA6CC1F584ACE0089B10A /* TagCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCoordinator.swift; sourceTree = "<group>"; };
 		AD5FA6CF1F584B290089B10A /* TagModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModuleFactory.swift; sourceTree = "<group>"; };
-		AD5FA6D61F5C1BE60089B10A /* NoAuthTabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NoAuthTabbarController.storyboard; sourceTree = "<group>"; };
+		AD5FA6D61F5C1BE60089B10A /* UnAuthenticatedTabbarController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UnAuthenticatedTabbarController.storyboard; sourceTree = "<group>"; };
 		AD5FA6D81F5C1C4F0089B10A /* UnAuthenticatedTabSelectableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnAuthenticatedTabSelectableView.swift; sourceTree = "<group>"; };
 		AD5FA6DA1F5C1C950089B10A /* UnAuthenticatedTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnAuthenticatedTabbarController.swift; sourceTree = "<group>"; };
 		AD5FA6DC1F5C1EDF0089B10A /* UnAuthenticatedCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnAuthenticatedCoordinator.swift; sourceTree = "<group>"; };
@@ -472,14 +472,14 @@
 		AD5C98AA1F1FA2FC00DF5039 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				AD5C98AB1F1FA31A00DF5039 /* TabbarController.storyboard */,
+				AD5C98AB1F1FA31A00DF5039 /* AuthenticatedTabbarController.storyboard */,
 				AD639DBC1F23223100AA56ED /* AuthViewController.storyboard */,
 				AD639DE31F277DD200AA56ED /* ItemListViewController.storyboard */,
 				C2FF21E71F332CC60002C89E /* ItemDetailViewController.storyboard */,
 				AD5FA6AD1F49C6A10089B10A /* UserDetailViewController.storyboard */,
 				C2AC175C1F4ED9FA00436414 /* UserListViewController.storyboard */,
 				AD5FA6C71F56EF890089B10A /* TagListViewController.storyboard */,
-				AD5FA6D61F5C1BE60089B10A /* NoAuthTabbarController.storyboard */,
+				AD5FA6D61F5C1BE60089B10A /* UnAuthenticatedTabbarController.storyboard */,
 				ADA27C521F657AE300F49825 /* PresentNavigationController.storyboard */,
 			);
 			path = Storyboard;
@@ -827,7 +827,7 @@
 				AD639DF01F27835E00AA56ED /* LoadingIndicatorView.xib in Resources */,
 				AD639DE41F277DD200AA56ED /* ItemListViewController.storyboard in Resources */,
 				C2AC175D1F4ED9FA00436414 /* UserListViewController.storyboard in Resources */,
-				AD5FA6D71F5C1BE60089B10A /* NoAuthTabbarController.storyboard in Resources */,
+				AD5FA6D71F5C1BE60089B10A /* UnAuthenticatedTabbarController.storyboard in Resources */,
 				AD5C98651F1F962300DF5039 /* Assets.xcassets in Resources */,
 				AD40099F1F45CE2700F8321D /* UserDetailTableCell.xib in Resources */,
 				C29C29251F3C1A5600189325 /* ItemDetailHeaderTableCell.xib in Resources */,
@@ -837,7 +837,7 @@
 				AD5FA6B61F4B17840089B10A /* UserListTableCell.xib in Resources */,
 				ADC3856D1F2F7C100092F227 /* ItemDetailWebTableCell.xib in Resources */,
 				AD5FA6C81F56EF890089B10A /* TagListViewController.storyboard in Resources */,
-				AD5C98AC1F1FA31A00DF5039 /* TabbarController.storyboard in Resources */,
+				AD5C98AC1F1FA31A00DF5039 /* AuthenticatedTabbarController.storyboard in Resources */,
 				AD639DE91F277F2F00AA56ED /* ItemListTableCell.xib in Resources */,
 				AD5FA6AE1F49C6A10089B10A /* UserDetailViewController.storyboard in Resources */,
 			);
