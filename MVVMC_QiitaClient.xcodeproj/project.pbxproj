@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD07564E204D8D3F00455155 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD07564D204D8D3F00455155 /* UserDefaults+Extension.swift */; };
 		AD0EF1CA1F6EB88800D1B503 /* NavigationModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0EF1C91F6EB88800D1B503 /* NavigationModuleFactory.swift */; };
 		AD40099F1F45CE2700F8321D /* UserDetailTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD40099E1F45CE2700F8321D /* UserDetailTableCell.xib */; };
 		AD4009A11F45D20A00F8321D /* UserDetailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4009A01F45D20A00F8321D /* UserDetailTableCell.swift */; };
@@ -148,6 +149,7 @@
 /* Begin PBXFileReference section */
 		97D0312F84DE58702220B358 /* Pods-MVVMC_QiitaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MVVMC_QiitaClient.release.xcconfig"; path = "Pods/Target Support Files/Pods-MVVMC_QiitaClient/Pods-MVVMC_QiitaClient.release.xcconfig"; sourceTree = "<group>"; };
 		A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVVMC_QiitaClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD07564D204D8D3F00455155 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		AD0EF1C91F6EB88800D1B503 /* NavigationModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModuleFactory.swift; sourceTree = "<group>"; };
 		AD40099E1F45CE2700F8321D /* UserDetailTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailTableCell.xib; sourceTree = "<group>"; };
 		AD4009A01F45D20A00F8321D /* UserDetailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableCell.swift; sourceTree = "<group>"; };
@@ -316,6 +318,14 @@
 				A7F235B9C2D98F0EAD71C641 /* Pods_MVVMC_QiitaClient.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD07564C204D8CE400455155 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AD07564D204D8D3F00455155 /* UserDefaults+Extension.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		AD553A111FB1D02F0029A94A /* UserFlow */ = {
@@ -506,6 +516,7 @@
 		AD639DC21F24750500AA56ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AD07564C204D8CE400455155 /* Data */,
 				C2483F991F28A16800685622 /* Transform */,
 				C2483F901F26152500685622 /* API */,
 				C2483F8D1F26141E00685622 /* ValueObject */,
@@ -953,6 +964,7 @@
 				AD4009A11F45D20A00F8321D /* UserDetailTableCell.swift in Sources */,
 				AD5C98951F1F996500DF5039 /* RouterImpl.swift in Sources */,
 				C2FF21E61F33161F0002C89E /* ItemAndCountEntityToItemDetailViewModel.swift in Sources */,
+				AD07564E204D8D3F00455155 /* UserDefaults+Extension.swift in Sources */,
 				ADA27C551F657B7700F49825 /* PresentNavigationController.swift in Sources */,
 				AD639E031F2B3F1700AA56ED /* ItemListViewType.swift in Sources */,
 				AD639DDC1F277AB500AA56ED /* GroupEntity.swift in Sources */,

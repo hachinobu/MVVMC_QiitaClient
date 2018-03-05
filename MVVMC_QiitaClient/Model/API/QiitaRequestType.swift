@@ -23,7 +23,8 @@ protocol QiitaRequest: Request {
 extension QiitaRequest {
     
     var headerFields: [String: String] {
-        guard let accessToken = AccessTokenStorage.fetchAccessToken() else {
+        let accessToken = AccessTokenStorage.fetchAccessToken()
+        if accessToken.isEmpty {
             return [:]
         }
         return ["Authorization": "Bearer \(accessToken)"]

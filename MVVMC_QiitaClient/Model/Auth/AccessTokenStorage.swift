@@ -12,8 +12,8 @@ struct AccessTokenStorage {
     
     private static let tokenKey = "AccessTokenKey"
     
-    static func fetchAccessToken() -> String? {
-        return UserDefaults.standard.string(forKey: tokenKey)
+    static func fetchAccessToken() -> String {
+        return UserDefaults.StringType.value(key: .accessToken)
     }
     
     static func deleteAccessToken() -> Bool {
@@ -22,12 +22,13 @@ struct AccessTokenStorage {
     }
     
     static func saveAccessToken(token: String) -> Bool {
-        UserDefaults.standard.set(token, forKey: tokenKey)
+        UserDefaults.StringType.set(value: token, key: .accessToken)
         return UserDefaults.standard.synchronize()
     }
     
     static func hasAccessToken() -> Bool {
-        return UserDefaults.standard.string(forKey: tokenKey) != nil
+        let token = UserDefaults.StringType.value(key: .accessToken)
+        return !token.isEmpty
     }
     
 }
