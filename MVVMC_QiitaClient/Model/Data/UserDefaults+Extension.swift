@@ -26,12 +26,18 @@ protocol UserDefaultable: KeyNameSpaceable {
     associatedtype ValueType
     static func set(value: ValueType, key: Key)
     static func value(key: Key) -> ValueType
+    static func remove(key: Key)
 }
 
 extension UserDefaultable {
     static func set(value: ValueType, key: Key) {
         let key = namespace(key: key)
         UserDefaults.standard.set(value, forKey: key)
+    }
+    
+    static func remove(key: Key) {
+        let key = namespace(key: key)
+        UserDefaults.standard.removeObject(forKey: key)
     }
 }
 

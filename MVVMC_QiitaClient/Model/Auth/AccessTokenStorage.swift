@@ -22,7 +22,7 @@ struct AccessTokenStorage {
     }
     
     static func saveAccessToken(token: String) -> Bool {
-        UserDefaults.StringType.set(value: token, key: .accessToken)
+        UserDefaults.StringType.remove(key: .accessToken)
         return UserDefaults.standard.synchronize()
     }
     
