@@ -1,4 +1,4 @@
-# MVVMC_QiitaClient
+# What is MVVMC?
 Model - View - ViewModel - Coordinator
 
 # Usage
